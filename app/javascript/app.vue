@@ -1,15 +1,20 @@
 <template>
   <div id="app">
-    <p>{{ message }}</p>
+    <Calendar></Calendar>
   </div>
 </template>
 
 <script>
+import Calendar from "../javascript/components/Calendar";
+
 export default {
   data: function () {
     return {
       message: "Hello Vue!"
     }
+  },
+  components: {
+    Calendar
   }
 }
 </script>
