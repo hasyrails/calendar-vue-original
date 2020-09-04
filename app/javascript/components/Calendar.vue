@@ -1,8 +1,8 @@
 <template>
   <div>
     <h2>カレンダー{{ currentDate }}</h2>
-    <button @click="prevMonth">前の月</button>
-    <button @click="nextMonth">次の月</button>
+    <ChevronLeft @click="prevMonth"></ChevronLeft>
+    <ChevronRight @click="nextMonth"></ChevronRight>
 
     <div style="max-width:900px;border-top:1px solid grey;">
       <div
@@ -24,13 +24,20 @@
 
 <script>
 import moment from "moment";
+import ChevronLeft from 'vue-material-design-icons/ChevronLeft.vue';
+import ChevronRight from 'vue-material-design-icons/ChevronRight.vue';
+
 
 export default {
   name: 'Calendar',
   data() {
     return {
-      currentDate: moment(),
+      currentDate: moment().format('YYYY/MM'),
     };
+  },
+  components: {
+    ChevronLeft,
+    ChevronRight
   },
   methods: {
     getStartDate() {
@@ -64,11 +71,11 @@ export default {
       return calendars;
     },
     nextMonth() {
-      this.currentDate = moment(this.currentDate).add(1, "month");
+      this.currentDate = moment(this.currentDate).add(1, "month").format('YYYY/MM');
       this.getCalendar();
     },
     prevMonth() {
-      this.currentDate = moment(this.currentDate).subtract(1, "month");
+      this.currentDate = moment(this.currentDate).subtract(1, "month").format('YYYY/MM');
       this.getCalendar();
     },
   },
