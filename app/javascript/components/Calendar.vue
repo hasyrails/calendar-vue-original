@@ -1,8 +1,12 @@
 <template>
-  <div>
-    <h2>カレンダー{{ currentDate }}</h2>
-    <ChevronLeft @click="prevMonth"></ChevronLeft>
-    <ChevronRight @click="nextMonth"></ChevronRight>
+  <div class="calendar">
+    <div class="calendar-header">
+      <div class="calendar-header-content flex">
+        <ChevronLeft fillColor="white"  @click="prevMonth"></ChevronLeft>
+        <div class="calendar-header-date">{{ currentDate }}</div>
+        <ChevronRight fillColor="white" @click="nextMonth"></ChevronRight>
+      </div>
+    </div>
 
     <div style="max-width:900px;border-top:1px solid grey;">
       <div
@@ -13,7 +17,7 @@
         <div
           v-for="(day, index) in week"
           :key="index"
-          style="flex:1;min-height:125px;border-right:1px solid grey;border-bottom:1px solid grey"
+          style="flex:1;min-height:125px;border-right:1px solid grey;border-bottom:1px solid grey; text-align: center;"
         >
           {{ day.date }}
         </div>
@@ -87,6 +91,26 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+.calendar {
+  margin-left: 30%;
+  margin-right: 30%;
+}
+.calendar-header {
+  max-width:900px;
+  background-color: #3366FF;
+}
+.calendar-header-date {
+  color: white;
+}
+.flex{
+  padding: 2.5% 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+.flex > *{
+  width: 8%;
+  text-align: center;
+}
 </style>
