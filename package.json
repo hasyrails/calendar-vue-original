@@ -6,6 +6,7 @@
     "moment": "^2.27.0",
     "vue": "^2.6.12",
     "vue-loader": "^15.9.3",
+    "vue-material-design-icons": "^4.9.0",
     "vue-template-compiler": "^2.6.12"
   },
   "devDependencies": {
