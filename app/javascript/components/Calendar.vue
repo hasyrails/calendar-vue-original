@@ -25,17 +25,24 @@
           :key="index"
           style="flex:1;min-height:1px;min-width:1px;max-height:5px;max-width:5px;border-right:1px solid grey;border-bottom:1px solid grey; text-align: center;background-color:blue;"
           > -->
-          <div
+          <!-- <div
             v-for="schedule in schedules"
-            v-if="schedule.start<=day.date&&day.date<=schedule.end&&schedule.commit=='yes'"
+            v-if="schedule.start<=day.date&&day.date<=schedule.end"
             style="flex:1;min-height:1px;min-width:1px;max-height:10px;max-width:10px;text-align: center;border-radius:100px;margin-bottom:10px;"
             :style="'background-color:'+schedule.color+';'"
           >
             {{ schedule.name }}
+          </div> -->
+          <div
+            v-for="commitSchedule in commitSchedules"
+            style="flex:1;min-height:1px;min-width:1px;max-height:10px;max-width:10px;text-align: center;border-radius:100px;margin-bottom:10px;"
+            :style="'background-color:'+commitSchedule.color+';'"
+          >
+            {{ commitSchedule.name }}
           </div>
         </div>
       </div>
-    </div>
+    </div>z
     <div>
       <button @click="confirmMoment">Confirm</button>
     </div>
@@ -47,28 +54,80 @@ import moment from "moment";
 import ChevronLeft from 'vue-material-design-icons/ChevronLeft.vue';
 import ChevronRight from 'vue-material-design-icons/ChevronRight.vue';
 
+  const schedules =  [
+    {
+      name: 'hoge',
+      start: moment('2020-09-07'),
+      end: moment('2020-09-010'),
+      color: 'red',
+    },
+    {
+      name: 'fuga',
+      start: moment('2020-09-08'),
+      end: moment('2020-09-012'),
+      color: 'blue',
+    },
+  ];
+  // function getDateRangeArray_0(startDate_0, stopDate_0) {
+  //   var dateRangeArray_0 = [];
+  //   var startDate_0 = schedules[0].start;
+  //   var stopDate_0 = schedules[0].end;
+  //   while (startDate_0 <= stopDate_0) {
+  //       dateRangeArray_0.Push( moment(startDate_0).format('YYYY-MM-DD') )
+  //       startDate_0 = moment(startDate_0).add(1, 'days');
+  //   }
+  //   return dateRangeArray_0;
+  // };
+  // getStartDate() {
+    //   let date = moment(this.currentDate);
+  //   date.startOf("month");
+  //   const youbiNum = date.day();
+  //   return date.subtract(youbiNum, "days");
+  // },
+  // getEndDate() {
+  //   let date = moment(this.currentDate);
+  //   date.endOf("month");
+  //   const youbiNum = date.day();
+  //   return date.add(6 - youbiNum, "days");
+  // },
+
+  // function getDateRangeArray_0() {
+  //   // let startDate = this.getStartDate();
+  //   let startDate_0 = schedules[0].start;
+  //   // const endDate = this.getEndDate();
+  //   const endDate_0 = schedules[0].end;
+  //   const DateRange_0 = endDate_0.diff(startDate_0, 'days')+1; 
+  
+  //   let calendars = [];
+  //   for (let week = 0; week < weekNumber; week++) {
+  //     let weekRow = [];
+  //     for (let day = 0; day < 7; day++) {
+  //       weekRow.push({
+  //         date: startDate.get("date"),
+  //       });
+  //       startDate.add(1, "days");
+  //     }
+  //     calendars.push(weekRow);
+  //   }
+  //   return calendars;
+  // };
+
 
 export default {
   name: 'Calendar',
   data() {
     return {
       currentDate: moment().format('YYYY/MM'),
-      schedules: [
+      commitSchedules: [
         {
-          name: 'hoge',
-          start: moment('2020-09-07').date(),
-          end: moment('2020-09-010').date(),
-          color: 'red',
-          commit: 'yes'
+          name: [...schedules]['0'].name,
+          color: [...schedules]['0'].color
         },
         {
-          name: 'fuga',
-          start: moment('2020-09-08').date(),
-          end: moment('2020-09-012').date(),
-          color: 'blue',
-          commit: 'no'
+          name: [...schedules]['1'].name,
+          color: [...schedules]['1'].color
         },
-      ],
+      ]
     };
   },
   components: {
@@ -77,10 +136,11 @@ export default {
   },
   methods: {
     confirmMoment(){
-      console.log(moment([2013,1,1]).date())
+      // console.log(moment('2020-09-010').diff(moment('2020-09-07'), 'days'))
+      // console.log(dateRangeArray_0)
     },
     // getSchedules(){
-    //   let schedules = [];
+      //   let schedules = [];
     //   schedules.push({name: 'hoge'});
     //   return schedules;
     // },
@@ -103,10 +163,10 @@ export default {
 
       let calendars = [];
       for (let week = 0; week < weekNumber; week++) {
-      let weekRow = [];
-      for (let day = 0; day < 7; day++) {
+        let weekRow = [];
+      for (let day = 0; day <script 7; day++) {
         weekRow.push({
-        date: startDate.get("date"),
+          date: startDate.get("date"),
         });
         startDate.add(1, "days");
       }
