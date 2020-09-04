@@ -20,8 +20,23 @@
           style="flex:1;min-height:125px;border-right:1px solid grey;border-bottom:1px solid grey; text-align: center;"
         >
           {{ day.date }}
+          <!-- <div
+            v-for="(schedule, index) in schedules"
+          :key="index"
+          style="flex:1;min-height:1px;min-width:1px;max-height:5px;max-width:5px;border-right:1px solid grey;border-bottom:1px solid grey; text-align: center;background-color:blue;"
+          > -->
+          <div
+            v-for="schedule in schedules"
+            v-if="schedule.date==day.date"
+            style="flex:1;min-height:1px;min-width:1px;max-height:10px;max-width:10px;text-align: center;background-color:blue;border-radius:100px;margin-bottom:10px;"
+          >
+            {{ schedule.name }}
+          </div>
         </div>
       </div>
+    </div>
+    <div>
+      <button @click="confirmMoment">Confirm</button>
     </div>
   </div>
 </template>
@@ -37,6 +52,24 @@ export default {
   data() {
     return {
       currentDate: moment().format('YYYY/MM'),
+      schedules: [
+        {
+          name: 'hoge',
+          date: moment('2020-09-07').date()
+        },
+        {
+          name:'fuga',
+          date: moment('2020-09-05').date()
+        },
+        {
+          name:'fuga',
+          date: moment('2020-09-05').date()
+        },
+        {
+          name:'fuga',
+          date: moment('2020-09-05').date(),
+        }
+      ],
     };
   },
   components: {
@@ -44,6 +77,14 @@ export default {
     ChevronRight
   },
   methods: {
+    confirmMoment(){
+      console.log(moment([2013,1,1]).date())
+    },
+    // getSchedules(){
+    //   let schedules = [];
+    //   schedules.push({name: 'hoge'});
+    //   return schedules;
+    // },
     getStartDate() {
       let date = moment(this.currentDate);
       date.startOf("month");
