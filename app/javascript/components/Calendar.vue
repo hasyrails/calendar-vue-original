@@ -27,8 +27,9 @@
           > -->
           <div
             v-for="schedule in schedules"
-            v-if="schedule.date==day.date"
-            style="flex:1;min-height:1px;min-width:1px;max-height:10px;max-width:10px;text-align: center;background-color:blue;border-radius:100px;margin-bottom:10px;"
+            v-if="schedule.start<=day.date&&day.date<=schedule.end&&schedule.commit=='yes'"
+            style="flex:1;min-height:1px;min-width:1px;max-height:10px;max-width:10px;text-align: center;border-radius:100px;margin-bottom:10px;"
+            :style="'background-color:'+schedule.color+';'"
           >
             {{ schedule.name }}
           </div>
@@ -55,20 +56,18 @@ export default {
       schedules: [
         {
           name: 'hoge',
-          date: moment('2020-09-07').date()
+          start: moment('2020-09-07').date(),
+          end: moment('2020-09-010').date(),
+          color: 'red',
+          commit: 'yes'
         },
         {
-          name:'fuga',
-          date: moment('2020-09-05').date()
+          name: 'fuga',
+          start: moment('2020-09-08').date(),
+          end: moment('2020-09-012').date(),
+          color: 'blue',
+          commit: 'no'
         },
-        {
-          name:'fuga',
-          date: moment('2020-09-05').date()
-        },
-        {
-          name:'fuga',
-          date: moment('2020-09-05').date(),
-        }
       ],
     };
   },
