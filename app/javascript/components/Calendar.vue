@@ -29,7 +29,7 @@ export default {
   name: 'Calendar',
   data() {
     return {
-      currentDate: moment().format('YYYY/M'),
+      currentDate: moment(),
     };
   },
   methods: {

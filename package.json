@@ -2,7 +2,6 @@
   "name": "calendar-vue-original",
   "private": true,
   "dependencies": {
-    "@mdi/font": "^5.5.55",
     "@rails/webpacker": "5.2.1",
     "moment": "^2.27.0",
     "vue": "^2.6.12",
