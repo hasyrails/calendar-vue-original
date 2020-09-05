@@ -27,9 +27,16 @@
           >
             <div class="card" 
               style="flex:1;min-height:10px;width:100px;height:30px;max-width:100px;text-align: center;margin-left:15px;"
-              :style="'background-color:'+devidedSchedule.color+';'">
+              :style="'background-color:'+devidedSchedule.color+';'"
+              @click="iconChange"
+              >
               <div class="card-body" style="display:flex; justify-content:center; padding-top:2px;">
-                <div class="schedule-icon"><font-awesome-icon icon="coffee" /></div>
+                <div>
+                  <p v-if="devidedSchedule.icon===1"><font-awesome-icon icon="coffee"  size="sm" /></p>
+                  <p v-else-if="devidedSchedule.icon===2"><font-awesome-icon icon="bath"  size="sm" /></p>
+                  <p v-else-if="devidedSchedule.icon===3"><font-awesome-icon icon="birthday-cake" size="sm"/></p>
+                  <p v-else></p>
+                </div>
                 <div class="schedule-title" style="margin-left:10px;">{{devidedSchedule.title}}</div>
               </div>
             </div>
@@ -40,23 +47,16 @@
     </div>
     <div>
       <button @click="showDevidedSchedule" class="btn btn-primary">ConfirmArray</button>
-      <button @click="confirmMoment" class="btn btn-primary">ConfirmMoment</button>
+      <button @click="confirmIconNum" class="btn btn-primary">ConfirmIconNum</button>
       <button @click="confirmCount" class="btn btn-primary">ConfirmCount</button>
     </div>
     <!-- <div>
       <font-awesome-icon icon="coffee" />
     </div> -->
 
-    <div>
-      <p v-if="count===1"><font-awesome-icon icon="coffee"  size="10x" /></p>
-      <p v-else-if="count===2"><font-awesome-icon icon="bath"  size="10x" /></p>
-      <p v-else-if="count===3"><font-awesome-icon icon="birthday-cake" size="10x"/></p>
-      <p v-else>Nothing</p>
-    </div>
-
-    <div>
+    <!-- <div>
       <button v-on:click="countChange">You clicked me {{ count }} times.</button>
-    </div>
+    </div> -->
 
   </div>
 </template>
@@ -70,7 +70,6 @@ export default {
   name: 'Calendar',
   data() {
     return {
-      count: 0,
       currentDate: moment().format('YYYY/MM'),
       schedules: [
         {
@@ -80,6 +79,7 @@ export default {
           end_yyyymmdd: moment('2020-09-10'),
           end_date: moment('2020-09-010').date(),
           color: '#FFD5EC',
+          icon: 0,
           commit: 'yes'
         },
         {
@@ -89,6 +89,7 @@ export default {
           end_yyyymmdd: moment('2020-09-12'),
           end_date: moment('2020-09-12').date(),
           color: '#BAD3FF',
+          icon: 0,
           commit: 'no'
         },
         {
@@ -98,6 +99,7 @@ export default {
           end_yyyymmdd: moment('2020-09-03'),
           end_date: moment('2020-09-03').date(),
           color: '#CBFFD3',
+          icon: 0,
           commit: 'no'
         }
       ],
@@ -110,15 +112,16 @@ export default {
   mounted: function(){
   },
   methods: {
-    countChange(){
-      if(this.count < 3){
-        this.count ++
+    iconChange(){
+      if(this.schedules[0].icon < 3){
+        this.schedules[0].icon ++;
+        this.createDevidedSchedules();
       }else{
-        this.count = 0
+        this.schedules[0].icon = 0
       }
     },
-    confirmCount(){
-      console.log(this.count);
+    confirmIconNum(){
+      console.log(this.schedules[0].icon);
     },
     createDevidedSchedules() {
       let i = 0;
@@ -155,6 +158,7 @@ export default {
           devidedSchedules.push({
             title: this.schedules[m].title,
             color: this.schedules[m].color,
+            icon: this.schedules[m].icon,
             commit: this.schedules[m].commit,
             yyyymm: moment(dateArrays[m][n]).format('YYYY/MM'),
             date: moment(dateArrays[m][n]).date(),
