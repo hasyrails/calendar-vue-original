@@ -41,10 +41,23 @@
     <div>
       <button @click="showDevidedSchedule" class="btn btn-primary">ConfirmArray</button>
       <button @click="confirmMoment" class="btn btn-primary">ConfirmMoment</button>
+      <button @click="confirmCount" class="btn btn-primary">ConfirmCount</button>
     </div>
-    <div>
+    <!-- <div>
       <font-awesome-icon icon="coffee" />
+    </div> -->
+
+    <div>
+      <p v-if="count===1"><font-awesome-icon icon="coffee"  size="10x" /></p>
+      <p v-else-if="count===2"><font-awesome-icon icon="bath"  size="10x" /></p>
+      <p v-else-if="count===3"><font-awesome-icon icon="birthday-cake" size="10x"/></p>
+      <p v-else>Nothing</p>
     </div>
+
+    <div>
+      <button v-on:click="countChange">You clicked me {{ count }} times.</button>
+    </div>
+
   </div>
 </template>
 
@@ -57,6 +70,7 @@ export default {
   name: 'Calendar',
   data() {
     return {
+      count: 0,
       currentDate: moment().format('YYYY/MM'),
       schedules: [
         {
@@ -96,6 +110,16 @@ export default {
   mounted: function(){
   },
   methods: {
+    countChange(){
+      if(this.count < 3){
+        this.count ++
+      }else{
+        this.count = 0
+      }
+    },
+    confirmCount(){
+      console.log(this.count);
+    },
     createDevidedSchedules() {
       let i = 0;
       let j = 0;
