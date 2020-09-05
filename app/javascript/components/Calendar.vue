@@ -60,7 +60,6 @@ export default {
   data() {
     return {
       currentDate: moment().format('YYYY/MM'),
-      // devidedSchedules: [],
       schedules: [
         {
           title: 'hoge',
@@ -97,74 +96,6 @@ export default {
     ChevronRight
   },
   mounted: function(){
-      // let i = 0;
-      // let j = 0;
-      // let k = 0;
-      // var dateArrays = [];
-      // var currentDates = [];
-      // var stopDates = [];
-      // while(dateArrays.length <= this.schedules.length-1){
-      //   dateArrays.push([]);
-      // }
-      // while(i <= this.schedules.length-1){
-      //   currentDates.push(moment(this.schedules[i].start_yyyymmdd));
-      //   i = i + 1;
-      // }
-      // while(j <= this.schedules.length-1){
-      //   stopDates.push(moment(this.schedules[j].end_yyyymmdd));
-      //   j = j + 1;
-      // }
-      
-      // while(k <= this.schedules.length -1){
-      //   while (currentDates[k] <= stopDates[k]) {
-      //     dateArrays[k].push( moment(currentDates[k]).format('YYYY-MM-DD') )
-      //     currentDates[k] = moment(currentDates[k]).add(1, 'days');
-      //   }
-      //   k = k + 1; 
-      // }
-      // // console.log(dateArrays);
-      
-      // var emptyArray = [];
-      // var devidedSchedule = [];
-      // let N = 0;
-      // while(N <= this.schedules.length -1){
-      //   devidedSchedule.push([]);
-      //   N = N + 1;
-      // }
-
-
-      // // let m = 0;
-      // //   while(m <= DevidedSchedule.length-1){
-      // //     DevidedSchedule[m].push({
-      // //       title: this.schedules[m].title,
-      // //       color: this.schedules[m].color,
-      // //       commit: this.schedules[m].commit,
-      // //       date: dateArrays[m][0],
-      // //     });
-      // //     m = m + 1;
-      // //   }
-
-      // let m = 0;
-      // let n = 0;
-      // while(m <= dateArrays.length -1){
-      //   while(n <= dateArrays[m].length -1){
-      //     devidedSchedule[m].push({
-      //       title: this.schedules[m].title,
-      //       color: this.schedules[m].color,
-      //       commit: this.schedules[m].commit,
-      //       date: dateArrays[m][n],
-      //     });
-      //     n = n + 1;
-      //   }
-      //   n = 0;
-      //   m = m + 1;
-      // }
-
-      // console.log(this.schedules.length);
-      // console.log(devidedSchedule);
-      // console.log(dateArrays);
-      // console.log(dateArrays[0][0]);
-      // console.log(dateArrays[0].length-1);
   },
   methods: {
     createDevidedSchedules() {
@@ -193,28 +124,8 @@ export default {
         }
         k = k + 1; 
       }
-      // console.log(dateArrays);
       
-      // var emptyArray = [];
       var devidedSchedules = [];
-      // let N = 0;
-      // while(N <= this.schedules.length -1){
-      //   devidedSchedules.push([]);
-      //   N = N + 1;
-      // }
-
-
-      // let m = 0;
-      //   while(m <= DevidedSchedule.length-1){
-      //     DevidedSchedule[m].push({
-      //       title: this.schedules[m].title,
-      //       color: this.schedules[m].color,
-      //       commit: this.schedules[m].commit,
-      //       date: dateArrays[m][0],
-      //     });
-      //     m = m + 1;
-      //   }
-
       let m = 0;
       let n = 0;
       while(m <= dateArrays.length -1){
@@ -240,8 +151,6 @@ export default {
     },
     getStartDate() {
       let date = moment(this.currentDate);
-      // let nextMonthDate = moment(this.currentDate).add(1, "month").format('YYYY/MM');
-      date.startOf("month");
       const youbiNum = date.day();
       return date.subtract(youbiNum, "days");
     },
@@ -252,8 +161,6 @@ export default {
       return date.add(6 - youbiNum, "days");
     },
     confirmMoment(){
-      // console.log(this.calendars);
-      // console.log(new Set(this.calendars));
       console.log(this.calendars);
       console.log(this.calendars[4][6]);
       console.log(moment(this.currentDate).endOf("month").date()-1);
@@ -387,15 +294,6 @@ export default {
       return calendars;
 
     },
-    // getCalendar(){
-    //   let date = moment(this.currentDate);
-    //   const startDate = date.startOf("month");
-    //   const endDate = date.endOf("month");
-    //   const endDayCount = moment(endDate).date();
-    //   const startDay = moment(startDate).day();
-    //   let dayCount = 1;
-
-    // },
     nextMonth() {
       this.currentDate = moment(this.currentDate).add(1, "month").format('YYYY/MM');
       this.getCalendar();
