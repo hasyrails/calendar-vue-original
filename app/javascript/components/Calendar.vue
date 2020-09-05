@@ -20,25 +20,13 @@
           style="flex:1;min-height:125px;border-right:1px solid grey;border-bottom:1px solid grey; text-align: center;"
         >
           {{ day.date }}
-          <!-- <div
-            v-for="(schedule, index) in schedules"
-          :key="index"
-          style="flex:1;min-height:1px;min-width:1px;max-height:5px;max-width:5px;border-right:1px solid grey;border-bottom:1px solid grey; text-align: center;background-color:blue;"
-          > -->
-          <!-- <div
-            v-for="schedule in schedules"
-            v-if="schedule.start_date<=day.date&&day.date<=schedule.end_date&&schedule.commit=='yes'"
-            style="flex:1;min-height:1px;min-width:1px;max-height:10px;max-width:10px;text-align: center;border-radius:100px;margin-bottom:10px;"
-            :style="'background-color:'+schedule.color+';'"
-          >
-            {{ schedule.title }}
-          </div> -->
           <div 
           v-for="devidedSchedule in devidedSchedules"
-          v-if="devidedSchedule.date==day.date&&devidedSchedule.yyyymm==currentDate">
+          v-if="devidedSchedule.date==day.date&&devidedSchedule.yyyymm==currentDate"
+          style="flex:1;min-height:1px;min-width:1px;max-height:10px;max-width:10px;text-align: center;border-radius:100px;margin-bottom:10px;"
+          :style="'background-color:'+devidedSchedule.color+';'">
             {{devidedSchedule.title}}
           </div>
-          <div>{{dayCount}}</div>
 
         </div>
       </div>
@@ -85,7 +73,7 @@ export default {
           start_date: moment('2020-09-01').date(),
           end_yyyymmdd: moment('2020-09-03'),
           end_date: moment('2020-09-03').date(),
-          color: 'blue',
+          color: 'green',
           commit: 'no'
         }
       ],
