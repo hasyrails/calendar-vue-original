@@ -27,7 +27,7 @@
           > -->
           <div
             v-for="schedule in schedules"
-            v-if="schedule.start<=day.date&&day.date<=schedule.end&&schedule.commit=='yes'"
+            v-if="schedule.start_date<=day.date&&day.date<=schedule.end_date&&schedule.commit=='yes'"
             style="flex:1;min-height:1px;min-width:1px;max-height:10px;max-width:10px;text-align: center;border-radius:100px;margin-bottom:10px;"
             :style="'background-color:'+schedule.color+';'"
           >
@@ -38,6 +38,7 @@
     </div>
     <div>
       <button @click="confirmMoment">Confirm</button>
+      <button @click="getArray">ConfirmArray</button>
     </div>
   </div>
 </template>
@@ -47,6 +48,33 @@ import moment from "moment";
 import ChevronLeft from 'vue-material-design-icons/ChevronLeft.vue';
 import ChevronRight from 'vue-material-design-icons/ChevronRight.vue';
 
+// const schedules = [
+//   {
+//     name: 'hoge',
+//     start: moment('2020-09-07').date(),
+//     end: moment('2020-09-010').date(),
+//     color: 'red',
+//     commit: 'yes'
+//   },
+//   {
+//     name: 'fuga',
+//     start: moment('2020-09-08').date(),
+//     end: moment('2020-09-012').date(),
+//     color: 'blue',
+//     commit: 'no'
+//   },
+// ];
+
+// function getDates(startDate, stopDate) {
+//   var dateArray = [];
+//   var currentDate = moment(startDate);
+//   var stopDate = moment(stopDate);
+//   while (currentDate <= stopDate) {
+//     dateArray.push( moment(currentDate).format('YYYY-MM-DD') )
+//     currentDate = moment(currentDate).add(1, 'days');
+//   }
+//   return dateArray;
+// };
 
 export default {
   name: 'Calendar',
@@ -56,18 +84,31 @@ export default {
       schedules: [
         {
           name: 'hoge',
-          start: moment('2020-09-07').date(),
-          end: moment('2020-09-010').date(),
+          start_yyyymmdd: moment('2020-09-07'),
+          start_date: moment('2020-09-07').date(),
+          end_yyyymmdd: moment('2020-09-10'),
+          end_date: moment('2020-09-010').date(),
           color: 'red',
           commit: 'yes'
         },
         {
           name: 'fuga',
-          start: moment('2020-09-08').date(),
-          end: moment('2020-09-012').date(),
+          start_yyyymmdd: moment('2020-09-08'),
+          start_date: moment('2020-09-08').date(),
+          end_yyyymmdd: moment('2020-09-12'),
+          end_date: moment('2020-09-12').date(),
           color: 'blue',
           commit: 'no'
         },
+        {
+          name: 'yagi',
+          start_yyyymmdd: moment('2020-09-01'),
+          start_date: moment('2020-09-01').date(),
+          end_yyyymmdd: moment('2020-09-03'),
+          end_date: moment('2020-09-03').date(),
+          color: 'blue',
+          commit: 'no'
+        }
       ],
     };
   },
@@ -76,8 +117,81 @@ export default {
     ChevronRight
   },
   methods: {
+    // getArray() {
+    //   var dateArray_0 = [];
+    //   var currentDate_0 = moment(this.schedules[0].start_yyyymmdd);
+    //   var stopDate_0 = moment(this.schedules[0].end_yyyymmdd);
+    //   while (currentDate_0 <= stopDate_0) {
+    //     dateArray_0.push( moment(currentDate_0).format('YYYY-MM-DD') )
+    //     currentDate_0 = moment(currentDate_0).add(1, 'days');
+    //   }
+    //   var dateArray_1 = [];
+    //   var currentDate_1 = moment(this.schedules[1].start_yyyymmdd);
+    //   var stopDate_1 = moment(this.schedules[1].end_yyyymmdd);
+    // while (currentDate_1 <= stopDate_1) {
+    //   dateArray_1.push( moment(currentDate_1).format('YYYY-MM-DD') )
+    //   currentDate_1 = moment(currentDate_1).add(1, 'days');
+    // }
+    //   var dateContainer = [];
+    //   dateContainer.push(dateArray_0)
+    //   dateContainer.push(dateArray_1)
+
+    //   console.log(dateArray_0);
+    //   console.log(dateArray_1);
+    //   console.log(dateContainer)
+    // },
+    getArray() {
+      let i = 0;
+      let j = 0;
+      let k = 0;
+      const emptyArray = [];
+      var dateArrays = [];
+      var currentDates = [];
+      var stopDates = [];
+      while(dateArrays.length <= this.schedules.length-1){
+        dateArrays.push([]);
+      }
+      while(i <= this.schedules.length-1){
+        currentDates.push(moment(this.schedules[i].start_yyyymmdd));
+        i = i + 1;
+      }
+      while(j <= this.schedules.length-1){
+        stopDates.push(moment(this.schedules[j].end_yyyymmdd));
+        j = j + 1;
+      }
+      
+      // while(k <= this.schedules.length-1){
+      while(k <= this.schedules.length -1){
+        while (currentDates[k] <= stopDates[k]) {
+          dateArrays[k].push( moment(currentDates[k]).format('YYYY-MM-DD') )
+          currentDates[k] = moment(currentDates[k]).add(1, 'days');
+        }
+        k = k + 1; 
+      }
+
+      
+      // var dateArray_1 = [];
+      // var currentDate_1 = moment(this.schedules[1].start_yyyymmdd);
+      // var stopDate_1 = moment(this.schedules[1].end_yyyymmdd);
+      // while (currentDate_1 <= stopDate_1) {
+      //   dateArray_1.push( moment(currentDate_1).format('YYYY-MM-DD') )
+      //   currentDate_1 = moment(currentDate_1).add(1, 'days');
+      // }
+      // var dateContainer = [];
+      // dateContainer.push(dateArrays[0])
+      // dateContainer.push(dateArrays[1])
+
+      // console.log(dateArrays);
+      // console.log(currentDates);
+      // console.log(stopDates);
+      console.log(dateArrays);
+      // console.log(dateArrays[1]);
+      // console.log(dateArrays[2]);
+      // console.log(this.schedules.length)
+    },
     confirmMoment(){
-      console.log(moment([2013,1,1]).date())
+      // this.getDates();
+      // console.log(dateArray);
     },
     // getSchedules(){
     //   let schedules = [];
