@@ -35,6 +35,9 @@
       <button @click="showDevidedSchedule">ConfirmArray</button>
       <button @click="confirmMoment">ConfirmMoment</button>
     </div>
+    <div>
+      <font-awesome-icon icon="coffee" />
+    </div>
   </div>
 </template>
 
