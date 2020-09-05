@@ -38,12 +38,14 @@
           v-if="devidedSchedule.date==day.date&&devidedSchedule.yyyymm==currentDate">
             {{devidedSchedule.title}}
           </div>
+          <div>{{dayCount}}</div>
 
         </div>
       </div>
     </div>
     <div>
       <button @click="showDevidedSchedule">ConfirmArray</button>
+      <button @click="confirmMoment">ConfirmMoment</button>
     </div>
   </div>
 </template>
@@ -236,17 +238,9 @@ export default {
     showDevidedSchedule() {
       console.log(devidedSchedules);
     },
-    confirmMoment(){
-      // this.getDates();
-      // console.log(dateArray);
-    },
-    // getSchedules(){
-    //   let schedules = [];
-    //   schedules.push({name: 'hoge'});
-    //   return schedules;
-    // },
     getStartDate() {
       let date = moment(this.currentDate);
+      // let nextMonthDate = moment(this.currentDate).add(1, "month").format('YYYY/MM');
       date.startOf("month");
       const youbiNum = date.day();
       return date.subtract(youbiNum, "days");
@@ -257,6 +251,13 @@ export default {
       const youbiNum = date.day();
       return date.add(6 - youbiNum, "days");
     },
+    confirmMoment(){
+      // console.log(this.calendars);
+      // console.log(new Set(this.calendars));
+      console.log(this.calendars);
+      console.log(this.calendars[4][6]);
+      console.log(moment(this.currentDate).endOf("month").date()-1);
+    },
     getCalendar() {
       let startDate = this.getStartDate();
       const endDate = this.getEndDate();
@@ -264,17 +265,137 @@ export default {
 
       let calendars = [];
       for (let week = 0; week < weekNumber; week++) {
-      let weekRow = [];
-      for (let day = 0; day < 7; day++) {
-        weekRow.push({
-        date: startDate.get("date"),
-        });
-        startDate.add(1, "days");
+        let weekRow = [];
+        for (let day = 0; day < 7; day++) {
+          weekRow.push({
+            date: startDate.get("date"),
+          });
+          startDate.add(1, "days");
+        }
+          calendars.push(weekRow);
       }
-      calendars.push(weekRow);
+
+      for (let s = 0; s <= 6; s++){
+        if(JSON.stringify(calendars[0][s]) != JSON.stringify({date:moment(this.currentDate).startOf("month").date()})){
+          calendars[0].splice(s,1);
+          calendars[0].splice(s,0,'');
+        }
+        else{
+          break;
+        }
       }
+      
+      if(calendars.length = 5){
+        for(let s=0; s<=6; s++){
+          let finalWeek = JSON.stringify(calendars[4][s]);
+  
+          switch(finalWeek){
+            case JSON.stringify({date:moment(this.currentDate).startOf("month").date()}):
+              calendars[4].splice(s,1);
+              calendars[4].splice(s,0,'');
+              break;
+            case JSON.stringify({date:moment(this.currentDate).startOf("month").date()+1}):
+              calendars[4].splice(s,1);
+              calendars[4].splice(s,0,'');
+              break;
+            case JSON.stringify({date:moment(this.currentDate).startOf("month").date()+2}):
+              calendars[4].splice(s,1);
+              calendars[4].splice(s,0,'');
+              break;
+            case JSON.stringify({date:moment(this.currentDate).startOf("month").date()+3}):
+              calendars[4].splice(s,1);
+              calendars[4].splice(s,0,'');
+              break;
+            case JSON.stringify({date:moment(this.currentDate).startOf("month").date()+4}):
+              calendars[4].splice(s,1);
+              calendars[4].splice(s,0,'');
+              break;
+            case JSON.stringify({date:moment(this.currentDate).startOf("month").date()+5}):
+              calendars[4].splice(s,1);
+              calendars[4].splice(s,0,'');
+              break;
+            case JSON.stringify({date:moment(this.currentDate).startOf("month").date()+6}):
+              calendars[4].splice(s,1);
+              calendars[4].splice(s,0,'');
+              break;
+          }
+        }
+      }else if (calendars.length>5){
+        
+        let finalWeek = JSON.stringify(calendars[5][s]);
+
+        switch(finalWeek){
+          case JSON.stringify({date:moment(this.currentDate).startOf("month").date()}):
+            calendars[5].splice(s,1);
+            calendars[5].splice(s,0,'');
+            break;
+          case JSON.stringify({date:moment(this.currentDate).startOf("month").date()+1}):
+            calendars[5].splice(s,1);
+            calendars[5].splice(s,0,'');
+            break;
+          case JSON.stringify({date:moment(this.currentDate).startOf("month").date()+2}):
+            calendars[5].splice(s,1);
+            calendars[5].splice(s,0,'');
+            break;
+          case JSON.stringify({date:moment(this.currentDate).startOf("month").date()+3}):
+            calendars[5].splice(s,1);
+            calendars[5].splice(s,0,'');
+            break;
+          case JSON.stringify({date:moment(this.currentDate).startOf("month").date()+4}):
+            calendars[5].splice(s,1);
+            calendars[5].splice(s,0,'');
+            break;
+          case JSON.stringify({date:moment(this.currentDate).startOf("month").date()+5}):
+            calendars[5].splice(s,1);
+            calendars[5].splice(s,0,'');
+            break;
+          case JSON.stringify({date:moment(this.currentDate).startOf("month").date()+6}):
+            calendars[5].splice(s,1);
+            calendars[5].splice(s,0,'');
+            break;
+        }
+      }
+
+      let weekRow5 = calendars[4]
+      let finalDateEl = calendars[4][6]
+      let finalDate = Object.values(finalDateEl).[0]
+      let finalDateObject = {date: moment(this.currentDate).endOf("month").date()};
+      function beforeFinalDateObject(n) {
+        return  {date: moment(this.currentDate).endOf("month").date() -n};
+      }
+
+      if(weekRow5.some(wR => wR.date === finalDateObject.date)){
+        console.log('最終日あり');
+      }else{
+        console.log('最終日なし')
+        switch(finalDate){
+          case moment(this.currentDate).endOf("month").date()-1:
+            calendars.push([finalDateObject,'','','','','','']);
+            break;
+          case moment(this.currentDate).endOf("month").date()-2:
+            calendars.push([beforeFinalDateObject(1),finalDateObject,'','','','','']);
+            break;
+          case moment(this.currentDate).endOf("month").date()-3:
+            calendars.push([beforeFinalDateObject(2),beforeFinalDateObject(1),finalDateObject,'','','','']);
+            break;
+          case moment(this.currentDate).endOf("month").date()-4:
+            calendars.push([beforeFinalDateObject(3),beforeFinalDateObject(2),beforeFinalDateObject(1),finalDateObject,'','','']);
+            break
+        }
+      }
+
       return calendars;
+
     },
+    // getCalendar(){
+    //   let date = moment(this.currentDate);
+    //   const startDate = date.startOf("month");
+    //   const endDate = date.endOf("month");
+    //   const endDayCount = moment(endDate).date();
+    //   const startDay = moment(startDate).day();
+    //   let dayCount = 1;
+
+    // },
     nextMonth() {
       this.currentDate = moment(this.currentDate).add(1, "month").format('YYYY/MM');
       this.getCalendar();
