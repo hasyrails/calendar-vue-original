@@ -1,5 +1,5 @@
 <template>
-  <div class="calendar">
+  <div class="calendar" >
     <div class="calendar-header">
       <div class="calendar-header-content flex">
         <ChevronLeft fillColor="white"  @click="prevMonth"></ChevronLeft>
@@ -8,7 +8,7 @@
       </div>
     </div>
 
-    <div style="max-width:900px;border-top:1px solid grey;">
+    <div style="min-width:100px;width:900px;border-top:1px solid grey;">
       <div
         v-for="(week, index) in calendars"
         :key="index"
@@ -23,17 +23,23 @@
           <div 
           v-for="devidedSchedule in devidedSchedules"
           v-if="devidedSchedule.date==day.date&&devidedSchedule.yyyymm==currentDate"
-          style="flex:1;min-height:1px;min-width:1px;max-height:10px;max-width:10px;text-align: center;border-radius:100px;margin-bottom:10px;"
-          :style="'background-color:'+devidedSchedule.color+';'">
-            {{devidedSchedule.title}}
+          style="flex:1;min-height:1px;min-width:1px;max-height:100px;max-width:50px;text-align: center;margin-bottom:10px;"
+          >
+            <div class="card" 
+              style="flex:1;min-height:10px;width:100px;height:30px;max-width:100px;text-align: center;margin-left:15px;"
+              :style="'background-color:'+devidedSchedule.color+';'">
+              <div class="card-body" style="display:flex; justify-content:center; padding-top:2px;">
+                {{devidedSchedule.title}}
+              </div>
+            </div>
           </div>
 
         </div>
       </div>
     </div>
     <div>
-      <button @click="showDevidedSchedule">ConfirmArray</button>
-      <button @click="confirmMoment">ConfirmMoment</button>
+      <button @click="showDevidedSchedule" class="btn btn-primary">ConfirmArray</button>
+      <button @click="confirmMoment" class="btn btn-primary">ConfirmMoment</button>
     </div>
     <div>
       <font-awesome-icon icon="coffee" />
@@ -58,7 +64,7 @@ export default {
           start_date: moment('2020-09-07').date(),
           end_yyyymmdd: moment('2020-09-10'),
           end_date: moment('2020-09-010').date(),
-          color: 'red',
+          color: '#FF9966',
           commit: 'yes'
         },
         {
@@ -67,7 +73,7 @@ export default {
           start_date: moment('2020-09-08').date(),
           end_yyyymmdd: moment('2020-09-12'),
           end_date: moment('2020-09-12').date(),
-          color: 'blue',
+          color: '#33CCFF',
           commit: 'no'
         },
         {
@@ -76,7 +82,7 @@ export default {
           start_date: moment('2020-09-01').date(),
           end_yyyymmdd: moment('2020-09-03'),
           end_date: moment('2020-09-03').date(),
-          color: 'green',
+          color: '#33FF66',
           commit: 'no'
         }
       ],
@@ -314,7 +320,7 @@ export default {
   margin-right: 30%;
 }
 .calendar-header {
-  max-width:900px;
+  width:900px;
   background-color: #3366FF;
 }
 .calendar-header-date {
