@@ -33,19 +33,16 @@
           >
             {{ schedule.title }}
           </div> -->
-          <!-- <div
-            v-for="schedule in DevidedSchedule"
-            style="flex:1;min-height:1px;min-width:1px;max-height:10px;max-width:10px;text-align: center;border-radius:100px;margin-bottom:10px;"
-            :style="'background-color:'+schedule.color+';'"
-          >
-            {{ schedule }}
-          </div> -->
-          <div>{{ DevidedSchedule[0][0] }}</div>
+          <div 
+          v-for="devidedSchedule in devidedSchedules"
+          v-if="devidedSchedule.date==day.date&&devidedSchedule.yyyymm==currentDate">
+            {{devidedSchedule.title}}
+          </div>
+
         </div>
       </div>
     </div>
     <div>
-      <button @click="createDevidedSchedule">Confirm</button>
       <button @click="showDevidedSchedule">ConfirmArray</button>
     </div>
   </div>
@@ -61,6 +58,7 @@ export default {
   data() {
     return {
       currentDate: moment().format('YYYY/MM'),
+      // devidedSchedules: [],
       schedules: [
         {
           title: 'hoge',
@@ -97,6 +95,77 @@ export default {
     ChevronRight
   },
   mounted: function(){
+      // let i = 0;
+      // let j = 0;
+      // let k = 0;
+      // var dateArrays = [];
+      // var currentDates = [];
+      // var stopDates = [];
+      // while(dateArrays.length <= this.schedules.length-1){
+      //   dateArrays.push([]);
+      // }
+      // while(i <= this.schedules.length-1){
+      //   currentDates.push(moment(this.schedules[i].start_yyyymmdd));
+      //   i = i + 1;
+      // }
+      // while(j <= this.schedules.length-1){
+      //   stopDates.push(moment(this.schedules[j].end_yyyymmdd));
+      //   j = j + 1;
+      // }
+      
+      // while(k <= this.schedules.length -1){
+      //   while (currentDates[k] <= stopDates[k]) {
+      //     dateArrays[k].push( moment(currentDates[k]).format('YYYY-MM-DD') )
+      //     currentDates[k] = moment(currentDates[k]).add(1, 'days');
+      //   }
+      //   k = k + 1; 
+      // }
+      // // console.log(dateArrays);
+      
+      // var emptyArray = [];
+      // var devidedSchedule = [];
+      // let N = 0;
+      // while(N <= this.schedules.length -1){
+      //   devidedSchedule.push([]);
+      //   N = N + 1;
+      // }
+
+
+      // // let m = 0;
+      // //   while(m <= DevidedSchedule.length-1){
+      // //     DevidedSchedule[m].push({
+      // //       title: this.schedules[m].title,
+      // //       color: this.schedules[m].color,
+      // //       commit: this.schedules[m].commit,
+      // //       date: dateArrays[m][0],
+      // //     });
+      // //     m = m + 1;
+      // //   }
+
+      // let m = 0;
+      // let n = 0;
+      // while(m <= dateArrays.length -1){
+      //   while(n <= dateArrays[m].length -1){
+      //     devidedSchedule[m].push({
+      //       title: this.schedules[m].title,
+      //       color: this.schedules[m].color,
+      //       commit: this.schedules[m].commit,
+      //       date: dateArrays[m][n],
+      //     });
+      //     n = n + 1;
+      //   }
+      //   n = 0;
+      //   m = m + 1;
+      // }
+
+      // console.log(this.schedules.length);
+      // console.log(devidedSchedule);
+      // console.log(dateArrays);
+      // console.log(dateArrays[0][0]);
+      // console.log(dateArrays[0].length-1);
+  },
+  methods: {
+    createDevidedSchedules() {
       let i = 0;
       let j = 0;
       let k = 0;
@@ -124,13 +193,13 @@ export default {
       }
       // console.log(dateArrays);
       
-      var emptyArray = [];
-      var DevidedSchedule = [];
-      let N = 0;
-      while(N <= this.schedules.length -1){
-        DevidedSchedule.push([]);
-        N = N + 1;
-      }
+      // var emptyArray = [];
+      var devidedSchedules = [];
+      // let N = 0;
+      // while(N <= this.schedules.length -1){
+      //   devidedSchedules.push([]);
+      //   N = N + 1;
+      // }
 
 
       // let m = 0;
@@ -148,11 +217,12 @@ export default {
       let n = 0;
       while(m <= dateArrays.length -1){
         while(n <= dateArrays[m].length -1){
-          DevidedSchedule[m].push({
+          devidedSchedules.push({
             title: this.schedules[m].title,
             color: this.schedules[m].color,
             commit: this.schedules[m].commit,
-            date: dateArrays[m][n],
+            yyyymm: moment(dateArrays[m][n]).format('YYYY/MM'),
+            date: moment(dateArrays[m][n]).date(),
           });
           n = n + 1;
         }
@@ -160,89 +230,11 @@ export default {
         m = m + 1;
       }
 
-      console.log(this.schedules.length);
-      console.log(DevidedSchedule);
-      console.log(dateArrays);
-      console.log(dateArrays[0][0]);
-      console.log(dateArrays[0].length-1);
-  },
-  methods: {
-    // getArray() {
-    //   let i = 0;
-    //   let j = 0;
-    //   let k = 0;
-    //   var dateArrays = [];
-    //   var currentDates = [];
-    //   var stopDates = [];
-    //   while(dateArrays.length <= this.schedules.length-1){
-    //     dateArrays.push([]);
-    //   }
-    //   while(i <= this.schedules.length-1){
-    //     currentDates.push(moment(this.schedules[i].start_yyyymmdd));
-    //     i = i + 1;
-    //   }
-    //   while(j <= this.schedules.length-1){
-    //     stopDates.push(moment(this.schedules[j].end_yyyymmdd));
-    //     j = j + 1;
-    //   }
-      
-    //   while(k <= this.schedules.length -1){
-    //     while (currentDates[k] <= stopDates[k]) {
-    //       dateArrays[k].push( moment(currentDates[k]).format('YYYY-MM-DD') )
-    //       currentDates[k] = moment(currentDates[k]).add(1, 'days');
-    //     }
-    //     k = k + 1; 
-    //   }
-    //   // console.log(dateArrays);
-      
-    //   var emptyArray = [];
-    //   var DevidedSchedule = [];
-    //   let N = 0;
-    //   while(N <= this.schedules.length -1){
-    //     DevidedSchedule.push([]);
-    //     N = N + 1;
-    //   }
-
-
-    //   // let m = 0;
-    //   //   while(m <= DevidedSchedule.length-1){
-    //   //     DevidedSchedule[m].push({
-    //   //       title: this.schedules[m].title,
-    //   //       color: this.schedules[m].color,
-    //   //       commit: this.schedules[m].commit,
-    //   //       date: dateArrays[m][0],
-    //   //     });
-    //   //     m = m + 1;
-    //   //   }
-
-    //   let m = 0;
-    //   let n = 0;
-    //   while(m <= dateArrays.length -1){
-    //     while(n <= dateArrays[m].length -1){
-    //       DevidedSchedule[m].push({
-    //         title: this.schedules[m].title,
-    //         color: this.schedules[m].color,
-    //         commit: this.schedules[m].commit,
-    //         date: dateArrays[m][n],
-    //       });
-    //       n = n + 1;
-    //     }
-    //     n = 0;
-    //     m = m + 1;
-    //   }
-
-    //   console.log(this.schedules.length);
-    //   console.log(DevidedSchedule);
-    //   console.log(dateArrays);
-    //   console.log(dateArrays[0][0]);
-    //   console.log(dateArrays[0].length-1);
-    // },
+      console.log(devidedSchedules);
+      return devidedSchedules;
+    },
     showDevidedSchedule() {
-      console.log(this.schedules.length);
-      console.log(DevidedSchedule);
-      console.log(dateArrays);
-      console.log(dateArrays[0][0]);
-      console.log(dateArrays[0].length-1);
+      console.log(devidedSchedules);
     },
     confirmMoment(){
       // this.getDates();
@@ -296,7 +288,13 @@ export default {
     calendars() {
       return this.getCalendar();
     },
+    devidedSchedules() {
+      return this.createDevidedSchedules();
+    },
   },
+  created(){
+    return this.createDevidedSchedules();
+  }
 }
 </script>
 
