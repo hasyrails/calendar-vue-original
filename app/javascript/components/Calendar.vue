@@ -25,20 +25,28 @@
           :key="index"
           style="flex:1;min-height:1px;min-width:1px;max-height:5px;max-width:5px;border-right:1px solid grey;border-bottom:1px solid grey; text-align: center;background-color:blue;"
           > -->
-          <div
+          <!-- <div
             v-for="schedule in schedules"
             v-if="schedule.start_date<=day.date&&day.date<=schedule.end_date&&schedule.commit=='yes'"
             style="flex:1;min-height:1px;min-width:1px;max-height:10px;max-width:10px;text-align: center;border-radius:100px;margin-bottom:10px;"
             :style="'background-color:'+schedule.color+';'"
           >
             {{ schedule.title }}
-          </div>
+          </div> -->
+          <!-- <div
+            v-for="schedule in DevidedSchedule"
+            style="flex:1;min-height:1px;min-width:1px;max-height:10px;max-width:10px;text-align: center;border-radius:100px;margin-bottom:10px;"
+            :style="'background-color:'+schedule.color+';'"
+          >
+            {{ schedule }}
+          </div> -->
+          <div>{{ DevidedSchedule[0][0] }}</div>
         </div>
       </div>
     </div>
     <div>
       <button @click="createDevidedSchedule">Confirm</button>
-      <button @click="getArray">ConfirmArray</button>
+      <button @click="showDevidedSchedule">ConfirmArray</button>
     </div>
   </div>
 </template>
@@ -88,8 +96,7 @@ export default {
     ChevronLeft,
     ChevronRight
   },
-  methods: {
-    getArray() {
+  mounted: function(){
       let i = 0;
       let j = 0;
       let k = 0;
@@ -115,103 +122,128 @@ export default {
         }
         k = k + 1; 
       }
-      console.log(dateArrays);
-
-
-      var DevidedSchedule = [];
-      DevidedSchedule.push(
-        [
-          {
-            title: this.schedules[0].title,
-            color: this.schedules[0].color,
-            commit: this.schedules[0].commit,
-            date: dateArrays[0][0],
-          },
-          {
-            title: this.schedules[0].title,
-            color: this.schedules[0].color,
-            commit: this.schedules[0].commit,
-            date: dateArrays[0][1],
-          },
-          {
-            title: this.schedules[0].title,
-            color: this.schedules[0].color,
-            commit: this.schedules[0].commit,
-            date: dateArrays[0][2],
-          },
-          {
-            title: this.schedules[0].title,
-            color: this.schedules[0].color,
-            commit: this.schedules[0].commit,
-            date: dateArrays[0][3],
-          },
-          //  whileの繰り返し範囲でundifinedを回避する
-          // {
-          //   title: this.schedules[0].title,
-          //   color: this.schedules[0].color,
-          //   commit: this.schedules[0].commit,
-          //   date: dateArrays[0][4],
-          // },
-        ],
-        [
-          {
-            title: this.schedules[1].title,
-            color: this.schedules[1].color,
-            commit: this.schedules[1].commit,
-            date: dateArrays[1][0],
-          },
-          {
-            title: this.schedules[1].title,
-            color: this.schedules[1].color,
-            commit: this.schedules[1].commit,
-            date: dateArrays[1][1],
-          },
-          {
-            title: this.schedules[1].title,
-            color: this.schedules[1].color,
-            commit: this.schedules[1].commit,
-            date: dateArrays[1][2],
-          },
-          {
-            title: this.schedules[1].title,
-            color: this.schedules[1].color,
-            commit: this.schedules[1].commit,
-            date: dateArrays[1][3],
-          },
-          {
-            title: this.schedules[1].title,
-            color: this.schedules[1].color,
-            commit: this.schedules[1].commit,
-            date: dateArrays[1][4],
-          },
-        ],
-        [
-          {
-            title: this.schedules[2].title,
-            color: this.schedules[2].color,
-            commit: this.schedules[2].commit,
-            date: dateArrays[2][0],
-          },
-          {
-            title: this.schedules[2].title,
-            color: this.schedules[2].color,
-            commit: this.schedules[2].commit,
-            date: dateArrays[2][1],
-          },
-          {
-            title: this.schedules[2].title,
-            color: this.schedules[2].color,
-            commit: this.schedules[2].commit,
-            date: dateArrays[2][2],
-          }
-        ]
-      );
-
-      console.log(DevidedSchedule);
-    },
-    // createDevidedSchedule() {
+      // console.log(dateArrays);
       
+      var emptyArray = [];
+      var DevidedSchedule = [];
+      let N = 0;
+      while(N <= this.schedules.length -1){
+        DevidedSchedule.push([]);
+        N = N + 1;
+      }
+
+
+      // let m = 0;
+      //   while(m <= DevidedSchedule.length-1){
+      //     DevidedSchedule[m].push({
+      //       title: this.schedules[m].title,
+      //       color: this.schedules[m].color,
+      //       commit: this.schedules[m].commit,
+      //       date: dateArrays[m][0],
+      //     });
+      //     m = m + 1;
+      //   }
+
+      let m = 0;
+      let n = 0;
+      while(m <= dateArrays.length -1){
+        while(n <= dateArrays[m].length -1){
+          DevidedSchedule[m].push({
+            title: this.schedules[m].title,
+            color: this.schedules[m].color,
+            commit: this.schedules[m].commit,
+            date: dateArrays[m][n],
+          });
+          n = n + 1;
+        }
+        n = 0;
+        m = m + 1;
+      }
+
+      console.log(this.schedules.length);
+      console.log(DevidedSchedule);
+      console.log(dateArrays);
+      console.log(dateArrays[0][0]);
+      console.log(dateArrays[0].length-1);
+  },
+  methods: {
+    // getArray() {
+    //   let i = 0;
+    //   let j = 0;
+    //   let k = 0;
+    //   var dateArrays = [];
+    //   var currentDates = [];
+    //   var stopDates = [];
+    //   while(dateArrays.length <= this.schedules.length-1){
+    //     dateArrays.push([]);
+    //   }
+    //   while(i <= this.schedules.length-1){
+    //     currentDates.push(moment(this.schedules[i].start_yyyymmdd));
+    //     i = i + 1;
+    //   }
+    //   while(j <= this.schedules.length-1){
+    //     stopDates.push(moment(this.schedules[j].end_yyyymmdd));
+    //     j = j + 1;
+    //   }
+      
+    //   while(k <= this.schedules.length -1){
+    //     while (currentDates[k] <= stopDates[k]) {
+    //       dateArrays[k].push( moment(currentDates[k]).format('YYYY-MM-DD') )
+    //       currentDates[k] = moment(currentDates[k]).add(1, 'days');
+    //     }
+    //     k = k + 1; 
+    //   }
+    //   // console.log(dateArrays);
+      
+    //   var emptyArray = [];
+    //   var DevidedSchedule = [];
+    //   let N = 0;
+    //   while(N <= this.schedules.length -1){
+    //     DevidedSchedule.push([]);
+    //     N = N + 1;
+    //   }
+
+
+    //   // let m = 0;
+    //   //   while(m <= DevidedSchedule.length-1){
+    //   //     DevidedSchedule[m].push({
+    //   //       title: this.schedules[m].title,
+    //   //       color: this.schedules[m].color,
+    //   //       commit: this.schedules[m].commit,
+    //   //       date: dateArrays[m][0],
+    //   //     });
+    //   //     m = m + 1;
+    //   //   }
+
+    //   let m = 0;
+    //   let n = 0;
+    //   while(m <= dateArrays.length -1){
+    //     while(n <= dateArrays[m].length -1){
+    //       DevidedSchedule[m].push({
+    //         title: this.schedules[m].title,
+    //         color: this.schedules[m].color,
+    //         commit: this.schedules[m].commit,
+    //         date: dateArrays[m][n],
+    //       });
+    //       n = n + 1;
+    //     }
+    //     n = 0;
+    //     m = m + 1;
+    //   }
+
+    //   console.log(this.schedules.length);
+    //   console.log(DevidedSchedule);
+    //   console.log(dateArrays);
+    //   console.log(dateArrays[0][0]);
+    //   console.log(dateArrays[0].length-1);
     // },
+    showDevidedSchedule() {
+      console.log(this.schedules.length);
+      console.log(DevidedSchedule);
+      console.log(dateArrays);
+      console.log(dateArrays[0][0]);
+      console.log(dateArrays[0].length-1);
+    },
     confirmMoment(){
       // this.getDates();
       // console.log(dateArray);
