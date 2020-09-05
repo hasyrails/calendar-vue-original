@@ -2,6 +2,9 @@
   "name": "calendar-vue-original",
   "private": true,
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.30",
+    "@fortawesome/free-solid-svg-icons": "^5.14.0",
+    "@fortawesome/vue-fontawesome": "^2.0.0",
     "@rails/webpacker": "5.2.1",
     "moment": "^2.27.0",
     "vue": "^2.6.12",
