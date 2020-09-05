@@ -29,7 +29,8 @@
               style="flex:1;min-height:10px;width:100px;height:30px;max-width:100px;text-align: center;margin-left:15px;"
               :style="'background-color:'+devidedSchedule.color+';'">
               <div class="card-body" style="display:flex; justify-content:center; padding-top:2px;">
-                {{devidedSchedule.title}}
+                <div class="schedule-icon"><font-awesome-icon icon="coffee" /></div>
+                <div class="schedule-title" style="margin-left:10px;">{{devidedSchedule.title}}</div>
               </div>
             </div>
           </div>
@@ -64,7 +65,7 @@ export default {
           start_date: moment('2020-09-07').date(),
           end_yyyymmdd: moment('2020-09-10'),
           end_date: moment('2020-09-010').date(),
-          color: '#FF9966',
+          color: '#FFD5EC',
           commit: 'yes'
         },
         {
@@ -73,7 +74,7 @@ export default {
           start_date: moment('2020-09-08').date(),
           end_yyyymmdd: moment('2020-09-12'),
           end_date: moment('2020-09-12').date(),
-          color: '#33CCFF',
+          color: '#BAD3FF',
           commit: 'no'
         },
         {
@@ -82,7 +83,7 @@ export default {
           start_date: moment('2020-09-01').date(),
           end_yyyymmdd: moment('2020-09-03'),
           end_date: moment('2020-09-03').date(),
-          color: '#33FF66',
+          color: '#CBFFD3',
           commit: 'no'
         }
       ],
