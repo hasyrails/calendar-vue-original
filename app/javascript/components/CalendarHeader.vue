@@ -46,8 +46,7 @@ export default {
 .calendar-header-content {
   display: flex;
   justify-content: center;
-  align-items: center;
-  margin-bottom:100px;
+  align-items: center; 
 }
 .calendar-header-date {
   color: white;

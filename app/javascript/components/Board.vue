@@ -16,6 +16,7 @@
           >
           <List v-for="(item, index) in lists"
                 style="z-index:2;margin-top:200px;margin-bottom:50px;"
+                class="slide"
                 :key="item.id"
                 :title="item.title"
                 :cards="item.cards"
@@ -58,3 +59,22 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+
+.slide {
+  animation: infinity-loop 10s infinite linear 1s both; /* 無限ループアニメーションの設定 */
+  position: relative;
+}
+
+@keyframes infinity-loop {
+  from {
+    transform: translateY(0vw);
+  }
+  to {
+    transform: translateY(-50vw);
+  }
+}
+</style>
+
+<>
