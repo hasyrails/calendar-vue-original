@@ -113,13 +113,37 @@ export default {
   },
   methods: {
     iconChange(){
-      if(this.schedules[0].icon < 3){
-        this.schedules[0].icon ++;
-        this.createDevidedSchedules();
-      }else{
-        this.schedules[0].icon = 0
+      switch(this.schedules[0].icon){
+        case 0:
+          this.schedules[0].icon = 1
+          this.createDevidedSchedules();
+          break;
+        case 1:
+          this.schedules[0].icon = 2
+          this.createDevidedSchedules();
+          break;
+        case 2:
+          this.schedules[0].icon = 3
+          this.createDevidedSchedules();
+          break;
+        case 3:
+          this.schedules[0].icon = 0
+          this.createDevidedSchedules();
+          break;
       }
     },
+    // iconChange(){
+    //   if(this.schedules[0].icon = 0){
+    //     this.schedules[0].icon = 1;
+    //     this.createDevidedSchedules();
+    //   }else if(this.schedule[0].icon =1){
+    //     this.schedules = [];
+    //     this.schedules[0].icon = 2;
+    //     this.createDevidedSchedules();
+    //   }else{
+    //     console.log('else')
+    //   }
+    // },
     confirmIconNum(){
       console.log(this.schedules[0].icon);
     },
@@ -340,7 +364,7 @@ export default {
   created(){
     return this.createDevidedSchedules();
   }
-}
+  }
 </script>
 
 <style scoped>
