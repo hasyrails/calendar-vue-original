@@ -29,7 +29,14 @@ export default {
   },
   methods: {
     countUp(){
-      this.count ++
+      if(this.count <3){
+        this.count ++
+      }else{
+        this.countReset()
+      }
+    },
+    countReset(){
+      this.count = 0
     }
     // countUp(){
     //   this.$emit('countUp')
