@@ -8,6 +8,7 @@
 import Vue from 'vue'
 import BootstrapVue from 'bootstrap-vue'
 import App from '../app.vue'
+import store from '../store'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
@@ -22,6 +23,7 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 document.addEventListener('DOMContentLoaded', () => {
   const app = new Vue({
+    store,
     render: h => h(App)
   }).$mount()
   document.body.appendChild(app.$el)
