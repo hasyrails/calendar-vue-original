@@ -6,15 +6,17 @@
       <div class="deletelist" @click="removeList">×</div>
     </div>
     <div class="cards-area">
-      <div>
-        <CardAdd :listIndex="listIndex"></CardAdd>
-      </div>
-      <Card v-for="(item, index) in cards"
-            :body="item.body"
-            :key="item.id"
-            :cardIndex="index"
-            :listIndex="listIndex"
-      ></Card>
+      <draggable>
+        <div>
+          <CardAdd :listIndex="listIndex"></CardAdd>
+        </div>
+        <Card v-for="(item, index) in cards"
+              :body="item.body"
+              :key="item.id"
+              :cardIndex="index"
+              :listIndex="listIndex"
+        ></Card>
+      </draggable>
     </div>
   </div>
 </template>
@@ -22,6 +24,8 @@
 <script>
 import CardAdd from '../components/CardAdd'
 import Card from '../components/Card'
+
+import draggable from 'vuedraggable'
 
 export default {
   props: {
@@ -45,7 +49,8 @@ export default {
   },
   components:{
     CardAdd,
-    Card
+    Card,
+    draggable
   },
   methods: {
     removeList: function() {
