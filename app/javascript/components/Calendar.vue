@@ -1,13 +1,10 @@
 <template>
   <div class="calendar" >
-    <div class="calendar-header">
-      <div class="calendar-header-content flex">
-        <ChevronLeft fillColor="white"  @click="prevMonth" size="lg"></ChevronLeft>
-        <div class="calendar-header-date">{{ currentDate }}</div>
-        <ChevronRight fillColor="white" @click="nextMonth" size="lg"></ChevronRight>
-      </div>
-    </div>
-
+    <CalendarHeader
+    :currentDate="currentDate"
+    @prev="prevMonth"
+    @next="nextMonth">
+    </CalendarHeader>
     <div style="min-width:100px;width:1225px;border-top:1px solid grey;background-color:#EEEEEE;">
       <div
         v-for="(week, index) in calendars"
@@ -46,32 +43,17 @@
             </div>
           </div>
         </draggable>
-
-        </div>
       </div>
     </div>
-
-    <div>
-      <h3>タスクカード(仮)</h3>
-      <draggable v-model="itemsB" group="myGroup" @start="drag=true" @end="drag=false" :options="options">
-        <div class="item" v-for="item in itemsB" :key="item.id">
-          <div class="card">
-            <div class="card-body">
-              {{item.title}}
-            </div>
-          </div>
-
-        </div>
-      </draggable>
-    </div>
   </div>
+</div>
 </template>
 
 <script>
 import moment from "moment";
 import draggable from 'vuedraggable'
-import ChevronLeft from 'vue-material-design-icons/ChevronLeft.vue';
-import ChevronRight from 'vue-material-design-icons/ChevronRight.vue';
+
+import CalendarHeader from "../components/CalendarHeader";
 
 export default {
   name: 'Calendar',
@@ -129,9 +111,8 @@ export default {
     };
   },
   components: {
-    ChevronLeft,
-    ChevronRight,
-    draggable
+    draggable,
+    CalendarHeader
   },
   mounted: function(){
   },
@@ -401,30 +382,5 @@ export default {
   margin-right: 30%;
   position: fixed;
 }
-.calendar-header {
-  width:1225px;
-  height:100px;
-  background-color: #75A9FF;
-}
 
-.calendar-header-content {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom:100px;
-}
-.calendar-header-date {
-  color: white;
-  font-size: 32px;
-}
-.flex{
-  padding: 2.5% 0;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-}
-.flex > *{
-  width: 8%;
-  text-align: center;
-}
 </style>
