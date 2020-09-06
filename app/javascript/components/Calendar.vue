@@ -1,5 +1,5 @@
 <template>
-  <div class="calendar">
+  <div class="calendar" >
     <div class="calendar-header">
       <div class="calendar-header-content flex">
         <ChevronLeft fillColor="white"  @click="prevMonth"></ChevronLeft>
@@ -8,7 +8,7 @@
       </div>
     </div>
 
-    <div style="max-width:900px;border-top:1px solid grey;">
+    <div style="min-width:100px;width:900px;border-top:1px solid grey;">
       <div
         v-for="(week, index) in calendars"
         :key="index"
@@ -23,21 +23,41 @@
           <div 
           v-for="devidedSchedule in devidedSchedules"
           v-if="devidedSchedule.date==day.date&&devidedSchedule.yyyymm==currentDate"
-          style="flex:1;min-height:1px;min-width:1px;max-height:10px;max-width:10px;text-align: center;border-radius:100px;margin-bottom:10px;"
-          :style="'background-color:'+devidedSchedule.color+';'">
-            {{devidedSchedule.title}}
+          style="flex:1;min-height:1px;min-width:1px;max-height:100px;max-width:50px;text-align: center;margin-bottom:10px;"
+          >
+            <div class="card" 
+              style="flex:1;min-height:10px;width:100px;height:30px;max-width:100px;text-align: center;margin-left:15px;"
+              :style="'background-color:'+devidedSchedule.color+';'"
+              @click="iconChange"
+              >
+              <div class="card-body" style="display:flex; justify-content:center; padding-top:2px;">
+                <div>
+                  <p v-if="devidedSchedule.icon===1"><font-awesome-icon icon="coffee"  size="sm" /></p>
+                  <p v-else-if="devidedSchedule.icon===2"><font-awesome-icon icon="bath"  size="sm" /></p>
+                  <p v-else-if="devidedSchedule.icon===3"><font-awesome-icon icon="birthday-cake" size="sm"/></p>
+                  <p v-else></p>
+                </div>
+                <div class="schedule-title" style="margin-left:10px;">{{devidedSchedule.title}}</div>
+              </div>
+            </div>
           </div>
 
         </div>
       </div>
     </div>
     <div>
-      <button @click="showDevidedSchedule">ConfirmArray</button>
-      <button @click="confirmMoment">ConfirmMoment</button>
+      <button @click="showDevidedSchedule" class="btn btn-primary">ConfirmArray</button>
+      <button @click="confirmIconNum" class="btn btn-primary">ConfirmIconNum</button>
+      <button @click="confirmCount" class="btn btn-primary">ConfirmCount</button>
     </div>
-    <div>
+    <!-- <div>
       <font-awesome-icon icon="coffee" />
-    </div>
+    </div> -->
+
+    <!-- <div>
+      <button v-on:click="countChange">You clicked me {{ count }} times.</button>
+    </div> -->
+
   </div>
 </template>
 
@@ -58,7 +78,8 @@ export default {
           start_date: moment('2020-09-07').date(),
           end_yyyymmdd: moment('2020-09-10'),
           end_date: moment('2020-09-010').date(),
-          color: 'red',
+          color: '#FFD5EC',
+          icon: 0,
           commit: 'yes'
         },
         {
@@ -67,7 +88,8 @@ export default {
           start_date: moment('2020-09-08').date(),
           end_yyyymmdd: moment('2020-09-12'),
           end_date: moment('2020-09-12').date(),
-          color: 'blue',
+          color: '#BAD3FF',
+          icon: 0,
           commit: 'no'
         },
         {
@@ -76,7 +98,8 @@ export default {
           start_date: moment('2020-09-01').date(),
           end_yyyymmdd: moment('2020-09-03'),
           end_date: moment('2020-09-03').date(),
-          color: 'green',
+          color: '#CBFFD3',
+          icon: 0,
           commit: 'no'
         }
       ],
@@ -89,6 +112,41 @@ export default {
   mounted: function(){
   },
   methods: {
+    iconChange(){
+      switch(this.schedules[0].icon){
+        case 0:
+          this.schedules[0].icon = 1
+          this.createDevidedSchedules();
+          break;
+        case 1:
+          this.schedules[0].icon = 2
+          this.createDevidedSchedules();
+          break;
+        case 2:
+          this.schedules[0].icon = 3
+          this.createDevidedSchedules();
+          break;
+        case 3:
+          this.schedules[0].icon = 0
+          this.createDevidedSchedules();
+          break;
+      }
+    },
+    // iconChange(){
+    //   if(this.schedules[0].icon = 0){
+    //     this.schedules[0].icon = 1;
+    //     this.createDevidedSchedules();
+    //   }else if(this.schedule[0].icon =1){
+    //     this.schedules = [];
+    //     this.schedules[0].icon = 2;
+    //     this.createDevidedSchedules();
+    //   }else{
+    //     console.log('else')
+    //   }
+    // },
+    confirmIconNum(){
+      console.log(this.schedules[0].icon);
+    },
     createDevidedSchedules() {
       let i = 0;
       let j = 0;
@@ -124,6 +182,7 @@ export default {
           devidedSchedules.push({
             title: this.schedules[m].title,
             color: this.schedules[m].color,
+            icon: this.schedules[m].icon,
             commit: this.schedules[m].commit,
             yyyymm: moment(dateArrays[m][n]).format('YYYY/MM'),
             date: moment(dateArrays[m][n]).date(),
@@ -305,7 +364,7 @@ export default {
   created(){
     return this.createDevidedSchedules();
   }
-}
+  }
 </script>
 
 <style scoped>
@@ -314,7 +373,7 @@ export default {
   margin-right: 30%;
 }
 .calendar-header {
-  max-width:900px;
+  width:900px;
   background-color: #3366FF;
 }
 .calendar-header-date {
