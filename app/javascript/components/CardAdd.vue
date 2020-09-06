@@ -60,6 +60,15 @@ export default {
 </script>
 
 <style scoped>
+.addlist {
+  margin: 0 10px auto;
+  display: inline-block;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 320px;
+  width: 320px;
+}
+
 .text-input {
   padding: 20px 15px;
   width: calc(100% - 30px);
@@ -104,6 +113,10 @@ export default {
   background-color: #00d78f;
   pointer-events: auto;
   cursor: pointer;
+}
+
+.add-button:active {
+  background-color: #00d78f;
 }
 
 </style>
