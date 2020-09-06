@@ -1,11 +1,11 @@
 <template>
   <div>
-    <header>
-      my Trello
-    </header>
+    <!-- <header>
+      TODO List
+    </header> -->
     <main>
       <p class="info-line">All: 0 tasks</p>
-      <list-add />
+      <ListAdd></ListAdd>
     </main>
   </div>
 </template>

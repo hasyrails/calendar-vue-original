@@ -37,17 +37,20 @@
 }
 
 header {
-  background: orange;
+  background: #AFEEEE;
   height: 70px;
-  color: white;
+  color: black;
   font-style: italic;
   font-size: 40px;
   text-align: left;
   padding: 20px;
+  width:100%;
 }
 
 main {
+  background: #E0FFF0;
   padding: 0 10px;
-  width: calc(100% - 40px);
+  /* width: calc(100% - 40px); */
+  width: 100%;
   height: 100%;
 } 

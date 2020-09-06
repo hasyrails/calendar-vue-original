@@ -396,8 +396,8 @@ export default {
 
 <style scoped>
 .calendar {
-  margin-left: 30%;
-  margin-right: 30%;
+  margin-left: 10%;
+  margin-right: 10%;
 }
 .calendar-header {
   width:1225px;
