@@ -2,9 +2,9 @@
   <div class="calendar" >
     <div class="calendar-header">
       <div class="calendar-header-content flex">
-        <ChevronLeft fillColor="white"  @click="prevMonth"></ChevronLeft>
+        <ChevronLeft fillColor="white"  @click="prevMonth" size="lg"></ChevronLeft>
         <div class="calendar-header-date">{{ currentDate }}</div>
-        <ChevronRight fillColor="white" @click="nextMonth"></ChevronRight>
+        <ChevronRight fillColor="white" @click="nextMonth" size="lg"></ChevronRight>
       </div>
     </div>
 
@@ -20,6 +20,8 @@
           style="flex:1;min-height:125px;border-right:1px solid grey;border-bottom:1px solid grey; text-align: center;"
         >
           {{ day.date }}
+  
+        <draggable :options="options">
           <div 
           v-for="devidedSchedule in devidedSchedules"
           v-if="devidedSchedule.date==day.date&&devidedSchedule.yyyymm==currentDate"
@@ -37,10 +39,13 @@
                   <p v-else-if="devidedSchedule.icon===3"><font-awesome-icon icon="birthday-cake" size="sm"/></p>
                   <p v-else></p>
                 </div>
-                <div class="schedule-title" style="margin-left:10px;">{{devidedSchedule.title}}</div>
+                <div class="schedule-title" style="margin-left:10px;">
+                  {{devidedSchedule.title}}
+                </div>
               </div>
             </div>
           </div>
+        </draggable>
 
         </div>
       </div>
@@ -54,15 +59,16 @@
       <font-awesome-icon icon="coffee" />
     </div> -->
 
-    <!-- <div>
-      <button v-on:click="countChange">You clicked me {{ count }} times.</button>
-    </div> -->
+    <div>
+      <button v-on:click="confirmCurrentDate">currentDate</button>
+    </div>
 
   </div>
 </template>
 
 <script>
 import moment from "moment";
+import draggable from 'vuedraggable'
 import ChevronLeft from 'vue-material-design-icons/ChevronLeft.vue';
 import ChevronRight from 'vue-material-design-icons/ChevronRight.vue';
 
@@ -107,7 +113,8 @@ export default {
   },
   components: {
     ChevronLeft,
-    ChevronRight
+    ChevronRight,
+    draggable
   },
   mounted: function(){
   },
@@ -146,6 +153,9 @@ export default {
     // },
     confirmIconNum(){
       console.log(this.schedules[0].icon);
+    },
+    confirmCurrentDate(){
+      console.log(this.confirmCurrentDate);
     },
     createDevidedSchedules() {
       let i = 0;
@@ -378,6 +388,10 @@ export default {
 }
 .calendar-header-date {
   color: white;
+  font-size: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .flex{
   padding: 2.5% 0;
