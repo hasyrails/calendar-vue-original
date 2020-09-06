@@ -6,7 +6,7 @@
       <div class="deletelist" @click="removeList">×</div>
     </div>
     <div class="cards-area">
-      <draggable group="cards">
+      <draggable>
         <div>
           <CardAdd :listIndex="listIndex"></CardAdd>
         </div>
