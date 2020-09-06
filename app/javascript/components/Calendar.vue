@@ -31,9 +31,9 @@
               >
               <div class="card-body" style="display:flex; justify-content:center; padding-top:2px;font-size:20px;">
                 <div>
-                  <p v-if="devidedSchedule.icon===1"><font-awesome-icon icon="coffee"  size="sm" /></p>
-                  <p v-else-if="devidedSchedule.icon===2"><font-awesome-icon icon="bath"  size="sm" /></p>
-                  <p v-else-if="devidedSchedule.icon===3"><font-awesome-icon icon="birthday-cake" size="sm"/></p>
+                  <p v-if="icon===1"><font-awesome-icon icon="coffee"  size="sm" /></p>
+                  <p v-else-if="icon===2"><font-awesome-icon icon="bath"  size="sm" /></p>
+                  <p v-else-if="icon===3"><font-awesome-icon icon="birthday-cake" size="sm"/></p>
                   <p v-else></p>
                 </div>
                   {{devidedSchedule.title}}
@@ -46,6 +46,14 @@
       </div>
     </div>
   </div>
+    <!-- <CounterButton :count="count" message="CounterA" @countUp="countUp"></CounterButton>
+    <CounterButton :count="count" message="CounterB" @countUp="countUp"></CounterButton>
+    <CounterButton :count="count" message="CounterC" @countUp="countUp"></CounterButton> -->
+    <div>
+        <CounterButton style="margin-bottom:20px;" message="CounterA" @countUp="countUp"></CounterButton>
+        <CounterButton style="margin-bottom:20px;" message="CounterB" @countUp="countUp"></CounterButton>
+        <CounterButton style="margin-bottom:20px;" message="CounterC" @countUp="countUp"></CounterButton>
+    </div>
 </div>
 </template>
 
@@ -54,11 +62,13 @@ import moment from "moment";
 import draggable from 'vuedraggable'
 
 import CalendarHeader from "../components/CalendarHeader";
+import CounterButton from "../components/CounterButton"
 
 export default {
   name: 'Calendar',
   data() {
     return {
+      // count: 0,
       options: {
         group: "myGroup",
         animation: 200
@@ -71,7 +81,7 @@ export default {
           end_yyyymmdd: moment('2020-09-10'),
           end_date: moment('2020-09-010').date(),
           color: '#FFD5EC',
-          icon: 0,
+          // icon: 0,
           commit: 'yes'
         },
       ],
@@ -84,7 +94,7 @@ export default {
           end_yyyymmdd: moment('2020-09-10'),
           end_date: moment('2020-09-010').date(),
           color: '#FFD5EC',
-          icon: 0,
+          // icon: 0,
           commit: 'yes'
         },
         {
@@ -94,7 +104,7 @@ export default {
           end_yyyymmdd: moment('2020-09-12'),
           end_date: moment('2020-09-12').date(),
           color: '#BAD3FF',
-          icon: 0,
+          // icon: 0,
           commit: 'no'
         },
         {
@@ -104,7 +114,7 @@ export default {
           end_yyyymmdd: moment('2020-09-03'),
           end_date: moment('2020-09-03').date(),
           color: '#CBFFD3',
-          icon: 0,
+          // icon: 0,
           commit: 'no'
         }
       ],
@@ -112,31 +122,15 @@ export default {
   },
   components: {
     draggable,
-    CalendarHeader
+    CalendarHeader,
+    CounterButton
   },
   mounted: function(){
   },
   methods: {
-    iconChange(){
-      switch(this.schedules[0].icon){
-        case 0:
-          this.schedules[0].icon = 1
-          // this.createDevidedSchedules();
-          break;
-          this.schedules[0].icon = 2
-          // this.createDevidedSchedules();
-            case 1:
-          break;
-        case 2:
-          this.schedules[0].icon = 3
-          // this.createDevidedSchedules();
-          break;
-        case 3:
-          this.schedules[0].icon = 0
-          // this.createDevidedSchedules();
-          break;
-      }
-    },
+    // countUp(){
+    //   this.count ++
+    // },
     // iconChange(){
     //   if(this.schedules[0].icon = 0){
     //     this.schedules[0].icon = 1;
