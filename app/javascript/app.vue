@@ -1,12 +1,16 @@
 <template>
   <div id="app">
+    <header>Header</header>
     <div class="app-area">
       <div class="todo-area">
         <Board></Board>
       </div>
       <div class="calendar-area">
         <Calendar></Calendar>
-      </div> 
+      </div>
+      <div class="footer-area">
+        <footer>(C)footer</footer>
+      </div>
     </div>
   </div>
 </template>
@@ -43,6 +47,11 @@ p {
   width:20%;
 }
 .calendar-area{
-  width:80%;
+  width:75%;
+}
+
+footer{
+  position: fixed;
+	bottom: 0px;             
 }
 </style>

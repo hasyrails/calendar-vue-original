@@ -38,13 +38,16 @@
 
 header {
   background: #AFEEEE;
-  height: 70px;
+  height: 80px;
   color: black;
   font-style: italic;
   font-size: 40px;
+  font-weight: 30px;
   text-align: left;
   padding: 20px;
   width:100%;
+  position: fixed;
+  z-index: 2;
 }
 
 main {
