@@ -46,14 +46,14 @@
       </div>
     </div>
   </div>
-  <div>
     <!-- <CounterButton :count="count" message="CounterA" @countUp="countUp"></CounterButton>
     <CounterButton :count="count" message="CounterB" @countUp="countUp"></CounterButton>
     <CounterButton :count="count" message="CounterC" @countUp="countUp"></CounterButton> -->
-    <CounterButton message="CounterA" @countUp="countUp"></CounterButton>
-    <CounterButton message="CounterB" @countUp="countUp"></CounterButton>
-    <CounterButton message="CounterC" @countUp="countUp"></CounterButton>
-  </div>
+    <div>
+        <CounterButton style="margin-bottom:20px;" message="CounterA" @countUp="countUp"></CounterButton>
+        <CounterButton style="margin-bottom:20px;" message="CounterB" @countUp="countUp"></CounterButton>
+        <CounterButton style="margin-bottom:20px;" message="CounterC" @countUp="countUp"></CounterButton>
+    </div>
 </div>
 </template>
 
