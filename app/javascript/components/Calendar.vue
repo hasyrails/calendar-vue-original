@@ -2,9 +2,9 @@
   <div class="calendar" >
     <div class="calendar-header">
       <div class="calendar-header-content flex">
-        <ChevronLeft fillColor="white"  @click="prevMonth"></ChevronLeft>
+        <ChevronLeft fillColor="white"  @click="prevMonth" size="lg"></ChevronLeft>
         <div class="calendar-header-date">{{ currentDate }}</div>
-        <ChevronRight fillColor="white" @click="nextMonth"></ChevronRight>
+        <ChevronRight fillColor="white" @click="nextMonth" size="lg"></ChevronRight>
       </div>
     </div>
 
@@ -20,6 +20,8 @@
           style="flex:1;min-height:125px;border-right:1px solid grey;border-bottom:1px solid grey; text-align: center;"
         >
           {{ day.date }}
+  
+        <draggable  v-model="devidedSchedule" group="myGroup" @start="drag=true" @end="drag=false" :options="options">
           <div 
           v-for="devidedSchedule in devidedSchedules"
           v-if="devidedSchedule.date==day.date&&devidedSchedule.yyyymm==currentDate"
@@ -37,32 +39,37 @@
                   <p v-else-if="devidedSchedule.icon===3"><font-awesome-icon icon="birthday-cake" size="sm"/></p>
                   <p v-else></p>
                 </div>
-                <div class="schedule-title" style="margin-left:10px;">{{devidedSchedule.title}}</div>
+                <div class="schedule-title" style="margin-left:10px;">
+                  {{devidedSchedule.title}}
+                </div>
               </div>
             </div>
           </div>
+        </draggable>
 
         </div>
       </div>
     </div>
+
     <div>
-      <button @click="showDevidedSchedule" class="btn btn-primary">ConfirmArray</button>
-      <button @click="confirmIconNum" class="btn btn-primary">ConfirmIconNum</button>
-      <button @click="confirmCount" class="btn btn-primary">ConfirmCount</button>
+      <h3>タスクカード(仮)</h3>
+      <draggable v-model="itemsB" group="myGroup" @start="drag=true" @end="drag=false" :options="options">
+        <div class="item" v-for="item in itemsB" :key="item.id">
+          <div class="card">
+            <div class="card-body">
+              {{item.title}}
+            </div>
+          </div>
+
+        </div>
+      </draggable>
     </div>
-    <!-- <div>
-      <font-awesome-icon icon="coffee" />
-    </div> -->
-
-    <!-- <div>
-      <button v-on:click="countChange">You clicked me {{ count }} times.</button>
-    </div> -->
-
   </div>
 </template>
 
 <script>
 import moment from "moment";
+import draggable from 'vuedraggable'
 import ChevronLeft from 'vue-material-design-icons/ChevronLeft.vue';
 import ChevronRight from 'vue-material-design-icons/ChevronRight.vue';
 
@@ -70,6 +77,22 @@ export default {
   name: 'Calendar',
   data() {
     return {
+      options: {
+        group: "myGroup",
+        animation: 200
+      },
+      itemsB: [
+         {
+          title: 'hoge',
+          start_yyyymmdd: moment('2020-09-07'),
+          start_date: moment('2020-09-07').date(),
+          end_yyyymmdd: moment('2020-09-10'),
+          end_date: moment('2020-09-010').date(),
+          color: '#FFD5EC',
+          icon: 0,
+          commit: 'yes'
+        },
+      ],
       currentDate: moment().format('YYYY/MM'),
       schedules: [
         {
@@ -107,7 +130,8 @@ export default {
   },
   components: {
     ChevronLeft,
-    ChevronRight
+    ChevronRight,
+    draggable
   },
   mounted: function(){
   },
@@ -116,19 +140,19 @@ export default {
       switch(this.schedules[0].icon){
         case 0:
           this.schedules[0].icon = 1
-          this.createDevidedSchedules();
+          // this.createDevidedSchedules();
           break;
         case 1:
           this.schedules[0].icon = 2
-          this.createDevidedSchedules();
+          // this.createDevidedSchedules();
           break;
         case 2:
           this.schedules[0].icon = 3
-          this.createDevidedSchedules();
+          // this.createDevidedSchedules();
           break;
         case 3:
           this.schedules[0].icon = 0
-          this.createDevidedSchedules();
+          // this.createDevidedSchedules();
           break;
       }
     },
@@ -146,6 +170,9 @@ export default {
     // },
     confirmIconNum(){
       console.log(this.schedules[0].icon);
+    },
+    confirmCurrentDate(){
+      console.log(this.confirmCurrentDate);
     },
     createDevidedSchedules() {
       let i = 0;
@@ -378,6 +405,10 @@ export default {
 }
 .calendar-header-date {
   color: white;
+  font-size: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .flex{
   padding: 2.5% 0;
