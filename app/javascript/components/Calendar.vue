@@ -19,40 +19,21 @@
           {{ day.date }}
   
         <draggable  v-model="devidedSchedule" group="cards" @start="drag=true" @end="drag=false" :options="options">
-          <div 
+          <Schedule 
+          :devidedSchedule="devidedSchedule"
           v-for="devidedSchedule in devidedSchedules"
           v-if="devidedSchedule.date==day.date&&devidedSchedule.yyyymm==currentDate"
-          style="flex:1;min-height:1px;min-width:1px;max-height:100px;max-width:50px;text-align: center;margin-bottom:10px;"
+          style="flex:1;min-height:1px;min-width:1px;max-height:100px;max-width:150px;text-align: center;margin-bottom:10px;"
           >
-            <div class="card" 
-              style="flex:1;min-height:10px;width:100px;height:30px;max-width:100px;text-align: center;margin-left:15px;"
-              :style="'background-color:'+devidedSchedule.color+';'"
-              @click="iconChange"
-              >
-              <div class="card-body" style="display:flex; justify-content:center; padding-top:2px;font-size:20px;">
-                <div>
-                  <p v-if="icon===1"><font-awesome-icon icon="coffee"  size="sm" /></p>
-                  <p v-else-if="icon===2"><font-awesome-icon icon="bath"  size="sm" /></p>
-                  <p v-else-if="icon===3"><font-awesome-icon icon="birthday-cake" size="sm"/></p>
-                  <p v-else></p>
-                </div>
-                  {{devidedSchedule.title}}
-                <div class="schedule-title" style="margin-left:10px;">
-                </div>
-              </div>
-            </div>
-          </div>
+          </Schedule>
         </draggable>
       </div>
     </div>
   </div>
-    <!-- <CounterButton :count="count" message="CounterA" @countUp="countUp"></CounterButton>
-    <CounterButton :count="count" message="CounterB" @countUp="countUp"></CounterButton>
-    <CounterButton :count="count" message="CounterC" @countUp="countUp"></CounterButton> -->
     <div>
-        <CounterButton style="margin-bottom:20px;" message="CounterA" @countUp="countUp"></CounterButton>
-        <CounterButton style="margin-bottom:20px;" message="CounterB" @countUp="countUp"></CounterButton>
-        <CounterButton style="margin-bottom:20px;" message="CounterC" @countUp="countUp"></CounterButton>
+        <CounterButton style="margin-bottom:20px;" message="CounterA"></CounterButton>
+        <CounterButton style="margin-bottom:20px;" message="CounterB"></CounterButton>
+        <CounterButton style="margin-bottom:20px;" message="CounterC"></CounterButton>
     </div>
 </div>
 </template>
@@ -63,6 +44,7 @@ import draggable from 'vuedraggable'
 
 import CalendarHeader from "../components/CalendarHeader";
 import CounterButton from "../components/CounterButton"
+import Schedule from "../components/Schedule"
 
 export default {
   name: 'Calendar',
@@ -123,7 +105,8 @@ export default {
   components: {
     draggable,
     CalendarHeader,
-    CounterButton
+    CounterButton,
+    Schedule
   },
   mounted: function(){
   },
