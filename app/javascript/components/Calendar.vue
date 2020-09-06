@@ -21,7 +21,7 @@
         >
           {{ day.date }}
   
-        <draggable  v-model="devidedSchedule" group="myGroup" @start="drag=true" @end="drag=false" :options="options">
+        <draggable  v-model="devidedSchedule" group="cards" @start="drag=true" @end="drag=false" :options="options">
           <div 
           v-for="devidedSchedule in devidedSchedules"
           v-if="devidedSchedule.date==day.date&&devidedSchedule.yyyymm==currentDate"
