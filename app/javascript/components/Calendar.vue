@@ -8,16 +8,16 @@
       </div>
     </div>
 
-    <div style="min-width:100px;width:900px;border-top:1px solid grey;">
+    <div style="min-width:100px;width:1225px;border-top:1px solid grey;background-color:#EEEEEE;">
       <div
         v-for="(week, index) in calendars"
         :key="index"
-        style="display:flex;border-left:1px solid grey"
+        style="display:flex;border-left:1px solid grey;height:150px;"
       >
         <div
           v-for="(day, index) in week"
           :key="index"
-          style="flex:1;min-height:125px;border-right:1px solid grey;border-bottom:1px solid grey; text-align: center;"
+          style="flex:1;min-height:125px;border-right:1px solid grey;border-bottom:1px solid grey; text-align: center;font-size:25px;"
         >
           {{ day.date }}
   
@@ -32,15 +32,15 @@
               :style="'background-color:'+devidedSchedule.color+';'"
               @click="iconChange"
               >
-              <div class="card-body" style="display:flex; justify-content:center; padding-top:2px;">
+              <div class="card-body" style="display:flex; justify-content:center; padding-top:2px;font-size:20px;">
                 <div>
                   <p v-if="devidedSchedule.icon===1"><font-awesome-icon icon="coffee"  size="sm" /></p>
                   <p v-else-if="devidedSchedule.icon===2"><font-awesome-icon icon="bath"  size="sm" /></p>
                   <p v-else-if="devidedSchedule.icon===3"><font-awesome-icon icon="birthday-cake" size="sm"/></p>
                   <p v-else></p>
                 </div>
-                <div class="schedule-title" style="margin-left:10px;">
                   {{devidedSchedule.title}}
+                <div class="schedule-title" style="margin-left:10px;">
                 </div>
               </div>
             </div>
@@ -142,9 +142,9 @@ export default {
           this.schedules[0].icon = 1
           // this.createDevidedSchedules();
           break;
-        case 1:
           this.schedules[0].icon = 2
           // this.createDevidedSchedules();
+            case 1:
           break;
         case 2:
           this.schedules[0].icon = 3
@@ -396,19 +396,24 @@ export default {
 
 <style scoped>
 .calendar {
-  margin-left: 30%;
-  margin-right: 30%;
+  margin-left: 10%;
+  margin-right: 10%;
 }
 .calendar-header {
-  width:900px;
-  background-color: #3366FF;
+  width:1225px;
+  height:100px;
+  background-color: #75A9FF;
+}
+
+.calendar-header-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom:100px;
 }
 .calendar-header-date {
   color: white;
   font-size: 32px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 .flex{
   padding: 2.5% 0;
