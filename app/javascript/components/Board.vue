@@ -10,6 +10,7 @@
         <List v-for="(item, index) in lists"
               :key="item.id"
               :title="item.title"
+              :cards="item.cards"
               :listIndex="index"
         ></List>
       </div>
