@@ -21,7 +21,7 @@
         >
           {{ day.date }}
   
-        <draggable :options="options">
+        <draggable  v-model="devidedSchedule" group="myGroup" @start="drag=true" @end="drag=false" :options="options">
           <div 
           v-for="devidedSchedule in devidedSchedules"
           v-if="devidedSchedule.date==day.date&&devidedSchedule.yyyymm==currentDate"
@@ -50,19 +50,20 @@
         </div>
       </div>
     </div>
-    <div>
-      <button @click="showDevidedSchedule" class="btn btn-primary">ConfirmArray</button>
-      <button @click="confirmIconNum" class="btn btn-primary">ConfirmIconNum</button>
-      <button @click="confirmCount" class="btn btn-primary">ConfirmCount</button>
-    </div>
-    <!-- <div>
-      <font-awesome-icon icon="coffee" />
-    </div> -->
 
     <div>
-      <button v-on:click="confirmCurrentDate">currentDate</button>
-    </div>
+      <h3>タスクカード(仮)</h3>
+      <draggable v-model="itemsB" group="myGroup" @start="drag=true" @end="drag=false" :options="options">
+        <div class="item" v-for="item in itemsB" :key="item.id">
+          <div class="card">
+            <div class="card-body">
+              {{item.title}}
+            </div>
+          </div>
 
+        </div>
+      </draggable>
+    </div>
   </div>
 </template>
 
@@ -76,6 +77,22 @@ export default {
   name: 'Calendar',
   data() {
     return {
+      options: {
+        group: "myGroup",
+        animation: 200
+      },
+      itemsB: [
+         {
+          title: 'hoge',
+          start_yyyymmdd: moment('2020-09-07'),
+          start_date: moment('2020-09-07').date(),
+          end_yyyymmdd: moment('2020-09-10'),
+          end_date: moment('2020-09-010').date(),
+          color: '#FFD5EC',
+          icon: 0,
+          commit: 'yes'
+        },
+      ],
       currentDate: moment().format('YYYY/MM'),
       schedules: [
         {
@@ -123,19 +140,19 @@ export default {
       switch(this.schedules[0].icon){
         case 0:
           this.schedules[0].icon = 1
-          this.createDevidedSchedules();
+          // this.createDevidedSchedules();
           break;
         case 1:
           this.schedules[0].icon = 2
-          this.createDevidedSchedules();
+          // this.createDevidedSchedules();
           break;
         case 2:
           this.schedules[0].icon = 3
-          this.createDevidedSchedules();
+          // this.createDevidedSchedules();
           break;
         case 3:
           this.schedules[0].icon = 0
-          this.createDevidedSchedules();
+          // this.createDevidedSchedules();
           break;
       }
     },
