@@ -82,10 +82,10 @@ export default {
   align-items: flex-start;
   min-width: 290px;
   width: 290px;
-  background-color: #e0e0e0;
+  background-color: #D7EEFF;
   border-radius: 8px;
   padding: 15px;
-  border: solid #ddd 1px;
+  border: solid #D9E5FF	1px;
   color: gray;
   vertical-align: top;
 }

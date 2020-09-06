@@ -4,15 +4,18 @@
       TODO List
     </header> -->
     <main>
-      <p class="info-line">All: {{ totalCardCount }} tasks</p>
+      <p class="info-line" style="position:fixed;">All: {{ totalCardCount }} tasks</p>
       <div class="list-index">
-        <ListAdd></ListAdd>
+        <ListAdd
+        style="position:fixed;z-index:2;margin-top:100px;"
+        ></ListAdd>
         <draggable
           :list="lists"
           class="list-index"
           @end="movingList"
           >
           <List v-for="(item, index) in lists"
+                style="z-index:2;margin-top:200px;margin-bottom:50px;"
                 :key="item.id"
                 :title="item.title"
                 :cards="item.cards"

@@ -5,16 +5,16 @@
     @prev="prevMonth"
     @next="nextMonth">
     </CalendarHeader>
-    <div style="min-width:100px;width:1225px;border-top:1px solid grey;background-color:#EEEEEE;">
+    <div style="min-width:100px;width:1225px;border-top:5px #BAD3FF;background-color:#EEEEEE;">
       <div
         v-for="(week, index) in calendars"
         :key="index"
-        style="display:flex;border-left:1px solid grey;height:150px;"
+        style="display:flex;border-left:5px solid #BAD3FF;height:150px;"
       >
         <div
           v-for="(day, index) in week"
           :key="index"
-          style="flex:1;min-height:125px;border-right:1px solid grey;border-bottom:1px solid grey; text-align: center;font-size:25px;"
+          style="flex:1;min-height:125px;border-right:5px solid #BAD3FF;border-bottom:5px solid #BAD3FF;; text-align: center;font-size:25px;"
         >
           {{ day.date }}
   
@@ -30,11 +30,6 @@
       </div>
     </div>
   </div>
-    <div>
-        <CounterButton style="margin-bottom:20px;" message="CounterA"></CounterButton>
-        <CounterButton style="margin-bottom:20px;" message="CounterB"></CounterButton>
-        <CounterButton style="margin-bottom:20px;" message="CounterC"></CounterButton>
-    </div>
 </div>
 </template>
 
@@ -43,7 +38,6 @@ import moment from "moment";
 import draggable from 'vuedraggable'
 
 import CalendarHeader from "../components/CalendarHeader";
-import CounterButton from "../components/CounterButton"
 import Schedule from "../components/Schedule"
 
 export default {
@@ -80,14 +74,14 @@ export default {
           commit: 'yes'
         },
         {
-          title: 'fuga',
           start_yyyymmdd: moment('2020-09-08'),
           start_date: moment('2020-09-08').date(),
           end_yyyymmdd: moment('2020-09-12'),
           end_date: moment('2020-09-12').date(),
           color: '#BAD3FF',
           // icon: 0,
-          commit: 'no'
+          commit: 'no',
+          title: 'fuga',
         },
         {
           title: 'yagi',
@@ -105,7 +99,6 @@ export default {
   components: {
     draggable,
     CalendarHeader,
-    CounterButton,
     Schedule
   },
   mounted: function(){
@@ -354,10 +347,11 @@ export default {
 
 <style scoped>
 .calendar {
-  margin-top:3%;
+  margin-top:7%;
   margin-left: 10%;
   margin-right: 30%;
   position: fixed;
+  z-index:1;
 }
 
 </style>
