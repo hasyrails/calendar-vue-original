@@ -1,17 +1,20 @@
 <template>
   <div class="list">
     <div class="listheader">
-      <p class="list-title">{{ title }}</p>
+      <div class="list-title">{{ title }}</div>
+       <div class="list-counter">total: {{ totalCardInList }}</div>
       <div class="deletelist" @click="removeList">×</div>
     </div>
-    <Card v-for="(item, index) in cards"
-          :body="item.body"
-          :key="item.id"
-          :cardIndex="index"
-          :listIndex="listIndex"
-    ></Card>
-    <div>
-      <CardAdd :listIndex="listIndex"></CardAdd>
+    <div class="cards-area">
+      <div>
+        <CardAdd :listIndex="listIndex"></CardAdd>
+      </div>
+      <Card v-for="(item, index) in cards"
+            :body="item.body"
+            :key="item.id"
+            :cardIndex="index"
+            :listIndex="listIndex"
+      ></Card>
     </div>
   </div>
 </template>
@@ -35,6 +38,11 @@ export default {
       required: true
     }
   },
+  computed: {
+    totalCardInList() {
+      return this.cards.length
+    }
+  },
   components:{
     CardAdd,
     Card
@@ -50,6 +58,13 @@ export default {
 </script>
 
 <style scoped>
+.list-counter {
+  color: rgb(0, 140, 255);
+  padding: 15px;
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
 .list {
   margin: 0 10px auto;
   margin-bottom: 10px;
@@ -71,13 +86,15 @@ export default {
 .listheader {
   width: 290px;
   display: inline-flex;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 .list-title {
-  font-size: 20px;
+  background: linear-gradient(transparent 70%, #ff99ab 70%);
+  font-size: 25px;
   font-weight: bold;
   padding: 15px;
+  margin-bottom: 10px;
 }
 
 .deletelist {
@@ -86,4 +103,5 @@ export default {
   right: 14px;
   font-size: 28px;
 }
+
 </style>
