@@ -347,7 +347,7 @@ export default {
 
 <style scoped>
 .calendar {
-  margin-top:7%;
+  margin-top:5%;
   margin-left: 10%;
   margin-right: 30%;
   position: fixed;
