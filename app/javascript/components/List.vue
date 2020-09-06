@@ -1,16 +1,18 @@
 <template>
-  <!-- ★ここから追記 -->
   <div class="list">
     <div class="listheader">
       <p class="list-title">{{ title }}</p>
       <div class="deletelist" @click="removeList">×</div>
     </div>
+    <div>
+      <CardAdd :listindex="listIndex"></CardAdd>
+    </div>
   </div>
-  <!-- ★ここまで追記 -->
 </template>
 
 <script>
-// ★ここから追記
+import CardAdd from '../components/ListAdd'
+
 export default {
   props: {
     title: {
@@ -22,6 +24,9 @@ export default {
       required: true
     }
   },
+  components:{
+    CardAdd
+  },
   methods: {
     removeList: function() {
       if(confirm('本当にこのリストを削除しますか？')){
@@ -30,7 +35,6 @@ export default {
     },
   }
 }
-// ★ここまで追記
 </script>
 
 <style scoped>
