@@ -1,0 +1,73 @@
+<template>
+  <!-- ★ここから追記 -->
+  <div class="list">
+    <div class="listheader">
+      <p class="list-title">{{ title }}</p>
+      <div class="deletelist" @click="removeList">×</div>
+    </div>
+  </div>
+  <!-- ★ここまで追記 -->
+</template>
+
+<script>
+// ★ここから追記
+export default {
+  props: {
+    title: {
+      type: String,
+      required: true
+    },
+    listIndex: {
+      type: Number,
+      required: true
+    }
+  },
+  methods: {
+    removeList: function() {
+      if(confirm('本当にこのリストを削除しますか？')){
+        this.$store.dispatch('removelist', { listIndex: this.listIndex })
+      }
+    },
+  }
+}
+// ★ここまで追記
+</script>
+
+<style scoped>
+.list {
+  margin: 0 10px auto;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  position: relative;
+  display: inline-block;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 290px;
+  width: 290px;
+  background-color: #e0e0e0;
+  border-radius: 8px;
+  padding: 15px;
+  border: solid #ddd 1px;
+  color: gray;
+  vertical-align: top;
+}
+
+.listheader {
+  width: 290px;
+  display: inline-flex;
+  justify-content: space-between;
+}
+
+.list-title {
+  font-size: 20px;
+  font-weight: bold;
+  padding: 15px;
+}
+
+.deletelist {
+  position: absolute;
+  top: 6px;
+  right: 14px;
+  font-size: 28px;
+}
+</style>
