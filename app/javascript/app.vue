@@ -1,24 +1,16 @@
 <template>
   <div id="app">
-    <header>Header</header>
-    <div class="app-area">
-      <div class="todo-area">
-        <Board></Board>
-      </div>
-      <div class="calendar-area">
-        <Calendar></Calendar>
-      </div>
-      <div class="footer-area">
-        <footer>(C)footer</footer>
-      </div>
-    </div>
+    <router-link to="/">
+    </router-link>
+    <router-link to="/register">
+    </router-link>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import Calendar from "../javascript/components/Calendar";
-// import ListAdd from "../javascript/components/ListAdd"
-import Board from "../javascript/components/Board"
+import Top from '../javascript/pages/Top'
+import Register from '../javascript/pages/Register'
 
 export default {
   data: function () {
@@ -27,31 +19,12 @@ export default {
     }
   },
   components: {
-    Calendar,
-    Board
+    Top,
+    Register
   }
 }
 </script>
 
 <style scoped>
-p {
-  font-size: 2em;
-  text-align: center;
-}
 
-.app-area{
-  display:flex;
-}
-
-.todo-area{
-  width:20%;
-}
-.calendar-area{
-  width:75%;
-}
-
-footer{
-  position: fixed;
-	bottom: 0px;             
-}
 </style>
