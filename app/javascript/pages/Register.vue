@@ -2,10 +2,13 @@
   <div class="row">
 		<div class="col-md-8">
 		  <h1>Step:{{ stepNumber}}</h1>
-      <UserNameForm v-if="stepNumber===1" @update="updateForm"></UserNameForm>
-      <EmailForm v-if="stepNumber===2" @update="updateForm"></EmailForm>
-      <PasswordForm v-if="stepNumber===3" @update="updateForm"></PasswordForm>
-      <ConfirmForm :form="form" v-if="stepNumber===4" @update="updateForm"></ConfirmForm>
+      <keep-alive>
+
+        <UserNameForm v-if="stepNumber===1" @update="updateForm"></UserNameForm>
+        <EmailForm v-if="stepNumber===2" @update="updateForm"></EmailForm>
+        <PasswordForm v-if="stepNumber===3" @update="updateForm"></PasswordForm>
+        <ConfirmForm :form="form" v-if="stepNumber===4" @update="updateForm"></ConfirmForm>
+      </keep-alive>
       <button class="btn btn-primary" @click="backStep" v-show="stepNumber != 1">Back</button>
       <button class="btn btn-primary" @click="nextStep" v-show="stepNumber != 4">Next</button>
 		</div>
