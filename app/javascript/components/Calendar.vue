@@ -56,10 +56,10 @@ export default {
       itemsB: [
          {
           title: 'hoge',
-          start_yyyymmdd: moment('2020-09-07'),
-          start_date: moment('2020-09-07').date(),
-          end_yyyymmdd: moment('2020-09-10'),
-          end_date: moment('2020-09-010').date(),
+          start_yyyymmdd: moment('2021-10-01'),
+          start_date: moment('2021-10-01').date(),
+          end_yyyymmdd: moment('2021-10-05'),
+          end_date: moment('2021-10-05').date(),
           color: '#FFD5EC',
           // icon: 0,
           commit: 'yes'
@@ -78,10 +78,10 @@ export default {
           commit: 'yes'
         },
         {
-          start_yyyymmdd: moment('2020-09-08'),
-          start_date: moment('2020-09-08').date(),
-          end_yyyymmdd: moment('2020-09-12'),
-          end_date: moment('2020-09-12').date(),
+          start_yyyymmdd: moment('2021-10-01'),
+          start_date: moment('2021-10-01').date(),
+          end_yyyymmdd: moment('2021-10-03'),
+          end_date: moment('2021-10-03').date(),
           color: '#BAD3FF',
           // icon: 0,
           commit: 'no',
@@ -223,83 +223,50 @@ export default {
           calendars[0].splice(s,0,'');
         }
         else{
-          break;
+          return calendars;
+          // break;
         }
       }
       
-      if(calendars.length === 5){
-        for(let p=0; p<=6; p++){
-          let finalWeek = JSON.stringify(calendars[4][p]);
+      // if(calendars.length === 5){
+      //   for(let p=0; p<=6; p++){
+      //     let finalWeek = JSON.stringify(calendars[4][p]);
   
-          switch(finalWeek){
-            case JSON.stringify({date:moment(this.currentDate).startOf("month").date()}):
-              calendars[4].splice(p,1,'');
-              break;
-            case JSON.stringify({date:moment(this.currentDate).startOf("month").date()+1}):
-              calendars[4].splice(p,1,'');
-              // calendars[4].splice(p,0,'');
-              break;
-            case JSON.stringify({date:moment(this.currentDate).startOf("month").date()+2}):
-              calendars[4].splice(p,1,'');
-              // calendars[4].splice(p,0,'');
-              break;
-            case JSON.stringify({date:moment(this.currentDate).startOf("month").date()+3}):
-              calendars[4].splice(p,1,'');
-              // calendars[4].splice(p,0,'');
-              break;
-            case JSON.stringify({date:moment(this.currentDate).startOf("month").date()+4}):
-              calendars[4].splice(p,1,'');
-              // calendars[4].splice(p,0,'');
-              break;
-            case JSON.stringify({date:moment(this.currentDate).startOf("month").date()+5}):
-              calendars[4].splice(p,1,'');
-              // calendars[4].splice(p,0,'');
-              break;
-            case JSON.stringify({date:moment(this.currentDate).startOf("month").date()+6}):
-              calendars[4].splice(p,1,'');
-              // calendars[4].splice(p,0,'');
-              break;
-          }
-        }}else{
-          return calendars;
-          console.log(calendars);
-        };
-
-      if (calendars.length===6){
-        
-        let finalWeek = JSON.stringify(calendars[5][p]);
-
-        switch(finalWeek){
-          case JSON.stringify({date:moment(this.currentDate).startOf("month").date()}):
-            calendars[5].splice(p,1,'');
-            // calendars[5].splice(p,0,'');
-            break;
-          case JSON.stringify({date:moment(this.currentDate).startOf("month").date()+1}):
-            calendars[5].splice(p,1);
-            calendars[5].splice(p,0,'');
-            break;
-          case JSON.stringify({date:moment(this.currentDate).startOf("month").date()+2}):
-            calendars[5].splice(p,1);
-            calendars[5].splice(p,0,'');
-            break;
-          case JSON.stringify({date:moment(this.currentDate).startOf("month").date()+3}):
-            calendars[5].splice(p,1);
-            calendars[5].splice(p,0,'');
-            break;
-          case JSON.stringify({date:moment(this.currentDate).startOf("month").date()+4}):
-            calendars[5].splice(p,1);
-            calendars[5].splice(p,0,'');
-            break;
-          case JSON.stringify({date:moment(this.currentDate).startOf("month").date()+5}):
-            calendars[5].splice(p,1);
-            calendars[5].splice(p,0,'');
-            break;
-          case JSON.stringify({date:moment(this.currentDate).startOf("month").date()+6}):
-            calendars[5].splice(p,1);
-            calendars[5].splice(p,0,'');
-            break;
-        }
-      }
+      //     switch(finalWeek){
+      //       case JSON.stringify({date:moment(this.currentDate).startOf("month").date()}):
+      //         calendars[4].splice(p,1,'');
+      //         break;
+      //       case JSON.stringify({date:moment(this.currentDate).startOf("month").date()+1}):
+      //         calendars[4].splice(p,1,'');
+      //         // calendars[4].splice(p,0,'');
+      //         break;
+      //       case JSON.stringify({date:moment(this.currentDate).startOf("month").date()+2}):
+      //         calendars[4].splice(p,1,'');
+      //         // calendars[4].splice(p,0,'');
+      //         break;
+      //       case JSON.stringify({date:moment(this.currentDate).startOf("month").date()+3}):
+      //         calendars[4].splice(p,1,'');
+      //         // calendars[4].splice(p,0,'');
+      //         break;
+      //       case JSON.stringify({date:moment(this.currentDate).startOf("month").date()+4}):
+      //         calendars[4].splice(p,1,'');
+      //         // calendars[4].splice(p,0,'');
+      //         break;
+      //       case JSON.stringify({date:moment(this.currentDate).startOf("month").date()+5}):
+      //         calendars[4].splice(p,1,'');
+      //         // calendars[4].splice(p,0,'');
+      //         break;
+      //       case JSON.stringify({date:moment(this.currentDate).startOf("month").date()+6}):
+      //         calendars[4].splice(p,1,'');
+      //         // calendars[4].splice(p,0,'');
+      //         break;
+      //       }
+      //     }
+      //   }
+      //   else{
+      //     return calendars;
+      //     console.log(calendars);
+      //   };
 
       let weekRow5 = calendars[4]
       let finalDateEl = calendars[4][6]
@@ -308,9 +275,10 @@ export default {
       function beforeFinalDateObject(n) {
         return  {date: moment(this.currentDate).endOf("month").date() -n};
       }
-
+      calendars.push(weekRow);
       if(weekRow5.some(wR => wR.date === finalDateObject.date)){
         console.log('最終日あり');
+        return calendars;
       }else{
         console.log('最終日なし')
         switch(finalDate){
@@ -323,17 +291,51 @@ export default {
           case moment(this.currentDate).endOf("month").date()-3:
             calendars.push([beforeFinalDateObject(2),beforeFinalDateObject(1),finalDateObject,'','','','']);
             break;
-          //   calendars.push([beforeFinalDateObject(2),beforeFinalDateObject(1),finalDateObject,'','','','']);
-          //   break;
-          // case moment(this.currentDate).endOf("month").date()-4:
-          //   calendars.push([beforeFinalDateObject(3),beforeFinalDateObject(2),beforeFinalDateObject(1),finalDateObject,'','','']);
-          //   break
+          case moment(this.currentDate).endOf("month").date()-4:
+            calendars.push([beforeFinalDateObject(3),beforeFinalDateObject(2),beforeFinalDateObject(1),finalDateObject,'','','']);
+            break
         }
+        return calendars;
       }
 
-      return calendars;
-      console.log(calendars);
+      // if (calendars.length===6){
+        
+      //   let finalWeek = JSON.stringify(calendars[5][p]);
 
+      //   switch(finalWeek){
+      //     case JSON.stringify({date:moment(this.currentDate).startOf("month").date()}):
+      //       calendars[5].splice(p,1,'');
+      //       // calendars[5].splice(p,0,'');
+      //       break;
+      //     case JSON.stringify({date:moment(this.currentDate).startOf("month").date()+1}):
+      //       calendars[5].splice(p,1);
+      //       calendars[5].splice(p,0,'');
+      //       break;
+      //     case JSON.stringify({date:moment(this.currentDate).startOf("month").date()+2}):
+      //       calendars[5].splice(p,1);
+      //       calendars[5].splice(p,0,'');
+      //       break;
+      //     case JSON.stringify({date:moment(this.currentDate).startOf("month").date()+3}):
+      //       calendars[5].splice(p,1);
+      //       calendars[5].splice(p,0,'');
+      //       break;
+      //     case JSON.stringify({date:moment(this.currentDate).startOf("month").date()+4}):
+      //       calendars[5].splice(p,1);
+      //       calendars[5].splice(p,0,'');
+      //       break;
+      //     case JSON.stringify({date:moment(this.currentDate).startOf("month").date()+5}):
+      //       calendars[5].splice(p,1);
+      //       calendars[5].splice(p,0,'');
+      //       break;
+      //     case JSON.stringify({date:moment(this.currentDate).startOf("month").date()+6}):
+      //       calendars[5].splice(p,1);
+      //       calendars[5].splice(p,0,'');
+      //       break;
+      //   }
+      //   }else{
+      //     return calendars;
+      //     console.log(calendars);
+      //   }
     },
     nextMonth() {
       this.currentDate = moment(this.currentDate).add(1, "month").format('YYYY/MM');
@@ -356,7 +358,7 @@ export default {
     console.log(currentDate);
     return this.createDevidedSchedules();
   }
-  }
+}
 </script>
 
 <style scoped>
