@@ -5,18 +5,21 @@
       :dateLabel="dateLabel"
       @prev="changeMonth(0)"
       @next="changeMonth(1)"
-      style="background-color: #75A9FF;">
+      style="background-color: #D7EEFF;">
       </CalendarHeader>
       <div class="calender-body">
         <ul class="calender-panel-list">
-          <li class="calender-panel_space" v-for="space in spaces" style="border: solid;"></li>
+          <li class="calender-panel_weekday" v-for="weekDay in weekDays" style="height:30px;width:100px;margin-left:10px;margin-right:10px;font-size:20px;text-align:center;">
+            {{ weekDay }}
+          </li>
+          <li class="calender-panel_space" v-for="space in spaces" style="height:100px;width:100px;margin-left:10px;margin-right:10px;"></li>
           <li
             class="calender-panel"
             v-on:click="selectDate"
             v-for="date in dates"
             :id="date.date"
             v-bind:class="selectedDate === date.date ? 'selected' : ''"
-            style="border: solid;"
+            style="background-color:#F8F8FF;border-radius:20px 20px 20px 20px;height:100px;width:100px; margin-bottom:30px;margin-left:10px;margin-right:10px;"
           >
             <div class="calender-date">{{ date.dateNumber }}</div>
             <div
@@ -24,7 +27,6 @@
               v-bind:class="date.todoNumber !== '-' ? 'number' : ''"
             >{{ date.todoNumber }}</div>
           </li>
-          <li class="calender-panel_space" v-for="space in spaces"  style="border: solid;"></li>
         </ul>
       </div>
       <div class="calender-footer">
@@ -95,9 +97,11 @@ export default {
       ],
       dates: [], //カレンダーの日付
       spaces: [], //その月の最初日が始まる場所
+      // backSpaces: [], //その月の最初日が始まる場所
       dateLabel: "", //フォーマット="2019年7月"
       selectedMonth: null, //今選択している月
-      selectedDate: null //今選択している日付
+      selectedDate: null, //今選択している日付
+      weekDays: ['日','月','火','水','木','金','土'] //今選択している日付
     }
   },
   components:{
@@ -126,6 +130,7 @@ export default {
     selectedMonth: function() {
       //選択している月の変更時の処理、画面表示時も動きます
       this.dateLabel = moment(this.selectedMonth).format("YYYY/MM"); //月ラベルを更新
+      
       this.spaces = []; //スペースを初期化
       for (
         let i = 0;
@@ -215,7 +220,7 @@ export default {
   width: 118px;
   text-align: center;
   color: gray;
-  font-size: 14px;
+  font-size: 25px;
   user-select: none;
   list-style: none;
 }
@@ -227,6 +232,7 @@ export default {
 
 .calender-date {
   cursor: pointer;
+  font-size:20px;
 }
 
 .selected {
@@ -239,6 +245,11 @@ export default {
   text-align:center;
   margin: 0px 8px;
   line-height: 25px;
+}
+
+.calender-panel_weekday {
+  width: 118px;
+  list-style: none;
 }
 
 .calender-panel_space {

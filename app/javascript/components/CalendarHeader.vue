@@ -49,7 +49,7 @@ export default {
 }
 .calendar-header-date {
   color: white;
-  font-size: 11px;
+  font-size: 30px;
 }
 .flex{
   padding: 2.5% 0;
