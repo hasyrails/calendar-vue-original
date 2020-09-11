@@ -1,371 +1,279 @@
 <template>
-  <div class="calendar" >
-    <CalendarHeader
-    :currentDate="currentDate"
-    @prev="prevMonth"
-    @next="nextMonth">
-    </CalendarHeader>
-    <div style="min-width:100px;width:1225px;border-top:5px #BAD3FF;background-color:#EEEEEE;">
-      <div
-        v-for="(week, index) in calendars"
-        :key="index"
-        style="display:flex;border-left:5px solid #BAD3FF;height:150px;"
-      >
-        <div
-          v-for="(day, index) in week"
-          :key="index"
-          style="flex:1;min-height:125px;border-right:5px solid #BAD3FF;border-bottom:5px solid #BAD3FF;; text-align: center;font-size:25px;"
-        >
-          {{ day.date }}
-  
-        <draggable  v-model="devidedSchedule" group="cards" @start="drag=true" @end="drag=false" :options="options">
-          <Schedule 
-          :devidedSchedule="devidedSchedule"
-          v-for="devidedSchedule in devidedSchedules"
-          v-if="devidedSchedule.date==day.date&&devidedSchedule.yyyymm==currentDate"
-          style="flex:1;min-height:1px;min-width:1px;max-height:100px;max-width:150px;text-align: center;margin-bottom:10px;"
+   <div class="calender">
+    <div class="calender-component">
+      <CalendarHeader
+      :dateLabel="dateLabel"
+      @prev="changeMonth(0)"
+      @next="changeMonth(1)"
+      style="background-color: #75A9FF;">
+      </CalendarHeader>
+      <div class="calender-body">
+        <ul class="calender-panel-list">
+          <li class="calender-panel_space" v-for="space in spaces" style="border: solid;"></li>
+          <li
+            class="calender-panel"
+            v-on:click="selectDate"
+            v-for="date in dates"
+            :id="date.date"
+            v-bind:class="selectedDate === date.date ? 'selected' : ''"
+            style="border: solid;"
           >
-          </Schedule>
-        </draggable>
+            <div class="calender-date">{{ date.dateNumber }}</div>
+            <div
+              class="calender-todo"
+              v-bind:class="date.todoNumber !== '-' ? 'number' : ''"
+            >{{ date.todoNumber }}</div>
+          </li>
+          <li class="calender-panel_space" v-for="space in spaces"  style="border: solid;"></li>
+        </ul>
+      </div>
+      <div class="calender-footer">
+        <div
+          class="calender-footer_todo"
+          v-for="todo in todoList"
+          v-show="todo.date === selectedDate"
+        >
+          <div class="calender-footer_todo-time">{{ todo.time }}</div>
+          <div class="calender-footer_todo-title">{{ todo.title }}</div>
+          <div class="calender-footer_todo-description">{{ todo.description }}</div>
+        </div>
       </div>
     </div>
   </div>
-  <div>
-    <button class="btn btn-primary" @click="confirmCurrentDate">CofirmCurrentDate</button>
-    <button class="btn btn-primary" @click="confirmCalendar">CofirmCalendar</button>
-  </div>
-</div>
 </template>
 
 <script>
-import moment from "moment";
-import draggable from 'vuedraggable'
-
-import CalendarHeader from "../components/CalendarHeader";
-import Schedule from "../components/Schedule"
+import moment from 'moment'
+import CalendarHeader from '../components/CalendarHeader'
 
 export default {
-  name: 'Calendar',
-  data() {
-    return {
-      // count: 0,
-      options: {
-        group: "myGroup",
-        animation: 200
-      },
-      itemsB: [
-         {
-          title: 'hoge',
-          start_yyyymmdd: moment('2020-09-07'),
-          start_date: moment('2020-09-07').date(),
-          end_yyyymmdd: moment('2020-09-10'),
-          end_date: moment('2020-09-010').date(),
-          color: '#FFD5EC',
-          // icon: 0,
-          commit: 'yes'
+  data(){
+    return{
+      todoList: [
+        {
+          id: 1,
+          title: "起床",
+          description: "きっとねむい",
+          date: "2020-09-11",
+          time: "09:00",
+        },
+        {
+          id: 2,
+          title: "出勤",
+          description: "まだねむい",
+          date: "2020-09-12",
+          time: "10:00",
+        },
+        {
+          id: 3,
+          title: "打ち合わせ",
+          description: "",
+          date: "2019-09-13",
+          time: "11:00",
+        },
+        {
+          id: 4,
+          title: "作業",
+          description: "なにやろうかななにやろうかな",
+          date: "2019-07-12",
+          time: "15:00",
+        },
+        {
+          id: 5,
+          title: "お風呂",
+          description: "温度は43度",
+          date: "2019-07-12",
+          time: "19:00",
+        },
+        {
+          id: 6,
+          title: "カレンダー作り",
+          description: "つくるぞつくるぞ",
+          date: "2019-07-13",
+          time: "14:00",
         },
       ],
-      currentDate: moment().format('YYYY/MM'),
-      schedules: [
-        {
-          title: 'hoge',
-          start_yyyymmdd: moment('2020-09-07'),
-          start_date: moment('2020-09-07').date(),
-          end_yyyymmdd: moment('2020-09-10'),
-          end_date: moment('2020-09-010').date(),
-          color: '#FFD5EC',
-          // icon: 0,
-          commit: 'yes'
-        },
-        {
-          start_yyyymmdd: moment('2020-09-08'),
-          start_date: moment('2020-09-08').date(),
-          end_yyyymmdd: moment('2020-09-12'),
-          end_date: moment('2020-09-12').date(),
-          color: '#BAD3FF',
-          // icon: 0,
-          commit: 'no',
-          title: 'fuga',
-        },
-        {
-          title: 'yagi',
-          start_yyyymmdd: moment('2020-09-01'),
-          start_date: moment('2020-09-01').date(),
-          end_yyyymmdd: moment('2020-09-03'),
-          end_date: moment('2020-09-03').date(),
-          color: '#CBFFD3',
-          // icon: 0,
-          commit: 'no'
-        }
-      ],
-    };
+      dates: [], //カレンダーの日付
+      spaces: [], //その月の最初日が始まる場所
+      dateLabel: "", //フォーマット="2019年7月"
+      selectedMonth: null, //今選択している月
+      selectedDate: null //今選択している日付
+    }
   },
-  components: {
-    draggable,
-    CalendarHeader,
-    Schedule
-  },
-  mounted: function(){
+  components:{
+    CalendarHeader
   },
   methods: {
-    // countUp(){
-    //   this.count ++
-    // },
-    // iconChange(){
-    //   if(this.schedules[0].icon = 0){
-    //     this.schedules[0].icon = 1;
-    //     this.createDevidedSchedules();
-    //   }else if(this.schedule[0].icon =1){
-    //     this.schedules = [];
-    //     this.schedules[0].icon = 2;
-    //     this.createDevidedSchedules();
-    //   }else{
-    //     console.log('else')
-    //   }
-    // },
-    confirmCalendar(){
-      console.log(this.calendars);
+    selectDate(event) {
+      //日付を選択する
+      this.selectedDate = event.currentTarget.id;
     },
-    confirmIconNum(){
-      console.log(this.schedules[0].icon);
-    },
-    confirmCurrentDate(){
-      console.log(this.currentDate);
-    },
-    createDevidedSchedules() {
-      let i = 0;
-      let j = 0;
-      let k = 0;
-      var dateArrays = [];
-      var currentDates = [];
-      var stopDates = [];
-      while(dateArrays.length <= this.schedules.length-1){
-        dateArrays.push([]);
+    changeMonth(num) {
+      //月を変更
+      if (num === 0) {
+        this.selectedMonth = moment(this.selectedMonth).subtract(1, "months");
+      } else {
+        this.selectedMonth = moment(this.selectedMonth).add(1, "months");
       }
-      while(i <= this.schedules.length-1){
-        currentDates.push(moment(this.schedules[i].start_yyyymmdd));
-        i = i + 1;
-      }
-      while(j <= this.schedules.length-1){
-        stopDates.push(moment(this.schedules[j].end_yyyymmdd));
-        j = j + 1;
-      }
-      
-      while(k <= this.schedules.length -1){
-        while (currentDates[k] <= stopDates[k]) {
-          dateArrays[k].push( moment(currentDates[k]).format('YYYY-MM-DD') )
-          currentDates[k] = moment(currentDates[k]).add(1, 'days');
-        }
-        k = k + 1; 
-      }
-      
-      var devidedSchedules = [];
-      let m = 0;
-      let n = 0;
-      while(m <= dateArrays.length -1){
-        while(n <= dateArrays[m].length -1){
-          devidedSchedules.push({
-            title: this.schedules[m].title,
-            color: this.schedules[m].color,
-            icon: this.schedules[m].icon,
-            commit: this.schedules[m].commit,
-            yyyymm: moment(dateArrays[m][n]).format('YYYY/MM'),
-            date: moment(dateArrays[m][n]).date(),
-          });
-          n = n + 1;
-        }
-        n = 0;
-        m = m + 1;
+    }
+  },
+  created() {
+    //画面表示時に今日の日付と月を設定。
+    this.selectedDate = moment().format("YYYY-MM-DD");
+    this.selectedMonth = moment();
+  },
+  watch: {
+    selectedMonth: function() {
+      //選択している月の変更時の処理、画面表示時も動きます
+      this.dateLabel = moment(this.selectedMonth).format("YYYY/MM"); //月ラベルを更新
+      this.spaces = []; //スペースを初期化
+      for (
+        let i = 0;
+        i <
+        moment(this.selectedMonth)
+          .startOf("month")
+          .day();
+        i++
+      ) {
+        //スペースを更新
+        this.spaces[i] = i;
       }
 
-      console.log(devidedSchedules);
-      return devidedSchedules;
-    },
-    showDevidedSchedule() {
-      console.log(devidedSchedules);
-    },
-    getStartDate() {
-      let date = moment(this.currentDate);
-      const youbiNum = date.day();
-      return date.subtract(youbiNum, "days");
-    },
-    getEndDate() {
-      let date = moment(this.currentDate);
-      date.endOf("month");
-      const youbiNum = date.day();
-      return date.add(6 - youbiNum, "days");
-    },
-    confirmMoment(){
-      console.log(this.calendars);
-      console.log(this.calendars[4][6]);
-      console.log(moment(this.currentDate).endOf("month").date()-1);
-    },
-    getCalendar() {
-      let startDate = this.getStartDate();
-      const endDate = this.getEndDate();
-      const weekNumber = Math.ceil(endDate.diff(startDate, "days") / 7);
-
-      let calendars = [];
-      for (let week = 0; week < weekNumber; week++) {
-        let weekRow = [];
-        for (let day = 0; day < 7; day++) {
-          weekRow.push({
-            date: startDate.get("date"),
-          });
-          startDate.add(1, "days");
-        }
-          calendars.push(weekRow);
-      }
-
-      for (let s = 0; s <= 6; s++){
-        if(JSON.stringify(calendars[0][s]) != JSON.stringify({date:moment(this.currentDate).startOf("month").date()})){
-          calendars[0].splice(s,1);
-          calendars[0].splice(s,0,'');
-        }
-        else{
-          break;
-        }
-      }
-      
-      if(calendars.length === 5){
-        for(let p=0; p<=6; p++){
-          let finalWeek = JSON.stringify(calendars[4][p]);
-  
-          switch(finalWeek){
-            case JSON.stringify({date:moment(this.currentDate).startOf("month").date()}):
-              calendars[4].splice(p,1,'');
-              break;
-            case JSON.stringify({date:moment(this.currentDate).startOf("month").date()+1}):
-              calendars[4].splice(p,1,'');
-              // calendars[4].splice(p,0,'');
-              break;
-            case JSON.stringify({date:moment(this.currentDate).startOf("month").date()+2}):
-              calendars[4].splice(p,1,'');
-              // calendars[4].splice(p,0,'');
-              break;
-            case JSON.stringify({date:moment(this.currentDate).startOf("month").date()+3}):
-              calendars[4].splice(p,1,'');
-              // calendars[4].splice(p,0,'');
-              break;
-            case JSON.stringify({date:moment(this.currentDate).startOf("month").date()+4}):
-              calendars[4].splice(p,1,'');
-              // calendars[4].splice(p,0,'');
-              break;
-            case JSON.stringify({date:moment(this.currentDate).startOf("month").date()+5}):
-              calendars[4].splice(p,1,'');
-              // calendars[4].splice(p,0,'');
-              break;
-            case JSON.stringify({date:moment(this.currentDate).startOf("month").date()+6}):
-              calendars[4].splice(p,1,'');
-              // calendars[4].splice(p,0,'');
-              break;
+      this.dates = []; //カレンダーパネルを初期化
+      for (let i = 0; i < moment(this.selectedMonth).daysInMonth(); i++) {
+        //カレンダーパネルを更新
+        let todoNumber = "-";
+        for (let k of Object.keys(this.todoList)) {
+          //todoListの情報をカレンダーパネルに追加
+          if (this.dates[i]) {
+            if (this.todoList[k].date === this.dates[i].date) {
+              todoNumber++;
+            }
           }
-        }}else{
-          return calendars;
-          console.log(calendars);
+        }
+        this.dates[i] = {
+          date: moment(this.selectedMonth)
+            .startOf("month")
+            .add(i, "day")
+            .format("YYYY-MM-DD"),
+          dateNumber: i + 1,
+          todoNumber: todoNumber
         };
-
-      if (calendars.length===6){
-        
-        let finalWeek = JSON.stringify(calendars[5][p]);
-
-        switch(finalWeek){
-          case JSON.stringify({date:moment(this.currentDate).startOf("month").date()}):
-            calendars[5].splice(p,1,'');
-            // calendars[5].splice(p,0,'');
-            break;
-          case JSON.stringify({date:moment(this.currentDate).startOf("month").date()+1}):
-            calendars[5].splice(p,1);
-            calendars[5].splice(p,0,'');
-            break;
-          case JSON.stringify({date:moment(this.currentDate).startOf("month").date()+2}):
-            calendars[5].splice(p,1);
-            calendars[5].splice(p,0,'');
-            break;
-          case JSON.stringify({date:moment(this.currentDate).startOf("month").date()+3}):
-            calendars[5].splice(p,1);
-            calendars[5].splice(p,0,'');
-            break;
-          case JSON.stringify({date:moment(this.currentDate).startOf("month").date()+4}):
-            calendars[5].splice(p,1);
-            calendars[5].splice(p,0,'');
-            break;
-          case JSON.stringify({date:moment(this.currentDate).startOf("month").date()+5}):
-            calendars[5].splice(p,1);
-            calendars[5].splice(p,0,'');
-            break;
-          case JSON.stringify({date:moment(this.currentDate).startOf("month").date()+6}):
-            calendars[5].splice(p,1);
-            calendars[5].splice(p,0,'');
-            break;
-        }
       }
-
-      let weekRow5 = calendars[4]
-      let finalDateEl = calendars[4][6]
-      let finalDate = Object.values(finalDateEl)[0]
-      let finalDateObject = {date: moment(this.currentDate).endOf("month").date()};
-      function beforeFinalDateObject(n) {
-        return  {date: moment(this.currentDate).endOf("month").date() -n};
-      }
-
-      if(weekRow5.some(wR => wR.date === finalDateObject.date)){
-        console.log('最終日あり');
-      }else{
-        console.log('最終日なし')
-        switch(finalDate){
-          case moment(this.currentDate).endOf("month").date()-1:
-            calendars.push([finalDateObject,'','','','','','']);
-            break;
-          case moment(this.currentDate).endOf("month").date()-2:
-            calendars.push([beforeFinalDateObject(1),finalDateObject,'','','','','']);
-            break;
-          case moment(this.currentDate).endOf("month").date()-3:
-            calendars.push([beforeFinalDateObject(2),beforeFinalDateObject(1),finalDateObject,'','','','']);
-            break;
-          //   calendars.push([beforeFinalDateObject(2),beforeFinalDateObject(1),finalDateObject,'','','','']);
-          //   break;
-          // case moment(this.currentDate).endOf("month").date()-4:
-          //   calendars.push([beforeFinalDateObject(3),beforeFinalDateObject(2),beforeFinalDateObject(1),finalDateObject,'','','']);
-          //   break
-        }
-      }
-
-      return calendars;
-      console.log(calendars);
-
-    },
-    nextMonth() {
-      this.currentDate = moment(this.currentDate).add(1, "month").format('YYYY/MM');
-      this.getCalendar();
-    },
-    prevMonth() {
-      this.currentDate = moment(this.currentDate).subtract(1, "month").format('YYYY/MM');
-      this.getCalendar();
-    },
-  },
-  computed: {
-    calendars() {
-      return this.getCalendar();
-    },
-    devidedSchedules() {
-      return this.createDevidedSchedules();
-    },
-  },
-  created(){
-    console.log(currentDate);
-    return this.createDevidedSchedules();
+    }
   }
-  }
+}
 </script>
 
 <style scoped>
-.calendar {
-  margin-top:5%;
-  margin-left: 10%;
-  margin-right: 30%;
-  position: fixed;
-  z-index:1;
+.calender {
+  width: 1000px;
+  margin-left:100px;
+  margin-top:500px;
+}
+
+.calender-component {
+  min-height: 320px;
+  border: solid 1px gray;
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+.arrow {
+  font-size: 16px;
+  /* color: gray; */
+  user-select: none;
+  cursor: pointer;
+  text-align: center;
+  width: 24px;
+  height: 24px;
+}
+
+.arrow:hover {
+  /* background-color: silver; */
+  border-radius: 4px;
+}
+
+.current-date {
+  color: gray;
+  user-select: none;
+}
+
+.calender-body {
+  margin-top: 24px;
+}
+
+.calender-panel-list {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0;
+  justify-content: left;
+}
+
+.calender-panel {
+  padding: 8px 0px;
+  width: 118px;
+  text-align: center;
+  color: gray;
+  font-size: 14px;
+  user-select: none;
+  list-style: none;
+}
+
+.calender-panel:hover {
+  background-color: silver;
+  border-radius: 4px;
+}
+
+.calender-date {
+  cursor: pointer;
+}
+
+.selected {
+  background-color: silver;
+  border-radius: 4px;
+}
+
+.calender-todo {
+  cursor: pointer;
+  text-align:center;
+  margin: 0px 8px;
+  line-height: 25px;
+}
+
+.calender-panel_space {
+  width: 118px;
+  list-style: none;
+}
+
+.calender-footer_todo {
+  border-top: 1px gray solid;
+  padding-top: 12px;
+  margin-top: 8px;
+}
+
+.calender-footer_todo-time {
+  font-size: 18px;
+  color: gray;
+  word-break: break-word;
+  text-decoration: underline;
+}
+
+.calender-footer_todo-title {
+  font-size: 20px;
+  color: gray;
+  word-break: break-word;
+}
+
+.calender-footer_todo-description {
+  font-size: 14px;
+  color: gray;
+  word-break: break-word;
+}
+
+.number {
+  text-decoration: underline;
 }
 
 </style>
+

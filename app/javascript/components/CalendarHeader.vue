@@ -2,7 +2,7 @@
   <div class="calendar-header">
     <div class="calendar-header-content flex">
       <ChevronLeft fillColor="white"  @click="prev" size="lg"></ChevronLeft>
-      <div class="calendar-header-date">{{ currentDate }}</div>
+      <div class="calendar-header-date">{{ dateLabel }}</div>
       <ChevronRight fillColor="white" @click="next" size="lg"></ChevronRight>
     </div>
   </div>
@@ -16,7 +16,7 @@ import ChevronRight from 'vue-material-design-icons/ChevronRight.vue';
 export default {
   name: 'CalendarHeader',
   props:{
-    currentDate: {
+    dateLabel: {
       type: String,
       required: true
     }
@@ -37,12 +37,11 @@ export default {
 </script>
 
 <style scoped>
-.calendar-header {
-  width:1225px;
-  height:100px;
-  background-color: #75A9FF;
+.calender-header {
+  /* background-color: #75A9FF; */
+  display: flex;
+  justify-content: space-between;
 }
-
 .calendar-header-content {
   display: flex;
   justify-content: center;
@@ -50,7 +49,7 @@ export default {
 }
 .calendar-header-date {
   color: white;
-  font-size: 32px;
+  font-size: 11px;
 }
 .flex{
   padding: 2.5% 0;
