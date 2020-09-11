@@ -19,13 +19,10 @@
             v-for="date in dates"
             :id="date.date"
             v-bind:class="selectedDate === date.date ? 'selected' : ''"
-            style="background-color:#F8F8FF;border-radius:20px 20px 20px 20px;height:100px;width:100px; margin-bottom:30px;margin-left:10px;margin-right:10px;"
+            style="border-radius:15px 15px 15px 15px;height:100px;width:100px; margin-bottom:30px;margin-left:10px;margin-right:10px;border:solid 1px;border-color: #EEEEEE;"
           >
             <div class="calender-date">{{ date.dateNumber }}</div>
-            <div
-              class="calender-todo"
-              v-bind:class="date.todoNumber !== '-' ? 'number' : ''"
-            >{{ date.todoNumber }}</div>
+            <div>{{ totalToDoList }}</div>
           </li>
         </ul>
       </div>
@@ -41,6 +38,10 @@
         </div>
       </div>
     </div>
+    <div><button @click="confirmMoment">confirmMoment</button></div>
+    <div><button @click="confirmToDoList">confirmToDoList</button></div>
+    <div><button @click="confirmFormat">confirmFormat</button></div>
+    <div><button @click="confirmTrueFalse">confirmTrueFalse</button></div>
   </div>
 </template>
 
@@ -56,43 +57,22 @@ export default {
           id: 1,
           title: "起床",
           description: "きっとねむい",
-          date: "2020-09-11",
+          date: moment().format("YYYY-MM-DD"),
           time: "09:00",
         },
         {
           id: 2,
           title: "出勤",
           description: "まだねむい",
-          date: "2020-09-12",
+          date: moment().format("YYYY-MM-DD"),
           time: "10:00",
         },
         {
           id: 3,
           title: "打ち合わせ",
           description: "",
-          date: "2019-09-13",
+          date: moment().format("YYYY-MM-DD"),
           time: "11:00",
-        },
-        {
-          id: 4,
-          title: "作業",
-          description: "なにやろうかななにやろうかな",
-          date: "2019-07-12",
-          time: "15:00",
-        },
-        {
-          id: 5,
-          title: "お風呂",
-          description: "温度は43度",
-          date: "2019-07-12",
-          time: "19:00",
-        },
-        {
-          id: 6,
-          title: "カレンダー作り",
-          description: "つくるぞつくるぞ",
-          date: "2019-07-13",
-          time: "14:00",
         },
       ],
       dates: [], //カレンダーの日付
@@ -108,6 +88,24 @@ export default {
     CalendarHeader
   },
   methods: {
+    confirmMoment(){
+      console.log(moment().format("YYYY-MM-DD"));
+    },
+    confirmToDoList(){
+      console.log(this.todoList[0].date);
+    },
+    confirmFormat(){
+      console.log(moment()
+          .startOf("month")
+          .add(11, "day")
+          .format("YYYY-MM-DD"));
+    },
+    confirmTrueFalse(){
+      console.log(moment()
+          .startOf("month")
+          .add(11, "day")
+          .format("YYYY-MM-DD")===this.todoList[0].date);
+    },
     selectDate(event) {
       //日付を選択する
       this.selectedDate = event.currentTarget.id;
@@ -129,8 +127,7 @@ export default {
   watch: {
     selectedMonth: function() {
       //選択している月の変更時の処理、画面表示時も動きます
-      this.dateLabel = moment(this.selectedMonth).format("YYYY/MM"); //月ラベルを更新
-      
+      this.dateLabel = moment(this.selectedMonth).format("YYYY年MM月"); //月ラベルを更新
       this.spaces = []; //スペースを初期化
       for (
         let i = 0;
@@ -162,7 +159,7 @@ export default {
             .add(i, "day")
             .format("YYYY-MM-DD"),
           dateNumber: i + 1,
-          todoNumber: todoNumber
+          // todoNumber: todoNumber
         };
       }
     }
@@ -195,7 +192,7 @@ export default {
 }
 
 .arrow:hover {
-  /* background-color: silver; */
+  background-color: silver;
   border-radius: 4px;
 }
 
@@ -226,7 +223,7 @@ export default {
 }
 
 .calender-panel:hover {
-  background-color: silver;
+  background-color: #DDFFFF;
   border-radius: 4px;
 }
 
