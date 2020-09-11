@@ -13,17 +13,16 @@
             {{ weekDay }}
           </li>
           <li class="calender-panel_space" v-for="space in spaces" style="height:100px;width:100px;margin-left:10px;margin-right:10px;"></li>
-          <li
+            <CalendarDate
             class="calender-panel"
             v-on:click="selectDate"
             v-for="date in dates"
             :id="date.date"
             v-bind:class="selectedDate === date.date ? 'selected' : ''"
             style="border-radius:15px 15px 15px 15px;height:100px;width:100px; margin-bottom:30px;margin-left:10px;margin-right:10px;border:solid 1px;border-color: #EEEEEE;"
-          >
-            <div class="calender-date">{{ date.dateNumber }}</div>
-            <div>{{ totalToDoList }}</div>
-          </li>
+            >
+              <div class="calender-date">{{ date.dateNumber }}</div>
+            </CalendarDate>
         </ul>
       </div>
       <div class="calender-footer">
@@ -57,21 +56,21 @@ export default {
           id: 1,
           title: "起床",
           description: "きっとねむい",
-          date: moment().format("YYYY-MM-DD"),
+          date: "2020-09-01",
           time: "09:00",
         },
         {
           id: 2,
           title: "出勤",
           description: "まだねむい",
-          date: moment().format("YYYY-MM-DD"),
+          date: "2020-09-05",
           time: "10:00",
         },
         {
           id: 3,
           title: "打ち合わせ",
           description: "",
-          date: moment().format("YYYY-MM-DD"),
+          date: "2020-09-20",
           time: "11:00",
         },
       ],
@@ -144,15 +143,10 @@ export default {
       this.dates = []; //カレンダーパネルを初期化
       for (let i = 0; i < moment(this.selectedMonth).daysInMonth(); i++) {
         //カレンダーパネルを更新
-        let todoNumber = "-";
-        for (let k of Object.keys(this.todoList)) {
-          //todoListの情報をカレンダーパネルに追加
-          if (this.dates[i]) {
-            if (this.todoList[k].date === this.dates[i].date) {
-              todoNumber++;
-            }
-          }
-        }
+        
+        // todoNumber
+        // let todoNumber = "-";
+        
         this.dates[i] = {
           date: moment(this.selectedMonth)
             .startOf("month")
