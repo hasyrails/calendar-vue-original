@@ -3,7 +3,8 @@
     <CalendarHeader
     :currentDate="currentDate"
     @prev="prevMonth"
-    @next="nextMonth">
+    @next="nextMonth"
+    style="background-color:#8EB8FF;">
     </CalendarHeader>
     <div style="min-width:100px;width:1225px;border-top:5px #BAD3FF;background-color:#EEEEEE;">
       <div
@@ -12,64 +13,15 @@
         style="display:flex;border-left:5px solid #BAD3FF;height:150px;"
       >
         <div
-          class="calendar-date"
-          v-for="(day, index) in week"
-          :key="index"
-          v-if="day.month===currentMonth" style="background-color:red;"
+        class="calendar-date"
+        v-for="(day, index) in week"
+        :key="index"
         >
-          <div >{{ day.date }}</div>
+        <div v-if="day.month===currentMonth" style="font-weight:200;">{{day.date}}</div>
+        <div v-if="day.month!==currentMonth" style="color:#D3D3D3;">{{ day.date }}</div>
+        <!-- <div v-if="day.month!==currentMonth%12&&day.month%12===0" style="font-weight:200;">{{ day.date }}</div> -->
+        <!-- <div v-if="day.month!==currentMonth%12&&day.month%12!==0" style="color:#D3D3D3;">{{ day.date }}</div> -->
         <draggable  v-model="devidedSchedule" group="cards" @start="drag=true" @end="drag=false" :options="options">
-          <Schedule 
-          :devidedSchedule="devidedSchedule"
-          v-for="devidedSchedule in devidedSchedules"
-          v-if="devidedSchedule.date==day.date&&devidedSchedule.month==day.month&&devidedSchedule.year==day.year"
-          style="flex:1;min-height:1px;min-width:1px;max-height:100px;max-width:150px;text-align: center;margin-bottom:10px;"
-          >
-          </Schedule>
-        </draggable>
-      </div>
-      <div
-        class="calendar-date"
-        v-for="(day, index) in week"
-        :key="index"
-        v-if="day.month!==currentMonth&&currentMonth!==13" style="background-color:blue;"
-      >
-        <div >{{ day.date }}</div>
-       <draggable  v-model="devidedSchedule" group="cards" @start="drag=true" @end="drag=false" :options="options">
-          <Schedule 
-          :devidedSchedule="devidedSchedule"
-          v-for="devidedSchedule in devidedSchedules"
-          v-if="devidedSchedule.date==day.date&&devidedSchedule.month==day.month&&devidedSchedule.year==day.year"
-          style="flex:1;min-height:1px;min-width:1px;max-height:100px;max-width:150px;text-align: center;margin-bottom:10px;"
-          >
-          </Schedule>
-        </draggable>
-      </div>
-      <div
-        class="calendar-date"
-        v-for="(day, index) in week"
-        :key="index"
-        v-if="day.month===12&&currentMonth===13" style="background-color:red;"
-      >
-        <div >{{ day.date }}</div>
-        <draggable  v-model="devidedSchedule" group="cards" @start="drag=true" @end="drag=false" :options="options">
-          <Schedule 
-          :devidedSchedule="devidedSchedule"
-          v-for="devidedSchedule in devidedSchedules"
-          v-if="devidedSchedule.date==day.date&&devidedSchedule.month==day.month&&devidedSchedule.year==day.year"
-          style="flex:1;min-height:1px;min-width:1px;max-height:100px;max-width:150px;text-align: center;margin-bottom:10px;"
-          >
-          </Schedule>
-        </draggable>
-      </div>
-      <div
-        class="calendar-date"
-        v-for="(day, index) in week"
-        :key="index"
-        v-if="day.month===1&&currentMonth===13" style="background-color:blue;"
-      >
-        <div >{{ day.date }}</div>
-          <draggable  v-model="devidedSchedule" group="cards" @start="drag=true" @end="drag=false" :options="options">
           <Schedule 
           :devidedSchedule="devidedSchedule"
           v-for="devidedSchedule in devidedSchedules"
@@ -269,12 +221,25 @@ export default {
     },
     nextMonth() {
       this.currentDate = moment(this.currentDate).add(1, "month").format('YYYY/MM');
-      this.currentMonth++;
-      this.getCalendar();
+      if(this.currentMonth <11){
+        this.currentMonth++;
+      }else if(this.currentMonth===11){
+        this.currentMonth = 12
+      }else{
+        this.currentMonthReset()
+      }
+    },
+    currentMonthReset(){
+      this.currentMonth = 1
     },
     prevMonth() {
       this.currentDate = moment(this.currentDate).subtract(1, "month").format('YYYY/MM');
-      this.currentMonth--;
+      
+      if(this.currentMonth <=12 && this.currentMonth > 1){
+        this.currentMonth--;
+      }else if(this.currentMonth===1){
+        this.currentMonth = 12
+      }
       this.getCalendar();
     },
   },
