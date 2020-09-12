@@ -1,21 +1,22 @@
 <template>
-  <div>
+  <div class="todo-board">
     <!-- <header>
       TODO List
     </header> -->
-    <main>
-      <p class="info-line" style="position:fixed;">All: {{ totalCardCount }} tasks</p>
-      <div class="list-index">
+      <div class="list-add-form">
+        <div>All: {{ totalCardCount }} tasks</div>
         <ListAdd
-        style="position:fixed;z-index:2;margin-top:100px;"
+        style="margin-top:50px;"
         ></ListAdd>
+      </div>
+      <div class="todo-lists">
         <draggable
           :list="lists"
           class="list-index"
           @end="movingList"
           >
           <List v-for="(item, index) in lists"
-                style="z-index:2;margin-top:200px;margin-bottom:50px;"
+                style="margin-top:50px;margin-bottom:50px;"
                 class="slide"
                 :key="item.id"
                 :title="item.title"
@@ -25,7 +26,6 @@
           ></List>
         </draggable>
       </div>
-    </main>
   </div>
 </template>
 
@@ -63,18 +63,31 @@ export default {
 <style scoped>
 
 .slide {
-  animation: infinity-loop 10s infinite linear 1s both; /* 無限ループアニメーションの設定 */
+  animation: infinity-loop 3s infinite linear 1s both; /* 無限ループアニメーションの設定 */
   position: relative;
 }
 
 @keyframes infinity-loop {
   from {
-    transform: translateY(0vw);
+    transform: translateX(0vw);
   }
   to {
-    transform: translateY(-50vw);
+    transform: translateX(+300vw);
   }
+}
+
+.todo-board{
+  display: flex;
+  background: #E0FFF0;
+  /* padding: 0 10px; */
+  /* width: calc(100% - 40px); */
+  width: 125%;
+  height: 100%;
+  margin-left: 1%;
+}
+
+.list-add-form{
+  margin-left: 1%;
 }
 </style>
 
-<>

@@ -20,9 +20,9 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
-  width: 100%;
+  width: 125%;
   height: 100%;
-  overflow-x: scroll;
+  overflow: auto;
 }
 
  html {
@@ -31,14 +31,14 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
-  width: 100%;
+  width: 125%;
   height: 100%;
-  overflow-x: scroll;
+  overflow: auto;
 }
 
 header {
   background: #AFEEEE;
-  height: 80px;
+  height: 150px;
   color: black;
   font-style: italic;
   font-size: 40px;
@@ -47,13 +47,14 @@ header {
   padding: 20px;
   width:100%;
   position: fixed;
-  z-index: 2;
+  /* z-index: 2; */
 }
 
 main {
-  background: #E0FFF0;
-  padding: 0 10px;
+  /* background: #E0FFF0; */
+  /* padding: 0 10px; */
   /* width: calc(100% - 40px); */
-  width: 100%;
-  height: 100%;
+  /* width: 100%; */
+  /* height: 100%; */
+  /* display:flex; */
 } 

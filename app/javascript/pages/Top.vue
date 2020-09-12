@@ -2,11 +2,11 @@
   <div>
     <header>Header</header>
     <div class="app-area">
-      <div class="todo-area">
-        <Board></Board>
-      </div>
       <div class="calendar-area">
         <Calendar></Calendar>
+      </div>
+      <div class="todo-area">
+        <Board></Board>
       </div>
       <div class="footer-area">
         <footer>(C)footer</footer>
@@ -35,14 +35,23 @@ p {
 }
 
 .app-area{
+  width: 125%;
   display:flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .todo-area{
-  width:20%;
+  width:200%;
+  /* overflow-x: auto; */
+  height: 30%;
+  position: fixed;
+	bottom: 0px;   
 }
 .calendar-area{
-  width:75%;
+  width:125%;
+  height:70%;
+  overflow-x: scroll;
 }
 
 footer{
