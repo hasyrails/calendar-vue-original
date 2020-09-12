@@ -12,13 +12,64 @@
         style="display:flex;border-left:5px solid #BAD3FF;height:150px;"
       >
         <div
+          class="calendar-date"
           v-for="(day, index) in week"
           :key="index"
-          style="flex:1;min-height:125px;border-right:5px solid #BAD3FF;border-bottom:5px solid #BAD3FF;; text-align: center;font-size:25px;"
+          v-if="day.month===currentMonth" style="background-color:red;"
         >
-          {{ day.date }}
-  
+          <div >{{ day.date }}</div>
         <draggable  v-model="devidedSchedule" group="cards" @start="drag=true" @end="drag=false" :options="options">
+          <Schedule 
+          :devidedSchedule="devidedSchedule"
+          v-for="devidedSchedule in devidedSchedules"
+          v-if="devidedSchedule.date==day.date&&devidedSchedule.month==day.month&&devidedSchedule.year==day.year"
+          style="flex:1;min-height:1px;min-width:1px;max-height:100px;max-width:150px;text-align: center;margin-bottom:10px;"
+          >
+          </Schedule>
+        </draggable>
+      </div>
+      <div
+        class="calendar-date"
+        v-for="(day, index) in week"
+        :key="index"
+        v-if="day.month!==currentMonth&&currentMonth!==13" style="background-color:blue;"
+      >
+        <div >{{ day.date }}</div>
+       <draggable  v-model="devidedSchedule" group="cards" @start="drag=true" @end="drag=false" :options="options">
+          <Schedule 
+          :devidedSchedule="devidedSchedule"
+          v-for="devidedSchedule in devidedSchedules"
+          v-if="devidedSchedule.date==day.date&&devidedSchedule.month==day.month&&devidedSchedule.year==day.year"
+          style="flex:1;min-height:1px;min-width:1px;max-height:100px;max-width:150px;text-align: center;margin-bottom:10px;"
+          >
+          </Schedule>
+        </draggable>
+      </div>
+      <div
+        class="calendar-date"
+        v-for="(day, index) in week"
+        :key="index"
+        v-if="day.month===12&&currentMonth===13" style="background-color:red;"
+      >
+        <div >{{ day.date }}</div>
+        <draggable  v-model="devidedSchedule" group="cards" @start="drag=true" @end="drag=false" :options="options">
+          <Schedule 
+          :devidedSchedule="devidedSchedule"
+          v-for="devidedSchedule in devidedSchedules"
+          v-if="devidedSchedule.date==day.date&&devidedSchedule.month==day.month&&devidedSchedule.year==day.year"
+          style="flex:1;min-height:1px;min-width:1px;max-height:100px;max-width:150px;text-align: center;margin-bottom:10px;"
+          >
+          </Schedule>
+        </draggable>
+      </div>
+      <div
+        class="calendar-date"
+        v-for="(day, index) in week"
+        :key="index"
+        v-if="day.month===1&&currentMonth===13" style="background-color:blue;"
+      >
+        <div >{{ day.date }}</div>
+          <draggable  v-model="devidedSchedule" group="cards" @start="drag=true" @end="drag=false" :options="options">
           <Schedule 
           :devidedSchedule="devidedSchedule"
           v-for="devidedSchedule in devidedSchedules"
@@ -33,6 +84,7 @@
   <div>
     <button class="btn btn-primary" @click="confirmCurrentDate">CofirmCurrentDate</button>
     <button class="btn btn-primary" @click="confirmCalendar">CofirmCalendar</button>
+    <button class="btn btn-primary" @click="confirmCurrentMonth">CofirmCurrentMonth</button>
   </div>
 </div>
 </template>
@@ -66,7 +118,7 @@ export default {
         },
       ],
       currentDate: moment().format('YYYY/MM'),
-      currentMonth: moment().month(),
+      currentMonth: moment().month()+1,
       currentYear: moment().year(),
       schedules: [
         {
@@ -110,6 +162,9 @@ export default {
   mounted: function(){
   },
   methods: {
+    confirmCurrentMonth(){
+      console.log(this.currentMonth);
+    },
     confirmCalendar(){
       console.log(this.calendars);
     },
@@ -158,7 +213,7 @@ export default {
             commit: this.schedules[m].commit,
             yyyymm: moment(dateArrays[m][n]).format('YYYY/MM'),
             year: moment(dateArrays[m][n]).year(),
-            month: moment(dateArrays[m][n]).month(),
+            month: moment(dateArrays[m][n]).month()+1,
             date: moment(dateArrays[m][n]).date(),
           });
           n = n + 1;
@@ -200,7 +255,7 @@ export default {
         for (let day = 0; day < 7; day++) {
           weekRow.push({
             year: startDate.get("year"),
-            month: startDate.get("month"),
+            month: startDate.get("month")+1,
             date: startDate.get("date"),
           });
           startDate.add(1, "days");
@@ -214,10 +269,12 @@ export default {
     },
     nextMonth() {
       this.currentDate = moment(this.currentDate).add(1, "month").format('YYYY/MM');
+      this.currentMonth++;
       this.getCalendar();
     },
     prevMonth() {
       this.currentDate = moment(this.currentDate).subtract(1, "month").format('YYYY/MM');
+      this.currentMonth--;
       this.getCalendar();
     },
   },
@@ -228,11 +285,14 @@ export default {
     devidedSchedules() {
       return this.createDevidedSchedules();
     },
+    currentMonth(){
+      return currentMonth();
+    }
   },
   created(){
     console.log(currentDate);
     return this.createDevidedSchedules();
-  }
+  },
   }
 </script>
 
@@ -243,6 +303,20 @@ export default {
   margin-right: 30%;
   position: fixed;
   z-index:1;
+}
+
+.calendar-date{
+  flex:1;
+  min-height:125px;
+  border-right:5px solid #BAD3FF;
+  border-bottom:5px solid #BAD3FF;
+  text-align: center;
+  font-size:25px;
+}
+
+.calendar-date:hover {
+  background-color: silver;
+  border-radius: 4px;
 }
 
 </style>
