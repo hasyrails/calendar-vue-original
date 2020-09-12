@@ -2,7 +2,7 @@
   <div class="calendar-header">
     <div class="calendar-header-content flex">
       <ChevronLeft fillColor="white"  @click="prev" size="lg"></ChevronLeft>
-      <div class="calendar-header-date">{{ dateLabel }}</div>
+      <div class="calendar-header-date">{{ currentDate }}</div>
       <ChevronRight fillColor="white" @click="next" size="lg"></ChevronRight>
     </div>
   </div>
@@ -16,7 +16,7 @@ import ChevronRight from 'vue-material-design-icons/ChevronRight.vue';
 export default {
   name: 'CalendarHeader',
   props:{
-    dateLabel: {
+    currentDate: {
       type: String,
       required: true
     }
