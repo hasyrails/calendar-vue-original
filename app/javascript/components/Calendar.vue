@@ -22,7 +22,7 @@
           <Schedule 
           :devidedSchedule="devidedSchedule"
           v-for="devidedSchedule in devidedSchedules"
-          v-if="devidedSchedule.date==day.date&&devidedSchedule.yyyymm==currentDate"
+          v-if="devidedSchedule.date==day.date&&devidedSchedule.month==day.month&&devidedSchedule.year==day.year"
           style="flex:1;min-height:1px;min-width:1px;max-height:100px;max-width:150px;text-align: center;margin-bottom:10px;"
           >
           </Schedule>
@@ -66,6 +66,8 @@ export default {
         },
       ],
       currentDate: moment().format('YYYY/MM'),
+      currentMonth: moment().month(),
+      currentYear: moment().year(),
       schedules: [
         {
           title: 'hoge',
@@ -78,10 +80,10 @@ export default {
           commit: 'yes'
         },
         {
-          start_yyyymmdd: moment('2020-09-08'),
-          start_date: moment('2020-09-08').date(),
-          end_yyyymmdd: moment('2020-09-12'),
-          end_date: moment('2020-09-12').date(),
+          start_yyyymmdd: moment('2021-01-01'),
+          start_date: moment('2021-01-01').date(),
+          end_yyyymmdd: moment('2021-01-03'),
+          end_date: moment('2021-01-03').date(),
           color: '#BAD3FF',
           // icon: 0,
           commit: 'no',
@@ -108,21 +110,6 @@ export default {
   mounted: function(){
   },
   methods: {
-    // countUp(){
-    //   this.count ++
-    // },
-    // iconChange(){
-    //   if(this.schedules[0].icon = 0){
-    //     this.schedules[0].icon = 1;
-    //     this.createDevidedSchedules();
-    //   }else if(this.schedule[0].icon =1){
-    //     this.schedules = [];
-    //     this.schedules[0].icon = 2;
-    //     this.createDevidedSchedules();
-    //   }else{
-    //     console.log('else')
-    //   }
-    // },
     confirmCalendar(){
       console.log(this.calendars);
     },
@@ -170,6 +157,8 @@ export default {
             icon: this.schedules[m].icon,
             commit: this.schedules[m].commit,
             yyyymm: moment(dateArrays[m][n]).format('YYYY/MM'),
+            year: moment(dateArrays[m][n]).year(),
+            month: moment(dateArrays[m][n]).month(),
             date: moment(dateArrays[m][n]).date(),
           });
           n = n + 1;
@@ -210,125 +199,13 @@ export default {
         let weekRow = [];
         for (let day = 0; day < 7; day++) {
           weekRow.push({
+            year: startDate.get("year"),
+            month: startDate.get("month"),
             date: startDate.get("date"),
           });
           startDate.add(1, "days");
         }
           calendars.push(weekRow);
-      }
-
-      for (let s = 0; s <= 6; s++){
-        if(JSON.stringify(calendars[0][s]) != JSON.stringify({date:moment(this.currentDate).startOf("month").date()})){
-          calendars[0].splice(s,1);
-          calendars[0].splice(s,0,'');
-        }
-        else{
-          break;
-        }
-      }
-      
-      if(calendars.length === 5){
-        for(let p=0; p<=6; p++){
-          let finalWeek = JSON.stringify(calendars[4][p]);
-  
-          switch(finalWeek){
-            case JSON.stringify({date:moment(this.currentDate).startOf("month").date()}):
-              calendars[4].splice(p,1,'');
-              break;
-            case JSON.stringify({date:moment(this.currentDate).startOf("month").date()+1}):
-              calendars[4].splice(p,1,'');
-              // calendars[4].splice(p,0,'');
-              break;
-            case JSON.stringify({date:moment(this.currentDate).startOf("month").date()+2}):
-              calendars[4].splice(p,1,'');
-              // calendars[4].splice(p,0,'');
-              break;
-            case JSON.stringify({date:moment(this.currentDate).startOf("month").date()+3}):
-              calendars[4].splice(p,1,'');
-              // calendars[4].splice(p,0,'');
-              break;
-            case JSON.stringify({date:moment(this.currentDate).startOf("month").date()+4}):
-              calendars[4].splice(p,1,'');
-              // calendars[4].splice(p,0,'');
-              break;
-            case JSON.stringify({date:moment(this.currentDate).startOf("month").date()+5}):
-              calendars[4].splice(p,1,'');
-              // calendars[4].splice(p,0,'');
-              break;
-            case JSON.stringify({date:moment(this.currentDate).startOf("month").date()+6}):
-              calendars[4].splice(p,1,'');
-              // calendars[4].splice(p,0,'');
-              break;
-          }
-        }}else{
-          return calendars;
-          console.log(calendars);
-        };
-
-      if (calendars.length===6){
-        
-        let finalWeek = JSON.stringify(calendars[5][p]);
-
-        switch(finalWeek){
-          case JSON.stringify({date:moment(this.currentDate).startOf("month").date()}):
-            calendars[5].splice(p,1,'');
-            // calendars[5].splice(p,0,'');
-            break;
-          case JSON.stringify({date:moment(this.currentDate).startOf("month").date()+1}):
-            calendars[5].splice(p,1);
-            calendars[5].splice(p,0,'');
-            break;
-          case JSON.stringify({date:moment(this.currentDate).startOf("month").date()+2}):
-            calendars[5].splice(p,1);
-            calendars[5].splice(p,0,'');
-            break;
-          case JSON.stringify({date:moment(this.currentDate).startOf("month").date()+3}):
-            calendars[5].splice(p,1);
-            calendars[5].splice(p,0,'');
-            break;
-          case JSON.stringify({date:moment(this.currentDate).startOf("month").date()+4}):
-            calendars[5].splice(p,1);
-            calendars[5].splice(p,0,'');
-            break;
-          case JSON.stringify({date:moment(this.currentDate).startOf("month").date()+5}):
-            calendars[5].splice(p,1);
-            calendars[5].splice(p,0,'');
-            break;
-          case JSON.stringify({date:moment(this.currentDate).startOf("month").date()+6}):
-            calendars[5].splice(p,1);
-            calendars[5].splice(p,0,'');
-            break;
-        }
-      }
-
-      let weekRow5 = calendars[4]
-      let finalDateEl = calendars[4][6]
-      let finalDate = Object.values(finalDateEl)[0]
-      let finalDateObject = {date: moment(this.currentDate).endOf("month").date()};
-      function beforeFinalDateObject(n) {
-        return  {date: moment(this.currentDate).endOf("month").date() -n};
-      }
-
-      if(weekRow5.some(wR => wR.date === finalDateObject.date)){
-        console.log('最終日あり');
-      }else{
-        console.log('最終日なし')
-        switch(finalDate){
-          case moment(this.currentDate).endOf("month").date()-1:
-            calendars.push([finalDateObject,'','','','','','']);
-            break;
-          case moment(this.currentDate).endOf("month").date()-2:
-            calendars.push([beforeFinalDateObject(1),finalDateObject,'','','','','']);
-            break;
-          case moment(this.currentDate).endOf("month").date()-3:
-            calendars.push([beforeFinalDateObject(2),beforeFinalDateObject(1),finalDateObject,'','','','']);
-            break;
-          //   calendars.push([beforeFinalDateObject(2),beforeFinalDateObject(1),finalDateObject,'','','','']);
-          //   break;
-          // case moment(this.currentDate).endOf("month").date()-4:
-          //   calendars.push([beforeFinalDateObject(3),beforeFinalDateObject(2),beforeFinalDateObject(1),finalDateObject,'','','']);
-          //   break
-        }
       }
 
       return calendars;
