@@ -1,9 +1,9 @@
 <template>
   <div class="calendar-header">
-    <div class="calendar-header-content flex">
-      <ChevronLeft fillColor="white"  @click="prev" size="lg"></ChevronLeft>
+    <div class="calendar-header-content">
+      <ChevronLeft fillColor="white"  @click="prev" size="xs"></ChevronLeft>
       <div class="calendar-header-date">{{ currentDate }}</div>
-      <ChevronRight fillColor="white" @click="next" size="lg"></ChevronRight>
+      <ChevronRight fillColor="white" @click="next" size="xs"></ChevronRight>
     </div>
   </div>
 </template>
@@ -39,26 +39,21 @@ export default {
 <style scoped>
 .calender-header {
   /* background-color: #75A9FF; */
-  display: flex;
-  justify-content: space-between;
+  /* height:1px; */
+  /* display: flex; */
+  /* justify-content: space-between; */
+  width:99%;
 }
 .calendar-header-content {
   display: flex;
-  justify-content: center;
-  align-items: center; 
+  /* justify-content: center; */
+  align-items: center;
+  position:fixed;
+  bottom:1200px;
+  margin-left:1%;
 }
 .calendar-header-date {
   color: white;
-  font-size: 30px;
-}
-.flex{
-  padding: 2.5% 0;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-}
-.flex > *{
-  width: 8%;
-  text-align: center;
+  font-size: 50px;
 }
 </style>

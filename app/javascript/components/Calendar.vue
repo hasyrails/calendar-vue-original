@@ -1,16 +1,18 @@
 <template>
-  <div class="calendar" >
-    <CalendarHeader
-    :currentDate="currentDate"
-    @prev="prevMonth"
-    @next="nextMonth"
-    style="background-color:#8EB8FF;">
-    </CalendarHeader>
-    <div style="min-width:100px;width:1225px;border-top:5px #BAD3FF;background-color:#EEEEEE;">
+  <div class="calendar">
+    <div class="calendar-header-area">
+      <CalendarHeader
+      :currentDate="currentDate"
+      @prev="prevMonth"
+      @next="nextMonth"
+      style="background-color:#8EB8FF;height:200px;">
+      </CalendarHeader>
+    </div>
+    <div style="min-width:100px;width:100%;border-top:5px #BAD3FF;background-color:#EEEEEE;">
       <div
         v-for="(week, index) in calendars"
         :key="index"
-        style="display:flex;border-left:5px solid #BAD3FF;height:150px;"
+        style="display:flex;border-left:5px solid #BAD3FF;height:700px;"
       >
         <div
         class="calendar-date"
@@ -26,7 +28,7 @@
           :devidedSchedule="devidedSchedule"
           v-for="devidedSchedule in devidedSchedules"
           v-if="devidedSchedule.date==day.date&&devidedSchedule.month==day.month&&devidedSchedule.year==day.year"
-          style="flex:1;min-height:1px;min-width:1px;max-height:100px;max-width:150px;text-align: center;margin-bottom:10px;"
+          style="flex:1;min-height:1px;min-width:1px;max-height:100px;max-width:250px;text-align: center;margin-bottom:10px;"
           >
           </Schedule>
         </draggable>
@@ -47,6 +49,7 @@ import draggable from 'vuedraggable'
 
 import CalendarHeader from "../components/CalendarHeader";
 import Schedule from "../components/Schedule"
+
 
 export default {
   name: 'Calendar',
@@ -84,10 +87,10 @@ export default {
           commit: 'yes'
         },
         {
-          start_yyyymmdd: moment('2021-01-01'),
-          start_date: moment('2021-01-01').date(),
-          end_yyyymmdd: moment('2021-01-03'),
-          end_date: moment('2021-01-03').date(),
+          start_yyyymmdd: moment('2020-09-07'),
+          start_date: moment('2020-09-07').date(),
+          end_yyyymmdd: moment('2020-09-10'),
+          end_date: moment('2021-09-10').date(),
           color: '#BAD3FF',
           // icon: 0,
           commit: 'no',
@@ -95,10 +98,10 @@ export default {
         },
         {
           title: 'yagi',
-          start_yyyymmdd: moment('2020-09-01'),
-          start_date: moment('2020-09-01').date(),
-          end_yyyymmdd: moment('2020-09-03'),
-          end_date: moment('2020-09-03').date(),
+          start_yyyymmdd: moment('2020-09-07'),
+          start_date: moment('2020-09-07').date(),
+          end_yyyymmdd: moment('2020-09-10'),
+          end_date: moment('2020-09-10').date(),
           color: '#CBFFD3',
           // icon: 0,
           commit: 'no'
@@ -109,7 +112,7 @@ export default {
   components: {
     draggable,
     CalendarHeader,
-    Schedule
+    Schedule,
   },
   mounted: function(){
   },
@@ -202,13 +205,13 @@ export default {
       const weekNumber = Math.ceil(endDate.diff(startDate, "days") / 7);
 
       let calendars = [];
-      for (let week = 0; week < weekNumber; week++) {
+      for (let week = 0; week < 1; week++) {
         let weekRow = [];
-        for (let day = 0; day < 7; day++) {
+        for (let day = 0; day < moment(this.currentMonth).daysInMonth(); day++) {
           weekRow.push({
             year: startDate.get("year"),
             month: startDate.get("month")+1,
-            date: startDate.get("date"),
+            date: startDate.get("date")
           });
           startDate.add(1, "days");
         }
@@ -242,6 +245,28 @@ export default {
       }
       this.getCalendar();
     },
+    // displayScheduleNum(){
+    // this.calendars = []; //カレンダーパネルを初期化
+    //   for (let i = 0; i < moment(this.currentMonth).daysInMonth(); i++) {
+    //     //カレンダーパネルを更新
+    //     let todoNumber = "-";
+    //     for (let k of Object.keys(this.devidedSchedules)) {
+    //       //todoListの情報をカレンダーパネルに追加
+    //       if (this.calendars[i]) {
+    //         if (this.devidedSchedules[k].date === this.calendars[i].date) {
+    //           todoNumber++;
+    //         }
+    //       }
+    //     }
+    //     this.calendars[i] = {
+    //       date: moment(this.currentMonth)
+    //         .startOf("month")
+    //         .add(i, "day")
+    //         .format("YYYY-MM-DD"),
+    //       dateNumber: i + 1,
+    //       todoNumber: todoNumber
+    //     };
+    // }
   },
   computed: {
     calendars() {
@@ -257,17 +282,51 @@ export default {
   created(){
     console.log(currentDate);
     return this.createDevidedSchedules();
+    // this.displayScheduleNum();
   },
-  }
+  // watch:{
+  //   displayScheduleNum(){
+      
+  //   }
+  //   this.calendars = []; //カレンダーパネルを初期化
+  //     for (let i = 0; i < moment(this.currentMonth).daysInMonth(); i++) {
+  //       //カレンダーパネルを更新
+  //       let todoNumber = "-";
+  //       for (let k of Object.keys(this.devidedSchedules)) {
+  //         //todoListの情報をカレンダーパネルに追加
+  //         if (this.calendars[i]) {
+  //           if (this.devidedSchedules[k].date === this.calendars[i].date) {
+  //             todoNumber++;
+  //           }
+  //         }
+  //       }
+  //       this.calendars[i] = {
+  //         date: moment(this.currentMonth)
+  //           .startOf("month")
+  //           .add(i, "day")
+  //           .format("YYYY-MM-DD"),
+  //         dateNumber: i + 1,
+  //         todoNumber: todoNumber
+  //       };
+  //     }
+  // }
+}
 </script>
 
 <style scoped>
 .calendar {
-  margin-top:5%;
+  margin-top:3%;
   margin-left: 10%;
-  margin-right: 30%;
-  position: fixed;
-  z-index:1;
+  margin-right: 0.5%;
+  /* position: fixed; */
+  width:125%;
+  /* z-index:1; */
+  display: flex;
+  flex-direction: column;
+}
+
+.calendar-header-area {
+  height:200px;
 }
 
 .calendar-date{
