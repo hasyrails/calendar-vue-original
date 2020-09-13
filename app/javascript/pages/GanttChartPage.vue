@@ -2,7 +2,10 @@
   <div>
     <div class="app-area">
       <div class="calendar-area">
-        <Calendar></Calendar>
+        <GanttChart></GanttChart>
+      </div>
+      <div class="todo-area">
+        <Board></Board>
       </div>
       <div class="footer-area">
         <footer>(C)footer</footer>
@@ -13,13 +16,13 @@
 
 <script>
 import Board from '../components/Board'
-import Calendar from '../components/Calendar'
+import GanttChart from '../components/GanttChart'
 
 export default {
   name: 'Top',
   components: {
     Board,
-    Calendar
+    GanttChart
   }
 }
 </script>
@@ -31,17 +34,24 @@ p {
 }
 
 .app-area{
-  width: 100%;
+  width: 125%;
   display:flex;
   flex-direction: column;
   align-items: center;
 }
 
+
+.todo-area{
+  width:200%;
+  /* overflow-x: auto; */
+  height: 30%;
+  position: fixed;
+	bottom: 0px;   
+}
 .calendar-area{
-  width:100%;
+  width:125%;
   height:70%;
-  /* overflow-x: scroll; */
-  margin-left: 30%;
+  overflow-x: scroll;
 }
 
 footer{
