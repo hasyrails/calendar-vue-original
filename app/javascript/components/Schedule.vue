@@ -22,6 +22,7 @@
   <div class="card"
   :style="'background-color:'+devidedSchedule.color+';'"
   :class="classButton" @click="displayChange"
+  :id="'schedule-card-'+devidedSchedule.id"
   >
     <button class="close-button">
       ?
@@ -46,7 +47,7 @@ export default {
   },
   props: {
     devidedSchedule:{
-      type: Object
+      type: Object,
     }
   },
   methods: {
@@ -62,7 +63,12 @@ export default {
   //   }
   // }
     displayChange(){
-      this.nonDisplay = !this.nonDisplay
+      this.nonDisplay = !this.nonDisplay;
+      this.commitChange();
+    },
+    commitChange(){
+      this.devidedSchedule.commit = !this.devidedSchedule.commit
+      // this.$emit('commitChange')
     }
   },
   computed:{
