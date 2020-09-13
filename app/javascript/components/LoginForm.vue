@@ -1,10 +1,13 @@
 <template>
   <div class="form-container">
   <form @input="submit" class="register-form">
-    <h2>ユーザー名を入力してください</h2>
     <div class="form-group">
-      <label for="userName">ユーザー名</label>
-      <input type="text" class="form-control form-control-lg" v-model="userName" placeholder="Enter User Name">
+      <label for="Email">メールアドレス</label>
+      <input type="text" class="form-control form-control-lg" v-model="email" placeholder="Enter Email">
+    </div>
+    <div class="form-group">
+      <label for="Email">パスワード</label>
+      <input type="text" class="form-control form-control-lg" v-model="password" placeholder="Enter Password">
     </div>
   </form>
   </div>
@@ -12,19 +15,21 @@
 
 <script>
 export default {
-  name: 'UserNameForm',
+  name: 'LoginForm',
   data(){
     return{
-      userName: null
+      email: null,
+      password: null
     }
   },
   methods: {
-    submit(){
+		submit(){
 			this.$emit('update',{
-				userName: this.userName
+				email: this.email,
+        password: this.password
 			});
 		}
-  }
+	}
 }
 </script>
 

@@ -1,14 +1,15 @@
 <template>
   <div class="calendar-header">
     <div class="calendar-header-content">
-      <ChevronLeft fillColor="white"  @click="prev" size="xs"></ChevronLeft>
+      <ChevronLeft fillColor="white"  @click="prev" :size="100"></ChevronLeft>
       <div class="calendar-header-date">{{ currentDate }}</div>
-      <ChevronRight fillColor="white" @click="next" size="xs"></ChevronRight>
+      <ChevronRight fillColor="white" @click="next" :size="100"></ChevronRight>
     </div>
   </div>
 </template>
 
 <script>
+// import 'vue-material-design-icons/styles.css';
 import ChevronLeft from 'vue-material-design-icons/ChevronLeft.vue';
 import ChevronRight from 'vue-material-design-icons/ChevronRight.vue';
 
@@ -23,7 +24,7 @@ export default {
   },
   components:{
     ChevronLeft,
-    ChevronRight
+    ChevronRight,
   },
   methods:{
     prev(){
@@ -55,5 +56,7 @@ export default {
 .calendar-header-date {
   color: white;
   font-size: 50px;
+  margin-left: 5%;
+  margin-right: 5%;
 }
 </style>
