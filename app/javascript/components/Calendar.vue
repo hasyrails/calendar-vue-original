@@ -18,6 +18,7 @@
         class="calendar-date"
         v-for="(day, index) in week"
         :key="index"
+        style="width:250px;"
         >
         <div v-if="day.month===currentMonth" style="font-weight:200;">{{day.date}}</div>
         <div v-if="day.month!==currentMonth" style="color:#D3D3D3;">{{ day.date }}</div>
@@ -28,7 +29,7 @@
           :devidedSchedule="devidedSchedule"
           v-for="devidedSchedule in devidedSchedules"
           v-if="devidedSchedule.date==day.date&&devidedSchedule.month==day.month&&devidedSchedule.year==day.year"
-          style="flex:1;min-height:1px;min-width:1px;max-height:100px;max-width:250px;text-align: center;margin-bottom:10px;"
+          style="flex:1;min-height:1px;min-width:1px;max-height:100px;max-width:230px;text-align: center;margin-bottom:10px;"
           >
           </Schedule>
         </draggable>
@@ -105,7 +106,207 @@ export default {
           color: '#CBFFD3',
           // icon: 0,
           commit: 'no'
-        }
+        },
+        {
+          title: 'yagi',
+          start_yyyymmdd: moment('2020-09-07'),
+          start_date: moment('2020-09-07').date(),
+          end_yyyymmdd: moment('2020-09-10'),
+          end_date: moment('2020-09-10').date(),
+          color: '#CBFFD3',
+          // icon: 0,
+          commit: 'no'
+        },
+        {
+          title: 'yagi',
+          start_yyyymmdd: moment('2020-09-07'),
+          start_date: moment('2020-09-07').date(),
+          end_yyyymmdd: moment('2020-09-10'),
+          end_date: moment('2020-09-10').date(),
+          color: '#CBFFD3',
+          // icon: 0,
+          commit: 'no'
+        },
+        {
+          title: 'yagi',
+          start_yyyymmdd: moment('2020-09-07'),
+          start_date: moment('2020-09-07').date(),
+          end_yyyymmdd: moment('2020-09-10'),
+          end_date: moment('2020-09-10').date(),
+          color: '#CBFFD3',
+          // icon: 0,
+          commit: 'no'
+        },
+        {
+          title: 'yagi',
+          start_yyyymmdd: moment('2020-09-07'),
+          start_date: moment('2020-09-07').date(),
+          end_yyyymmdd: moment('2020-09-10'),
+          end_date: moment('2020-09-10').date(),
+          color: '#CBFFD3',
+          // icon: 0,
+          commit: 'no'
+        },
+        {
+          title: 'yagi',
+          start_yyyymmdd: moment('2020-09-07'),
+          start_date: moment('2020-09-07').date(),
+          end_yyyymmdd: moment('2020-09-10'),
+          end_date: moment('2020-09-10').date(),
+          color: '#CBFFD3',
+          // icon: 0,
+          commit: 'no'
+        },
+        {
+          title: 'yagi',
+          start_yyyymmdd: moment('2020-09-07'),
+          start_date: moment('2020-09-07').date(),
+          end_yyyymmdd: moment('2020-09-10'),
+          end_date: moment('2020-09-10').date(),
+          color: '#CBFFD3',
+          // icon: 0,
+          commit: 'no'
+        },
+        {
+          title: 'yagi',
+          start_yyyymmdd: moment('2020-09-07'),
+          start_date: moment('2020-09-07').date(),
+          end_yyyymmdd: moment('2020-09-10'),
+          end_date: moment('2020-09-10').date(),
+          color: '#CBFFD3',
+          // icon: 0,
+          commit: 'no'
+        },
+        {
+          title: 'yagi',
+          start_yyyymmdd: moment('2020-09-07'),
+          start_date: moment('2020-09-07').date(),
+          end_yyyymmdd: moment('2020-09-10'),
+          end_date: moment('2020-09-10').date(),
+          color: '#CBFFD3',
+          // icon: 0,
+          commit: 'no'
+        },
+        {
+          title: 'yagi',
+          start_yyyymmdd: moment('2020-09-07'),
+          start_date: moment('2020-09-07').date(),
+          end_yyyymmdd: moment('2020-09-10'),
+          end_date: moment('2020-09-10').date(),
+          color: '#CBFFD3',
+          // icon: 0,
+          commit: 'no'
+        },
+        {
+          title: 'yagi',
+          start_yyyymmdd: moment('2020-09-07'),
+          start_date: moment('2020-09-07').date(),
+          end_yyyymmdd: moment('2020-09-10'),
+          end_date: moment('2020-09-10').date(),
+          color: '#CBFFD3',
+          // icon: 0,
+          commit: 'no'
+        },
+        {
+          title: 'yagi',
+          start_yyyymmdd: moment('2020-09-07'),
+          start_date: moment('2020-09-07').date(),
+          end_yyyymmdd: moment('2020-09-10'),
+          end_date: moment('2020-09-10').date(),
+          color: '#CBFFD3',
+          // icon: 0,
+          commit: 'no'
+        },
+        {
+          title: 'yagi',
+          start_yyyymmdd: moment('2020-09-07'),
+          start_date: moment('2020-09-07').date(),
+          end_yyyymmdd: moment('2020-09-10'),
+          end_date: moment('2020-09-10').date(),
+          color: '#CBFFD3',
+          // icon: 0,
+          commit: 'no'
+        },
+        {
+          title: 'yagi',
+          start_yyyymmdd: moment('2020-09-07'),
+          start_date: moment('2020-09-07').date(),
+          end_yyyymmdd: moment('2020-09-10'),
+          end_date: moment('2020-09-10').date(),
+          color: '#CBFFD3',
+          // icon: 0,
+          commit: 'no'
+        },
+        {
+          title: 'yagi',
+          start_yyyymmdd: moment('2020-09-07'),
+          start_date: moment('2020-09-07').date(),
+          end_yyyymmdd: moment('2020-09-10'),
+          end_date: moment('2020-09-10').date(),
+          color: '#CBFFD3',
+          // icon: 0,
+          commit: 'no'
+        },
+        {
+          title: 'yagi',
+          start_yyyymmdd: moment('2020-09-07'),
+          start_date: moment('2020-09-07').date(),
+          end_yyyymmdd: moment('2020-09-10'),
+          end_date: moment('2020-09-10').date(),
+          color: '#CBFFD3',
+          // icon: 0,
+          commit: 'no'
+        },
+        {
+          title: 'yagi',
+          start_yyyymmdd: moment('2020-09-07'),
+          start_date: moment('2020-09-07').date(),
+          end_yyyymmdd: moment('2020-09-10'),
+          end_date: moment('2020-09-10').date(),
+          color: '#CBFFD3',
+          // icon: 0,
+          commit: 'no'
+        },
+        {
+          title: 'yagi',
+          start_yyyymmdd: moment('2020-09-07'),
+          start_date: moment('2020-09-07').date(),
+          end_yyyymmdd: moment('2020-09-10'),
+          end_date: moment('2020-09-10').date(),
+          color: '#CBFFD3',
+          // icon: 0,
+          commit: 'no'
+        },
+        {
+          title: 'yagi',
+          start_yyyymmdd: moment('2020-09-07'),
+          start_date: moment('2020-09-07').date(),
+          end_yyyymmdd: moment('2020-09-10'),
+          end_date: moment('2020-09-10').date(),
+          color: '#CBFFD3',
+          // icon: 0,
+          commit: 'no'
+        },
+        {
+          title: 'yagi',
+          start_yyyymmdd: moment('2020-09-07'),
+          start_date: moment('2020-09-07').date(),
+          end_yyyymmdd: moment('2020-09-10'),
+          end_date: moment('2020-09-10').date(),
+          color: '#CBFFD3',
+          // icon: 0,
+          commit: 'no'
+        },
+        {
+          title: 'yagi',
+          start_yyyymmdd: moment('2020-09-07'),
+          start_date: moment('2020-09-07').date(),
+          end_yyyymmdd: moment('2020-09-10'),
+          end_date: moment('2020-09-10').date(),
+          color: '#CBFFD3',
+          // icon: 0,
+          commit: 'no'
+        },
       ],
     };
   },

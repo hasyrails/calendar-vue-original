@@ -44,7 +44,7 @@ export default {
   padding: 30px 15px 40px;
   background-color: #fff;
   border-radius: 8px;
-  width: 260px;
+  width: 230px;
   cursor: pointer;
 }
 
@@ -63,6 +63,7 @@ export default {
 }
 
 .body {
+  text-align: center;
   font-size: 18px;
   width: 100%;
   word-wrap: break-word;
