@@ -1,6 +1,5 @@
 <template>
   <div>
-    <header>Header</header>
     <div class="app-area">
       <div class="calendar-area">
         <Calendar></Calendar>
@@ -40,6 +39,7 @@ p {
   flex-direction: column;
   align-items: center;
 }
+
 
 .todo-area{
   width:200%;

@@ -41,9 +41,7 @@ header {
   height: 150px;
   color: black;
   font-style: italic;
-  font-size: 40px;
-  font-weight: 30px;
-  text-align: left;
+  /* text-align: left; */
   padding: 20px;
   width:100%;
   position: fixed;

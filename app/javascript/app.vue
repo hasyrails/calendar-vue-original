@@ -1,16 +1,14 @@
 <template>
   <div id="app">
+    <Header></Header>
     <router-link to="/">
-    </router-link>
-    <router-link to="/register">
     </router-link>
     <router-view></router-view>
   </div>
 </template>
 
 <script>
-import Top from '../javascript/pages/Top'
-import Register from '../javascript/pages/Register'
+import Header from '../javascript/components/Header'
 
 export default {
   data: function () {
@@ -19,8 +17,7 @@ export default {
     }
   },
   components: {
-    Top,
-    Register
+    Header
   }
 }
 </script>

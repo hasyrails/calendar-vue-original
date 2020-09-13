@@ -1,13 +1,17 @@
 <template>
-  <form @input="submit">
-    <h2>Password Info</h2>
+  <div class="form-container">
+  <form @input="submit" class="register-form">
+    <h2>パスワードを入力してください</h2>
     <div class="form-group">
-      <label for="Password">Password</label>
-      <input type="password" class="form-control" v-model="password" placeholder="Enter password">
-      <label for="Password">Password Confirmation</label>
-      <input type="password" class="form-control" v-model="passwordConfirmation" placeholder="Enter password confirmation">
-    </div>					
+      <label for="password">パスワード</label>
+      <input type="text" class="form-control form-control-lg" v-model="password" placeholder="Enter Password">
+    </div>
+    <div class="form-group">
+      <label for="userName">パスワード(確認)</label>
+      <input type="text" class="form-control form-control-lg" v-model="passwordConfirmation" placeholder="Enter Password Confirmation">
+    </div>
   </form>
+  </div>
 </template>
 
 <script>
@@ -31,5 +35,18 @@ export default {
 </script>
 
 <style scoped>
+ .form-container{
+    /* width: 100%; */
+    margin-left:3%;
+    margin-right:3%;
+    margin-top:3%;
+  }
 
+  .register-form{
+    text-align: left;
+  }
+
+  .form-control{
+    width: 50%;
+  }
 </style>
