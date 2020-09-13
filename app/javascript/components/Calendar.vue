@@ -20,8 +20,9 @@
         :key="index"
         style="width:250px;"
         >
-        <div v-if="day.month===currentMonth" style="font-weight:200;">{{day.date}}</div>
-        <div v-if="day.month!==currentMonth" style="color:#D3D3D3;">{{ day.date }}</div>
+        <div v-if="day.month===currentMonth" style="font-weight:200;font-size:50px;">{{day.date}}</div>
+        <div v-if="day.month!==currentMonth" style="color:#D3D3D3;font-size:50px;">{{ day.date }}</div>
+        <div>{{day.scheduleNum}}</div>
         <!-- <div v-if="day.month!==currentMonth%12&&day.month%12===0" style="font-weight:200;">{{ day.date }}</div> -->
         <!-- <div v-if="day.month!==currentMonth%12&&day.month%12!==0" style="color:#D3D3D3;">{{ day.date }}</div> -->
         <draggable  v-model="devidedSchedule" group="cards" @start="drag=true" @end="drag=false" :options="options">
@@ -40,6 +41,8 @@
     <button class="btn btn-primary" @click="confirmCurrentDate">CofirmCurrentDate</button>
     <button class="btn btn-primary" @click="confirmCalendar">CofirmCalendar</button>
     <button class="btn btn-primary" @click="confirmCurrentMonth">CofirmCurrentMonth</button>
+    <button class="btn btn-primary" @click="showDevidedSchedule">showDevidedSchedule</button>
+    <button class="btn btn-primary" @click="confirmStartDate">confirmStartDate</button>
   </div>
 </div>
 </template>
@@ -57,6 +60,7 @@ export default {
   data() {
     return {
       // count: 0,
+      devidedSchedules:[],
       options: {
         group: "myGroup",
         animation: 200
@@ -70,242 +74,43 @@ export default {
           end_date: moment('2020-09-010').date(),
           color: '#FFD5EC',
           // icon: 0,
-          commit: 'yes'
+          commit: true
         },
       ],
       currentDate: moment().format('YYYY/MM'),
+      currentYYMMDD: moment().format('YYYY/MM/DD'),
       currentMonth: moment().month()+1,
       currentYear: moment().year(),
       schedules: [
         {
-          title: 'hoge',
+          title: 'Rails',
           start_yyyymmdd: moment('2020-09-07'),
           start_date: moment('2020-09-07').date(),
           end_yyyymmdd: moment('2020-09-10'),
           end_date: moment('2020-09-010').date(),
           color: '#FFD5EC',
           // icon: 0,
-          commit: 'yes'
+          commit: true
         },
         {
-          start_yyyymmdd: moment('2020-09-07'),
-          start_date: moment('2020-09-07').date(),
-          end_yyyymmdd: moment('2020-09-10'),
-          end_date: moment('2021-09-10').date(),
-          color: '#BAD3FF',
-          // icon: 0,
-          commit: 'no',
-          title: 'fuga',
-        },
-        {
-          title: 'yagi',
+          title: 'ポートフォリオ',
           start_yyyymmdd: moment('2020-09-07'),
           start_date: moment('2020-09-07').date(),
           end_yyyymmdd: moment('2020-09-10'),
           end_date: moment('2020-09-10').date(),
           color: '#CBFFD3',
           // icon: 0,
-          commit: 'no'
+          commit: true
         },
         {
-          title: 'yagi',
+          title: 'Docker制覇',
           start_yyyymmdd: moment('2020-09-07'),
           start_date: moment('2020-09-07').date(),
           end_yyyymmdd: moment('2020-09-10'),
           end_date: moment('2020-09-10').date(),
-          color: '#CBFFD3',
+          color: '#CCFFFF',
           // icon: 0,
-          commit: 'no'
-        },
-        {
-          title: 'yagi',
-          start_yyyymmdd: moment('2020-09-07'),
-          start_date: moment('2020-09-07').date(),
-          end_yyyymmdd: moment('2020-09-10'),
-          end_date: moment('2020-09-10').date(),
-          color: '#CBFFD3',
-          // icon: 0,
-          commit: 'no'
-        },
-        {
-          title: 'yagi',
-          start_yyyymmdd: moment('2020-09-07'),
-          start_date: moment('2020-09-07').date(),
-          end_yyyymmdd: moment('2020-09-10'),
-          end_date: moment('2020-09-10').date(),
-          color: '#CBFFD3',
-          // icon: 0,
-          commit: 'no'
-        },
-        {
-          title: 'yagi',
-          start_yyyymmdd: moment('2020-09-07'),
-          start_date: moment('2020-09-07').date(),
-          end_yyyymmdd: moment('2020-09-10'),
-          end_date: moment('2020-09-10').date(),
-          color: '#CBFFD3',
-          // icon: 0,
-          commit: 'no'
-        },
-        {
-          title: 'yagi',
-          start_yyyymmdd: moment('2020-09-07'),
-          start_date: moment('2020-09-07').date(),
-          end_yyyymmdd: moment('2020-09-10'),
-          end_date: moment('2020-09-10').date(),
-          color: '#CBFFD3',
-          // icon: 0,
-          commit: 'no'
-        },
-        {
-          title: 'yagi',
-          start_yyyymmdd: moment('2020-09-07'),
-          start_date: moment('2020-09-07').date(),
-          end_yyyymmdd: moment('2020-09-10'),
-          end_date: moment('2020-09-10').date(),
-          color: '#CBFFD3',
-          // icon: 0,
-          commit: 'no'
-        },
-        {
-          title: 'yagi',
-          start_yyyymmdd: moment('2020-09-07'),
-          start_date: moment('2020-09-07').date(),
-          end_yyyymmdd: moment('2020-09-10'),
-          end_date: moment('2020-09-10').date(),
-          color: '#CBFFD3',
-          // icon: 0,
-          commit: 'no'
-        },
-        {
-          title: 'yagi',
-          start_yyyymmdd: moment('2020-09-07'),
-          start_date: moment('2020-09-07').date(),
-          end_yyyymmdd: moment('2020-09-10'),
-          end_date: moment('2020-09-10').date(),
-          color: '#CBFFD3',
-          // icon: 0,
-          commit: 'no'
-        },
-        {
-          title: 'yagi',
-          start_yyyymmdd: moment('2020-09-07'),
-          start_date: moment('2020-09-07').date(),
-          end_yyyymmdd: moment('2020-09-10'),
-          end_date: moment('2020-09-10').date(),
-          color: '#CBFFD3',
-          // icon: 0,
-          commit: 'no'
-        },
-        {
-          title: 'yagi',
-          start_yyyymmdd: moment('2020-09-07'),
-          start_date: moment('2020-09-07').date(),
-          end_yyyymmdd: moment('2020-09-10'),
-          end_date: moment('2020-09-10').date(),
-          color: '#CBFFD3',
-          // icon: 0,
-          commit: 'no'
-        },
-        {
-          title: 'yagi',
-          start_yyyymmdd: moment('2020-09-07'),
-          start_date: moment('2020-09-07').date(),
-          end_yyyymmdd: moment('2020-09-10'),
-          end_date: moment('2020-09-10').date(),
-          color: '#CBFFD3',
-          // icon: 0,
-          commit: 'no'
-        },
-        {
-          title: 'yagi',
-          start_yyyymmdd: moment('2020-09-07'),
-          start_date: moment('2020-09-07').date(),
-          end_yyyymmdd: moment('2020-09-10'),
-          end_date: moment('2020-09-10').date(),
-          color: '#CBFFD3',
-          // icon: 0,
-          commit: 'no'
-        },
-        {
-          title: 'yagi',
-          start_yyyymmdd: moment('2020-09-07'),
-          start_date: moment('2020-09-07').date(),
-          end_yyyymmdd: moment('2020-09-10'),
-          end_date: moment('2020-09-10').date(),
-          color: '#CBFFD3',
-          // icon: 0,
-          commit: 'no'
-        },
-        {
-          title: 'yagi',
-          start_yyyymmdd: moment('2020-09-07'),
-          start_date: moment('2020-09-07').date(),
-          end_yyyymmdd: moment('2020-09-10'),
-          end_date: moment('2020-09-10').date(),
-          color: '#CBFFD3',
-          // icon: 0,
-          commit: 'no'
-        },
-        {
-          title: 'yagi',
-          start_yyyymmdd: moment('2020-09-07'),
-          start_date: moment('2020-09-07').date(),
-          end_yyyymmdd: moment('2020-09-10'),
-          end_date: moment('2020-09-10').date(),
-          color: '#CBFFD3',
-          // icon: 0,
-          commit: 'no'
-        },
-        {
-          title: 'yagi',
-          start_yyyymmdd: moment('2020-09-07'),
-          start_date: moment('2020-09-07').date(),
-          end_yyyymmdd: moment('2020-09-10'),
-          end_date: moment('2020-09-10').date(),
-          color: '#CBFFD3',
-          // icon: 0,
-          commit: 'no'
-        },
-        {
-          title: 'yagi',
-          start_yyyymmdd: moment('2020-09-07'),
-          start_date: moment('2020-09-07').date(),
-          end_yyyymmdd: moment('2020-09-10'),
-          end_date: moment('2020-09-10').date(),
-          color: '#CBFFD3',
-          // icon: 0,
-          commit: 'no'
-        },
-        {
-          title: 'yagi',
-          start_yyyymmdd: moment('2020-09-07'),
-          start_date: moment('2020-09-07').date(),
-          end_yyyymmdd: moment('2020-09-10'),
-          end_date: moment('2020-09-10').date(),
-          color: '#CBFFD3',
-          // icon: 0,
-          commit: 'no'
-        },
-        {
-          title: 'yagi',
-          start_yyyymmdd: moment('2020-09-07'),
-          start_date: moment('2020-09-07').date(),
-          end_yyyymmdd: moment('2020-09-10'),
-          end_date: moment('2020-09-10').date(),
-          color: '#CBFFD3',
-          // icon: 0,
-          commit: 'no'
-        },
-        {
-          title: 'yagi',
-          start_yyyymmdd: moment('2020-09-07'),
-          start_date: moment('2020-09-07').date(),
-          end_yyyymmdd: moment('2020-09-10'),
-          end_date: moment('2020-09-10').date(),
-          color: '#CBFFD3',
-          // icon: 0,
-          commit: 'no'
+          commit: true
         },
       ],
     };
@@ -318,6 +123,17 @@ export default {
   mounted: function(){
   },
   methods: {
+    commitChange(){
+      // let selectedCardId = Number(event.currentTarget.id.substr(14));
+      // this.devidedSchedules[selectedCardId].commit = !this.devidedSchedules[selectedCardId].commit;
+    },
+    confirmStartDate(){
+      let date = moment(this.currentDate);
+      const youbiNum = date.day();
+      let startDate = date.subtract(youbiNum, "days");
+      console.log(startDate);
+      return startDate;
+    },
     confirmCurrentMonth(){
       console.log(this.currentMonth);
     },
@@ -358,11 +174,27 @@ export default {
       }
       
       var devidedSchedules = [];
+
+      //  for (let i = 0; i < moment(this.currentMonth).daysInMonth(); i++) {
+      //   //カレンダーパネルを更新
+      //   let todoNumber = 0;
+      //   for (let k of Object.keys(this.todoList)) {
+      //     //todoListの情報をカレンダーパネルに追加
+      //     if (this.dates[i]) {
+      //       if (this.todoList[k].date === this.dates[i].date) {
+      //         todoNumber++;
+      //       }
+      //     }
+      //   }
+
       let m = 0;
       let n = 0;
+      let idNum = 0;
       while(m <= dateArrays.length -1){
         while(n <= dateArrays[m].length -1){
+          idNum = idNum + 1;
           devidedSchedules.push({
+            id: idNum,
             title: this.schedules[m].title,
             color: this.schedules[m].color,
             icon: this.schedules[m].icon,
@@ -374,15 +206,19 @@ export default {
           });
           n = n + 1;
         }
+        idNum = idNum +1;
         n = 0;
         m = m + 1;
       }
 
-      console.log(devidedSchedules);
-      return devidedSchedules;
+      
+      
+      this.devidedSchedules =  devidedSchedules;
+      console.log(this.devidedSchedules)
+      
     },
     showDevidedSchedule() {
-      console.log(devidedSchedules);
+      console.log(this.devidedSchedules);
     },
     getStartDate() {
       let date = moment(this.currentDate);
@@ -406,13 +242,24 @@ export default {
       const weekNumber = Math.ceil(endDate.diff(startDate, "days") / 7);
 
       let calendars = [];
+      this.createDevidedSchedules();
+
       for (let week = 0; week < 1; week++) {
         let weekRow = [];
         for (let day = 0; day < moment(this.currentMonth).daysInMonth(); day++) {
+          let scheduleNum = 0;
+          for (let k=0; k < this.devidedSchedules.length; k++) {
+          //todoListの情報をカレンダーパネルに追加
+            if (this.devidedSchedules[k].date === startDate.get("date")&&this.devidedSchedules[k].commit===true) {
+              scheduleNum++;
+            }
+          }
+
           weekRow.push({
             year: startDate.get("year"),
             month: startDate.get("month")+1,
-            date: startDate.get("date")
+            date: startDate.get("date"),
+            scheduleNum: scheduleNum
           });
           startDate.add(1, "days");
         }
@@ -476,41 +323,57 @@ export default {
     devidedSchedules() {
       return this.createDevidedSchedules();
     },
-    currentMonth(){
-      return currentMonth();
-    }
+    scheduleNum() {
+      return this.calendar.scheduleNum;
+    },
   },
   created(){
     console.log(currentDate);
     return this.createDevidedSchedules();
     // this.displayScheduleNum();
   },
-  // watch:{
-  //   displayScheduleNum(){
-      
-  //   }
-  //   this.calendars = []; //カレンダーパネルを初期化
-  //     for (let i = 0; i < moment(this.currentMonth).daysInMonth(); i++) {
-  //       //カレンダーパネルを更新
-  //       let todoNumber = "-";
-  //       for (let k of Object.keys(this.devidedSchedules)) {
-  //         //todoListの情報をカレンダーパネルに追加
-  //         if (this.calendars[i]) {
-  //           if (this.devidedSchedules[k].date === this.calendars[i].date) {
-  //             todoNumber++;
-  //           }
-  //         }
-  //       }
-  //       this.calendars[i] = {
-  //         date: moment(this.currentMonth)
-  //           .startOf("month")
-  //           .add(i, "day")
-  //           .format("YYYY-MM-DD"),
-  //         dateNumber: i + 1,
-  //         todoNumber: todoNumber
-  //       };
-  //     }
-  // }
+  watch:{
+    // devidedSchedules(){
+    //   this.createDevidedSchedules();
+    //   this.getCalendar();
+    // },
+    // calendar(){
+    // }
+    // getCalendar() {
+    //   let startDate = this.getStartDate();
+    //   const endDate = this.getEndDate();
+    //   const weekNumber = Math.ceil(endDate.diff(startDate, "days") / 7);
+
+    //   let calendars = [];
+    //   this.createDevidedSchedules();
+
+    //   for (let week = 0; week < 1; week++) {
+    //     let weekRow = [];
+    //     for (let day = 0; day < moment(this.currentMonth).daysInMonth(); day++) {
+    //       let scheduleNum = 0;
+    //       for (let k=0; k < this.devidedSchedules.length; k++) {
+    //       //todoListの情報をカレンダーパネルに追加
+    //         if (this.devidedSchedules[k].date === startDate.get("date")&&this.devidedSchedules[k].commit===true) {
+    //           scheduleNum++;
+    //         }
+    //       }
+
+    //       weekRow.push({
+    //         year: startDate.get("year"),
+    //         month: startDate.get("month")+1,
+    //         date: startDate.get("date"),
+    //         scheduleNum: scheduleNum
+    //       });
+    //       startDate.add(1, "days");
+    //     }
+    //       this.calendars.push(weekRow);
+    //   }
+
+    //   return this.calendars;
+    //   console.log(this.calendars);
+
+    // },
+  }
 }
 </script>
 
