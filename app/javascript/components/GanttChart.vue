@@ -1,28 +1,40 @@
 <template>
   <div class="calendar">
     <div class="calendar-header-area">
-      <CalendarHeader
+      <GanttChartHeader
       :currentDate="currentDate"
       @prev="prevMonth"
       @next="nextMonth"
       style="background-color:#8EB8FF;height:200px;">
-      </CalendarHeader>
+      </GanttChartHeader>
     </div>
     <div style="min-width:100px;width:100%;border-top:5px #BAD3FF;background-color:#EEEEEE;">
       <div
         v-for="(week, index) in calendars"
         :key="index"
-        style="display:flex;border-left:5px solid #BAD3FF;height:200px;"
+        style="display:flex;border-left:5px solid #BAD3FF;height:700px;"
       >
         <div
         class="calendar-date"
         v-for="(day, index) in week"
         :key="index"
-        style="width:150px;"
+        style="width:250px;"
         >
         <div v-if="day.month===currentMonth" style="font-weight:200;font-size:50px;">{{day.date}}</div>
         <div v-if="day.month!==currentMonth" style="color:#D3D3D3;font-size:50px;">{{ day.date }}</div>
         <div>{{day.scheduleNum}}</div>
+        <!-- <div v-if="day.month!==currentMonth%12&&day.month%12===0" style="font-weight:200;">{{ day.date }}</div> -->
+        <!-- <div v-if="day.month!==currentMonth%12&&day.month%12!==0" style="color:#D3D3D3;">{{ day.date }}</div> -->
+        <draggable  v-model="devidedSchedule" @start="drag=true" @end="drag=true" :options="options">
+          <Schedule 
+          :devidedSchedule="devidedSchedule"
+          v-for="devidedSchedule in devidedSchedules"
+          v-if="devidedSchedule.date==day.date&&devidedSchedule.month==day.month&&devidedSchedule.year==day.year"
+          style="flex:1;min-height:1px;min-width:1px;max-height:100px;max-width:230px;text-align: center;margin-bottom:10px;"
+          @commitChange="commitChange"
+          >
+          </Schedule>
+        </draggable>
       </div>
     </div>
   </div>
@@ -40,7 +52,7 @@
 import moment from "moment";
 import draggable from 'vuedraggable'
 
-import CalendarHeader from "../components/CalendarHeader";
+import GanttChartHeader from "../components/GanttChartHeader";
 import Schedule from "../components/Schedule"
 
 
@@ -106,7 +118,7 @@ export default {
   },
   components: {
     draggable,
-    CalendarHeader,
+    GanttChartHeader,
     Schedule,
   },
   mounted: function(){
@@ -232,9 +244,9 @@ export default {
       let calendars = [];
       this.createDevidedSchedules();
 
-      for (let week = 0; week < weekNumber; week++) {
+      for (let week = 0; week < 1; week++) {
         let weekRow = [];
-        for (let day = 0; day < 7; day++) {
+        for (let day = 0; day < moment(this.currentMonth).daysInMonth(); day++) {
           let scheduleNum = 0;
           for (let k=0; k < this.devidedSchedules.length; k++) {
           //todoListの情報をカレンダーパネルに追加
@@ -368,12 +380,14 @@ export default {
 
 <style scoped>
 .calendar {
-  margin-top:5%;
-  margin-left: 5%;
-  margin-right: 10%;
+  margin-top:3%;
+  margin-left: 10%;
+  margin-right: 0.5%;
   /* position: fixed; */
-  width:50%;
+  width:125%;
   /* z-index:1; */
+  display: flex;
+  flex-direction: column;
 }
 
 .calendar-header-area {
@@ -382,7 +396,7 @@ export default {
 
 .calendar-date{
   flex:1;
-  min-height:150px;
+  min-height:125px;
   border-right:5px solid #BAD3FF;
   border-bottom:5px solid #BAD3FF;
   text-align: center;

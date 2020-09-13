@@ -47,7 +47,7 @@ export default {
 }
 .calendar-header-content {
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
   /* position:fixed; */
   bottom:1200px;
@@ -55,7 +55,7 @@ export default {
 }
 .calendar-header-date {
   color: white;
-  font-size: 75px;
+  font-size: 50px;
   margin-left: 5%;
   margin-right: 5%;
 }

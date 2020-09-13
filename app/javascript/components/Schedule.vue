@@ -65,10 +65,10 @@ export default {
     displayChange(){
       this.nonDisplay = !this.nonDisplay;
       this.commitChange();
+      this.$emit('commitChange')
     },
     commitChange(){
-      this.devidedSchedule.commit = !this.devidedSchedule.commit
-      // this.$emit('commitChange')
+      // this.devidedSchedule.commit = !this.devidedSchedule.commit
     }
   },
   computed:{
