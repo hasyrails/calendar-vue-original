@@ -63,7 +63,7 @@ export default {
 <style scoped>
 
 .slide {
-  animation: infinity-loop 3s infinite linear 1s both; /* 無限ループアニメーションの設定 */
+  animation: infinity-loop 10s infinite linear 1s both; /* 無限ループアニメーションの設定 */
   position: relative;
 }
 
@@ -72,7 +72,7 @@ export default {
     transform: translateX(0vw);
   }
   to {
-    transform: translateX(+300vw);
+    transform: translateX(+3vw);
   }
 }
 
