@@ -108,6 +108,7 @@ export default {
   border-radius: 8px;
   width: 230px;
   cursor: pointer;
+  z-index:1;
 }
 
 .show-detail-button {
