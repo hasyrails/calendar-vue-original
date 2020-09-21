@@ -46,6 +46,7 @@ export default {
   border-radius: 8px;
   width: 230px;
   cursor: pointer;
+  z-index: 3;
 }
 
 .close-button {

@@ -65,6 +65,7 @@ export default {
 .slide {
   animation: infinity-loop 10s infinite linear 1s both; /* 無限ループアニメーションの設定 */
   position: relative;
+  z-index: 1;
 }
 
 @keyframes infinity-loop {

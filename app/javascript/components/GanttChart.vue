@@ -5,6 +5,8 @@
       :currentDate="currentDate"
       @prev="prevMonth"
       @next="nextMonth"
+      @showDatePicker="$listeners['showDatePicker']"
+      @closeDatePicker="$listeners['closeDatePicker']"
       style="background-color:#8EB8FF;height:200px;">
       </GanttChartHeader>
     </div>

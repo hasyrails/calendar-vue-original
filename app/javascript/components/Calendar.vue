@@ -20,20 +20,20 @@
         :key="index"
         style="width:150px;"
         >
-        <div v-if="day.month===currentMonth" style="font-weight:200;font-size:50px;">{{day.date}}</div>
-        <div v-if="day.month!==currentMonth" style="color:#D3D3D3;font-size:50px;">{{ day.date }}</div>
-        <div>{{day.scheduleNum}}</div>
+          <div v-if="day.month===currentMonth" style="font-weight:200;font-size:50px;">{{day.date}}</div>
+          <div v-if="day.month!==currentMonth" style="color:#D3D3D3;font-size:50px;">{{ day.date }}</div>
+          <div>{{day.scheduleNum}}</div>
+        </div>
       </div>
     </div>
+    <div>
+      <button class="btn btn-primary" @click="confirmCurrentDate">CofirmCurrentDate</button>
+      <button class="btn btn-primary" @click="confirmCalendar">CofirmCalendar</button>
+      <button class="btn btn-primary" @click="confirmCurrentMonth">CofirmCurrentMonth</button>
+      <button class="btn btn-primary" @click="showDevidedSchedule">showDevidedSchedule</button>
+      <button class="btn btn-primary" @click="confirmStartDate">confirmStartDate</button>
+    </div>
   </div>
-  <div>
-    <button class="btn btn-primary" @click="confirmCurrentDate">CofirmCurrentDate</button>
-    <button class="btn btn-primary" @click="confirmCalendar">CofirmCalendar</button>
-    <button class="btn btn-primary" @click="confirmCurrentMonth">CofirmCurrentMonth</button>
-    <button class="btn btn-primary" @click="showDevidedSchedule">showDevidedSchedule</button>
-    <button class="btn btn-primary" @click="confirmStartDate">confirmStartDate</button>
-  </div>
-</div>
 </template>
 
 <script>
@@ -42,6 +42,8 @@ import draggable from 'vuedraggable'
 
 import CalendarHeader from "../components/CalendarHeader";
 import Schedule from "../components/Schedule"
+
+import DatePicker from '../components/DatePicker'
 
 
 export default {
@@ -108,6 +110,7 @@ export default {
     draggable,
     CalendarHeader,
     Schedule,
+    DatePicker
   },
   mounted: function(){
   },

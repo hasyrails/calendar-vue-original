@@ -35,13 +35,14 @@ p {
   display:flex;
   flex-direction: column;
   align-items: center;
+  overflow-y: scroll;
 }
 
 .calendar-area{
   width:100%;
   height:70%;
   /* overflow-x: scroll; */
-  /* margin-left: 1%; */
+  margin-left: 50%;
 }
 
 footer{
