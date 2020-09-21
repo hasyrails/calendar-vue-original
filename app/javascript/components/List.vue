@@ -2,7 +2,7 @@
   <div class="list">
     <div class="listheader">
       <div class="list-title">{{ title }}</div>
-       <div class="list-counter">total: {{ totalCardInList }}</div>
+       <!-- <div class="list-counter">total: {{ totalCardInList }}</div> -->
       <div class="deletelist" @click="removeList">×</div>
     </div>
     <div class="cards-area">
@@ -10,9 +10,9 @@
         <CardAdd :listIndex="listIndex"></CardAdd>
       </div>
       <draggable
-        group="cards"
+        :options="options"
         :list="cards"
-        @end="$emit('change')">
+        @sort="$emit('change')">
         <Card v-for="(item, index) in cards"
               :body="item.body"
               :key="item.id"
@@ -30,6 +30,18 @@ import Card from '../components/Card'
 import draggable from "vuedraggable";
 
 export default {
+  data(){
+    return{
+      options: {
+        group: {
+          name: 'myGroup',
+          pull: 'clone',
+          put: 'clone'
+        },
+        animation: 200
+      },
+    }
+  },
   props: {
     title: {
       type: String,
@@ -45,9 +57,9 @@ export default {
     }
   },
   computed: {
-    totalCardInList() {
-      return this.cards.length
-    }
+    // totalCardInList() {
+    //   return this.cards.length
+    // }
   },
   components:{
     CardAdd,

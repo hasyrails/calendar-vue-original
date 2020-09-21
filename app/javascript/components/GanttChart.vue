@@ -28,7 +28,9 @@
         <!-- <div>{{day.scheduleNum}}</div> -->
         <!-- <div v-if="day.month!==currentMonth%12&&day.month%12===0" style="font-weight:200;">{{ day.date }}</div> -->
         <!-- <div v-if="day.month!==currentMonth%12&&day.month%12!==0" style="color:#D3D3D3;">{{ day.date }}</div> -->
-        <draggable  v-model="devidedSchedule" @start="drag=true" @end="drag=true" :options="options">
+        <draggable
+        v-model="devidedSchedule"
+        :options="options">
           <Schedule 
           :devidedSchedule="devidedSchedule"
           v-for="devidedSchedule in devidedSchedules"
@@ -67,7 +69,10 @@ export default {
       // count: 0,
       devidedSchedules:[],
       options: {
-        group: "myGroup",
+        group: {
+          name: 'myGroup',
+          filter: '.schedule-card',
+        },
         animation: 200
       },
       itemsB: [
