@@ -10,7 +10,7 @@ import BootstrapVue from 'bootstrap-vue'
 import router from '../router'
 import store from '../store'
 import App from '../app.vue'
-import vuetify from '../vuetify'
+import Vuetify from '../vuetify/index'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const app = new Vue({
     store,
     router,
-    vuetify,
+    Vuetify,
     render: h => h(App)
   }).$mount()
   document.body.appendChild(app.$el)

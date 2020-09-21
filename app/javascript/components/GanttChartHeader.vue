@@ -4,9 +4,10 @@
       <ChevronLeft fillColor="white"  @click="prev" :size="100"></ChevronLeft>
       <div class="calendar-header-date">{{ currentDate }}</div>
       <ChevronRight fillColor="white" @click="next" :size="100"></ChevronRight>
-      <div class="datepicker" style="margin-left:100px;" @mouseover="calendarIconBallonDisplay" @mouseleave="calendarIconBallonNonDisplay">
+      <div class="datepicker" style="margin-left:100px;" @mouseover="calendarIconBallonDisplay" @mouseleave="calendarIconBallonNonDisplay"
+      @click="showDatePicker">
         <div>
-          <Calendar @click="scroll" :size="80"></Calendar>
+          <Calendar :size="80"></Calendar>
         </div>
         <div class="link-description-ballon"
           v-if="calendarIconBallonFlag">
@@ -44,6 +45,7 @@ export default {
     return{
       calendarIconBallonFlag: false,
       homeIconBallonFlag: false,
+      // datePickerFlag: false
     }
   },
   props:{
@@ -56,9 +58,12 @@ export default {
     ChevronLeft,
     ChevronRight,
     Home,
-    Calendar
+    Calendar,
   },
   methods:{
+    showDatePicker(){
+      this.$emit('showDatePicker')
+    },
     calendarIconBallonDisplay(){
       this.calendarIconBallonFlag = true
     },

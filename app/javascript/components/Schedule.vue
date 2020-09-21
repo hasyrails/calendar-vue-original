@@ -24,7 +24,7 @@
   :class="classButton" @click="displayChange"
   :id="'schedule-card-'+devidedSchedule.id"
   >
-    <button class="close-button">
+    <button class="show-detail-button">
       ?
     </button>
     <div class="body" style="display:flex; justify-content:center; padding-top:1px;font-size:20px;">
@@ -110,7 +110,7 @@ export default {
   cursor: pointer;
 }
 
-.close-button {
+.show-detail-button {
   position: absolute;
   top: 6px;
   right: 15px;
