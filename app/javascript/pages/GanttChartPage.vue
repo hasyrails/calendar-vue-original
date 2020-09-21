@@ -8,7 +8,6 @@
       <div class="date-picker">
         <DatePicker
          v-if="datePickerFlag" @closeDatePicker="closeDatePicker"></DatePicker>
-        <!-- <DatePicker></DatePicker> -->
       </div>
       <div class="todo-area">
         <Board></Board>
@@ -72,12 +71,15 @@ p {
 }
 
 .date-picker{
-  width: 100%;
-  height: 100%;
+  width: 30%;
+  height: 30%;
+  /* position: relative; */
+  /* position: absolute; */
   position: fixed;
   top: 30%;
   bottom: 30%;
   left: 10%;
+  z-index:1000;
 }
 
 .todo-area{
