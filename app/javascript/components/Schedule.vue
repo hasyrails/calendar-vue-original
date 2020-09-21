@@ -1,4 +1,5 @@
 <template>
+<div>
   <!-- <div class="card"
   style="flex:1;min-height:10px;width:300px;height:30px;text-align: center;margin-left:15px;"
   :style="'background-color:'+devidedSchedule.color+';'"
@@ -18,7 +19,6 @@
       <!-- <div ><button>Vanish?</button></div> -->
     <!-- </div> -->
   <!-- </div> -->
-
   <div class="card"
   :style="'background-color:'+devidedSchedule.color+';'"
   :class="classButton" @click="displayChange"
@@ -33,6 +33,7 @@
       </div>
     </div>
   </div>
+</div>
 </template>
 
 
@@ -41,6 +42,7 @@ export default {
   name: 'Schedule',
   data(){
     return{
+      displayNum: '',
       icon: 0,
       nonDisplay:false
     }
@@ -69,7 +71,7 @@ export default {
     },
     commitChange(){
       // this.devidedSchedule.commit = !this.devidedSchedule.commit
-    }
+    },
   },
   computed:{
     classButton() {
@@ -80,6 +82,9 @@ export default {
       }
       return classButton
     },
+    displayNum(){
+      return this.displayNum
+    }
   }
 }
 </script>
