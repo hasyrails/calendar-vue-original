@@ -29,11 +29,13 @@
         <!-- <div v-if="day.month!==currentMonth%12&&day.month%12===0" style="font-weight:200;">{{ day.date }}</div> -->
         <!-- <div v-if="day.month!==currentMonth%12&&day.month%12!==0" style="color:#D3D3D3;">{{ day.date }}</div> -->
         <draggable
+        @end="openScheduleSettingModal"
         v-model="devidedSchedule"
-        :options="options">
+       >
           <Schedule 
           :devidedSchedule="devidedSchedule"
           v-for="devidedSchedule in devidedSchedules"
+          :key="devidedSchedule.id"
           v-if="devidedSchedule.date==day.date&&devidedSchedule.month==day.month&&devidedSchedule.year==day.year"
           style="flex:1;min-height:1px;min-width:1px;max-height:100px;max-width:230px;text-align: center;margin-bottom:10px;"
           @commitChange="commitChange"
@@ -133,6 +135,9 @@ export default {
   mounted: function(){
   },
   methods: {
+    openScheduleSettingModal(){
+      this.$emit('openScheduleSettingModal')
+    },
     commitChange(){
       let selectedCardId = Number(event.currentTarget.id.substr(14));
       this.devidedSchedules[selectedCardId].commit = !this.devidedSchedules[selectedCardId].commit;

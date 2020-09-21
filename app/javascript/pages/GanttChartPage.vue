@@ -9,6 +9,9 @@
         <DatePicker
          v-if="datePickerFlag" @closeDatePicker="closeDatePicker"></DatePicker>
       </div>
+      <div>
+        <ScheduleSettingModal v-if="scheduleSettingModalFlag" @openScheduleSettingModal="openScheduleSettingModal"></ScheduleSettingModal>
+      </div>
       <div class="todo-area">
         <Board></Board>
       </div>
@@ -23,18 +26,21 @@
 import Board from '../components/Board'
 import GanttChart from '../components/GanttChart'
 import DatePicker from '../components/DatePicker'
+import ScheduleSettingModal from '../components/ScheduleSettingModal'
 
 export default {
   name: 'Top',
   data(){
     return{
-      datePickerFlag: false
+      datePickerFlag: false,
+      scheduleSettingModalFlag: false
     }
   },
   components: {
     Board,
     GanttChart,
-    DatePicker
+    DatePicker,
+    ScheduleSettingModal
   },
   methods: {
     showDatePicker(){
@@ -42,6 +48,9 @@ export default {
     },
     closeDatePicker(){
       this.datePickerFlag = false
+    },
+    openScheduleSettingModal(){
+      this.scheduleSettingModalFlag = true
     }
   }
   // scrollTry(){
