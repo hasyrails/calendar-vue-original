@@ -19,10 +19,11 @@
         v-for="(day, index) in week"
         :key="index"
         style="width:250px;"
+        :id="day.year+'-'+day.month+'-'+day.date"
         >
         <div v-if="day.month===currentMonth" style="font-weight:200;font-size:50px;">{{day.date}}</div>
         <div v-if="day.month!==currentMonth" style="color:#D3D3D3;font-size:50px;">{{ day.date }}</div>
-        <div>{{day.scheduleNum}}</div>
+        <!-- <div>{{day.scheduleNum}}</div> -->
         <!-- <div v-if="day.month!==currentMonth%12&&day.month%12===0" style="font-weight:200;">{{ day.date }}</div> -->
         <!-- <div v-if="day.month!==currentMonth%12&&day.month%12!==0" style="color:#D3D3D3;">{{ day.date }}</div> -->
         <draggable  v-model="devidedSchedule" @start="drag=true" @end="drag=true" :options="options">
@@ -44,6 +45,7 @@
     <button class="btn btn-primary" @click="confirmCurrentMonth">CofirmCurrentMonth</button>
     <button class="btn btn-primary" @click="showDevidedSchedule">showDevidedSchedule</button>
     <button class="btn btn-primary" @click="confirmStartDate">confirmStartDate</button>
+    <!-- <button class="btn btn-primary" @click="scroll">scroll</button> -->
   </div>
 </div>
 </template>
@@ -321,7 +323,7 @@ export default {
       return this.getCalendar();
     },
     devidedSchedules() {
-      return this.createDevidedSchedules();
+      return this.devidedSchedules;
     },
     scheduleNum() {
       return this.calendar.scheduleNum;

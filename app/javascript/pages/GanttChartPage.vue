@@ -4,6 +4,9 @@
       <div class="calendar-area">
         <GanttChart></GanttChart>
       </div>
+      <div>
+        <!-- <button class="btn btn-primary" @click="scrollTry">Scroll</button> -->
+      </div>
       <div class="todo-area">
         <Board></Board>
       </div>
@@ -23,7 +26,11 @@ export default {
   components: {
     Board,
     GanttChart
-  }
+  },
+  // scrollTry(){
+  //     var target = document.getElementById('calendar-area');
+	//     target.scrollLeft += 50;
+  // },
 }
 </script>
 
