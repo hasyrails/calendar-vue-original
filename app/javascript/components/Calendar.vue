@@ -369,10 +369,11 @@ export default {
 <style scoped>
 .calendar {
   margin-top:5%;
-  margin-left: 5%;
-  margin-right: 10%;
+  margin-left: 15%;
+  margin-right: 15%;
+  /* margin-right: 10%; */
   /* position: fixed; */
-  width:50%;
+  width:40%;
   /* z-index:1; */
 }
 
@@ -389,9 +390,9 @@ export default {
   font-size:25px;
 }
 
-.calendar-date:hover {
+/* .calendar-date:hover {
   background-color: silver;
   border-radius: 4px;
-}
+} */
 
 </style>
