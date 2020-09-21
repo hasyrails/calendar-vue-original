@@ -19,7 +19,7 @@
       <!-- <div ><button>Vanish?</button></div> -->
     <!-- </div> -->
   <!-- </div> -->
-  <div class="card"
+  <div class="card schedule-card"
   :style="'background-color:'+devidedSchedule.color+';'"
   :class="classButton" @click="displayChange"
   :id="'schedule-card-'+devidedSchedule.id"
