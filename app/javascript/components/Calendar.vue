@@ -75,30 +75,24 @@ export default {
       schedules: [
         {
           title: 'Rails',
-          start_yyyymmdd: moment('2020-09-07'),
-          start_date: moment('2020-09-07').date(),
-          end_yyyymmdd: moment('2020-09-10'),
-          end_date: moment('2020-09-010').date(),
+          start: moment('2020-09-07').format('YYYY-MM-DD'),
+          end: moment('2020-09-010').format('YYYY-MM-DD'),
           color: '#FFD5EC',
           // icon: 0,
           commit: true
         },
         {
           title: 'ポートフォリオ',
-          start_yyyymmdd: moment('2020-09-07'),
-          start_date: moment('2020-09-07').date(),
-          end_yyyymmdd: moment('2020-09-10'),
-          end_date: moment('2020-09-10').date(),
+          start: moment('2020-09-07').format('YYYY-MM-DD'),
+          end: moment('2020-09-10').format('YYYY-MM-DD'),
           color: '#CBFFD3',
           // icon: 0,
           commit: true
         },
         {
           title: 'Docker制覇',
-          start_yyyymmdd: moment('2020-09-07'),
-          start_date: moment('2020-09-07').date(),
-          end_yyyymmdd: moment('2020-09-10'),
-          end_date: moment('2020-09-10').date(),
+          start: moment('2020-09-07').format('YYYY-MM-DD'),
+          end: moment('2020-09-10').format('YYYY-MM-DD'),
           color: '#CCFFFF',
           // icon: 0,
           commit: true　
@@ -150,11 +144,11 @@ export default {
         dateArrays.push([]);
       }
       while(i <= this.schedules.length-1){
-        currentDates.push(moment(this.schedules[i].start_yyyymmdd));
+        currentDates.push(moment(this.schedules[i].start));
         i = i + 1;
       }
       while(j <= this.schedules.length-1){
-        stopDates.push(moment(this.schedules[j].end_yyyymmdd));
+        stopDates.push(moment(this.schedules[j].end));
         j = j + 1;
       }
       
