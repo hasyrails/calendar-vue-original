@@ -33,7 +33,7 @@
           :key="devidedSchedule.id"
           v-if="devidedSchedule.date==day.date&&devidedSchedule.month==day.month&&devidedSchedule.year==day.year"
           style="flex:1;min-height:1px;min-width:1px;max-height:100px;max-width:230px;text-align: center;margin-bottom:10px;"
-          @clickScheduleSettingButton="$listeners['clickScheduleSettingButton']"
+          @clickScheduleSettingButton="openScheduleSettingModal"
           >
           </Schedule>
         </draggable>
@@ -43,16 +43,22 @@
   <!-- <div>
     <ScheduleSettingModal v-for="devidedSchedule in devidedSchedules" v-if="scheduleSettingModalFlag" :devideSchedule="devideSchedule"></ScheduleSettingModal>
   </div> -->
-  <!-- <div>
-    <ScheduleSettingModal  v-if="scheduleSettingModalFlag"></ScheduleSettingModal>
-  </div> -->
+  <div>
+    <ScheduleSettingModal  
+    v-if="scheduleSettingModalFlag"
+    :devidedSchedule="devidedSchedule"
+    v-for="devidedSchedule in devidedSchedules"
+    :key="devidedSchedule.id"
+    @clickCloseButton="closeScheduleSettingModal"
+    ></ScheduleSettingModal>
+  </div>
   <div>
     <button class="btn btn-primary" @click="confirmCurrentDate">CofirmCurrentDate</button>
     <button class="btn btn-primary" @click="confirmCalendar">CofirmCalendar</button>
     <button class="btn btn-primary" @click="confirmCurrentMonth">CofirmCurrentMonth</button>
     <button class="btn btn-primary" @click="showDevidedSchedule">showDevidedSchedule</button>
     <button class="btn btn-primary" @click="confirmStartDate">confirmStartDate</button>
-    <!-- <button class="btn btn-primary" @click="scroll">scroll</button> -->
+    <button class="btn btn-primary" @click="openScheduleSettingModal">setting</button>
   </div>
 </div>
 </template>
@@ -64,14 +70,14 @@ import draggable from 'vuedraggable'
 import GanttChartHeader from "../components/GanttChartHeader";
 import Schedule from "../components/Schedule"
 import { mapState } from 'vuex'
-// import ScheduleSettingModal from "../components/ScheduleSettingModal"
+import ScheduleSettingModal from "../components/ScheduleSettingModal"
 
 export default {
   name: 'Calendar',
   data() {
     return {
       // count: 0,
-      // scheduleSettingModalFlag: false,
+      scheduleSettingModalFlag: false,
       // devidedSchedules:[],
       options: {
         group: {
@@ -102,14 +108,17 @@ export default {
     draggable,
     GanttChartHeader,
     Schedule,
-    // ScheduleSettingModal
+    ScheduleSettingModal
   },
   mounted: function(){
   },
   methods: {
     openScheduleSettingModal(){
-      // this.scheduleSettingModalFlag = true
-      console.log('発火')
+      this.scheduleSettingModalFlag = true
+      // console.log('発火')
+    },
+    closeScheduleSettingModal(){
+      this.scheduleSettingModalFlag = false
     },
     commitChange(){
       let selectedCardId = Number(event.currentTarget.id.substr(14));
