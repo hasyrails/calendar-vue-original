@@ -5,8 +5,13 @@
   :class="classButton" 
   :id="'schedule-card-'+devidedSchedule.id"
   >
-    <div @click="openScheduleSettingModal">
-    <ScheduleSettingButton style="margin-left:20px;"></ScheduleSettingButton>
+    <div class="schedule-handle-button">
+      <div @click="openScheduleSettingModal">
+        <ScheduleSettingButton style="margin-left:10px;"></ScheduleSettingButton>
+      </div>
+      <!-- <div>
+        <ScheduleDeleteButton style="margin-left:10px;"></ScheduleDeleteButton>
+      </div> -->
     </div>
     
     <div class="body" style="display:flex; justify-content:center; padding-top:1px;font-size:20px;" @click="displayChange">
@@ -25,6 +30,7 @@
 
 <script>
 import ScheduleSettingButton from '../components/ScheduleSettingButton'
+import ScheduleDeleteButton from '../components/ScheduleDeleteButton'
 
 // import ScheduleSettingModal from '../components/ScheduleSettingModal';
 
@@ -46,6 +52,7 @@ export default {
   },
   components:{
     ScheduleSettingButton,
+    ScheduleDeleteButton,
     // ScheduleSettingModal
   },
   methods: {
@@ -108,9 +115,16 @@ export default {
   background-color: #fff;
   border-radius: 8px;
   width: 230px;
-  cursor: pointer;
   z-index:1;
 }
+
+.schedule-title{
+  cursor: pointer;
+}
+
+/* .schedule-handle-button{
+  display: flex;
+} */
 
 .show-detail-button {
   position: absolute;
