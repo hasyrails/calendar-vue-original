@@ -1,15 +1,23 @@
 <template>
   <div class="card">
-    <button class="close-button" @click="removeCardFromList">
-      ×
-    </button>
     <div class="body">
       {{ body }}
+    </div>
+    <div class="card-handle-button">
+      <div class="show-detail-button">
+        <Cog fillColor="grey" :size="30" @click="openCardSettingModal"></Cog>
+      </div>
+      <div class="close-button" @click="removeCardFromList">
+        <Close fillColor="red" :size="30"></Close>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import Cog from 'vue-material-design-icons/Cog.vue';
+import Close from 'vue-material-design-icons/Close.vue';
+
 export default {
   props: {
     body: {
@@ -25,11 +33,18 @@ export default {
       required: true
     }
   },
+  components:{
+    Cog,
+    Close
+  },
   methods: {
     removeCardFromList() {
       if(confirm('本当にこのカードを削除しますか？')) {
         this.$store.dispatch('lists/removeCardFromList', { cardIndex: this.cardIndex, listIndex: this.listIndex })
       }
+    },
+    openCardSettingModal(body){
+      this.$emit('clickCardSettingButton', this.body)
     }
   },
 }
@@ -37,36 +52,34 @@ export default {
 
 <style scoped>
 .card {
-  margin-top: 10px;
-  margin-bottom: 10px;
-  position: relative;
+  height: 70px;
+  width: 250px;
+  cursor: pointer;
   display: flex;
-  padding: 30px 15px 40px;
-  background-color: #fff;
-  border-radius: 8px;
-  width: 230px;
-  cursor: pointer;
-  z-index: 3;
-}
-
-.close-button {
-  position: absolute;
-  top: 6px;
-  right: 15px;
-  font-size: 22px;
-  cursor: pointer;
-  border-radius: 8px;
-  border-color: red;
-  border-style: solid;
-  background-color: red;
-  color: white;
-  margin: 5px;
 }
 
 .body {
-  text-align: center;
+  position: absolute;
+  top: 15px;
+  right: 10px;
   font-size: 18px;
-  width: 100%;
+  width: 90%;
   word-wrap: break-word;
+  margin-bottom :3%;
+}
+
+.card-handle-button{
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  /* font-size: 22px; */
+  cursor: pointer;
+  border-radius: 8px;
+  /* border-color: red; */
+  /* border-style: solid; */
+  /* background-color: red; */
+  color: white;
+  margin: 5px;
+  width: 10%;
 }
 </style>

@@ -5,13 +5,10 @@
   :class="classButton" 
   :id="'schedule-card-'+devidedSchedule.id"
   >
-    <div class="schedule-handle-button">
-      <div @click="openScheduleSettingModal">
-        <ScheduleSettingButton style="margin-left:10px;"></ScheduleSettingButton>
-      </div>
-      <!-- <div>
-        <ScheduleDeleteButton style="margin-left:10px;"></ScheduleDeleteButton>
-      </div> -->
+    <div class="schedule-handle-button"
+    @click="openScheduleSettingModal"
+    >
+      <ScheduleSettingButton style="margin-left:10px;"></ScheduleSettingButton>
     </div>
     
     <div class="body" style="display:flex; justify-content:center; padding-top:1px;font-size:20px;" @click="displayChange">
@@ -107,14 +104,14 @@ export default {
 .card {
   margin-top: 10px;
   margin-bottom: 10px;
-  position: relative;
+  /* position: relative; */
   display: flex;
   padding: 30px 15px 40px;
   background-color: #fff;
   border-radius: 8px;
   height: 30px;
   width: 270px;
-  z-index:1;
+  /* z-index:1; */
 }
 
 .schedule-title{
@@ -122,23 +119,19 @@ export default {
 }
 
 .schedule-handle-button{
-  cursor: pointer;
-  width:10%;
-  height:100%;
+  width:20%;
+  height:100px;
 }
 
 .show-detail-button {
   position: absolute;
   top: 6px;
   right: 10px;
-  /* font-size: 22px; */
   cursor: pointer;
   border-radius: 8px;
-  /* border-color: red; */
-  /* border-style: solid; */
-  /* background-color: red; */
   color: white;
-  margin: 5px;
+  margin-top: 5px;
+  margin-left: 10px;
   padding-left:5px;
   padding-top:5px;
 }

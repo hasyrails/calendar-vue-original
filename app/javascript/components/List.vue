@@ -19,8 +19,15 @@
               :key="item.id"
               :cardIndex="index"
               :listIndex="listIndex"
+              @clickCardSettingButton="openCardSettingModal"
         ></Card>
       </draggable>
+    </div>
+    <div>
+      <CardSettingModal v-if="cardSettingModalFlag"
+      @clickCardSettingModalCloseButton="closeCardSettingModal"
+      ></CardSettingModal>
+              
     </div>
   </div>
 </template>
@@ -28,6 +35,7 @@
 <script>
 import CardAdd from '../components/CardAdd'
 import Card from '../components/Card'
+import CardSettingModal from '../components/CardSettingModal'
 import draggable from "vuedraggable";
 
 export default {
@@ -41,6 +49,7 @@ export default {
         },
         animation: 200
       },
+      cardSettingModalFlag: false
     }
   },
   props: {
@@ -65,6 +74,7 @@ export default {
   components:{
     CardAdd,
     Card,
+    CardSettingModal,
     draggable
   },
   methods: {
@@ -73,6 +83,12 @@ export default {
         this.$store.dispatch('lists/removelist', { listIndex: this.listIndex })
       }
     },
+    openCardSettingModal(){
+      this.cardSettingModalFlag = true
+    },
+    closeCardSettingModal(){
+      this.cardSettingModalFlag = false
+    }
   }
 }
 </script>
