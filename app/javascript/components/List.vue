@@ -24,7 +24,10 @@
       </draggable>
     </div>
     <div>
-      <CardSettingModal></CardSettingModal>
+      <CardSettingModal v-if="cardSettingModalFlag"
+      @clickCardSettingModalCloseButton="closeCardSettingModal"
+      ></CardSettingModal>
+              
     </div>
   </div>
 </template>
@@ -46,6 +49,7 @@ export default {
         },
         animation: 200
       },
+      cardSettingModalFlag: false
     }
   },
   props: {
@@ -79,6 +83,12 @@ export default {
         this.$store.dispatch('lists/removelist', { listIndex: this.listIndex })
       }
     },
+    openCardSettingModal(){
+      this.cardSettingModalFlag = true
+    },
+    closeCardSettingModal(){
+      this.cardSettingModalFlag = false
+    }
   }
 }
 </script>

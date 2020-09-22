@@ -12,7 +12,7 @@
               <div class="schedule-title" style="font-size:36px; margin-left:10px;">カードの内容</div>
             </div>
           </div>
-          <div @click="closeScheduleSettingModal">
+          <div @click="closeCardSettingModal">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true" style="font-size:36px;">&times;</span>
             </button>
@@ -45,7 +45,7 @@
         </div>
       </div>
       <div class="modal-footer" style="background-color:white;">
-          <div class="btn btn-secondary" @click="closeScheduleSettingModal">閉じる</div>
+          <div class="btn btn-secondary" @click="closeCardSettingModal">閉じる</div>
           <div class="btn btn-primary">編集する</div>
           <div class="btn btn-danger">このToDoカードを削除する</div>
         </div>
@@ -77,8 +77,8 @@ export default {
     closeModal: function(){
       this.showContent = false
     },
-    closeScheduleSettingModal(){
-      this.$emit('clickCloseButton')
+    closeCardSettingModal(){
+      this.$emit('clickCardSettingModalCloseButton')
     },
   }
 }
