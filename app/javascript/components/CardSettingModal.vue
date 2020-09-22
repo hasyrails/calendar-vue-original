@@ -21,10 +21,10 @@
       <div class="modal-body" style="background-color:white;">
         <div class="schedule-item">
           <div class="schedule-item-name">
-            追加日
+            作成日
           </div>
           <div class="schedule-item-content">
-            追加日の情報
+            作成日の情報
           </div>
         </div>
         <div class="schedule-item">
