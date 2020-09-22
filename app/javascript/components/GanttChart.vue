@@ -13,7 +13,7 @@
       <div
         v-for="(week, index) in calendars"
         :key="index"
-        style="display:flex;border-left:5px solid #BAD3FF;height:700px;"
+        style="display:flex;border-left:5px solid #BAD3FF;height:600px;"
       >
         <div
         class="calendar-date"
@@ -40,9 +40,6 @@
       </div>
     </div>
   </div>
-  <!-- <div>
-    <ScheduleSettingModal v-for="devidedSchedule in devidedSchedules" v-if="scheduleSettingModalFlag" :devideSchedule="devideSchedule"></ScheduleSettingModal>
-  </div> -->
   <div>
     <ScheduleSettingModal
     :devidedSchedule="scheduleDetail"
