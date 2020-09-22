@@ -42,19 +42,19 @@ export default {
     List
   },
   computed: {
-    ...mapState([
-      'lists'
-    ]),
+    ...mapState('lists',{
+      lists: 'lists'
+    }),
     totalCardCount() {
       return this.$store.getters.totalCardCount
     }
   },
   methods: {
     movingCard: function() {
-      this.$store.dispatch('updateList', { lists: this.lists })
+      this.$store.dispatch('lists/updateList', { lists: this.lists })
     },
     movingList: function() {
-      this.$store.dispatch('updateList', { lists: this.lists })
+      this.$store.dispatch('lists/updateList', { lists: this.lists })
     }
   }
 }
