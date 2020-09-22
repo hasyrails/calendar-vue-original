@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 
 import lists from '../store/modules/lists'
 import schedules from '../store/modules/schedules'
+import devidedschedules from '../store/modules/devidedschedules'
 import date from '../store/modules/date'
 
 Vue.use(Vuex)
@@ -12,7 +13,7 @@ const store =  new Vuex.Store({
   modules: {
     lists,
     schedules,
-    // devidedSchedules,
+    // devidedschedules,
     date,
   }
 })
