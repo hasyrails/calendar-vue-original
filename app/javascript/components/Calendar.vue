@@ -68,10 +68,9 @@ export default {
           commit: true
         },
       ],
-      currentDate: moment().format('YYYY/MM'),
-      currentYYMMDD: moment().format('YYYY/MM/DD'),
-      currentMonth: moment().month()+1,
-      currentYear: moment().year(),
+      // currentDate: moment().format('YYYY/MM'),
+      // currentMonth: moment().month()+1,
+      // currentYear: moment().year(),
       schedules: [
         {
           title: 'Rails',

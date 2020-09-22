@@ -63,7 +63,7 @@ import draggable from 'vuedraggable'
 
 import GanttChartHeader from "../components/GanttChartHeader";
 import Schedule from "../components/Schedule"
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 // import ScheduleSettingModal from "../components/ScheduleSettingModal"
 
 export default {
@@ -92,10 +92,10 @@ export default {
           commit: true
         },
       ],
-      currentDate: moment().format('YYYY/MM'),
-      currentYYMMDD: moment().format('YYYY/MM/DD'),
-      currentMonth: moment().month()+1,
-      currentYear: moment().year(),
+      // currentDate: moment().format('YYYY/MM'),
+      // currentYYMMDD: moment().format('YYYY/MM/DD'),
+      // currentMonth: moment().month()+1,
+      // currentYear: moment().year(),
     };
   },
   components: {
@@ -135,101 +135,103 @@ export default {
     confirmCurrentDate(){
       console.log(this.currentDate);
     },
-    createDevidedSchedules() {
-      let i = 0;
-      let j = 0;
-      let k = 0;
-      var dateArrays = [];
-      var currentDates = [];
-      var stopDates = [];
-      while(dateArrays.length <= this.schedules.length-1){
-        dateArrays.push([]);
-      }
-      while(i <= this.schedules.length-1){
-        currentDates.push(moment(this.schedules[i].start_yyyymmdd));
-        i = i + 1;
-      }
-      while(j <= this.schedules.length-1){
-        stopDates.push(moment(this.schedules[j].end_yyyymmdd));
-        j = j + 1;
-      }
+    // createDevidedSchedules() {
+    //   let i = 0;
+    //   let j = 0;
+    //   let k = 0;
+    //   var dateArrays = [];
+    //   var currentDates = [];
+    //   var stopDates = [];
+    //   while(dateArrays.length <= this.schedules.length-1){
+    //     dateArrays.push([]);
+    //   }
+    //   while(i <= this.schedules.length-1){
+    //     currentDates.push(moment(this.schedules[i].start));
+    //     i = i + 1;
+    //   }
+    //   while(j <= this.schedules.length-1){
+    //     stopDates.push(moment(this.schedules[j].end));
+    //     j = j + 1;
+    //   }
       
-      while(k <= this.schedules.length -1){
-        while (currentDates[k] <= stopDates[k]) {
-          dateArrays[k].push( moment(currentDates[k]).format('YYYY-MM-DD') )
-          currentDates[k] = moment(currentDates[k]).add(1, 'days');
-        }
-        k = k + 1; 
-      }
+    //   while(k <= this.schedules.length -1){
+    //     while (currentDates[k] <= stopDates[k]) {
+    //       dateArrays[k].push( moment(currentDates[k]).format('YYYY-MM-DD') )
+    //       currentDates[k] = moment(currentDates[k]).add(1, 'days');
+    //     }
+    //     k = k + 1; 
+    //   }
       
-      var devidedSchedules = [];
+    //   var devidedSchedules = [];
 
-      //  for (let i = 0; i < moment(this.currentMonth).daysInMonth(); i++) {
-      //   //カレンダーパネルを更新
-      //   let todoNumber = 0;
-      //   for (let k of Object.keys(this.todoList)) {
-      //     //todoListの情報をカレンダーパネルに追加
-      //     if (this.dates[i]) {
-      //       if (this.todoList[k].date === this.dates[i].date) {
-      //         todoNumber++;
-      //       }
-      //     }
-      //   }
+    //   //  for (let i = 0; i < moment(this.currentMonth).daysInMonth(); i++) {
+    //   //   //カレンダーパネルを更新
+    //   //   let todoNumber = 0;
+    //   //   for (let k of Object.keys(this.todoList)) {
+    //   //     //todoListの情報をカレンダーパネルに追加
+    //   //     if (this.dates[i]) {
+    //   //       if (this.todoList[k].date === this.dates[i].date) {
+    //   //         todoNumber++;
+    //   //       }
+    //   //     }
+    //   //   }
 
-      let m = 0;
-      let n = 0;
-      let idNum = 0;
-      while(m <= dateArrays.length -1){
-        while(n <= dateArrays[m].length -1){
-          idNum = idNum + 1;
-          devidedSchedules.push({
-            id: idNum,
-            title: this.schedules[m].title,
-            color: this.schedules[m].color,
-            icon: this.schedules[m].icon,
-            commit: this.schedules[m].commit,
-            yyyymm: moment(dateArrays[m][n]).format('YYYY/MM'),
-            year: moment(dateArrays[m][n]).year(),
-            month: moment(dateArrays[m][n]).month()+1,
-            date: moment(dateArrays[m][n]).date(),
-          });
-          n = n + 1;
-        }
-        idNum = idNum +1;
-        n = 0;
-        m = m + 1;
-      }
+    //   let m = 0;
+    //   let n = 0;
+    //   let idNum = 0;
+    //   while(m <= dateArrays.length -1){
+    //     while(n <= dateArrays[m].length -1){
+    //       idNum = idNum + 1;
+    //       devidedSchedules.push({
+    //         id: idNum,
+    //         title: this.schedules[m].title,
+    //         color: this.schedules[m].color,
+    //         icon: this.schedules[m].icon,
+    //         commit: this.schedules[m].commit,
+    //         yyyymm: moment(dateArrays[m][n]).format('YYYY/MM'),
+    //         year: moment(dateArrays[m][n]).year(),
+    //         month: moment(dateArrays[m][n]).month()+1,
+    //         date: moment(dateArrays[m][n]).date(),
+    //       });
+    //       n = n + 1;
+    //     }
+    //     idNum = idNum +1;
+    //     n = 0;
+    //     m = m + 1;
+    //   }
       
-      this.devidedSchedules =  devidedSchedules;
-      console.log(this.devidedSchedules)
+    //   this.devidedSchedules =  devidedSchedules;
+    //   console.log(this.devidedSchedules)
       
-    },
+    // },
+    ...mapActions('schedules',[
+      'createDevidedSchedulesAction'
+    ]),
+    ...mapActions('date',[
+      'getStartDateAction'
+    ]),
     showDevidedSchedule() {
       console.log(this.devidedSchedules);
     },
-    getStartDate() {
-      let date = moment(this.currentDate);
-      const youbiNum = date.day();
-      return date.subtract(youbiNum, "days");
-    },
-    getEndDate() {
-      let date = moment(this.currentDate);
-      date.endOf("month");
-      const youbiNum = date.day();
-      return date.add(6 - youbiNum, "days");
-    },
-    confirmMoment(){
-      console.log(this.calendars);
-      console.log(this.calendars[4][6]);
-      console.log(moment(this.currentDate).endOf("month").date()-1);
-    },
+    // getStartDate() {
+    //   this.$store.dispatch('date/getStartDateAction')
+    // },
+    // getEndDate() {
+    //   this.$store.dispatch('date/getEndDateAction')
+    // },
     getCalendar() {
-      let startDate = this.getStartDate();
-      const endDate = this.getEndDate();
+      this.$store.dispatch('date/getStartDateAction');
+      this.$store.dispatch('date/getEndDateAction');
+      let stateDate = this.$store.state.startDate
+      // let startDate = this.getStartDate();
+      const endDate = this.$store.state.endDate
       const weekNumber = Math.ceil(endDate.diff(startDate, "days") / 7);
 
       let calendars = [];
-      this.createDevidedSchedules();
+      // this.createDevidedSchedules();
+      // ...mapActions('schedules',[
+      //   'createDevidedSchedulesAction'
+      // ]),
 
       for (let week = 0; week < 1; week++) {
         let weekRow = [];
@@ -315,11 +317,18 @@ export default {
     },
     ...mapState('schedules',{
       schedules: 'schedules'
+    }),
+    ...mapState('date',{
+      currentDate: 'currentDate',
+      currentMonth: 'currentMonth',
+      currentYear: 'currentYear',
+      startDate: 'startDate',
+      endDate: 'endDate',
     })
   },
   created(){
-    console.log(currentDate);
-    return this.createDevidedSchedules();
+    // console.log(currentDate);
+    // return this.createDevidedSchedules();
     // this.displayScheduleNum();
   },
   watch:{
