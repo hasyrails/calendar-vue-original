@@ -63,6 +63,7 @@ import draggable from 'vuedraggable'
 
 import GanttChartHeader from "../components/GanttChartHeader";
 import Schedule from "../components/Schedule"
+import { mapState } from 'vuex'
 // import ScheduleSettingModal from "../components/ScheduleSettingModal"
 
 export default {
@@ -71,7 +72,7 @@ export default {
     return {
       // count: 0,
       // scheduleSettingModalFlag: false,
-      devidedSchedules:[],
+      // devidedSchedules:[],
       options: {
         group: {
           name: 'myGroup',
@@ -91,42 +92,10 @@ export default {
           commit: true
         },
       ],
-      currentDate: moment().format('YYYY/MM'),
-      currentYYMMDD: moment().format('YYYY/MM/DD'),
-      currentMonth: moment().month()+1,
-      currentYear: moment().year(),
-      schedules: [
-        {
-          title: 'Rails',
-          start_yyyymmdd: moment('2020-09-07'),
-          start_date: moment('2020-09-07').date(),
-          end_yyyymmdd: moment('2020-09-10'),
-          end_date: moment('2020-09-010').date(),
-          color: '#FFD5EC',
-          // icon: 0,
-          commit: true
-        },
-        {
-          title: 'ポートフォリオ',
-          start_yyyymmdd: moment('2020-09-07'),
-          start_date: moment('2020-09-07').date(),
-          end_yyyymmdd: moment('2020-09-10'),
-          end_date: moment('2020-09-10').date(),
-          color: '#CBFFD3',
-          // icon: 0,
-          commit: true
-        },
-        {
-          title: 'Docker制覇',
-          start_yyyymmdd: moment('2020-09-07'),
-          start_date: moment('2020-09-07').date(),
-          end_yyyymmdd: moment('2020-09-10'),
-          end_date: moment('2020-09-10').date(),
-          color: '#CCFFFF',
-          // icon: 0,
-          commit: true　
-        },
-      ],
+      // currentDate: moment().format('YYYY/MM'),
+      // currentYYMMDD: moment().format('YYYY/MM/DD'),
+      // currentMonth: moment().month()+1,
+      // currentYear: moment().year(),
     };
   },
   components: {
@@ -167,73 +136,73 @@ export default {
       console.log(this.currentDate);
     },
     createDevidedSchedules() {
-      let i = 0;
-      let j = 0;
-      let k = 0;
-      var dateArrays = [];
-      var currentDates = [];
-      var stopDates = [];
-      while(dateArrays.length <= this.schedules.length-1){
-        dateArrays.push([]);
-      }
-      while(i <= this.schedules.length-1){
-        currentDates.push(moment(this.schedules[i].start_yyyymmdd));
-        i = i + 1;
-      }
-      while(j <= this.schedules.length-1){
-        stopDates.push(moment(this.schedules[j].end_yyyymmdd));
-        j = j + 1;
-      }
+      // let i = 0;
+      // let j = 0;
+      // let k = 0;
+      // var dateArrays = [];
+      // var currentDates = [];
+      // var stopDates = [];
+      // while(dateArrays.length <= this.schedules.length-1){
+      //   dateArrays.push([]);
+      // }
+      // while(i <= this.schedules.length-1){
+      //   currentDates.push(moment(this.schedules[i].start_yyyymmdd));
+      //   i = i + 1;
+      // }
+      // while(j <= this.schedules.length-1){
+      //   stopDates.push(moment(this.schedules[j].end_yyyymmdd));
+      //   j = j + 1;
+      // }
       
-      while(k <= this.schedules.length -1){
-        while (currentDates[k] <= stopDates[k]) {
-          dateArrays[k].push( moment(currentDates[k]).format('YYYY-MM-DD') )
-          currentDates[k] = moment(currentDates[k]).add(1, 'days');
-        }
-        k = k + 1; 
-      }
-      
-      var devidedSchedules = [];
-
-      //  for (let i = 0; i < moment(this.currentMonth).daysInMonth(); i++) {
-      //   //カレンダーパネルを更新
-      //   let todoNumber = 0;
-      //   for (let k of Object.keys(this.todoList)) {
-      //     //todoListの情報をカレンダーパネルに追加
-      //     if (this.dates[i]) {
-      //       if (this.todoList[k].date === this.dates[i].date) {
-      //         todoNumber++;
-      //       }
-      //     }
+      // while(k <= this.schedules.length -1){
+      //   while (currentDates[k] <= stopDates[k]) {
+      //     dateArrays[k].push( moment(currentDates[k]).format('YYYY-MM-DD') )
+      //     currentDates[k] = moment(currentDates[k]).add(1, 'days');
       //   }
+      //   k = k + 1; 
+      // }
+      
+      // var devidedSchedules = [];
 
-      let m = 0;
-      let n = 0;
-      let idNum = 0;
-      while(m <= dateArrays.length -1){
-        while(n <= dateArrays[m].length -1){
-          idNum = idNum + 1;
-          devidedSchedules.push({
-            id: idNum,
-            title: this.schedules[m].title,
-            color: this.schedules[m].color,
-            icon: this.schedules[m].icon,
-            commit: this.schedules[m].commit,
-            yyyymm: moment(dateArrays[m][n]).format('YYYY/MM'),
-            year: moment(dateArrays[m][n]).year(),
-            month: moment(dateArrays[m][n]).month()+1,
-            date: moment(dateArrays[m][n]).date(),
-          });
-          n = n + 1;
-        }
-        idNum = idNum +1;
-        n = 0;
-        m = m + 1;
-      }
+      // //  for (let i = 0; i < moment(this.currentMonth).daysInMonth(); i++) {
+      // //   //カレンダーパネルを更新
+      // //   let todoNumber = 0;
+      // //   for (let k of Object.keys(this.todoList)) {
+      // //     //todoListの情報をカレンダーパネルに追加
+      // //     if (this.dates[i]) {
+      // //       if (this.todoList[k].date === this.dates[i].date) {
+      // //         todoNumber++;
+      // //       }
+      // //     }
+      // //   }
+
+      // let m = 0;
+      // let n = 0;
+      // let idNum = 0;
+      // while(m <= dateArrays.length -1){
+      //   while(n <= dateArrays[m].length -1){
+      //     idNum = idNum + 1;
+      //     devidedSchedules.push({
+      //       id: idNum,
+      //       title: this.schedules[m].title,
+      //       color: this.schedules[m].color,
+      //       icon: this.schedules[m].icon,
+      //       commit: this.schedules[m].commit,
+      //       yyyymm: moment(dateArrays[m][n]).format('YYYY/MM'),
+      //       year: moment(dateArrays[m][n]).year(),
+      //       month: moment(dateArrays[m][n]).month()+1,
+      //       date: moment(dateArrays[m][n]).date(),
+      //     });
+      //     n = n + 1;
+      //   }
+      //   idNum = idNum +1;
+      //   n = 0;
+      //   m = m + 1;
+      // }
       
-      this.devidedSchedules =  devidedSchedules;
-      console.log(this.devidedSchedules)
-      
+      // this.devidedSchedules =  devidedSchedules;
+      // console.log(this.devidedSchedules)
+      this.$store.dispatch('schedules/createDevidedSchedulesAction')
     },
     showDevidedSchedule() {
       console.log(this.devidedSchedules);
@@ -344,6 +313,15 @@ export default {
     scheduleNum() {
       return this.calendar.scheduleNum;
     },
+    ...mapState('schedules',{
+      schedules: 'schedules',
+      devidedSchedules: 'devidedSchedules',
+    }),
+    ...mapState('date',{
+      currentDate: 'currentDate',
+      currentMonth: 'currentMonth',
+      currentYear: 'currentYear'
+    }),
   },
   created(){
     console.log(currentDate);

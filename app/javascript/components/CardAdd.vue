@@ -52,7 +52,7 @@ export default {
       this.isEditing = false
     },
     addCardToList: function() {
-      this.$store.dispatch('addCardToList', { body: this.body, listIndex: this.listIndex })
+      this.$store.dispatch('lists/addCardToList', { body: this.body, listIndex: this.listIndex })
       this.body = ''
     }
   }

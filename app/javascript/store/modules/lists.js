@@ -1,9 +1,10 @@
-const savedLists = localStorage.getItem('trello-lists')
+// const savedLists = localStorage.getItem('trello-lists')
 
 const lists = {
   namespaced: true,
   state: {
-    lists: savedLists ? JSON.parse(savedLists): [
+    // lists: savedLists ? JSON.parse(savedLists): [
+    lists: [
       {
         title: 'Backlog',
         cards: [
