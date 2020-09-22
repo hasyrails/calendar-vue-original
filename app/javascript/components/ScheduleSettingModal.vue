@@ -2,7 +2,7 @@
   <div class="overlay" v-on:click="clickEvent">
     <div class="content">
       <div class="btn btn-danger close-button" @click="closeScheduleSettingModal">✖︎</div>
-      <!-- <div>{{ devidedSchedule.title }}</div> -->
+      <div style="font-size:32px;">{{ devidedSchedule.title }}</div>
     </div>
   </div>
 </template>
@@ -12,11 +12,11 @@ export default {
   data: {
     // openModal: false
   },
-  // props: {
-  //   devidedSchedule:{
-  //     type: Object,
-  //   }
-  // },
+  props: {
+    devidedSchedule:{
+      type: Object
+    }
+  },
   methods:{
     openModal: function(){
       this.showContent = true
