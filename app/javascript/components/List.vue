@@ -73,9 +73,6 @@ export default {
         this.$store.dispatch('removelist', { listIndex: this.listIndex })
       }
     },
-    openScheduleSettingModal(){
-      this.$emit('openScheduleSettingModal')
-    }
   }
 }
 </script>

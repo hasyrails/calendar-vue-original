@@ -6,7 +6,6 @@
       @prev="prevMonth"
       @next="nextMonth"
       @showDatePicker="$listeners['showDatePicker']"
-      @closeDatePicker="$listeners['closeDatePicker']"
       style="background-color:#8EB8FF;height:200px;">
       </GanttChartHeader>
     </div>
@@ -25,11 +24,7 @@
         >
         <div v-if="day.month===currentMonth" style="font-weight:200;font-size:50px;">{{day.date}}</div>
         <div v-if="day.month!==currentMonth" style="color:#D3D3D3;font-size:50px;">{{ day.date }}</div>
-        <!-- <div>{{day.scheduleNum}}</div> -->
-        <!-- <div v-if="day.month!==currentMonth%12&&day.month%12===0" style="font-weight:200;">{{ day.date }}</div> -->
-        <!-- <div v-if="day.month!==currentMonth%12&&day.month%12!==0" style="color:#D3D3D3;">{{ day.date }}</div> -->
         <draggable
-        @end="openScheduleSettingModal"
         v-model="devidedSchedule"
        >
           <Schedule 
@@ -38,13 +33,19 @@
           :key="devidedSchedule.id"
           v-if="devidedSchedule.date==day.date&&devidedSchedule.month==day.month&&devidedSchedule.year==day.year"
           style="flex:1;min-height:1px;min-width:1px;max-height:100px;max-width:230px;text-align: center;margin-bottom:10px;"
-          @commitChange="commitChange"
+          @clickScheduleSettingButton="$listeners['clickScheduleSettingButton']"
           >
           </Schedule>
         </draggable>
       </div>
     </div>
   </div>
+  <!-- <div>
+    <ScheduleSettingModal v-for="devidedSchedule in devidedSchedules" v-if="scheduleSettingModalFlag" :devideSchedule="devideSchedule"></ScheduleSettingModal>
+  </div> -->
+  <!-- <div>
+    <ScheduleSettingModal  v-if="scheduleSettingModalFlag"></ScheduleSettingModal>
+  </div> -->
   <div>
     <button class="btn btn-primary" @click="confirmCurrentDate">CofirmCurrentDate</button>
     <button class="btn btn-primary" @click="confirmCalendar">CofirmCalendar</button>
@@ -62,13 +63,14 @@ import draggable from 'vuedraggable'
 
 import GanttChartHeader from "../components/GanttChartHeader";
 import Schedule from "../components/Schedule"
-
+// import ScheduleSettingModal from "../components/ScheduleSettingModal"
 
 export default {
   name: 'Calendar',
   data() {
     return {
       // count: 0,
+      // scheduleSettingModalFlag: false,
       devidedSchedules:[],
       options: {
         group: {
@@ -131,12 +133,14 @@ export default {
     draggable,
     GanttChartHeader,
     Schedule,
+    // ScheduleSettingModal
   },
   mounted: function(){
   },
   methods: {
     openScheduleSettingModal(){
-      this.$emit('openScheduleSettingModal')
+      // this.scheduleSettingModalFlag = true
+      console.log('発火')
     },
     commitChange(){
       let selectedCardId = Number(event.currentTarget.id.substr(14));

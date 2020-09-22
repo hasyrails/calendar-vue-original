@@ -1,8 +1,9 @@
 <template>
   <div id="overlay" v-on:click="clickEvent">
     <div id="content">
-      <p><slot></slot></p>
-      <button v-on:click="clickEvent">close</button>
+      <button @click="closeScheduleSettingModal">✖︎</button>
+      <div>hoge</div>
+      <!-- <div>{{ devidedSchedule.title }}</div> -->
     </div>
   </div>
 </template>
@@ -12,12 +13,20 @@ export default {
   data: {
     // openModal: false
   },
+  // props: {
+  //   devidedSchedule:{
+  //     type: Object,
+  //   }
+  // },
   methods:{
     openModal: function(){
       this.showContent = true
     },    
     closeModal: function(){
       this.showContent = false
+    },
+    closeScheduleSettingModal(){
+      this.$emit('clickCloseButton')
     },
   }
 }
@@ -26,8 +35,8 @@ export default {
 
 <style scoped>
 #content{
-  z-index:10;
-  width:50%;
+  z-index:1001;
+  width:80%;
   padding: 1em;
   background:#fff;
 }
@@ -35,10 +44,10 @@ export default {
 #overlay{
   /*　要素を重ねた時の順番　*/
 
-  z-index:1;
+  z-index:1000;
 
   /*　画面全体を覆う設定　*/
-  position:fixed;
+  position: fixed;
   top:0;
   left:0;
   width:100%;

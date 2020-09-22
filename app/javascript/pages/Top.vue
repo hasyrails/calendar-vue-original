@@ -42,7 +42,8 @@ p {
   width:100%;
   height:70%;
   /* overflow-x: scroll; */
-  margin-left: 50%;
+  margin-left: 10%;
+  margin-right : 10%;
 }
 
 footer{

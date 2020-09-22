@@ -1,47 +1,39 @@
 <template>
 <div>
-  <!-- <div class="card"
-  style="flex:1;min-height:10px;width:300px;height:30px;text-align: center;margin-left:15px;"
-  :style="'background-color:'+devidedSchedule.color+';'"
-  :class="classButton" @click="displayChange"
-  > -->
-  <!-- <div 
-  style="flex:1;min-height:10px;width:20px;height:20px;text-align: center;margin-left:30px;border-radius: 10px 10px 10px 10px"
-  :style="'background-color:'+devidedSchedule.color+';'"
-  @click="iconChange"
-  > -->
-    <!-- <div class="card-body" style="display:flex; justify-content:center; padding-top:2px;font-size:20px;"> -->
-      <!-- <div class="schedule-title" style="margin-left:10px;"> -->
-        <!-- {{devidedSchedule.title}} -->
-      <!-- </div> -->
-    <!-- </div> -->
-    <!-- <div> -->
-      <!-- <div ><button>Vanish?</button></div> -->
-    <!-- </div> -->
-  <!-- </div> -->
   <div class="card schedule-card"
   :style="'background-color:'+devidedSchedule.color+';'"
-  :class="classButton" @click="displayChange"
+  :class="classButton" 
   :id="'schedule-card-'+devidedSchedule.id"
   >
-    <button class="show-detail-button">
-      ?
-    </button>
-    <div class="body" style="display:flex; justify-content:center; padding-top:1px;font-size:20px;">
+    <div @click="openScheduleSettingModal">
+    <ScheduleSettingButton style="margin-left:20px;"></ScheduleSettingButton>
+    </div>
+    
+    <div class="body" style="display:flex; justify-content:center; padding-top:1px;font-size:20px;" @click="displayChange">
       <div class="schedule-title" style="margin-left:10px;margin-top:1px;">
         {{devidedSchedule.title}}
       </div>
     </div>
   </div>
+  <!-- <div>
+    <ScheduleSettingModal
+    v-if="scheduleSettingModalFlag"></ScheduleSettingModal>
+  </div> -->
 </div>
 </template>
 
 
 <script>
+import ScheduleSettingButton from '../components/ScheduleSettingButton'
+
+// import ScheduleSettingModal from '../components/ScheduleSettingModal';
+
 export default {
   name: 'Schedule',
   data(){
     return{
+      // scheduleSettingModalFlag: false,
+      // devidedSchedule: {},
       displayNum: '',
       icon: 0,
       nonDisplay:false
@@ -51,6 +43,10 @@ export default {
     devidedSchedule:{
       type: Object,
     }
+  },
+  components:{
+    ScheduleSettingButton,
+    // ScheduleSettingModal
   },
   methods: {
   //   iconChange(){
@@ -71,6 +67,11 @@ export default {
     },
     commitChange(){
       // this.devidedSchedule.commit = !this.devidedSchedule.commit
+    },
+    openScheduleSettingModal(){
+      // this.scheduleSettingModalFlag = true
+      this.$emit('clickScheduleSettingButton')
+      // this.$emit('clickScheduleSettingButton', devidedSchedule)
     },
   },
   computed:{
@@ -114,13 +115,13 @@ export default {
 .show-detail-button {
   position: absolute;
   top: 6px;
-  right: 15px;
-  font-size: 22px;
+  right: 10px;
+  /* font-size: 22px; */
   cursor: pointer;
   border-radius: 8px;
-  border-color: red;
-  border-style: solid;
-  background-color: red;
+  /* border-color: red; */
+  /* border-style: solid; */
+  /* background-color: red; */
   color: white;
   margin: 5px;
 }
