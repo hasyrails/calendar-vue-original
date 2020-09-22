@@ -2,7 +2,7 @@
   <div class="overlay" v-on:click="clickEvent">
     <div class="content">
       <div class="modal-content" >
-        <div class="modal-header" :style="'background-color:'+devidedSchedule.color+';'">
+        <div class="modal-header">
           <div>
             <div style="font-size:25px;">
               リストの名前

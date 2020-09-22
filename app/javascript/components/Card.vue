@@ -5,7 +5,7 @@
     </div>
     <div class="card-handle-button">
       <div class="show-detail-button">
-        <Cog fillColor="grey" :size="30"></Cog>
+        <Cog fillColor="grey" :size="30" @click="openCardSettingModal"></Cog>
       </div>
       <div class="close-button" @click="removeCardFromList">
         <Close fillColor="red" :size="30"></Close>
@@ -42,6 +42,9 @@ export default {
       if(confirm('本当にこのカードを削除しますか？')) {
         this.$store.dispatch('lists/removeCardFromList', { cardIndex: this.cardIndex, listIndex: this.listIndex })
       }
+    },
+    openCardSettingModal(body){
+      this.$emit('clickCardSettingButton', this.body)
     }
   },
 }

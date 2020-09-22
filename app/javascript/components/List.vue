@@ -19,8 +19,12 @@
               :key="item.id"
               :cardIndex="index"
               :listIndex="listIndex"
+              @clickCardSettingButton="openCardSettingModal"
         ></Card>
       </draggable>
+    </div>
+    <div>
+      <CardSettingModal></CardSettingModal>
     </div>
   </div>
 </template>
@@ -28,6 +32,7 @@
 <script>
 import CardAdd from '../components/CardAdd'
 import Card from '../components/Card'
+import CardSettingModal from '../components/CardSettingModal'
 import draggable from "vuedraggable";
 
 export default {
@@ -65,6 +70,7 @@ export default {
   components:{
     CardAdd,
     Card,
+    CardSettingModal,
     draggable
   },
   methods: {
