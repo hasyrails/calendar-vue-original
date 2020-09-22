@@ -92,10 +92,10 @@ export default {
           commit: true
         },
       ],
-      currentDate: moment().format('YYYY/MM'),
-      currentYYMMDD: moment().format('YYYY/MM/DD'),
-      currentMonth: moment().month()+1,
-      currentYear: moment().year(),
+      // currentDate: moment().format('YYYY/MM'),
+      // currentYYMMDD: moment().format('YYYY/MM/DD'),
+      // currentMonth: moment().month()+1,
+      // currentYear: moment().year(),
     };
   },
   components: {
@@ -315,7 +315,12 @@ export default {
     },
     ...mapState('schedules',{
       schedules: 'schedules'
-    })
+    }),
+    ...mapState('date',{
+      currentDate: 'currentDate',
+      currentMonth: 'currentMonth',
+      currentYear: 'currentYear'
+    }),
   },
   created(){
     console.log(currentDate);

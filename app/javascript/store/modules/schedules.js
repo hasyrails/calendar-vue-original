@@ -1,7 +1,5 @@
 import moment from 'moment'
 
-const savedSchedules = localStorage.getItem('schedules')
-
 const schedules = {
   namespaced: true,
     state: {
