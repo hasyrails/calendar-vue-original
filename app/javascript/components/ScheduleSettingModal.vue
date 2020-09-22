@@ -1,13 +1,64 @@
 <template>
   <div class="overlay" v-on:click="clickEvent">
     <div class="content">
-      <div class="btn btn-danger close-button" @click="closeScheduleSettingModal">✖︎</div>
-      <div style="font-size:32px;">{{ devidedSchedule.title }}</div>
+      <!-- <div class="btn btn-danger close-button" @click="closeScheduleSettingModal">✖︎</div>
+      <div style="font-size:32px;">{{ devidedSchedule.title }}</div> -->
+  <div class="modal-content" >
+      <div class="modal-header" :style="'background-color:'+devidedSchedule.color+';'">
+        <div>
+          <div style="font-size:25px;">
+            {{ devidedSchedule.yyyymmdd }}
+          </div>
+          <div class="schedule-title">
+            <div class="schedule-tag" style="margin-top:10px;"><Tag :size="36"></Tag></div>
+            <div class="schedule-title" style="font-size:36px; margin-left:10px;">{{ devidedSchedule.title }}</div>
+          </div>
+        </div>
+        <div @click="closeScheduleSettingModal">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true" style="font-size:36px;">&times;</span>
+          </button>
+        </div>
+      </div>
+    <div class="modal-body" style="background-color:white;">
+      <div class="schedule-item">
+        <div class="schedule-item-name">期間</div>
+        <div class="schedule-item-content">
+          <div class="schedule-date">
+            <div class="schedule-start-date">
+              <div>始める日</div>
+              <div>{{devidedSchedule.start}}</div>
+            </div>
+            <div>〜</div>
+            <div class="schedule-end-date">
+              <div>終わらせる日</div>
+              <div>{{devidedSchedule.end}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="schedule-item">
+        <div class="schedule-item-name">カードの色</div>
+        <div class="schedule-item-content">
+          <div class="schedule-color">
+            <div :style="'background-color:'+devidedSchedule.color+';'" style="width:50px; height:50px;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer" style="background-color:white;">
+        <div class="btn btn-secondary" @click="closeScheduleSettingModal">閉じる</div>
+        <div class="btn btn-primary">編集する</div>
+        <div class="btn btn-danger">この予定を削除する</div>
+      </div>
+    </div>
     </div>
   </div>
 </template>
 
 <script>
+import Tag from 'vue-material-design-icons/Tag.vue';
+
 export default {
   data: {
     // openModal: false
@@ -16,6 +67,9 @@ export default {
     devidedSchedule:{
       type: Object
     }
+  },
+  components:{
+    Tag
   },
   methods:{
     openModal: function(){
@@ -63,5 +117,45 @@ export default {
 
 .close-button{
   cursor: pointer;
+}
+
+.schedule-title{
+  display: flex;
+}
+.modal-body{
+  margin-left: 30%;
+}
+
+.schedule-item{
+  display: flex;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.schedule-item-name{
+  font-size:36px;
+  text-decoration: underline;
+  width:200px;
+  text-align: center;
+}
+.schedule-item-content{
+  margin-left: 30px;
+  font-size:24px;
+}
+
+.schedule-date{
+  display: flex;
+}
+.schedule-start-date{
+  text-align: center;
+  margin-left: 10px;
+  margin-right: 20px;
+}
+.schedule-end-date{
+  text-align: center;
+  margin-left: 20px;
+  margin-right: 10px;
+}
+.schedule-color{
+  margin-left: 130px;
 }
 </style>

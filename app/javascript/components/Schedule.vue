@@ -76,9 +76,7 @@ export default {
       // this.devidedSchedule.commit = !this.devidedSchedule.commit
     },
     openScheduleSettingModal(devidedSchedule){
-      // this.scheduleSettingModalFlag = true
       this.$emit('clickScheduleSettingButton', this.devidedSchedule)
-      // this.$emit('clickScheduleSettingButton', devidedSchedule)
     },
   },
   computed:{
@@ -123,9 +121,11 @@ export default {
   cursor: pointer;
 }
 
-/* .schedule-handle-button{
-  display: flex;
-} */
+.schedule-handle-button{
+  cursor: pointer;
+  width:10%;
+  height:100%;
+}
 
 .show-detail-button {
   position: absolute;
@@ -139,9 +139,14 @@ export default {
   /* background-color: red; */
   color: white;
   margin: 5px;
+  padding-left:5px;
+  padding-top:5px;
 }
 
 .body {
+  position: absolute;
+  top: 15px;
+  right: 10px;
   font-size: 18px;
   width: 100%;
   word-wrap: break-word;

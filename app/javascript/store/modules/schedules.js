@@ -72,11 +72,14 @@ const schedules = {
           idNum = idNum + 1;
           state.devidedSchedules.push({
             id: idNum,
+            scheduleNum: state.schedules[m].id,
             title: state.schedules[m].title,
+            start: state.schedules[m].start,
+            end: state.schedules[m].end,
             color: state.schedules[m].color,
             icon: state.schedules[m].icon,
             commit: state.schedules[m].commit,
-            yyyymm: moment(dateArrays[m][n]).format('YYYY/MM'),
+            yyyymmdd: moment(dateArrays[m][n]).format('YYYY/MM/DD'),
             year: moment(dateArrays[m][n]).year(),
             month: moment(dateArrays[m][n]).month()+1,
             date: moment(dateArrays[m][n]).date(),
