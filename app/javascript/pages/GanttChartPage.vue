@@ -2,18 +2,27 @@
   <div>
     <div class="app-area">
       <div class="calendar-area">
-        <GanttChart  @showDatePicker="showDatePicker"
+        <GanttChart  
+        @showDatePicker="showDatePicker"
+        @clickScheduleSettingButton="openScheduleSettingModal"
         ></GanttChart>
       </div>
       <div class="date-picker">
         <DatePicker
          v-if="datePickerFlag" @closeDatePicker="closeDatePicker"></DatePicker>
       </div>
+      <div>
+        <ScheduleSettingModal
+        v-if="scheduleSettingModalFlag"
+        @clickCloseButton="closeScheduleSettingModal"
+        ></ScheduleSettingModal>
+      </div>
       <div class="todo-area">
         <Board></Board>
       </div>
       <div class="footer-area">
         <footer>(C)footer</footer>
+        <!-- <div class="btn btn-primary" @click="openScheduleSettingModal"></div> -->
       </div>
     </div>
   </div>
@@ -23,18 +32,21 @@
 import Board from '../components/Board'
 import GanttChart from '../components/GanttChart'
 import DatePicker from '../components/DatePicker'
+import ScheduleSettingModal from '../components/ScheduleSettingModal'
 
 export default {
   name: 'Top',
   data(){
     return{
-      datePickerFlag: false
+      datePickerFlag: false,
+      scheduleSettingModalFlag: false
     }
   },
   components: {
     Board,
     GanttChart,
-    DatePicker
+    DatePicker,
+    ScheduleSettingModal
   },
   methods: {
     showDatePicker(){
@@ -42,12 +54,14 @@ export default {
     },
     closeDatePicker(){
       this.datePickerFlag = false
+    },
+    openScheduleSettingModal(){
+      this.scheduleSettingModalFlag = true
+    },
+    closeScheduleSettingModal(){
+      this.scheduleSettingModalFlag = false
     }
   }
-  // scrollTry(){
-  //     var target = document.getElementById('calendar-area');
-	//     target.scrollLeft += 50;
-  // },
 }
 </script>
 

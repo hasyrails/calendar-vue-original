@@ -33,7 +33,7 @@
         </div>
       </div>
     </div>
-    </div>z
+    </div>
   </div>
   </div>
 </template>

@@ -12,7 +12,8 @@
       <draggable
         :options="options"
         :list="cards"
-        @sort="$emit('change')">
+        @sort="$emit('change')"
+      >
         <Card v-for="(item, index) in cards"
               :body="item.body"
               :key="item.id"
@@ -36,7 +37,7 @@ export default {
         group: {
           name: 'myGroup',
           pull: 'clone',
-          put: 'clone'
+          // put: 'clone'
         },
         animation: 200
       },

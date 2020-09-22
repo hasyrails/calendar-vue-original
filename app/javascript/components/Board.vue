@@ -62,20 +62,20 @@ export default {
 
 <style scoped>
 
-.slide {
-  animation: infinity-loop 10s infinite linear 1s both; /* 無限ループアニメーションの設定 */
+/* .slide {
+  animation: infinity-loop 15s infinite linear 1s both; 
   position: relative;
   z-index: 1;
-}
+} */
 
-@keyframes infinity-loop {
+/* @keyframes infinity-loop {
   from {
     transform: translateX(0vw);
   }
   to {
-    transform: translateX(+3vw);
+    transform: translateX(100vw);
   }
-}
+} */
 
 .todo-board{
   display: flex;
