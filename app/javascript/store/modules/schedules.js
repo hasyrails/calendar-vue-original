@@ -1,10 +1,9 @@
-// const savedLists = localStorage.getItem('trello-lists')
+const savedSchedules = localStorage.getItem('schedules')
 
-const lists = {
+const schedules = {
   namespaced: true,
-  state: {
-    // lists: savedLists ? JSON.parse(savedLists): [
-    lists: [
+    state: {
+    schedules: savedSchedules ? JSON.parse(savedSchedules): [
       {
         title: 'Backlog',
         cards: [
@@ -65,6 +64,7 @@ const lists = {
     //   return count
     // },
   },
+
 }
 
-export default lists;
+export default schedules;

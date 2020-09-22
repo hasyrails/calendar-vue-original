@@ -36,7 +36,7 @@ export default {
       options: {
         group: {
           name: 'myGroup',
-          pull: 'clone',
+          // pull: 'clone',
           // put: 'clone'
         },
         animation: 200
@@ -70,7 +70,7 @@ export default {
   methods: {
     removeList: function() {
       if(confirm('本当にこのリストを削除しますか？')){
-        this.$store.dispatch('removelist', { listIndex: this.listIndex })
+        this.$store.dispatch('lists/removelist', { listIndex: this.listIndex })
       }
     },
   }
