@@ -104,14 +104,14 @@ export default {
 .card {
   margin-top: 10px;
   margin-bottom: 10px;
-  position: relative;
+  /* position: relative; */
   display: flex;
   padding: 30px 15px 40px;
   background-color: #fff;
   border-radius: 8px;
   height: 30px;
   width: 270px;
-  z-index:1;
+  /* z-index:1; */
 }
 
 .schedule-title{
