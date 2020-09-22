@@ -30,7 +30,12 @@ const schedules = {
           commit: true　
         },
     ],
-    devidedSchedules:[]
+    devidedSchedules:[
+      {
+        id: '',
+        title: ''
+      }
+    ]
   },
   mutations: {
     createDevidedSchedules(state){

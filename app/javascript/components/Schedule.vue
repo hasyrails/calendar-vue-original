@@ -75,9 +75,9 @@ export default {
     commitChange(){
       // this.devidedSchedule.commit = !this.devidedSchedule.commit
     },
-    openScheduleSettingModal(){
+    openScheduleSettingModal(devidedSchedule){
       // this.scheduleSettingModalFlag = true
-      this.$emit('clickScheduleSettingButton')
+      this.$emit('clickScheduleSettingButton', this.devidedSchedule)
       // this.$emit('clickScheduleSettingButton', devidedSchedule)
     },
   },
@@ -114,7 +114,8 @@ export default {
   padding: 30px 15px 40px;
   background-color: #fff;
   border-radius: 8px;
-  width: 230px;
+  height: 30px;
+  width: 270px;
   z-index:1;
 }
 
@@ -144,5 +145,6 @@ export default {
   font-size: 18px;
   width: 100%;
   word-wrap: break-word;
+  margin-bottom :3%;
 }
 </style>
