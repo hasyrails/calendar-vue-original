@@ -139,19 +139,13 @@ export default {
     closeScheduleEditModal(){
       this.scheduleEditModalFlag = false
     },
-    updateSchedule(schedule){
-      // const index = this.devidedSchedules.findIndex(devidedSchedule => {
-      //   return devidedSchedule.id == schedule.id
-      // })
-      // this.devidedSchedules.splice(index, 1, schedule)
-      // return this.devidedSchedules
-      // console.log(schedule)
-      // console.log(this.devidedSchedules)
-      // this.scheduleEditModalFlag = false
-
-      // this.devidedSchedules.splice(1)
-      // this.$store.state.schedules.splice(2)
-      this.schedules.splice(2)
+    updateSchedule(updateSchedule){
+      const index = this.schedules.findIndex(schedule => {
+        return schedule.id == updateSchedule.id
+      })
+      this.schedules = this.schedules.splice(index, 1, updateSchedule)
+      return this.schedules
+      this.scheduleEditModalFlag = false
     },
     commitChange(){
       let selectedCardId = Number(event.currentTarget.id.substr(14));
