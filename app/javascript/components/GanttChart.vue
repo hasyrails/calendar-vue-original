@@ -56,6 +56,8 @@
     :devidedSchedule="editSchedule"
     :key="devidedSchedule.id"
     v-if="scheduleEditModalFlag"
+    @clickScheduleUpdateButton="updateSchedule"
+    @clickScheduleEditModalCloseButton="closeScheduleEditModal"
     ></ScheduleEditModal>
   </div>
   <div>
@@ -122,17 +124,32 @@ export default {
   mounted: function(){
   },
   methods: {
-    openScheduleSettingModal(devidedSchedule){
+    openScheduleSettingModal(schedule){
       this.scheduleSettingModalFlag = true
-      this.scheduleDetail = devidedSchedule
+      this.scheduleDetail = schedule
     },
     closeScheduleSettingModal(){
       this.scheduleSettingModalFlag = false
     },
-    openScheduleEditModal(devidedSchedule){
+    openScheduleEditModal(schedule){
       this.closeScheduleSettingModal()
       this.scheduleEditModalFlag = true
-      this.editSchedule = devidedSchedule
+      this.editSchedule = schedule
+    },
+    closeScheduleEditModal(){
+      this.scheduleEditModalFlag = false
+    },
+    updateSchedule(schedule){
+      // const index = this.devidedSchedules.findIndex(devidedSchedule => {
+      //   return devidedSchedule.id == schedule.id
+      // })
+      // this.devidedSchedules.splice(index, 1, schedule)
+      // return this.devidedSchedules
+      // console.log(schedule)
+      // console.log(this.devidedSchedules)
+      // this.scheduleEditModalFlag = false
+
+      this.devidedSchedules.splice(1)
     },
     commitChange(){
       let selectedCardId = Number(event.currentTarget.id.substr(14));

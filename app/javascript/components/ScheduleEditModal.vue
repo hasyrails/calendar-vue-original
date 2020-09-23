@@ -19,38 +19,25 @@
         </div>
       </div>
     <div class="modal-body" style="background-color:white;">
-      <div class="schedule-item">
-        <div class="schedule-item-name">期間</div>
-        <!-- <div class="schedule-item-content">
-          <div class="schedule-date">
-            <div class="schedule-start-date">
-              <div>始める日</div>
-              <div>{{devidedSchedule.start}}</div>
-            </div>
-            <div>〜</div>
-            <div class="schedule-end-date">
-              <div>終わらせる日</div>
-              <div>{{devidedSchedule.end}}</div>
-            </div>
-          </div>
-        </div> -->
+      <div class="form-group">
+        <label for="title">タイトル</label>
+        <input
+        v-model="devidedSchedule.title"
+        type="text"
+        class="form-control"
+        >
       </div>
-      <div class="schedule-item">
-        <div class="schedule-item-name">カードの色</div>
-        <div class="schedule-item-content">
-          <div class="schedule-color">
-            <div :style="'background-color:'+devidedSchedule.color+';'" style="width:50px; height:50px;"></div>
-          </div>
-        </div>
-      </div>
+      <!-- 色選択フォーム -->
     </div>
     <div class="modal-footer" style="background-color:white;">
         <div class="btn btn-primary"
-        @click="openScheduleEditModal"
+        @click="updateSchedule"
         >
           保存する
         </div>
-        <div class="btn btn-danger">編集をやめる</div>
+        <div class="btn btn-danger"
+        @click="closeScheduleEditModal"
+        >編集をやめる</div>
       </div>
     </div>
     </div>
@@ -66,7 +53,8 @@ export default {
   },
   props: {
     devidedSchedule:{
-      type: Object
+      type: Object,
+      default: () => {},
     }
   },
   components:{
@@ -82,8 +70,11 @@ export default {
     closeScheduleSettingModal(){
       this.$emit('clickCloseButton')
     },
-    openScheduleEditModal(){
-      this.$emit('clickScheduleEditButton')
+    updateSchedule(){
+      this.$emit('clickScheduleUpdateButton', this.devidedSchedule)
+    },
+    closeScheduleEditModal(){
+      this.$emit('clickScheduleEditModalCloseButton')
     },
   }
 }

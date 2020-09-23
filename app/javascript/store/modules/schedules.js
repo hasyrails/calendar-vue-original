@@ -90,11 +90,20 @@ const schedules = {
         n = 0;
         m = m + 1;
       }
-    }
+    },
+    updateSchedule(state, updateSchedule){
+      const index = state.devidedSchedules.findIndex(devidedSchedule => {
+        return devidedSchedule.id == updateSchedule.id
+      })
+        state.devidedSchedules.splice(index, 1, updateSchedule)
+    },
   },
   actions: {
     createDevidedSchedulesAction(context){
         context.commit('createDevidedSchedules')
+    },
+    updateScheduleAction(context, devidedSchedule){
+      context.commit('updateSchedule', devidedSchedule)
     }
   },
   getters: {
