@@ -149,7 +149,9 @@ export default {
       // console.log(this.devidedSchedules)
       // this.scheduleEditModalFlag = false
 
-      this.devidedSchedules.splice(1)
+      // this.devidedSchedules.splice(1)
+      // this.$store.state.schedules.splice(2)
+      this.schedules.splice(2)
     },
     commitChange(){
       let selectedCardId = Number(event.currentTarget.id.substr(14));
@@ -281,9 +283,6 @@ export default {
     calendars() {
       return this.getCalendar();
     },
-    devidedSchedules() {
-      return this.devidedSchedules;
-    },
     scheduleNum() {
       return this.calendar.scheduleNum;
     },
@@ -299,7 +298,7 @@ export default {
   },
   created(){
     console.log(currentDate);
-    return this.createDevidedSchedules();
+    // return this.createDevidedSchedules();
     // this.displayScheduleNum();
   },
   watch:{
