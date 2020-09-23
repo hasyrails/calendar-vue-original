@@ -47,7 +47,16 @@
     :key="devidedSchedule.id"
     v-if="scheduleSettingModalFlag"
     @clickCloseButton="closeScheduleSettingModal"
+    @clickScheduleEditButton="openScheduleEditModal(scheduleDetail)"
     ></ScheduleSettingModal>
+  </div>
+  <div>
+    <ScheduleEditModal
+    v-for="devidedSchedule in devidedSchedules"
+    :devidedSchedule="editSchedule"
+    :key="devidedSchedule.id"
+    v-if="scheduleEditModalFlag"
+    ></ScheduleEditModal>
   </div>
   <div>
     <button class="btn btn-primary" @click="confirmCurrentDate">CofirmCurrentDate</button>
@@ -68,6 +77,7 @@ import GanttChartHeader from "../components/GanttChartHeader";
 import Schedule from "../components/Schedule"
 import { mapState } from 'vuex'
 import ScheduleSettingModal from "../components/ScheduleSettingModal"
+import ScheduleEditModal from "../components/ScheduleEditModal"
 
 export default {
   name: 'Calendar',
@@ -75,6 +85,7 @@ export default {
     return {
       // count: 0,
       scheduleSettingModalFlag: false,
+      scheduleEditModalFlag: false,
       // devidedSchedules:[],
       options: {
         group: {
@@ -105,7 +116,8 @@ export default {
     draggable,
     GanttChartHeader,
     Schedule,
-    ScheduleSettingModal
+    ScheduleSettingModal,
+    ScheduleEditModal,
   },
   mounted: function(){
   },
@@ -116,6 +128,11 @@ export default {
     },
     closeScheduleSettingModal(){
       this.scheduleSettingModalFlag = false
+    },
+    openScheduleEditModal(devidedSchedule){
+      this.closeScheduleSettingModal()
+      this.scheduleEditModalFlag = true
+      this.editSchedule = devidedSchedule
     },
     commitChange(){
       let selectedCardId = Number(event.currentTarget.id.substr(14));
