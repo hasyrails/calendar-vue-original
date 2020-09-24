@@ -45,6 +45,9 @@ export default {
   props: {
     devidedSchedule:{
       type: Object,
+    },
+    schedule:{
+      type: Object,
     }
   },
   components:{
@@ -73,7 +76,7 @@ export default {
       // this.devidedSchedule.commit = !this.devidedSchedule.commit
     },
     openScheduleSettingModal(devidedSchedule){
-      this.$emit('clickScheduleSettingButton', this.devidedSchedule)
+      this.$emit('clickScheduleSettingButton', this.schedule)
     },
   },
   computed:{

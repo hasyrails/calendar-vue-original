@@ -28,7 +28,7 @@
         v-model="devidedSchedule"
        >
           <Schedule 
-          :devidedSchedule="devidedSchedule"
+          :schedule="schedule"
           v-for="devidedSchedule in devidedSchedules"
           :key="devidedSchedule.id"
           v-if="devidedSchedule.date==day.date&&devidedSchedule.month==day.month&&devidedSchedule.year==day.year"
@@ -42,7 +42,7 @@
   </div>
   <div>
     <ScheduleSettingModal
-    :devidedSchedule="scheduleDetail"
+    :schedule="scheduleDetail"
     v-for="devidedSchedule in devidedSchedules"
     :key="devidedSchedule.id"
     v-if="scheduleSettingModalFlag"
@@ -52,9 +52,9 @@
   </div>
   <div>
     <ScheduleEditModal
-    v-for="devidedSchedule in devidedSchedules"
-    :devidedSchedule="editSchedule"
-    :key="devidedSchedule.id"
+    v-for="schedule in schedules"
+    :schedule="editSchedule"
+    :key="schedule.id"
     v-if="scheduleEditModalFlag"
     @clickScheduleUpdateButton="updateSchedule"
     @clickScheduleEditModalCloseButton="closeScheduleEditModal"

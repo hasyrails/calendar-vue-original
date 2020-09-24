@@ -2,14 +2,14 @@
   <div class="overlay" v-on:click="clickEvent">
     <div class="content">
       <div class="modal-content" >
-      <div class="modal-header" :style="'background-color:'+devidedSchedule.color+';'">
+      <div class="modal-header" :style="'background-color:'+schedule.color+';'">
         <div>
           <div style="font-size:25px;">
             <!-- {{ devidedSchedule.yyyymmdd }} -->
           </div>
           <div class="schedule-title">
             <div class="schedule-tag" style="margin-top:10px;"><Tag :size="36"></Tag></div>
-            <div class="schedule-title" style="font-size:36px; margin-left:10px;">{{ devidedSchedule.title }}[編集]</div>
+            <div class="schedule-title" style="font-size:36px; margin-left:10px;">{{ schedule.title }}[編集]</div>
           </div>
         </div>
         <div @click="closeScheduleSettingModal">
@@ -22,7 +22,7 @@
       <div class="form-group">
         <label for="title">タイトル</label>
         <input
-        v-model="devidedSchedule.title"
+        v-model="schedule.title"
         type="text"
         class="form-control"
         >
@@ -52,7 +52,7 @@ export default {
     // openModal: false
   },
   props: {
-    devidedSchedule:{
+    schedule:{
       type: Object,
       default: () => {},
     }
@@ -71,7 +71,7 @@ export default {
       this.$emit('clickCloseButton')
     },
     updateSchedule(){
-      this.$emit('clickScheduleUpdateButton', this.devidedSchedule)
+      this.$emit('clickScheduleUpdateButton', this.schedule)
     },
     closeScheduleEditModal(){
       this.$emit('clickScheduleEditModalCloseButton')
