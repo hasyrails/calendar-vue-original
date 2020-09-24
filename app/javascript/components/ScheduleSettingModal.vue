@@ -3,18 +3,15 @@
     <div class="content">
       <!-- <div class="btn btn-danger close-button" @click="closeScheduleSettingModal">✖︎</div>
       <div style="font-size:32px;">{{ devidedSchedule.title }}</div> -->
-      <div class="btn btn-danger close-button" @click="closeScheduleSettingModal">✖︎</div>
-      <div style="font-size:32px;">{{ schedule.title }}</div>
   <div class="modal-content" >
-      <!-- <div class="modal-header" :style="'background-color:'+schedule.color+';'"> -->
-      <div class="modal-header">
+      <div class="modal-header" :style="'background-color:'+devidedSchedule.color+';'">
         <div>
           <div style="font-size:25px;">
-            <!-- {{ devidedSchedule.yyyymmdd }} -->
+            {{ devidedSchedule.yyyymmdd }}
           </div>
           <div class="schedule-title">
             <div class="schedule-tag" style="margin-top:10px;"><Tag :size="36"></Tag></div>
-            <div class="schedule-title" style="font-size:36px; margin-left:10px;">{{ schedule.title }}</div>
+            <div class="schedule-title" style="font-size:36px; margin-left:10px;">{{ devidedSchedule.title }}</div>
           </div>
         </div>
         <div @click="closeScheduleSettingModal">
@@ -30,12 +27,12 @@
           <div class="schedule-date">
             <div class="schedule-start-date">
               <div>始める日</div>
-              <div>{{schedule.start}}</div>
+              <div>{{devidedSchedule.start}}</div>
             </div>
             <div>〜</div>
             <div class="schedule-end-date">
               <div>終わらせる日</div>
-              <div>{{schedule.end}}</div>
+              <div>{{devidedSchedule.end}}</div>
             </div>
           </div>
         </div>
@@ -44,7 +41,7 @@
         <div class="schedule-item-name">カードの色</div>
         <div class="schedule-item-content">
           <div class="schedule-color">
-            <!-- <div :style="'background-color:'+schedule.color+';'" style="width:50px; height:50px;"></div> -->
+            <div :style="'background-color:'+devidedSchedule.color+';'" style="width:50px; height:50px;"></div>
           </div>
         </div>
       </div>
@@ -65,14 +62,13 @@
 
 <script>
 import Tag from 'vue-material-design-icons/Tag.vue';
-// import { mapState } from 'vuex'
 
 export default {
   data: {
     // openModal: false
   },
   props: {
-    schedule:{
+    devidedSchedule:{
       type: Object
     }
   },
@@ -92,13 +88,7 @@ export default {
     openScheduleEditModal(){
       this.$emit('clickScheduleEditButton')
     },
-  },
-  // computed: {
-  //   ...mapState('schedules',{
-  //     schedules: 'schedules',
-  //     // devidedSchedules: 'devidedSchedules',
-  //   }),
-  // }
+  }
 }
 
 </script>
