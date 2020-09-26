@@ -1,15 +1,15 @@
 <template>
   <div class="overlay" v-on:click="clickEvent">
     <div class="content">
-    <div class="modal-content" >
+      <div class="modal-content" >
       <div class="modal-header" :style="'background-color:'+schedule.color+';'">
         <div>
           <div style="font-size:25px;">
-            {{ schedule.yyyymmdd }}
+            <!-- {{ devidedSchedule.yyyymmdd }} -->
           </div>
           <div class="schedule-title">
             <div class="schedule-tag" style="margin-top:10px;"><Tag :size="36"></Tag></div>
-            <div class="schedule-title" style="font-size:36px; margin-left:10px;">{{ schedule.title }}</div>
+            <div class="schedule-title" style="font-size:36px; margin-left:10px;">{{ schedule.title }}[編集]</div>
           </div>
         </div>
         <div @click="closeScheduleSettingModal">
@@ -19,39 +19,25 @@
         </div>
       </div>
     <div class="modal-body" style="background-color:white;">
-      <div class="schedule-item">
-        <div class="schedule-item-name">期間</div>
-        <div class="schedule-item-content">
-          <div class="schedule-date">
-            <div class="schedule-start-date">
-              <div>始める日</div>
-              <div>{{schedule.start_yyyymmdd}}</div>
-            </div>
-            <div>〜</div>
-            <div class="schedule-end-date">
-              <div>終わらせる日</div>
-              <div>{{schedule.end_yyyymmdd}}</div>
-            </div>
-          </div>
-        </div>
+      <div class="form-group">
+        <label for="title">タイトル</label>
+        <input
+        v-model="schedule.title"
+        type="text"
+        class="form-control"
+        >
       </div>
-      <div class="schedule-item">
-        <div class="schedule-item-name">カードの色</div>
-        <div class="schedule-item-content">
-          <div class="schedule-color">
-            <div :style="'background-color:'+schedule.color+';'" style="width:50px; height:50px;"></div>
-          </div>
-        </div>
-      </div>
+      <!-- 色選択フォーム -->
     </div>
     <div class="modal-footer" style="background-color:white;">
-        <div class="btn btn-secondary" @click="closeScheduleSettingModal">閉じる</div>
         <div class="btn btn-primary"
-        @click="openScheduleEditModal"
+        @click="updateSchedule"
         >
-          編集する
+          保存する
         </div>
-        <div class="btn btn-danger">この予定を削除する</div>
+        <div class="btn btn-danger"
+        @click="closeScheduleEditModal"
+        >編集をやめる</div>
       </div>
     </div>
     </div>
@@ -62,13 +48,11 @@
 import Tag from 'vue-material-design-icons/Tag.vue';
 
 export default {
-  data: {
-    // openModal: false
-  },
   props: {
     schedule:{
-      type: Object
-    }
+      type: Object,
+      default: () => {},
+    },
   },
   components:{
     Tag
@@ -83,10 +67,13 @@ export default {
     closeScheduleSettingModal(){
       this.$emit('clickCloseButton')
     },
-    openScheduleEditModal(){
-      this.$emit('clickScheduleEditButton')
+    updateSchedule(){
+      this.$emit('clickScheduleUpdateButton', this.schedule)
     },
-  }
+    closeScheduleEditModal(){
+      this.$emit('clickScheduleEditModalCloseButton')
+    },
+  },
 }
 
 </script>

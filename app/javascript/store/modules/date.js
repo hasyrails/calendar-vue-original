@@ -1,18 +1,20 @@
-import moment from 'moment'
+// import moment from 'moment'
 
-const date = {
-  namespaced: true,
-  state: {
-    currentDate: moment().format('YYYY/MM'),
-    currentMonth: moment().month()+1,
-    currentYear: moment().year(),
-  },
-  mutations: {
-  },
-  actions: {
-  },
-  getters: {
-  },
-}
+// const date = {
+//   namespaced: true,
+//   state: {
+    
+//   },
+//   mutations: {
+    
+//   },
+//   actions: {
+//     prevMonthAction(context){
+//       context.commit('prevMonth')
+//     }
+//   },
+//   getters: {
+//   },
+// }
 
-export default date;
+// export default date;

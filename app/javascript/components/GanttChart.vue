@@ -25,13 +25,17 @@
         <div v-if="day.month===currentMonth" style="font-weight:200;font-size:50px;">{{day.date}}</div>
         <div v-if="day.month!==currentMonth" style="color:#D3D3D3;font-size:50px;">{{ day.date }}</div>
         <draggable
-        v-model="devidedSchedule"
+        v-model="schedule"
        >
           <Schedule 
-          :devidedSchedule="devidedSchedule"
-          v-for="devidedSchedule in devidedSchedules"
-          :key="devidedSchedule.id"
-          v-if="devidedSchedule.date==day.date&&devidedSchedule.month==day.month&&devidedSchedule.year==day.year"
+          :schedule="schedule"
+          v-for="schedule in schedules"
+          v-if="
+          schedule.start_date<=day.date
+          &&schedule.end_date>=day.date
+          &&schedule.start_month===day.month
+          "
+          :key="schedule.id"
           style="flex:1;min-height:1px;min-width:1px;max-width:230px;text-align: center;margin-bottom:10px;"
           @clickScheduleSettingButton="openScheduleSettingModal"
           >
@@ -42,13 +46,32 @@
   </div>
   <div>
     <ScheduleSettingModal
-    :devidedSchedule="scheduleDetail"
-    v-for="devidedSchedule in devidedSchedules"
-    :key="devidedSchedule.id"
+    :schedule="scheduleDetail"
+    v-for="schedule in schedules"
+    :key="schedule.id"
     v-if="scheduleSettingModalFlag"
     @clickCloseButton="closeScheduleSettingModal"
+    @clickScheduleEditButton="openScheduleEditModal(scheduleDetail)"
     ></ScheduleSettingModal>
   </div>
+  <div>
+    <ScheduleEditModal
+    v-if="scheduleEditModalFlag"
+    :schedule="editSchedule"
+    @clickScheduleUpdateButton="updateSchedule"
+    @clickScheduleEditModalCloseButton="closeScheduleEditModal"
+    @formValueInputting="scheduleEditFormInputting"
+    >
+    </ScheduleEditModal>
+  </div>
+  <!-- <div class="form-group">
+    <label for="title">{{hoge}}</label>
+    <input
+    v-model="hoge"
+    type="text"
+    class="form-control"
+    >
+  </div> -->
   <div>
     <button class="btn btn-primary" @click="confirmCurrentDate">CofirmCurrentDate</button>
     <button class="btn btn-primary" @click="confirmCalendar">CofirmCalendar</button>
@@ -56,6 +79,7 @@
     <button class="btn btn-primary" @click="showDevidedSchedule">showDevidedSchedule</button>
     <button class="btn btn-primary" @click="confirmStartDate">confirmStartDate</button>
     <button class="btn btn-primary" @click="openScheduleSettingModal">setting</button>
+    <button  class="btn btn-primary" @click="confirmIdToMoent">Id to Moment</button>
   </div>
 </div>
 </template>
@@ -68,13 +92,19 @@ import GanttChartHeader from "../components/GanttChartHeader";
 import Schedule from "../components/Schedule"
 import { mapState } from 'vuex'
 import ScheduleSettingModal from "../components/ScheduleSettingModal"
+import ScheduleEditModal from "../components/ScheduleEditModal"
 
 export default {
   name: 'Calendar',
   data() {
     return {
       // count: 0,
+      // hoge: '',
+      currentDate: moment().format('YYYY/MM'),
+      currentMonth: moment().month()+1,
+      currentYear: moment().year(),
       scheduleSettingModalFlag: false,
+      scheduleEditModalFlag: false,
       // devidedSchedules:[],
       options: {
         group: {
@@ -83,39 +113,46 @@ export default {
         },
         animation: 200
       },
-      itemsB: [
-         {
-          title: 'hoge',
-          start_yyyymmdd: moment('2020-09-07'),
-          start_date: moment('2020-09-07').date(),
-          end_yyyymmdd: moment('2020-09-10'),
-          end_date: moment('2020-09-010').date(),
-          color: '#FFD5EC',
-          // icon: 0,
-          commit: true
-        },
-      ],
-      // currentDate: moment().format('YYYY/MM'),
-      // currentYYMMDD: moment().format('YYYY/MM/DD'),
-      // currentMonth: moment().month()+1,
-      // currentYear: moment().year(),
     };
   },
   components: {
     draggable,
     GanttChartHeader,
     Schedule,
-    ScheduleSettingModal
+    ScheduleSettingModal,
+    ScheduleEditModal,
   },
   mounted: function(){
   },
   methods: {
-    openScheduleSettingModal(devidedSchedule){
+    scheduleEditFormInputting(content){
+       this.schedule = this.content
+    },
+    confirmIdToMoent(){
+      console.log(moment('2020-09-01').month())
+    },
+    openScheduleSettingModal(schedule){
       this.scheduleSettingModalFlag = true
-      this.scheduleDetail = devidedSchedule
+      this.scheduleDetail = schedule
     },
     closeScheduleSettingModal(){
       this.scheduleSettingModalFlag = false
+    },
+    openScheduleEditModal(schedule){
+      this.closeScheduleSettingModal()
+      this.scheduleEditModalFlag = true
+      this.editSchedule = schedule
+    },
+    closeScheduleEditModal(){
+      this.scheduleEditModalFlag = false
+    },
+    updateSchedule(updateSchedule){
+      const index = this.schedules.findIndex(schedule => {
+        return schedule.id == updateSchedule.id
+      })
+      this.schedules = this.schedules.splice(index, 1, updateSchedule)
+      return this.schedules
+      this.scheduleEditModalFlag = false
     },
     commitChange(){
       let selectedCardId = Number(event.currentTarget.id.substr(14));
@@ -169,33 +206,21 @@ export default {
       const weekNumber = Math.ceil(endDate.diff(startDate, "days") / 7);
 
       let calendars = [];
-      this.createDevidedSchedules();
 
       for (let week = 0; week < 1; week++) {
         let weekRow = [];
         for (let day = 0; day < moment(this.currentMonth).daysInMonth(); day++) {
-          let scheduleNum = 0;
-          for (let k=0; k < this.devidedSchedules.length; k++) {
-          //todoListの情報をカレンダーパネルに追加
-            if (this.devidedSchedules[k].date === startDate.get("date")&&this.devidedSchedules[k].commit===true) {
-              scheduleNum++;
-            }
-          }
-
           weekRow.push({
             year: startDate.get("year"),
             month: startDate.get("month")+1,
             date: startDate.get("date"),
-            scheduleNum: scheduleNum
           });
           startDate.add(1, "days");
         }
           calendars.push(weekRow);
       }
-
       return calendars;
       console.log(calendars);
-
     },
     nextMonth() {
       this.currentDate = moment(this.currentDate).add(1, "month").format('YYYY/MM');
@@ -247,9 +272,6 @@ export default {
     calendars() {
       return this.getCalendar();
     },
-    devidedSchedules() {
-      return this.devidedSchedules;
-    },
     scheduleNum() {
       return this.calendar.scheduleNum;
     },
@@ -265,7 +287,7 @@ export default {
   },
   created(){
     console.log(currentDate);
-    return this.createDevidedSchedules();
+    // return this.createDevidedSchedules();
     // this.displayScheduleNum();
   },
   watch:{

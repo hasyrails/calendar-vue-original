@@ -63,7 +63,7 @@ export default {
     // openModal: false
   },
   props: {
-    devidedSchedule:{
+    schedule:{
       type: Object
     }
   },

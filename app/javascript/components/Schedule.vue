@@ -1,9 +1,9 @@
 <template>
 <div>
   <div class="card schedule-card"
-  :style="'background-color:'+devidedSchedule.color+';'"
+  :style="'background-color:'+schedule.color+';'"
   :class="classButton" 
-  :id="'schedule-card-'+devidedSchedule.id"
+  :id="'schedule-card-'+schedule.id"
   >
     <div class="schedule-handle-button"
     @click="openScheduleSettingModal"
@@ -13,7 +13,7 @@
     
     <div class="body" style="display:flex; justify-content:center; padding-top:1px;font-size:20px;" @click="displayChange">
       <div class="schedule-title" style="margin-left:10px;margin-top:1px;">
-        {{devidedSchedule.title}}
+        {{schedule.title}}
       </div>
     </div>
   </div>
@@ -43,7 +43,7 @@ export default {
     }
   },
   props: {
-    devidedSchedule:{
+    schedule:{
       type: Object,
     }
   },
@@ -72,8 +72,8 @@ export default {
     commitChange(){
       // this.devidedSchedule.commit = !this.devidedSchedule.commit
     },
-    openScheduleSettingModal(devidedSchedule){
-      this.$emit('clickScheduleSettingButton', this.devidedSchedule)
+    openScheduleSettingModal(schedule){
+      this.$emit('clickScheduleSettingButton', this.schedule)
     },
   },
   computed:{
