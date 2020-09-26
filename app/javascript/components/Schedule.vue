@@ -72,8 +72,8 @@ export default {
     commitChange(){
       // this.devidedSchedule.commit = !this.devidedSchedule.commit
     },
-    openScheduleSettingModal(devidedSchedule){
-      this.$emit('clickScheduleSettingButton', this.devidedSchedule)
+    openScheduleSettingModal(schedule){
+      this.$emit('clickScheduleSettingButton', this.schedule)
     },
   },
   computed:{

@@ -24,7 +24,15 @@ const schedules = {
         {
           title: 'ポートフォリオ',
           start: moment('2020-09-07').format('YYYY-MM-DD'),
+          start_yyyymmdd: moment('2020-09-07').format('YYYY-MM-DD'),
+          start_year: moment('2020-09-07').year(),
+          start_month: moment('2020-09-07').month()+1,
+          start_date: moment('2020-09-07').date(),
           end: moment('2020-09-10').format('YYYY-MM-DD'),
+          end_yyyymmdd: moment('2020-09-010').format('YYYY-MM-DD'),
+          end_year: moment('2020-09-010').year(),
+          end_month: moment('2020-09-010').month()+1,
+          end_date: moment('2020-09-010').date(),
           color: '#CBFFD3',
           // icon: 0,
           commit: true
@@ -32,12 +40,20 @@ const schedules = {
         {
           title: 'Docker制覇',
           start: moment('2020-09-07').format('YYYY-MM-DD'),
+          start_yyyymmdd: moment('2020-09-07').format('YYYY-MM-DD'),
+          start_year: moment('2020-09-07').year(),
+          start_month: moment('2020-09-07').month()+1,
+          start_date: moment('2020-09-07').date(),
           end: moment('2020-09-10').format('YYYY-MM-DD'),
+          end_yyyymmdd: moment('2020-09-010').format('YYYY-MM-DD'),
+          end_year: moment('2020-09-010').year(),
+          end_month: moment('2020-09-010').month()+1,
+          end_date: moment('2020-09-010').date(),
           color: '#CCFFFF',
           // icon: 0,
           commit: true　
         },
-    ],
+      ],
     devidedSchedules:[
       {
         id: '',
@@ -47,7 +63,7 @@ const schedules = {
   },
   mutations: {
     createDevidedSchedules(state){
-       let i = 0;
+      let i = 0;
       let j = 0;
       let k = 0;
       var dateArrays = [];

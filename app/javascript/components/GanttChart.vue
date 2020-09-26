@@ -25,7 +25,7 @@
         <div v-if="day.month===currentMonth" style="font-weight:200;font-size:50px;">{{day.date}}</div>
         <div v-if="day.month!==currentMonth" style="color:#D3D3D3;font-size:50px;">{{ day.date }}</div>
         <draggable
-        v-model="devidedSchedule"
+        v-model="schedule"
        >
           <Schedule 
           :schedule="schedule"
@@ -46,9 +46,9 @@
   </div>
   <div>
     <ScheduleSettingModal
-    :devidedSchedule="scheduleDetail"
-    v-for="devidedSchedule in devidedSchedules"
-    :key="devidedSchedule.id"
+    :schedule="scheduleDetail"
+    v-for="schedule in schedules"
+    :key="schedule.id"
     v-if="scheduleSettingModalFlag"
     @clickCloseButton="closeScheduleSettingModal"
     @clickScheduleEditButton="openScheduleEditModal(scheduleDetail)"
@@ -56,14 +56,23 @@
   </div>
   <div>
     <ScheduleEditModal
-    v-for="devidedSchedule in devidedSchedules"
-    :devidedSchedule="editSchedule"
-    :key="devidedSchedule.id"
+    v-for="schedule in schedules"
+    :schedule="editSchedule"
+    :key="schedule.id"
     v-if="scheduleEditModalFlag"
-    @clickScheduleUpdateButton="updateSchedule"
+    @clickScheduleUpdateButton="updateSchedule(editSchedule)"
     @clickScheduleEditModalCloseButton="closeScheduleEditModal"
-    ></ScheduleEditModal>
+    >
+    </ScheduleEditModal>
   </div>
+  <!-- <div class="form-group">
+    <label for="title">{{hoge}}</label>
+    <input
+    v-model="hoge"
+    type="text"
+    class="form-control"
+    >
+  </div> -->
   <div>
     <button class="btn btn-primary" @click="confirmCurrentDate">CofirmCurrentDate</button>
     <button class="btn btn-primary" @click="confirmCalendar">CofirmCalendar</button>
@@ -91,6 +100,10 @@ export default {
   data() {
     return {
       // count: 0,
+      // hoge: '',
+      currentDate: moment().format('YYYY/MM'),
+      currentMonth: moment().month()+1,
+      currentYear: moment().year(),
       scheduleSettingModalFlag: false,
       scheduleEditModalFlag: false,
       // devidedSchedules:[],
@@ -101,22 +114,6 @@ export default {
         },
         animation: 200
       },
-      itemsB: [
-         {
-          title: 'hoge',
-          start_yyyymmdd: moment('2020-09-07'),
-          start_date: moment('2020-09-07').date(),
-          end_yyyymmdd: moment('2020-09-10'),
-          end_date: moment('2020-09-010').date(),
-          color: '#FFD5EC',
-          // icon: 0,
-          commit: true
-        },
-      ],
-      // currentDate: moment().format('YYYY/MM'),
-      // currentYYMMDD: moment().format('YYYY/MM/DD'),
-      // currentMonth: moment().month()+1,
-      // currentYear: moment().year(),
     };
   },
   components: {
