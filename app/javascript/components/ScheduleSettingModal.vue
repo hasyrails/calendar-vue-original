@@ -25,12 +25,12 @@
           <div class="schedule-date">
             <div class="schedule-start-date">
               <div>始める日</div>
-              <div>{{schedule.start}}</div>
+              <div>{{schedule.start_yyyymmdd}}</div>
             </div>
             <div>〜</div>
             <div class="schedule-end-date">
               <div>終わらせる日</div>
-              <div>{{schedule.end}}</div>
+              <div>{{schedule.end_yyyymmdd}}</div>
             </div>
           </div>
         </div>

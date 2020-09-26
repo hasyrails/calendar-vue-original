@@ -52,7 +52,7 @@ export default {
     schedule:{
       type: Object,
       default: () => {},
-    }
+    },
   },
   components:{
     Tag
@@ -73,7 +73,7 @@ export default {
     closeScheduleEditModal(){
       this.$emit('clickScheduleEditModalCloseButton')
     },
-  }
+  },
 }
 
 </script>

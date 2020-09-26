@@ -56,12 +56,11 @@
   </div>
   <div>
     <ScheduleEditModal
-    v-for="schedule in schedules"
-    :schedule="editSchedule"
-    :key="schedule.id"
     v-if="scheduleEditModalFlag"
-    @clickScheduleUpdateButton="updateSchedule(editSchedule)"
+    :schedule="editSchedule"
+    @clickScheduleUpdateButton="updateSchedule"
     @clickScheduleEditModalCloseButton="closeScheduleEditModal"
+    @formValueInputting="scheduleEditFormInputting"
     >
     </ScheduleEditModal>
   </div>
@@ -126,6 +125,9 @@ export default {
   mounted: function(){
   },
   methods: {
+    scheduleEditFormInputting(content){
+       this.schedule = this.content
+    },
     confirmIdToMoent(){
       console.log(moment('2020-09-01').month())
     },
@@ -204,33 +206,21 @@ export default {
       const weekNumber = Math.ceil(endDate.diff(startDate, "days") / 7);
 
       let calendars = [];
-      this.createDevidedSchedules();
 
       for (let week = 0; week < 1; week++) {
         let weekRow = [];
         for (let day = 0; day < moment(this.currentMonth).daysInMonth(); day++) {
-          let scheduleNum = 0;
-          for (let k=0; k < this.devidedSchedules.length; k++) {
-          //todoListの情報をカレンダーパネルに追加
-            if (this.devidedSchedules[k].date === startDate.get("date")&&this.devidedSchedules[k].commit===true) {
-              scheduleNum++;
-            }
-          }
-
           weekRow.push({
             year: startDate.get("year"),
             month: startDate.get("month")+1,
             date: startDate.get("date"),
-            scheduleNum: scheduleNum
           });
           startDate.add(1, "days");
         }
           calendars.push(weekRow);
       }
-
       return calendars;
       console.log(calendars);
-
     },
     nextMonth() {
       this.currentDate = moment(this.currentDate).add(1, "month").format('YYYY/MM');
