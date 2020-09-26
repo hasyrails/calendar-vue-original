@@ -7,8 +7,16 @@ const schedules = {
       schedules: [
         {
           title: 'Rails',
-          start: moment('2020-09-07').format('YYYY-MM-DD'),
-          end: moment('2020-09-010').format('YYYY-MM-DD'),
+          start: moment('2020-09-07'),
+          start_yyyymmdd: moment('2020-09-07').format('YYYY-MM-DD'),
+          start_year: moment('2020-09-07').year(),
+          start_month: moment('2020-09-07').month()+1,
+          start_date: moment('2020-09-07').date(),
+          end: moment('2020-09-010'),
+          end_yyyymmdd: moment('2020-09-010').format('YYYY-MM-DD'),
+          end_year: moment('2020-09-010').year(),
+          end_month: moment('2020-09-010').month()+1,
+          end_date: moment('2020-09-010').date(),
           color: '#FFD5EC',
           // icon: 0,
           commit: true

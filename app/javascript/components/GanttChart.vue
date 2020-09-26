@@ -28,10 +28,14 @@
         v-model="devidedSchedule"
        >
           <Schedule 
-          :devidedSchedule="devidedSchedule"
-          v-for="devidedSchedule in devidedSchedules"
-          :key="devidedSchedule.id"
-          v-if="devidedSchedule.date==day.date&&devidedSchedule.month==day.month&&devidedSchedule.year==day.year"
+          :schedule="schedule"
+          v-for="schedule in schedules"
+          v-if="
+          schedule.start_date<=day.date
+          &&schedule.end_date>=day.date
+          &&schedule.start_month===day.month
+          "
+          :key="schedule.id"
           style="flex:1;min-height:1px;min-width:1px;max-width:230px;text-align: center;margin-bottom:10px;"
           @clickScheduleSettingButton="openScheduleSettingModal"
           >
@@ -67,6 +71,7 @@
     <button class="btn btn-primary" @click="showDevidedSchedule">showDevidedSchedule</button>
     <button class="btn btn-primary" @click="confirmStartDate">confirmStartDate</button>
     <button class="btn btn-primary" @click="openScheduleSettingModal">setting</button>
+    <button  class="btn btn-primary" @click="confirmIdToMoent">Id to Moment</button>
   </div>
 </div>
 </template>
@@ -124,6 +129,9 @@ export default {
   mounted: function(){
   },
   methods: {
+    confirmIdToMoent(){
+      console.log(moment('2020-09-01').month())
+    },
     openScheduleSettingModal(schedule){
       this.scheduleSettingModalFlag = true
       this.scheduleDetail = schedule
