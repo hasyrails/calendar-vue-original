@@ -10,7 +10,7 @@ const lists = {
       {
         title: '',
         cards: [
-          { body: '' },
+          { description: '' },
         ]
       },
     ],
