@@ -20,7 +20,6 @@
                 class="slide"
                 :key="item.id"
                 :title="item.title"
-                :cards="item.cards"
                 :listIndex="index"
                 @change="movingCard"
           ></List>

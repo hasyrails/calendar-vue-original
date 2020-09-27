@@ -36,7 +36,10 @@
 import CardAdd from '../components/CardAdd'
 import Card from '../components/Card'
 import CardSettingModal from '../components/CardSettingModal'
+
 import draggable from "vuedraggable";
+
+import { mapState } from 'vuex'
 
 export default {
   data(){
@@ -57,10 +60,6 @@ export default {
       type: String,
       required: true
     },
-    cards: {
-      type: Array,
-      required: true
-    },
     listIndex: {
       type: Number,
       required: true
@@ -70,6 +69,12 @@ export default {
     // totalCardInList() {
     //   return this.cards.length
     // }
+    ...mapState('cards',{
+      cards: 'cards'
+    }),
+  },
+  mounted(){
+    this.$store.dispatch('cards/fetchCardsAction')
   },
   components:{
     CardAdd,
