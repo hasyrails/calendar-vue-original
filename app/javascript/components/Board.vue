@@ -26,6 +26,9 @@
           ></List>
         </draggable>
       </div>
+      <div>
+        <div class="btn btn-primary" @click="confirmList"></div>
+      </div>
   </div>
 </template>
 
@@ -49,7 +52,13 @@ export default {
       return this.$store.getters.totalCardCount
     }
   },
+  mounted(){
+    this.$store.dispatch('lists/fetchListsAction')
+  },
   methods: {
+    confirmList(){
+      console.log(this.lists)
+    },
     movingCard: function() {
       this.$store.dispatch('lists/updateList', { lists: this.lists })
     },
