@@ -16,3 +16,9 @@ end_time = Time.new(2020,9,30)
     end_date: end_time.day.to_i,
   )
 end
+
+5.times do
+  List.create!(
+    title: Faker::Book.title,
+  )
+end
