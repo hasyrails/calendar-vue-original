@@ -1,5 +1,5 @@
 <template>
-  <div class="overlay">
+  <div class="overlay" v-on:click="clickEvent">
     <div class="content">
       <div class="modal-content" >
         <div class="modal-header">
@@ -21,32 +21,34 @@
       <div class="modal-body" style="background-color:white;">
         <div class="schedule-item">
           <div class="schedule-item-name">
-            作成日
+            <label for="title">タイトル</label>
           </div>
           <div class="schedule-item-content">
-            作成日の情報
+            <input
+                id="title"
+                v-model="card.title"
+                type="text"
+                class="form-control"
+              >
           </div>
         </div>
         <div class="schedule-item">
           <div class="schedule-item-name">
-            詳細
+            <label for="description">説明文</label>
           </div>
           <div class="schedule-item-content">
-            詳細内容
-          </div>
-        </div>
-        <div class="schedule-item">
-          <div class="schedule-item-name">
-            ガントチャートへ
-          </div>
-          <div class="schedule-item-content">
-            追加していません
+            <textarea
+                id="description"
+                v-model="card.body"
+                class="form-control"
+                rows="5"
+              />
           </div>
         </div>
       </div>
       <div class="modal-footer" style="background-color:white;">
-          <div class="btn btn-secondary" @click="closeCardSettingModal">閉じる</div>
-          <div class="btn btn-primary" @click="openCardEditModal">編集する</div>
+          <div class="btn btn-secondary" @click="closeCardEditModal">閉じる</div>
+          <div class="btn btn-primary">編集する</div>
           <div class="btn btn-danger">このToDoカードを削除する</div>
         </div>
       </div>
@@ -64,18 +66,15 @@ export default {
   },
   props: {
     card:{
-      type: Object
+      // type: Object
     }
   },
   components:{
     Tag
   },
   methods:{
-    openCardEditModal(){
-      this.$emit('clickCardEditOpenButton', this.card)
-    },
-    closeCardSettingModal(){
-      this.$emit('clickCardSettingModalCloseButton')
+    closeCardEditModal(){
+      this.$emit('clickCardEditModalCloseButton')
     },
   }
 }

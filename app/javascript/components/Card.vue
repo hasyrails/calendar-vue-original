@@ -1,7 +1,7 @@
 <template>
   <div class="card">
     <div class="body">
-      {{ body }}
+      {{ card.body }}
     </div>
     <div class="card-handle-button">
       <div class="show-detail-button">
@@ -20,8 +20,8 @@ import Close from 'vue-material-design-icons/Close.vue';
 
 export default {
   props: {
-    body: {
-      type: String,
+    card: {
+      type: Object,
       required: true
     },
     listIndex: {

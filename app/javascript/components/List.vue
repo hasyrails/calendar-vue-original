@@ -14,20 +14,29 @@
         :list="cards"
         @sort="$emit('change')"
       >
-        <Card v-for="(item, index) in cards"
-              :body="item.body"
-              :key="item.id"
+        <Card v-for="card in cards"
+              :key="card.id"
+              :card="card"
               :cardIndex="index"
               :listIndex="listIndex"
-              @clickCardSettingButton="openCardSettingModal"
+              @clickCardSettingButton="openCardSettingModal(card)"
         ></Card>
       </draggable>
     </div>
     <div>
-      <CardSettingModal v-if="cardSettingModalFlag"
+      <CardSettingModal 
+      :card="cardDetail"
+      v-if="cardSettingModalFlag"
       @clickCardSettingModalCloseButton="closeCardSettingModal"
+      @clickCardEditOpenButton="openCardEditModal(cardDetail)"
       ></CardSettingModal>
-              
+    </div>
+    <div>
+      <CardEditModal
+      :card="cardEdit"
+      v-if="cardEditModalFlag"
+      @clickCardEditModalCloseButton="closeCardEditModal"
+      ></CardEditModal>
     </div>
   </div>
 </template>
@@ -36,6 +45,7 @@
 import CardAdd from '../components/CardAdd'
 import Card from '../components/Card'
 import CardSettingModal from '../components/CardSettingModal'
+import CardEditModal from '../components/CardEditModal'
 
 import draggable from "vuedraggable";
 
@@ -52,7 +62,8 @@ export default {
         },
         animation: 200
       },
-      cardSettingModalFlag: false
+      cardSettingModalFlag: false,
+      cardEditModalFlag: false,
     }
   },
   props: {
@@ -80,6 +91,7 @@ export default {
     CardAdd,
     Card,
     CardSettingModal,
+    CardEditModal,
     draggable
   },
   methods: {
@@ -88,12 +100,21 @@ export default {
         this.$store.dispatch('lists/removelist', { listIndex: this.listIndex })
       }
     },
-    openCardSettingModal(){
+    openCardSettingModal(card){
+      this.cardDetail = card
       this.cardSettingModalFlag = true
+    },
+    openCardEditModal(card){
+      this.closeCardSettingModal()
+      this.cardEditModalFlag = true
+      this.cardEdit = card
     },
     closeCardSettingModal(){
       this.cardSettingModalFlag = false
-    }
+    },
+    closeCardEditModal(){
+      this.cardEditModalFlag = false
+    },
   }
 }
 </script>
