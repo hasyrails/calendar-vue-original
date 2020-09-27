@@ -66,9 +66,9 @@ export default {
     closeCardEditModal(){
       this.$emit('clickCardEditModalCloseButton')
     },
-    updateCard(){
-      this.$emit('clickCardUpdateButton', this.card)
-    },
+    // updateCard(){
+    //   this.$emit('clickCardUpdateButton', this.card)
+    // },
     // inputValue(value){
     //   this.card.body = value
     // }

@@ -5,11 +5,23 @@
         <div class="modal-header">
           <div>
             <div style="font-size:25px;">
-              リストの名前
+              {{ list.title }}
             </div>
             <div class="schedule-title">
               <div class="schedule-tag" style="margin-top:10px;"><Tag :size="36"></Tag></div>
-              <div class="schedule-title" style="font-size:36px; margin-left:10px;">カードの内容</div>
+              <div class="schedule-title" style="font-size:36px; margin-left:10px;width:900px;">{{ card.body }}
+                
+                <div class="schedule-created-at-date" style="width:200px;">
+                  作成日:
+                  {{ new Date(card.created_at).getFullYear() }}/
+                  {{ new Date(card.created_at).getMonth()+1 }}/
+                  {{ new Date(card.created_at).getDate() }}
+                </div>
+                <div class="schedule-created-at-time" style="width:200px;">
+                  {{ new Date(card.created_at).getHours() }}:
+                  {{ new Date(card.created_at).getMinutes() }}
+                </div>
+              </div>
             </div>
           </div>
           <div @click="closeCardSettingModal">
@@ -56,6 +68,8 @@
 
 <script>
 import Tag from 'vue-material-design-icons/Tag.vue';
+import moment from 'moment'
+
 
 export default {
   name: 'CardSettingModal',
@@ -64,6 +78,9 @@ export default {
   },
   props: {
     card:{
+      type: Object
+    },
+    list:{
       type: Object
     }
   },
@@ -116,6 +133,14 @@ export default {
 }
 
 .schedule-title{
+  display: flex;
+}
+.schedule-created-at-date{
+  margin-left:10%;
+  display: flex;
+}
+.schedule-created-at-time{
+  margin-left:3%;
   display: flex;
 }
 .modal-body{

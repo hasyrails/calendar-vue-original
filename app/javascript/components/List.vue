@@ -21,12 +21,14 @@
               :listIndex="listIndex"
               @clickCardSettingButton="openCardSettingModal(card)"
               v-if="id===card.list_id"
+              @cardBodyFormComplete="updateCard"
         ></Card>
       </draggable>
     </div>
     <div>
       <CardSettingModal 
       :card="cardDetail"
+      :list="list"
       v-if="cardSettingModalFlag"
       @clickCardSettingModalCloseButton="closeCardSettingModal"
       @clickCardEditOpenButton="openCardEditModal(cardDetail)"
@@ -75,6 +77,10 @@ export default {
     },
     title: {
       type: String,
+      required: true
+    },
+    list: {
+      type: Object,
       required: true
     },
     listIndex: {
@@ -126,7 +132,7 @@ export default {
     },
     async updateCard(card){
       await this.updateCardAction(card)
-      this.$router.go({path: this.$router.currentRoute.path, force: true})
+      // this.$router.go({path: this.$router.currentRoute.path, force: true})
       // this.closeCardEditModal()
       // this.closeCardSettingModal()
     },

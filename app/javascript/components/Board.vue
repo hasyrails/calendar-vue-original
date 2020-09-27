@@ -16,12 +16,13 @@
           @end="movingList"
           >
           <List v-for="(item, index) in lists"
-                style="margin-top:50px;margin-bottom:50px;"
-                class="slide"
-                :key="item.id"
-                :id="item.id"
-                :title="item.title"
-                @change="movingCard"
+            style="margin-top:50px;margin-bottom:50px;"
+            class="slide"
+            :list="item"
+            :key="item.id"
+            :id="item.id"
+            :title="item.title"
+            @change="movingCard"
           ></List>
         </draggable>
       </div>

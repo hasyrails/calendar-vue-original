@@ -4,7 +4,7 @@
       {{ card.body }}
     </div>
     <div class="card-body-editng" v-if="cardBodyEditFlag">
-      <form  class="body" @submit.prevent="addCardToList" style="-moz-box-shadow: inset 0 0 4px rgba(0,0,0,0.2);
+      <form  class="body" @submit.prevent="updateCard" style="-moz-box-shadow: inset 0 0 4px rgba(0,0,0,0.2);
       -webkit-box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.2);
       box-shadow: inner 0 0 4px rgba(150, 180, 200, 0.2);">
         <input v-model="card.body"
@@ -71,6 +71,9 @@ export default {
     quitCardBodyEdit(){
       this.cardBodyEditFlag = false
     },
+    updateCard(){
+      this.$emit('cardBodyFormComplete', this.card)
+    }
   },
 }
 </script>
