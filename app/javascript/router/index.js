@@ -10,7 +10,7 @@ Vue.use(VueRouter);
 
 const routes = [
   { path: '/', component: Top },
-  { path: '/ganttchart', component: GanttChartPage },
+  { path: '/schedules', component: GanttChartPage },
   { path: '/register', component: Register },
   { path: '/login', component: Login },
 ];

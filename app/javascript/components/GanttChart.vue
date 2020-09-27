@@ -80,17 +80,19 @@
     <button class="btn btn-primary" @click="confirmStartDate">confirmStartDate</button>
     <button class="btn btn-primary" @click="openScheduleSettingModal">setting</button>
     <button  class="btn btn-primary" @click="confirmIdToMoent">Id to Moment</button>
+    <button  class="btn btn-primary" @click="confirmSchedules">confirmSchedules</button>
   </div>
 </div>
 </template>
 
 <script>
 import moment from "moment";
+import axios from 'axios';
 import draggable from 'vuedraggable'
 
 import GanttChartHeader from "../components/GanttChartHeader";
 import Schedule from "../components/Schedule"
-import { mapState } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 import ScheduleSettingModal from "../components/ScheduleSettingModal"
 import ScheduleEditModal from "../components/ScheduleEditModal"
 
@@ -122,9 +124,13 @@ export default {
     ScheduleSettingModal,
     ScheduleEditModal,
   },
-  mounted: function(){
+  mounted () {
+    this.$store.dispatch('schedules/fetchSchedulesAction')
   },
   methods: {
+    confirmSchedules(){
+      console.log(this.schedules)
+    },
     scheduleEditFormInputting(content){
        this.schedule = this.content
     },
@@ -284,6 +290,10 @@ export default {
       currentMonth: 'currentMonth',
       currentYear: 'currentYear'
     }),
+    ...mapGetters('schedules',[
+      'schedules'
+    ]
+    ),
   },
   created(){
     console.log(currentDate);
