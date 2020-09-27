@@ -9,9 +9,9 @@ const lists = {
     lists: [
       {
         title: '',
-        cards: [
-          { description: '' },
-        ]
+        // cards: [
+        //   { description: '' },
+        // ]
       },
     ],
   },
