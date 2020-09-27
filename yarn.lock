@@ -848,38 +848,12 @@
   resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-common-types/-/fontawesome-common-types-0.2.30.tgz#2f1cc5b46bd76723be41d0013a8450c9ba92b777"
   integrity sha512-TsRwpTuKwFNiPhk1UfKgw7zNPeV5RhNp2Uw3pws+9gDAkPGKrtjR1y2lI3SYn7+YzyfuNknflpBA1LRKjt7hMg==
 
-"@fortawesome/fontawesome-svg-core@^1.2.30":
-  version "1.2.30"
-  resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-svg-core/-/fontawesome-svg-core-1.2.30.tgz#f56dc6791861fe5d1af04fb8abddb94658c576db"
-  integrity sha512-E3sAXATKCSVnT17HYmZjjbcmwihrNOCkoU7dVMlasrcwiJAHxSKeZ+4WN5O+ElgO/FaYgJmASl8p9N7/B/RttA==
-  dependencies:
-    "@fortawesome/fontawesome-common-types" "^0.2.30"
-
-"@fortawesome/free-brands-svg-icons@^5.14.0":
-  version "5.14.0"
-  resolved "https://registry.yarnpkg.com/@fortawesome/free-brands-svg-icons/-/free-brands-svg-icons-5.14.0.tgz#98555518ba41bdff82fbae2f4d1bc36cd3b1c043"
-  integrity sha512-WsqPFTvJFI7MYkcy0jeFE2zY+blC4OrnB9MJOcn1NxRXT/sSfEEhrI7CwzIkiYajLiVDBKWeErYOvpsMeodmCQ==
-  dependencies:
-    "@fortawesome/fontawesome-common-types" "^0.2.30"
-
 "@fortawesome/free-regular-svg-icons@^5.14.0":
   version "5.14.0"
   resolved "https://registry.yarnpkg.com/@fortawesome/free-regular-svg-icons/-/free-regular-svg-icons-5.14.0.tgz#ca513ac7699625af42938744297ac483361da043"
   integrity sha512-6LCFvjGSMPoUQbn3NVlgiG4CY5iIY8fOm+to/D6QS/GvdqhDt+xZklQeERdCvVRbnFa1ITc1rJHPRXqkX5wztQ==
   dependencies:
     "@fortawesome/fontawesome-common-types" "^0.2.30"
-
-"@fortawesome/free-solid-svg-icons@^5.14.0":
-  version "5.14.0"
-  resolved "https://registry.yarnpkg.com/@fortawesome/free-solid-svg-icons/-/free-solid-svg-icons-5.14.0.tgz#970453f5e8c4915ad57856c3a0252ac63f6fec18"
-  integrity sha512-M933RDM8cecaKMWDSk3FRYdnzWGW7kBBlGNGfvqLVwcwhUPNj9gcw+xZMrqBdRqxnSXdl3zWzTCNNGEtFUq67Q==
-  dependencies:
-    "@fortawesome/fontawesome-common-types" "^0.2.30"
-
-"@fortawesome/vue-fontawesome@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@fortawesome/vue-fontawesome/-/vue-fontawesome-2.0.0.tgz#63da3e459147cebb0a8d58eed81d6071db9f5973"
-  integrity sha512-N3VKw7KzRfOm8hShUVldpinlm13HpvLBQgT63QS+aCrIRLwjoEUXY5Rcmttbfb6HkzZaeqjLqd/aZCQ53UjQpg==
 
 "@mdi/font@^5.5.55":
   version "5.5.55"
@@ -7602,11 +7576,6 @@ vuedraggable@^2.24.1:
   integrity sha512-G1fxO1oshx+WLdieSGl6jSJdlHOQFga1FpjuUpgXldbpKNzxpjsGn4xYNnRHVrOAqm8aG5FfpdQlh5LHesxCeA==
   dependencies:
     sortablejs "^1.10.1"
-
-vuetify@^2.3.10:
-  version "2.3.10"
-  resolved "https://registry.yarnpkg.com/vuetify/-/vuetify-2.3.10.tgz#c8cbc77ee1224b5a132f501a3762dee6d8c95a06"
-  integrity sha512-KzL/MhZ7ajubm9kwbdCoA/cRV50RX+a5Hcqiwt7Am1Fni2crDtl2no05UNwKroTfscrYYf07gq3WIFSurPsnCA==
 
 vuex@^3.5.1:
   version "3.5.1"
