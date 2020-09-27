@@ -1,5 +1,6 @@
 class Api::CardsController < ApplicationController
   before_action :set_card, only: %i[show update destroy]
+  skip_before_action :verify_authenticity_token
 
   def index
     @cards = Card.all
@@ -11,7 +12,7 @@ class Api::CardsController < ApplicationController
   end
 
   def create
-    @list = Card.new(card_params)
+    @card = Card.new(card_params)
 
     if @card.save
       render json: @card
@@ -39,7 +40,7 @@ class Api::CardsController < ApplicationController
     @card = Card.find(params[:id])
   end
 
-  def schedule_params
-    params.fetch(:card, {}).permit(:body)
+  def card_params
+    params.fetch(:card, {}).permit(:title, :body, :list_id, :created_at, :updated_at)
   end
 end

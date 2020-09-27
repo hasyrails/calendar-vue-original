@@ -23,34 +23,21 @@
           <div class="schedule-item-name">
             <label for="title">タイトル</label>
           </div>
-          <div class="schedule-item-content">
-            <input
-                id="title"
-                v-model="card.title"
-                type="text"
-                class="form-control"
-              >
-          </div>
-        </div>
-        <div class="schedule-item">
-          <div class="schedule-item-name">
-            <label for="description">説明文</label>
-          </div>
-          <div class="schedule-item-content">
-            <textarea
-                id="description"
-                v-model="card.body"
-                class="form-control"
-                rows="5"
-              />
+          <div class="schedule-item-content form-group">
+              <TextInput 
+              v-model="card.body"
+              class="form-control"
+              ></TextInput> 
           </div>
         </div>
       </div>
       <div class="modal-footer" style="background-color:white;">
           <div class="btn btn-secondary" @click="closeCardEditModal">閉じる</div>
-          <div class="btn btn-primary">編集する</div>
           <div class="btn btn-danger">このToDoカードを削除する</div>
-        </div>
+          <div class="btn btn-primary" @click="updateCard">
+          更新する
+          </div>
+      </div>
       </div>
     </div>
   </div>
@@ -58,6 +45,8 @@
 
 <script>
 import Tag from 'vue-material-design-icons/Tag.vue';
+
+import TextInput from '../components/TextInput'
 
 export default {
   name: 'CardSettingModal',
@@ -67,16 +56,23 @@ export default {
   props: {
     card:{
       // type: Object
-    }
+    },
   },
   components:{
-    Tag
+    Tag,
+    TextInput,
   },
   methods:{
     closeCardEditModal(){
       this.$emit('clickCardEditModalCloseButton')
     },
-  }
+    updateCard(){
+      this.$emit('clickCardUpdateButton', this.card)
+    },
+    // inputValue(value){
+    //   this.card.body = value
+    // }
+  },
 }
 
 </script>

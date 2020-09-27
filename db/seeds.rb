@@ -25,7 +25,8 @@ end
 
 3.times do
   Card.create!(
-    list_id: 1,
+    id: rand(1..10),
+    list_id: rand(1..10),
     title: Faker::Book.title,
     body: Faker::Book.title,
   )

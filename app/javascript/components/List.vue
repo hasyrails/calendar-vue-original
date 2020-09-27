@@ -20,6 +20,7 @@
               :cardIndex="index"
               :listIndex="listIndex"
               @clickCardSettingButton="openCardSettingModal(card)"
+              v-if="id===card.list_id"
         ></Card>
       </draggable>
     </div>
@@ -36,6 +37,7 @@
       :card="cardEdit"
       v-if="cardEditModalFlag"
       @clickCardEditModalCloseButton="closeCardEditModal"
+      @clickCardUpdateButton="updateCard"
       ></CardEditModal>
     </div>
   </div>
@@ -49,7 +51,7 @@ import CardEditModal from '../components/CardEditModal'
 
 import draggable from "vuedraggable";
 
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 
 export default {
   data(){
@@ -67,6 +69,10 @@ export default {
     }
   },
   props: {
+    id: {
+      type: Number,
+      required: true
+    },
     title: {
       type: String,
       required: true
@@ -95,6 +101,9 @@ export default {
     draggable
   },
   methods: {
+    ...mapActions('cards',[
+      'updateCardAction'
+    ]),
     removeList: function() {
       if(confirm('本当にこのリストを削除しますか？')){
         this.$store.dispatch('lists/removelist', { listIndex: this.listIndex })
@@ -114,6 +123,12 @@ export default {
     },
     closeCardEditModal(){
       this.cardEditModalFlag = false
+    },
+    async updateCard(card){
+      await this.updateCardAction(card)
+      this.$router.go({path: this.$router.currentRoute.path, force: true})
+      // this.closeCardEditModal()
+      // this.closeCardSettingModal()
     },
   }
 }

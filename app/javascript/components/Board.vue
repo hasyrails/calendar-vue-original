@@ -19,8 +19,8 @@
                 style="margin-top:50px;margin-bottom:50px;"
                 class="slide"
                 :key="item.id"
+                :id="item.id"
                 :title="item.title"
-                :listIndex="index"
                 @change="movingCard"
           ></List>
         </draggable>
