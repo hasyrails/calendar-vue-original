@@ -1,27 +1,15 @@
 <template>
-  <div class="overlay">
+  <div class="overlay" v-on:click="clickEvent">
     <div class="content">
       <div class="modal-content" >
         <div class="modal-header">
           <div>
             <div style="font-size:25px;">
-              {{ list.title }}
+              リストの名前
             </div>
             <div class="schedule-title">
               <div class="schedule-tag" style="margin-top:10px;"><Tag :size="36"></Tag></div>
-              <div class="schedule-title" style="font-size:36px; margin-left:10px;width:900px;">{{ card.body }}
-                
-                <div class="schedule-created-at-date" style="width:200px;">
-                  作成日:
-                  {{ new Date(card.created_at).getFullYear() }}/
-                  {{ new Date(card.created_at).getMonth()+1 }}/
-                  {{ new Date(card.created_at).getDate() }}
-                </div>
-                <div class="schedule-created-at-time" style="width:200px;">
-                  {{ new Date(card.created_at).getHours() }}:
-                  {{ new Date(card.created_at).getMinutes() }}
-                </div>
-              </div>
+              <div class="schedule-title" style="font-size:36px; margin-left:10px;">カードの内容</div>
             </div>
           </div>
           <div @click="closeCardSettingModal">
@@ -33,34 +21,23 @@
       <div class="modal-body" style="background-color:white;">
         <div class="schedule-item">
           <div class="schedule-item-name">
-            作成日
+            <label for="title">タイトル</label>
           </div>
-          <div class="schedule-item-content">
-            作成日の情報
-          </div>
-        </div>
-        <div class="schedule-item">
-          <div class="schedule-item-name">
-            詳細
-          </div>
-          <div class="schedule-item-content">
-            詳細内容
-          </div>
-        </div>
-        <div class="schedule-item">
-          <div class="schedule-item-name">
-            ガントチャートへ
-          </div>
-          <div class="schedule-item-content">
-            追加していません
+          <div class="schedule-item-content form-group">
+              <TextInput 
+              v-model="card.body"
+              class="form-control"
+              ></TextInput> 
           </div>
         </div>
       </div>
       <div class="modal-footer" style="background-color:white;">
-          <div class="btn btn-secondary" @click="closeCardSettingModal">閉じる</div>
-          <div class="btn btn-primary" @click="openCardEditModal">編集する</div>
+          <div class="btn btn-secondary" @click="closeCardEditModal">閉じる</div>
           <div class="btn btn-danger">このToDoカードを削除する</div>
-        </div>
+          <div class="btn btn-primary" @click="updateCard">
+          更新する
+          </div>
+      </div>
       </div>
     </div>
   </div>
@@ -68,8 +45,8 @@
 
 <script>
 import Tag from 'vue-material-design-icons/Tag.vue';
-import moment from 'moment'
 
+import TextInput from '../components/TextInput'
 
 export default {
   name: 'CardSettingModal',
@@ -78,23 +55,24 @@ export default {
   },
   props: {
     card:{
-      type: Object
+      // type: Object
     },
-    list:{
-      type: Object
-    }
   },
   components:{
-    Tag
+    Tag,
+    TextInput,
   },
   methods:{
-    openCardEditModal(){
-      this.$emit('clickCardEditOpenButton', this.card)
+    closeCardEditModal(){
+      this.$emit('clickCardEditModalCloseButton')
     },
-    closeCardSettingModal(){
-      this.$emit('clickCardSettingModalCloseButton')
-    },
-  }
+    // updateCard(){
+    //   this.$emit('clickCardUpdateButton', this.card)
+    // },
+    // inputValue(value){
+    //   this.card.body = value
+    // }
+  },
 }
 
 </script>
@@ -133,14 +111,6 @@ export default {
 }
 
 .schedule-title{
-  display: flex;
-}
-.schedule-created-at-date{
-  margin-left:10%;
-  display: flex;
-}
-.schedule-created-at-time{
-  margin-left:3%;
   display: flex;
 }
 .modal-body{

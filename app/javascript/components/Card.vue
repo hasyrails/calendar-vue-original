@@ -1,14 +1,26 @@
 <template>
   <div class="card">
-    <div class="body">
-      {{ body }}
+    <div class="body" v-if="!cardBodyEditFlag" @click="cardBodyEdit">
+      {{ card.body }}
     </div>
-    <div class="card-handle-button">
-      <div class="show-detail-button">
+    <div class="card-body-editng" v-if="cardBodyEditFlag">
+      <form  class="body" @submit.prevent="updateCard" style="-moz-box-shadow: inset 0 0 4px rgba(0,0,0,0.2);
+      -webkit-box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.2);
+      box-shadow: inner 0 0 4px rgba(150, 180, 200, 0.2);">
+        <input v-model="card.body"
+        type="text" 
+        style="outline:blue;"></input>
+      </form>
+      <div @click="quitCardBodyEdit">
+        <CloseCircle :size="30"></CloseCircle>
+      </div>
+    </div>
+    <div class="card-handle-button" >
+      <div class="show-detail-button" v-show="!cardBodyEditFlag">
         <Cog fillColor="grey" :size="30" @click="openCardSettingModal"></Cog>
       </div>
-      <div class="close-button" @click="removeCardFromList">
-        <Close fillColor="red" :size="30"></Close>
+      <div class="close-button" @click="removeCardFromList" v-show="!cardBodyEditFlag">
+        <TrashCanOutline fillColor="red" :size="30"></TrashCanOutline>
       </div>
     </div>
   </div>
@@ -16,26 +28,33 @@
 
 <script>
 import Cog from 'vue-material-design-icons/Cog.vue';
-import Close from 'vue-material-design-icons/Close.vue';
+import TrashCanOutline from 'vue-material-design-icons/TrashCanOutline.vue';
+import CloseCircle from 'vue-material-design-icons/CloseCircle.vue';
 
 export default {
-  props: {
-    body: {
-      type: String,
-      required: true
-    },
-    listIndex: {
-      type: Number,
-      required: true
-    },
-    cardIndex: {
-      type: Number,
-      required: true
+  data(){
+    return{
+      cardBodyEditFlag: false
     }
+  },
+  props: {
+    card: {
+      type: Object,
+      required: true
+    },
+    // listIndex: {
+    //   type: Number,
+    //   required: true
+    // },
+    // cardIndex: {
+    //   type: Number,
+    //   required: true
+    // }
   },
   components:{
     Cog,
-    Close
+    TrashCanOutline,
+    CloseCircle
   },
   methods: {
     removeCardFromList() {
@@ -45,6 +64,15 @@ export default {
     },
     openCardSettingModal(body){
       this.$emit('clickCardSettingButton', this.body)
+    },
+    cardBodyEdit(){
+      this.cardBodyEditFlag = true
+    },
+    quitCardBodyEdit(){
+      this.cardBodyEditFlag = false
+    },
+    updateCard(){
+      this.$emit('cardBodyFormComplete', this.card)
     }
   },
 }
@@ -66,6 +94,10 @@ export default {
   width: 90%;
   word-wrap: break-word;
   margin-bottom :3%;
+}
+
+.card-body-editing{
+  display: flex;
 }
 
 .card-handle-button{

@@ -8,6 +8,7 @@ const cards = {
     // lists: savedLists ? JSON.parse(savedLists): [
     cards: [
       {
+        id: '',
         list_id: '',
         title: '',
         body: '',
@@ -20,6 +21,13 @@ const cards = {
   mutations: {
     setCards(state, {cards}){
       state.cards = cards
+    },
+    updateCard(state, {card,updateCard}){
+      // const index = state.cards.findIndex(card => {
+      //   return card.id === updateCard.id
+      // })
+      //   state.cards.splice(index, 1, updateCard)
+      Object.assign(card, updateCard);
     },
     // addlist(state, payload) {
     //   state.lists.push({ title: payload.title, cards:[] })
@@ -43,6 +51,31 @@ const cards = {
           .then((response) => {
           commit('setCards', { cards: response.data })
         })
+    },
+    // async updateCardAction( { commit }, card ) {
+    //   await axios.post('api/cards/' ,card)
+    //     .then(res => {
+    //       commit('updateCard', res.data)
+    //     })
+    //     .catch(error => console.log(error.response));
+    // },
+    async updateCardAction ({state, commit}, updateCard) {
+      // stateからマッチしたtaskを取り出す
+      const card = state.cards.find((o) => {
+          return o.id === updateCard.id;
+      });
+
+      if (!card) {
+          return false;
+      }
+
+      return await axios.patch('/api/cards/' + updateCard.id, updateCard)
+          .then(res => {
+              commit('updateCard', {card, updateCard});
+              return true;
+          }).catch(error => {
+              return error;
+          });
     },
     // addlist(context, payload) {
     //   context.commit('addlist', payload)
