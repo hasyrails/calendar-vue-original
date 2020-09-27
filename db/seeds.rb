@@ -22,3 +22,11 @@ end
     title: Faker::Book.title,
   )
 end
+
+3.times do
+  Card.create!(
+    list_id: 1,
+    title: Faker::Book.title,
+    body: Faker::Book.title,
+  )
+end
