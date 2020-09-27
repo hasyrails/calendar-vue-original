@@ -9,7 +9,7 @@
         <ChevronRight fillColor="white" @click="next" :size="100"></ChevronRight>
       </div>
     </div>
-    <router-link to="/ganttchart" style="text-decoration:none;">
+    <router-link to="/schedules" style="text-decoration:none;">
       <div class="link-to-ganttchart-page"
       @mouseover="ballonDisplay" @mouseleave="ballonNonDisplay">
           <div>
