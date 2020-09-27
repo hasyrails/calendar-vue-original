@@ -1,3 +1,5 @@
+import axios from 'axios'
+
 // const savedLists = localStorage.getItem('trello-lists')
 
 const lists = {
@@ -6,25 +8,17 @@ const lists = {
     // lists: savedLists ? JSON.parse(savedLists): [
     lists: [
       {
-        title: 'Backlog',
+        title: '',
         cards: [
-          { body: 'English' },
-          { body: 'Mathematics' },
+          { body: '' },
         ]
       },
-      {
-        title: 'Todo',
-        cards: [
-          { body: 'Science' }
-        ]
-      },
-      {
-        title: 'Doing',
-        cards: []
-      }
     ],
   },
   mutations: {
+    setLists(state, {lists}){
+      state.lists = lists
+    },
     addlist(state, payload) {
       state.lists.push({ title: payload.title, cards:[] })
     },
@@ -42,6 +36,12 @@ const lists = {
     }
   },
   actions: {
+    async fetchListsAction({ commit }) {
+      await axios.get('api/lists')
+          .then((response) => {
+          commit('setLists', { lists: response.data })
+        })
+    },
     addlist(context, payload) {
       context.commit('addlist', payload)
     },
@@ -64,6 +64,7 @@ const lists = {
     //   state.lists.map(content => count += content.cards.length)
     //   return count
     // },
+    lists: (state) => state.lists,
   },
 }
 
