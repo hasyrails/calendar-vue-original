@@ -7,7 +7,7 @@ class Api::SchedulesController < ApplicationController
   end
 
   def show
-    render json: @task
+    render json: @schedule
   end
 
   def create
