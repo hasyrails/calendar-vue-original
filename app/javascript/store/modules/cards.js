@@ -31,6 +31,9 @@ const cards = {
       //   state.cards.splice(index, 1, updateCard)
       Object.assign(card, updateCard);
     },
+     deleteCard(state, index) {
+        state.cards.splice(index, 1);
+    },
     // addlist(state, payload) {
     //   state.lists.push({ title: payload.title, cards:[] })
     // },
@@ -94,6 +97,17 @@ const cards = {
     // updateList(context, payload) {
     //   context.commit('updateList', payload)
     // }
+     async deleteCardAction ({state, commit}, card) {
+        const index = state.cards.indexOf(card);
+ 
+        return await axios.delete('/api/cards/' + card.id)
+            .then(res => {
+                commit('deleteCard', index);
+                return true;
+            }).catch(error => {
+                return error;
+            });
+    },
   },
   getters: {
     // totalCardCount(state) {

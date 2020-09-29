@@ -42,14 +42,14 @@ export default {
       type: Object,
       required: true
     },
-    // listIndex: {
-    //   type: Number,
-    //   required: true
-    // },
-    // cardIndex: {
-    //   type: Number,
-    //   required: true
-    // }
+    listIndex: {
+      type: Number,
+      required: true
+    },
+    cardIndex: {
+      type: Number,
+      required: true
+    }
   },
   components:{
     Cog,
@@ -59,7 +59,7 @@ export default {
   methods: {
     removeCardFromList() {
       if(confirm('本当にこのカードを削除しますか？')) {
-        this.$store.dispatch('lists/removeCardFromList', { cardIndex: this.cardIndex, listIndex: this.listIndex })
+        this.$store.dispatch('cards/deleteCardAction', this.card)
       }
     },
     openCardSettingModal(body){
