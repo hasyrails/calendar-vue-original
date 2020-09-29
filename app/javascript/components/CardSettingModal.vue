@@ -173,7 +173,7 @@
       <div class="modal-footer" style="background-color:white; height:100px;">
           <div class="btn btn-lg btn-secondary" @click="closeCardSettingModal">閉じる</div>
           <div class="btn btn-lg btn-primary" @click="cardEdit">編集する</div>
-          <div class="btn btn-lg btn-danger">このToDoカードを削除する</div>
+          <div class="btn btn-lg btn-danger" @click="deleteCard">このToDoカードを削除する</div>
         </div>
       </div>
     </div>
@@ -250,6 +250,9 @@ export default {
     updateCard(){
       this.cardDescriptionEditFlag = false
       this.$emit('updateCard', this.card)
+    },
+    deleteCard(){
+      this.$emit('clickedCardDeleteButton', this.card)
     }
   }
 }

@@ -33,6 +33,7 @@
       @clickCardSettingModalCloseButton="closeCardSettingModal"
       @clickCardEditOpenButton="openCardEditModal(cardDetail)"
       @updateCard="updateCard"
+      @clickedCardDeleteButton="deleteCard"
       ></CardSettingModal>
     </div>
     <div>
@@ -109,7 +110,8 @@ export default {
   },
   methods: {
     ...mapActions('cards',[
-      'updateCardAction'
+      'updateCardAction',
+      'deleteCardAction',
     ]),
     removeList: function() {
       if(confirm('本当にこのリストを削除しますか？')){
@@ -133,6 +135,15 @@ export default {
     },
     async updateCard(card){
       await this.updateCardAction(card)
+      // this.$router.go({path: this.$router.currentRoute.path, force: true})
+      // this.closeCardEditModal()
+      // this.closeCardSettingModal()
+    },
+    async deleteCard(card){
+      if(confirm('本当にこのカードを削除しますか？')) {
+        await this.deleteCardAction(card)
+      }
+      this.cardSettingModalFlag = false
       // this.$router.go({path: this.$router.currentRoute.path, force: true})
       // this.closeCardEditModal()
       // this.closeCardSettingModal()

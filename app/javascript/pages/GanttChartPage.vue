@@ -98,6 +98,7 @@ p {
 .todo-area{
   width:200%;
   /* overflow-x: auto; */
+  overflow-x: scroll;
   height: 30%;
   position: fixed;
 	bottom: 0px;
