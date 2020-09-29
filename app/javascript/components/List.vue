@@ -15,13 +15,13 @@
         @sort="$emit('change')"
       >
         <Card v-for="card in cards"
-              :key="card.id"
-              :card="card"
-              :cardIndex="index"
-              :listIndex="listIndex"
-              @clickCardSettingButton="openCardSettingModal(card)"
-              v-if="id===card.list_id"
-              @cardBodyFormComplete="updateCard"
+          :key="card.id"
+          :card="card"
+          :cardIndex="index"
+          :listIndex="listIndex"
+          @clickCardSettingButton="openCardSettingModal(card)"
+          v-if="id===card.list_id"
+          @cardBodyFormComplete="updateCard"
         ></Card>
       </draggable>
     </div>
@@ -32,6 +32,7 @@
       v-if="cardSettingModalFlag"
       @clickCardSettingModalCloseButton="closeCardSettingModal"
       @clickCardEditOpenButton="openCardEditModal(cardDetail)"
+      @updateCard="updateCard"
       ></CardSettingModal>
     </div>
     <div>

@@ -10,8 +10,10 @@ const cards = {
       {
         id: '',
         list_id: '',
-        title: '',
         body: '',
+        description: '',
+        status: '',
+        scheduled: '',
         // cards: [
         //   { description: '' },
         // ]

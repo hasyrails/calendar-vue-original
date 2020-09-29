@@ -27,7 +27,9 @@ end
   Card.create!(
     id: rand(1..10),
     list_id: rand(1..10),
-    title: Faker::Book.title,
     body: Faker::Book.title,
+    description: Faker::Book.title,
+    status: rand(0..2),
+    scheduled: rand(0..1),
   )
 end
