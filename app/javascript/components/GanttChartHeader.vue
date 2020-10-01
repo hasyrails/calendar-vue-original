@@ -97,6 +97,15 @@ export default {
 
 <style scoped>
 .calender-header {
+  position: fixed;
+    left: 50%;
+    top: 30%;
+    border: 1px solid blue;
+    /* position: absolute; */
+    width: 160px;
+    height: 10%;
+    margin-left: -80px;
+    margin-top: -60px;
   /* background-color: #75A9FF; */
   /* height:1px; */
   /* display: flex; */
@@ -107,10 +116,20 @@ export default {
   display: flex;
   /* justify-content: center; */
   align-items: center;
-  position:fixed;
+  position: fixed;
+  left: 45%;
+  top: 14%;
   
   bottom:1300px;
   margin-left:1%;
+
+    /* position: relative; */
+    /* left: 1%; */
+    /* top: 40%; */
+  width: 200px;
+  height: 100px;
+  margin-left: -80px;
+  margin-top: -60px;
 }
 .calendar-header-date {
   color: white;

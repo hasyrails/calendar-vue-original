@@ -9,17 +9,16 @@
       style="background-color:#8EB8FF;height:200px;">
       </GanttChartHeader>
     </div>
-    <div style="min-width:100px;width:100%;border-top:5px #BAD3FF;background-color:#EEEEEE;">
+    <div style="min-width:50px;border-top:5px #BAD3FF;background-color:#EEEEEE;">
       <div
         v-for="(week, index) in calendars"
         :key="index"
-        style="display:flex;border-left:5px solid #BAD3FF;height:600px;"
+        style="display:flex;border-left:5px solid #BAD3FF;height:50%;width:12000px;"
       >
         <div
         class="calendar-date"
         v-for="(day, index) in week"
         :key="index"
-        style="width:250px;"
         :id="day.year+'-'+day.month+'-'+day.date"
         >
         <div v-if="day.month===currentMonth" style="font-weight:200;font-size:50px;">{{day.date}}</div>
@@ -215,7 +214,7 @@ export default {
 
       for (let week = 0; week < 1; week++) {
         let weekRow = [];
-        for (let day = 0; day < moment(this.currentMonth).daysInMonth(); day++) {
+        for (let day = 0; day <= this.getEndDate(); day++) {
           weekRow.push({
             year: startDate.get("year"),
             month: startDate.get("month")+1,
@@ -348,18 +347,25 @@ export default {
 
 <style scoped>
 .calendar {
-  margin-top:3%;
-  margin-left: 10%;
+  margin-top:1%;
   margin-right: 0.5%;
-  /* position: fixed; */
-  width:125%;
+  /* margin-left: 10%; */
+  position: absolute;
+  /* left: 1%; */
+  top: 0.1%;
+  /* border: 1px solid blue; */
+  /* _position: absolute; */
+  width: 60000px;
+  /* height: 120px; */
+  /* margin-left: -80px; */
   /* z-index:1; */
   display: flex;
   flex-direction: column;
+  overflow-x: scroll;
 }
 
 .calendar-header-area {
-  height:200px;
+  /* height:200px; */
 }
 
 .calendar-date{
