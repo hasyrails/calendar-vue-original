@@ -1,11 +1,11 @@
 <template>
   <div class="calendar-header">
     <div class="calendar-header-content">
-      <div class="prev-month-button">
+      <div>
         <ChevronLeft fillColor="white"  @click="prev" :size="100"></ChevronLeft>
       </div>
       <div class="calendar-header-date">{{ currentDate }}</div>
-      <div class="next-month-button">
+      <div>
         <ChevronRight fillColor="white" @click="next" :size="100"></ChevronRight>
       </div>
     </div>
@@ -83,11 +83,10 @@ export default {
   margin-left:1%;
 }
 .calendar-header-date {
-  position: relative;
   color: white;
   font-size: 75px;
-  /* margin-left: 10%; */
-  /* margin-right: 10%; */
+  margin-left: 10%;
+  margin-right: 10%;
 }
 .link-to-ganttchart-page{
   text-align: right;

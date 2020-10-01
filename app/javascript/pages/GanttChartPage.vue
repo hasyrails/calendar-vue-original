@@ -71,24 +71,24 @@ p {
 }
 
 .app-area{
-  width: 600%;
+  width: 125%;
   display:flex;
   flex-direction: column;
-  /* align-items: center; */
-  position: absolute;
+  align-items: center;
 }
 
 .calendar-area{
-  width:600%;
+  width:125%;
   height:70%;
   overflow-x: scroll;
-  position: fixed;
 }
 
 .date-picker{
   width: 30%;
   height: 30%;
-  position: absolute;
+  /* position: relative; */
+  /* position: absolute; */
+  position: fixed;
   top: 30%;
   bottom: 30%;
   left: 10%;
@@ -96,7 +96,7 @@ p {
 }
 
 .todo-area{
-  width:300%;
+  width:200%;
   /* overflow-x: auto; */
   overflow-x: scroll;
   height: 30%;
