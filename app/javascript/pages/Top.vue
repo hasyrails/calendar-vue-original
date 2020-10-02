@@ -31,7 +31,7 @@ p {
 }
 
 .app-area{
-  width: 100%;
+  width: 150%;
   display:flex;
   flex-direction: column;
   align-items: center;
@@ -39,7 +39,7 @@ p {
 }
 
 .calendar-area{
-  width:100%;
+  width:150%;
   height:70%;
   /* overflow-x: scroll; */
   margin-left: 10%;
