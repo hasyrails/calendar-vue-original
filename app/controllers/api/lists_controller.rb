@@ -1,5 +1,6 @@
 class Api::ListsController < ApplicationController
   before_action :set_list, only: %i[show update destroy]
+  skip_before_action :verify_authenticity_token
 
   def index
     @lists = List.all
@@ -39,8 +40,8 @@ class Api::ListsController < ApplicationController
     @list = List.find(params[:id])
   end
 
-  def schedule_params
-    params.fetch(:list, {}).permit(:title, :start, :start_year, :start_month, :start_date)
+  def list_params
+    params.fetch(:list, {}).permit(:title)
   end
 
 end

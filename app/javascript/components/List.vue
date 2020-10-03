@@ -97,6 +97,9 @@ export default {
     ...mapState('cards',{
       cards: 'cards'
     }),
+    // ...mapState('lists',{
+    //   lists: 'lists'
+    // }),
   },
   mounted(){
     this.$store.dispatch('cards/fetchCardsAction')
@@ -191,6 +194,7 @@ export default {
   font-weight: bold;
   padding: 15px;
   margin-bottom: 10px;
+  text-align: center;
 }
 
 .deletelist {
