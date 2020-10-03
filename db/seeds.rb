@@ -6,6 +6,7 @@ end_time = Time.new(2020,9,30)
 5.times do
   Schedule.create!(
     title: Faker::Book.title,
+    description: Faker::Book.title,
     start: start_time,
     start_year: start_time.year.to_i,
     start_month: start_time.month.to_i,
