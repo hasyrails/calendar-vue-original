@@ -49,6 +49,7 @@
       @datePickerInputted="updateCard"
       ></CardToGanttChartModal>
     </div>
+    <div class="btn btn-primary" @click="confirm">confirm</div>
   </div>
 </template>
 
@@ -122,8 +123,11 @@ export default {
     draggable
   },
   methods: {
-    createSchedulesFromCard(card){
-      this.$store.dispatch('schedules/createScheduleAction', card)
+    confirm(){
+      console.log(this.schedules[this.schedules.length-1].start.substr(0,10))
+    },
+    async createSchedulesFromCard(card){
+      await this.$store.dispatch('schedules/createScheduleAction', card)
       this.$router.go({path: this.$router.currentRoute.path, force: true})
     },
     openCardToGanttChartModal(card){

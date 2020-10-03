@@ -281,7 +281,6 @@ export default {
     },
     ...mapState('schedules',{
       schedules: 'schedules',
-      devidedSchedules: 'devidedSchedules',
     }),
     ...mapState('date',{
       currentDate: 'currentDate',

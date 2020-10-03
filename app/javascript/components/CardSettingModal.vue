@@ -295,7 +295,7 @@ export default {
   },
   methods:{
     createSchedulesFromCard(){
-      this.$emit('clickedCreateScheduleFromCardButton', this.card)
+       this.$emit('clickedCreateScheduleFromCardButton', this.card)
     },
     showDatePicker(){
       this.datePickerFlag = !this.datePickerFlag
