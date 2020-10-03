@@ -183,7 +183,7 @@ export default {
 }
 
 .listheader {
-  /* width: 290px; */
+  width: 100%;
   display: inline-flex;
   justify-content: center;
 }
