@@ -14,6 +14,8 @@ const cards = {
         description: '',
         status: '',
         scheduled: '',
+        start: '',
+        end: '',
         // cards: [
         //   { description: '' },
         // ]

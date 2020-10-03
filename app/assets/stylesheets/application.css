@@ -36,7 +36,7 @@
   overflow: auto;
 }
 
-header {
+.header {
   background: #AFEEEE;
   height: 150px;
   color: black;

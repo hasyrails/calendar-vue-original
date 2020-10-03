@@ -41,9 +41,11 @@
       <CardToGanttChartModal
       :card="cardEdit"
       :list="list"
+      :schedule="schedule"
       v-if="cardToGanttChartModalFlag"
       @clickCardEditModalCloseButton="closeCardEditModal(cardEdit)"
-      @clickCardUpdateButton="updateCard"
+      @clickedCloseCardToGanttChartButton="closeCardToGanttChartModal"
+      @datePickerInputted="updateCard"
       ></CardToGanttChartModal>
     </div>
   </div>
@@ -100,6 +102,9 @@ export default {
     ...mapState('cards',{
       cards: 'cards'
     }),
+    ...mapState('schedules',{
+      schedules: 'schedules'
+    }),
     // ...mapState('lists',{
     //   lists: 'lists'
     // }),
@@ -143,8 +148,8 @@ export default {
     closeCardSettingModal(){
       this.cardSettingModalFlag = false
     },
-    closeCardEditModal(){
-      this.cardEditModalFlag = false
+    closeCardToGanttChartModal(){
+      this.cardToGanttChartModalFlag = false
     },
     async updateCard(card){
       await this.updateCardAction(card)

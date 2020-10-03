@@ -128,8 +128,61 @@
               <ContentSaveEditOutline  :size="45"></ContentSaveEditOutline>
             </div>
           </div>
-
         </div>
+
+      <div class="schedule-item">
+        <div class="schedule-item-name">期間</div>
+        <div class="schedule-item-content">
+          <div class="schedule-date">
+            <div class="schedule-start-date">
+              <div>始める日</div>
+              <div>
+              <form
+              @submit.prevent="updateCard"
+              >
+                <div v-if="!datePickerFlag" @click="showDatePicker">
+                  {{ card.start }}
+                </div>
+                <div v-if="datePickerFlag">
+                    <Datepicker
+                    :language="ja"
+                    class="test"
+                    :value="this.default"
+                    :format="DatePickerFormat"
+                    v-model="card.start"
+                    ></Datepicker>
+                </div>
+              </form>
+              </div>
+              <!-- <div>{{.start_yyyymmdd}}</div> -->
+            </div>
+            <div>〜</div>
+            <div class="schedule-end-date">
+              <div>終わらせる日</div>
+              <div>
+              <form 
+              @submit.prevent="updateCard"
+              >
+                <div v-if="!datePickerFlag" @click="showDatePicker">
+                  {{ card.end }}
+                </div>
+                <div v-if="datePickerFlag">
+                  <Datepicker
+                  :language="ja" 
+                  class="test"
+                  :value="this.default"
+                  :format="DatePickerFormat"
+                  v-model="card.end"
+                  ></Datepicker>
+                </div>
+              </form>
+              </div>
+              <!-- <div>{{schedule.end_yyyymmdd}}</div> -->
+            </div>
+            </div>
+          </div>
+        </div>
+        
         <div class="schedule-item">
           <div class="schedule-item-name"
           @click="cardStatusEdit"
@@ -196,6 +249,8 @@ import PencilOff from 'vue-material-design-icons/PencilOff.vue';
 import CardPlus from 'vue-material-design-icons/CardPlus.vue';
 import Update from 'vue-material-design-icons/Update.vue';
 import CloseCircle from 'vue-material-design-icons/CloseCircle.vue';
+import Datepicker from 'vuejs-datepicker';
+import {ja} from 'vuejs-datepicker/dist/locale'
 
 
 
@@ -203,10 +258,14 @@ export default {
   name: 'CardSettingModal',
   data(){
     return{
+      ja:ja,
+      default: moment().format('YYYY/MM/DD'),
+      DatePickerFormat: 'yyyy/MM/dd',
       cardEditFlag: false,
       cardDescriptionEditFlag: false,
       cardScheduledEditFlag: false,
       cardStatusEditFlag: false,
+      datePickerFlag: false,
     }
   },
   props: {
@@ -224,13 +283,20 @@ export default {
     CardPlus,
     Update,
     CloseCircle,
+    Datepicker,
   },
   methods:{
+    showDatePicker(){
+      this.datePickerFlag = !this.datePickerFlag
+    },
     confirmSchedulize(){
       if($('[name="optionsScheduled"] option[value="scheduled"]').prop('selected',true)){
-        this.$emit('selectedValueScheduled', this.card)
-      }else if($('[name="optionsScheduled"] option[value="non-scheduled"]').prop('selected',true)){
-        window.alert('fuga');
+        this.datePickerFlag = true
+      // }else if($('[name="optionsScheduled"] option[value="non_scheduled"]').prop('selected',true)){
+      //   this.datePickerFlag = false
+      // }
+      }else if($('[name="optionsScheduled"] option[value="scheduled"]').prop('selected',false)){
+        this.datePickerFlag = false
       }
     },
     openCardEditModal(){

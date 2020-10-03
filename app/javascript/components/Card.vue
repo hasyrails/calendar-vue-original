@@ -3,6 +3,9 @@
     <div class="body" v-if="!cardBodyEditFlag" @click="cardBodyEdit">
       {{ card.body }}
     </div>
+    <div class="body" v-if="!cardBodyEditFlag&&card.body.length===0" @click="cardBodyEdit">
+      <Pencil :size="40"></Pencil>
+    </div>
     <div class="card-body-editng" v-if="cardBodyEditFlag">
       <form  class="body" @submit.prevent="updateCard" style="-moz-box-shadow: inset 0 0 4px rgba(0,0,0,0.2);
       -webkit-box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.2);
@@ -30,6 +33,7 @@
 import Cog from 'vue-material-design-icons/Cog.vue';
 import TrashCanOutline from 'vue-material-design-icons/TrashCanOutline.vue';
 import CloseCircle from 'vue-material-design-icons/CloseCircle.vue';
+import Pencil from 'vue-material-design-icons/Pencil.vue';
 
 export default {
   data(){
@@ -54,7 +58,8 @@ export default {
   components:{
     Cog,
     TrashCanOutline,
-    CloseCircle
+    CloseCircle,
+    Pencil,
   },
   methods: {
     removeCardFromList() {

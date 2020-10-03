@@ -1,7 +1,7 @@
 require 'time'
 
-start_time = Time.new(2020,9,27)
-end_time = Time.new(2020,9,30)
+start_time = Date.new(2020,9,27)
+end_time = Date.new(2020,9,30)
 
 5.times do
   Schedule.create!(

@@ -46,7 +46,7 @@
               </div>
             </div>
           </div>
-          <div @click="closeCardSettingModal">
+          <div @click="closeCardToGanttChartModal">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true" style="font-size:36px;">&times;</span>
             </button>
@@ -59,11 +59,37 @@
           <div class="schedule-date">
             <div class="schedule-start-date">
               <div>始める日</div>
+              <div>
+              <form
+              @submit.prevent="updateCard"
+              >
+                <Datepicker
+                :language="ja"
+                class="test"
+                :value="this.default"
+                :format="DatePickerFormat"
+              v-model="card.start"
+                ></Datepicker>
+              </form>
+              </div>
               <!-- <div>{{.start_yyyymmdd}}</div> -->
             </div>
             <div>〜</div>
             <div class="schedule-end-date">
               <div>終わらせる日</div>
+              <div>
+              <form 
+              @submit.prevent="updateCard"
+              >
+                <Datepicker
+                :language="ja" 
+                class="test"
+                :value="this.default"
+                :format="DatePickerFormat"
+              v-model="card.end"
+                ></Datepicker>
+              </form>
+              </div>
               <!-- <div>{{schedule.end_yyyymmdd}}</div> -->
             </div>
             </div>
@@ -79,7 +105,7 @@
         </div>
        
       <div class="modal-footer" style="background-color:white; height:100px;">
-          <div class="btn btn-lg btn-secondary" @click="closeCardSettingModal">閉じる</div>
+          <div class="btn btn-lg btn-secondary" @click="closeCardToGanttChartModal">閉じる</div>
           <div class="btn btn-lg btn-primary" @click="cardEdit">編集する</div>
           <div class="btn btn-lg btn-danger" @click="deleteCard">このToDoカードを削除する</div>
         </div>
@@ -95,13 +121,20 @@ import Card from '../components/Card'
 import CardSettingModal from '../components/CardSettingModal'
 import CardToGanttChartModal from '../components/CardToGanttChartModal'
 
+
 import draggable from "vuedraggable";
+import Datepicker from 'vuejs-datepicker';
+import {ja} from 'vuejs-datepicker/dist/locale'
+import moment from 'moment'
 
 import { mapState, mapActions } from 'vuex'
 
 export default {
   data(){
     return{
+      ja:ja,
+      default: moment().format('YYYY/MM/DD'),
+      DatePickerFormat: 'yyyy/MM/dd',
       options: {
         group: {
           name: 'myGroup',
@@ -131,6 +164,10 @@ export default {
       type: Object,
       required: true
     },
+    schedule: {
+      type: Object,
+      required: true
+    },
     // listIndex: {
     //   type: Number,
     //   required: true
@@ -143,6 +180,7 @@ export default {
     ...mapState('cards',{
       cards: 'cards'
     }),
+    
     // ...mapState('lists',{
     //   lists: 'lists'
     // }),
@@ -156,48 +194,20 @@ export default {
     CardSettingModal,
     // CardEditModal,
     CardToGanttChartModal,
-    draggable
+    draggable,
+    Datepicker
   },
   methods: {
     ...mapActions('cards',[
       'updateCardAction',
       'deleteCardAction',
     ]),
-    removeList: function() {
-      if(confirm('本当にこのリストを削除しますか？')){
-        this.$store.dispatch('lists/removelist', { listIndex: this.listIndex })
-      }
+    closeCardToGanttChartModal(){
+      this.$emit('clickedCloseCardToGanttChartButton')
     },
-    openCardSettingModal(card){
-      this.cardDetail = card
-      this.cardSettingModalFlag = true
-    },
-    openCardEditModal(card){
-      this.closeCardSettingModal()
-      this.cardEditModalFlag = true
-      this.cardEdit = card
-    },
-    closeCardSettingModal(){
-      this.cardSettingModalFlag = false
-    },
-    closeCardEditModal(){
-      this.cardEditModalFlag = false
-    },
-    async updateCard(card){
-      await this.updateCardAction(card)
-      // this.$router.go({path: this.$router.currentRoute.path, force: true})
-      // this.closeCardEditModal()
-      // this.closeCardSettingModal()
-    },
-    async deleteCard(card){
-      if(confirm('本当にこのカードを削除しますか？')) {
-        await this.deleteCardAction(card)
-      }
-      this.cardSettingModalFlag = false
-      // this.$router.go({path: this.$router.currentRoute.path, force: true})
-      // this.closeCardEditModal()
-      // this.closeCardSettingModal()
-    },
+    updateCard(){
+      this.$emit('datePickerInputted', this.card)
+    }
   }
 }
 </script>
@@ -381,4 +391,5 @@ pointer-events: none;
 padding: 8px 38px 8px 8px;
 color: black;
 }
+
 </style>
