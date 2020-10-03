@@ -46,7 +46,7 @@ export default {
       type: Object,
       required: true
     },
-    listIndex: {
+    list_id: {
       type: Number,
       required: true
     },

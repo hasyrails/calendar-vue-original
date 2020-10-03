@@ -84,9 +84,9 @@ const cards = {
               return error;
           });
     },
-    // addlist(context, payload) {
-    //   context.commit('addlist', payload)
-    // },
+    createCard(state, payload) {
+      state.cards.push({ body: payload.body, list_id: payload.list_id })
+    },
     // removelist(context, payload) {
     //   context.commit('removelist', payload)
     // },
@@ -110,6 +110,13 @@ const cards = {
                 return error;
             });
       },
+    async createCardAction( { commit }, card ) {
+      await axios.post('api/cards',card)
+        .then(res => {
+          commit('createCard', card)
+        })
+      .catch(error => console.log(error.response));
+    },
   },
   getters: {
     // totalCardCount(state) {
