@@ -46,6 +46,7 @@
       @clickCardEditModalCloseButton="closeCardEditModal(cardEdit)"
       @clickedCloseCardToGanttChartButton="closeCardToGanttChartModal"
       @datePickerInputted="updateCard"
+      @clickedCreateScheduleFromCardButton="createSchedulesFromCard"
       ></CardToGanttChartModal>
     </div>
   </div>
@@ -121,6 +122,9 @@ export default {
     draggable
   },
   methods: {
+    async createSchedulesFromCard(card){
+      await this.createSchedulesFromCardAction(card)
+    },
     openCardToGanttChartModal(card){
       this.cardSettingModalFlag = false
       this.cardToGanttChartModalFlag = true
@@ -129,6 +133,9 @@ export default {
     ...mapActions('cards',[
       'updateCardAction',
       'deleteCardAction',
+    ]),
+    ...mapActions('schedules',[
+      'createSchedulesFromCardAction'
     ]),
     removeList: function() {
       if(confirm('本当にこのリストを削除しますか？')){

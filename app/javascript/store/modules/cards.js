@@ -99,7 +99,7 @@ const cards = {
     // updateList(context, payload) {
     //   context.commit('updateList', payload)
     // }
-     async deleteCardAction ({state, commit}, card) {
+    async deleteCardAction ({state, commit}, card) {
         const index = state.cards.indexOf(card);
  
         return await axios.delete('/api/cards/' + card.id)
@@ -109,7 +109,7 @@ const cards = {
             }).catch(error => {
                 return error;
             });
-    },
+      },
   },
   getters: {
     // totalCardCount(state) {

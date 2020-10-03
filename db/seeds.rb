@@ -5,7 +5,7 @@ end_time = Date.new(2020,9,30)
 
 5.times do
   Schedule.create!(
-    title: Faker::Book.title,
+    body: Faker::Book.title,
     description: Faker::Book.title,
     start: start_time,
     start_year: start_time.year.to_i,
@@ -21,16 +21,18 @@ end
 5.times do
   List.create!(
     title: Faker::Book.title,
-  )
-end
-
-3.times do
-  Card.create!(
-    id: rand(1..10),
-    list_id: rand(1..10),
-    body: Faker::Book.title,
-    description: Faker::Book.title,
-    status: rand(0..2),
-    scheduled: rand(0..1),
-  )
+    )
+  end
+  
+  3.times do
+    Card.create!(
+      id: rand(1..10),
+      list_id: rand(1..10),
+      body: Faker::Book.title,
+      description: Faker::Book.title,
+      status: rand(0..2),
+      scheduled: rand(0..1),
+      start: start_time,
+      end: end_time,
+      )
 end

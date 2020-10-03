@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 2020_09_27_042243) do
   end
 
   create_table "schedules", force: :cascade do |t|
-    t.string "title"
+    t.string "body"
     t.string "description"
     t.datetime "start"
     t.integer "start_year"

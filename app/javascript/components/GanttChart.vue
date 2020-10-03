@@ -80,6 +80,7 @@
     <button class="btn btn-primary" @click="openScheduleSettingModal">setting</button>
     <button  class="btn btn-primary" @click="confirmIdToMoent">Id to Moment</button>
     <button  class="btn btn-primary" @click="confirmSchedules">confirmSchedules</button>
+    <button  class="btn btn-primary" @click="confirmMoment">confirmSchedules</button>
   </div>
 </div>
 </template>
@@ -201,9 +202,7 @@ export default {
       return date.add(6 - youbiNum, "days");
     },
     confirmMoment(){
-      console.log(this.calendars);
-      console.log(this.calendars[4][6]);
-      console.log(moment(this.currentDate).endOf("month").date()-1);
+      console.log(new Date('2020-10-11').getFullYear())
     },
     getCalendar() {
       let startDate = this.getStartDate();

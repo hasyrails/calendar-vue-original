@@ -82,7 +82,7 @@
           </div>
         </div>
 
-        <div class="schedule-item">
+        <!-- <div class="schedule-item">
           <div class="schedule-item-name"
           @click="cardScheduledEdit"
           style="cursor: pointer;"
@@ -128,7 +128,7 @@
               <ContentSaveEditOutline  :size="45"></ContentSaveEditOutline>
             </div>
           </div>
-        </div>
+        </div> -->
 
       <div class="schedule-item">
         <div class="schedule-item-name">期間</div>
@@ -234,6 +234,7 @@
       <div class="modal-footer" style="background-color:white; height:100px;">
           <div class="btn btn-lg btn-secondary" @click="closeCardSettingModal">閉じる</div>
           <div class="btn btn-lg btn-primary" @click="cardEdit">編集する</div>
+          <div class="btn btn-lg btn-primary" @click="createSchedulesFromCard">ガントチャートに追加する</div>
           <div class="btn btn-lg btn-danger" @click="deleteCard">このToDoカードを削除する</div>
         </div>
       </div>
@@ -285,7 +286,17 @@ export default {
     CloseCircle,
     Datepicker,
   },
+  computed:{
+    // schedule: {
+    //     title: this.card.body,
+    //     start: this.card.start,
+    //     end: this.card.end
+    //   },
+  },
   methods:{
+    createSchedulesFromCard(){
+      this.$emit('clickedCreateScheduleFromCardButton', this.card)
+    },
     showDatePicker(){
       this.datePickerFlag = !this.datePickerFlag
     },
