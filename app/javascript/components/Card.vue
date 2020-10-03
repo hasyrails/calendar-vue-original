@@ -42,7 +42,7 @@ export default {
       type: Object,
       required: true
     },
-    listIndex: {
+    list_id: {
       type: Number,
       required: true
     },
@@ -67,6 +67,7 @@ export default {
     },
     cardBodyEdit(){
       this.cardBodyEditFlag = true
+      console.log(this.list_id)
     },
     quitCardBodyEdit(){
       this.cardBodyEditFlag = false

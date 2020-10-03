@@ -34,9 +34,9 @@ const cards = {
      deleteCard(state, index) {
         state.cards.splice(index, 1);
     },
-    // addlist(state, payload) {
-    //   state.lists.push({ title: payload.title, cards:[] })
-    // },
+    createCard(state, payload) {
+      state.cards.push({ body: payload.body, list_id: payload.list_id })
+    },
     // removelist(state, payload) {
     //   state.lists.splice(payload.listIndex, 1)
     // },
@@ -82,9 +82,13 @@ const cards = {
               return error;
           });
     },
-    // addlist(context, payload) {
-    //   context.commit('addlist', payload)
-    // },
+    async createCardAction( { commit }, card ) {
+      await axios.post('api/cards',card)
+        .then(res => {
+          commit('createCard', card)
+        })
+      .catch(error => console.log(error.response));
+    },
     // removelist(context, payload) {
     //   context.commit('removelist', payload)
     // },
