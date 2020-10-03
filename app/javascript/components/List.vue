@@ -34,15 +34,17 @@
       @clickCardEditOpenButton="openCardEditModal(cardDetail)"
       @updateCard="updateCard"
       @clickedCardDeleteButton="deleteCard"
+      @selectedValueScheduled="openCardToGanttChartModal"
       ></CardSettingModal>
     </div>
     <div>
-      <CardEditModal
+      <CardToGanttChartModal
       :card="cardEdit"
-      v-if="cardEditModalFlag"
-      @clickCardEditModalCloseButton="closeCardEditModal"
+      :list="list"
+      v-if="cardToGanttChartModalFlag"
+      @clickCardEditModalCloseButton="closeCardEditModal(cardEdit)"
       @clickCardUpdateButton="updateCard"
-      ></CardEditModal>
+      ></CardToGanttChartModal>
     </div>
   </div>
 </template>
@@ -51,7 +53,7 @@
 import CardAdd from '../components/CardAdd'
 import Card from '../components/Card'
 import CardSettingModal from '../components/CardSettingModal'
-import CardEditModal from '../components/CardEditModal'
+import CardToGanttChartModal from '../components/CardToGanttChartModal'
 
 import draggable from "vuedraggable";
 
@@ -70,6 +72,7 @@ export default {
       },
       cardSettingModalFlag: false,
       cardEditModalFlag: false,
+      cardToGanttChartModalFlag: false,
     }
   },
   props: {
@@ -108,10 +111,16 @@ export default {
     CardAdd,
     Card,
     CardSettingModal,
-    CardEditModal,
+    // CardEditModal,
+    CardToGanttChartModal,
     draggable
   },
   methods: {
+    openCardToGanttChartModal(card){
+      this.cardSettingModalFlag = false
+      this.cardToGanttChartModalFlag = true
+      this.cardEdit = card
+    },
     ...mapActions('cards',[
       'updateCardAction',
       'deleteCardAction',
@@ -124,6 +133,7 @@ export default {
     openCardSettingModal(card){
       this.cardDetail = card
       this.cardSettingModalFlag = true
+      this.cardEdit = card
     },
     openCardEditModal(card){
       this.closeCardSettingModal()

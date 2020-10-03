@@ -54,13 +54,16 @@
         </div>
       <div class="modal-body" style="background-color:white;">
         <div class="schedule-item">
-          <div class="schedule-item-name">
+          <div class="schedule-item-name"
+          @click="cardDescriptionEdit"
+          style="cursor: pointer;"
+          >
             詳細
           </div>
           <div class="schedule-item-content"
           style="cursor:pointer;"
           v-if="!cardDescriptionEditFlag"
-          @click="cardDescriptionEdit">
+          >
             {{ card.description }}
           </div>
           <div class="card-description-editng" v-if="cardDescriptionEditFlag"
@@ -80,11 +83,13 @@
         </div>
 
         <div class="schedule-item">
-          <div class="schedule-item-name">
+          <div class="schedule-item-name"
+          @click="cardScheduledEdit"
+          style="cursor: pointer;"
+          >
             ガントチャートへ
           </div>
           <div class="schedule-item-content" 
-          @click="cardScheduledEdit"
           style="cursor:pointer;"
           >
             <div
@@ -106,7 +111,8 @@
             >
             <select v-model="card.scheduled"
             type="text" 
-            style="outline:blue;">
+            style="outline:blue;"
+            @change="confirmSchedulize">
                <option value="scheduled">
                   shcduled
                 </option>
@@ -125,11 +131,13 @@
 
         </div>
         <div class="schedule-item">
-          <div class="schedule-item-name">
+          <div class="schedule-item-name"
+          @click="cardStatusEdit"
+          style="cursor: pointer;"
+          >
             ステータス
           </div>
           <div 
-          @click="cardStatusEdit"
           style="cursor:pointer;"
           >
             <div class="schedule-item-content" v-if="card.status==='todo'&&!cardStatusEditFlag">
@@ -218,6 +226,13 @@ export default {
     CloseCircle,
   },
   methods:{
+    confirmSchedulize(){
+      if($('[name="optionsScheduled"] option[value="scheduled"]').prop('selected',true)){
+        this.$emit('selectedValueScheduled', this.card)
+      }else if($('[name="optionsScheduled"] option[value="non-scheduled"]').prop('selected',true)){
+        window.alert('fuga');
+      }
+    },
     openCardEditModal(){
       this.$emit('clickCardEditOpenButton', this.card)
     },
