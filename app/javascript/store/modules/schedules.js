@@ -136,7 +136,7 @@ const schedules = {
       })
       state.devidedSchedules.splice(index, 1, updateSchedule)
     },
-    createSchedulesFromCard(state, schedule){
+    createSchedule(state, schedule){
       state.schedules.push(schedule)
     },
   },
@@ -153,9 +153,9 @@ const schedules = {
     updateScheduleAction(context, devidedSchedule){
       context.commit('updateSchedule', devidedSchedule)
     },
-    async createSchedulesFromCardAction({ comiit }, card){
+    async createScheduleAction({ comiit }, card){
       const schedule = {
-        title: card.body,
+        body: card.body,
         start: card.start,
         start_year: new Date(card.start).getFullYear(),
         start_month: new Date(card.start).getMonth()+1,
@@ -165,9 +165,9 @@ const schedules = {
         end_month: new Date(card.end).getMonth()+1,
         end_date: new Date(card.end).getDate(),
       };
-      await axios.post('api/schedules', this.schedule)
+      await axios.post('api/schedules', schedule)
         .then(res => {
-          commit('createSchedulesFromCard', res.data)
+          commit('createSchedule', res.data)
         })
         .catch(error => console.log(error.response));
     }

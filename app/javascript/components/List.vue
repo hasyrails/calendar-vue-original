@@ -35,6 +35,7 @@
       @updateCard="updateCard"
       @clickedCardDeleteButton="deleteCard"
       @selectedValueScheduled="openCardToGanttChartModal"
+      @clickedCreateScheduleFromCardButton="createSchedulesFromCard"
       ></CardSettingModal>
     </div>
     <div>
@@ -46,7 +47,6 @@
       @clickCardEditModalCloseButton="closeCardEditModal(cardEdit)"
       @clickedCloseCardToGanttChartButton="closeCardToGanttChartModal"
       @datePickerInputted="updateCard"
-      @clickedCreateScheduleFromCardButton="createSchedulesFromCard"
       ></CardToGanttChartModal>
     </div>
   </div>
@@ -122,8 +122,9 @@ export default {
     draggable
   },
   methods: {
-    async createSchedulesFromCard(card){
-      await this.createSchedulesFromCardAction(card)
+    createSchedulesFromCard(card){
+      this.$store.dispatch('schedules/createScheduleAction', card)
+      this.$router.go({path: this.$router.currentRoute.path, force: true})
     },
     openCardToGanttChartModal(card){
       this.cardSettingModalFlag = false
@@ -134,9 +135,9 @@ export default {
       'updateCardAction',
       'deleteCardAction',
     ]),
-    ...mapActions('schedules',[
-      'createSchedulesFromCardAction'
-    ]),
+    // ...mapActions('schedules',[
+    //   'createScheduleAction'
+    // ]),
     removeList: function() {
       if(confirm('本当にこのリストを削除しますか？')){
         this.$store.dispatch('lists/removelist', { listIndex: this.listIndex })
