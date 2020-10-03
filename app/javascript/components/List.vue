@@ -7,7 +7,7 @@
     </div>
     <div class="cards-area">
       <div>
-        <CardAdd  :list_id="list_id"></CardAdd>
+        <CardAdd :list_id="list_id"></CardAdd>
       </div>
       <draggable
         :options="options"

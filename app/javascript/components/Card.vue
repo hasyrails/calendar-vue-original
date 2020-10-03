@@ -72,6 +72,7 @@ export default {
     },
     cardBodyEdit(){
       this.cardBodyEditFlag = true
+      console.log(this.list_id)
     },
     quitCardBodyEdit(){
       this.cardBodyEditFlag = false

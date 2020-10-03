@@ -82,7 +82,7 @@
           </div>
         </div>
 
-        <!-- <div class="schedule-item">
+        <div class="schedule-item">
           <div class="schedule-item-name"
           @click="cardScheduledEdit"
           style="cursor: pointer;"
@@ -110,9 +110,11 @@
             style="width:400px;"
             >
             <select v-model="card.scheduled"
-            type="text" 
+            type="text"
+            name="optionsScheduled"
             style="outline:blue;"
-            @change="confirmSchedulize">
+            @change="confirmSchedulize"
+            >
                <option value="scheduled">
                   shcduled
                 </option>
@@ -294,20 +296,11 @@ export default {
     //   },
   },
   methods:{
-    createSchedulesFromCard(){
-       this.$emit('clickedCreateScheduleFromCardButton', this.card)
-    },
-    showDatePicker(){
-      this.datePickerFlag = !this.datePickerFlag
-    },
     confirmSchedulize(){
       if($('[name="optionsScheduled"] option[value="scheduled"]').prop('selected',true)){
-        this.datePickerFlag = true
-      // }else if($('[name="optionsScheduled"] option[value="non_scheduled"]').prop('selected',true)){
-      //   this.datePickerFlag = false
-      // }
-      }else if($('[name="optionsScheduled"] option[value="scheduled"]').prop('selected',false)){
-        this.datePickerFlag = false
+        window.alert('hoge');
+      }else if($('[name="optionsScheduled"] option[value="non-scheduled"]').prop('selected',true)){
+        window.alert('fuga');
       }
     },
     openCardEditModal(){
