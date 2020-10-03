@@ -13,7 +13,7 @@
     
     <div class="body" style="display:flex; justify-content:center; padding-top:1px;font-size:20px;" @click="displayChange">
       <div class="schedule-title" style="margin-left:10px;margin-top:1px;">
-        {{schedule.title}}
+        {{schedule.body}}
       </div>
     </div>
   </div>

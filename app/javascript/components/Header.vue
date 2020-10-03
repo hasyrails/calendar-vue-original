@@ -1,5 +1,5 @@
 <template>
-  <header>
+  <div class="header">
       <div class="app-header-contents">
         <router-link to="/">
           <div class="app-header-title">Header</div>
@@ -13,7 +13,7 @@
           </router-link>
         </div>
       </div>
-    </header>
+    </div>
 </template>
 
 <script>

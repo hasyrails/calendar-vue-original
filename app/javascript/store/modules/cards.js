@@ -14,6 +14,8 @@ const cards = {
         description: '',
         status: '',
         scheduled: '',
+        start: '',
+        end: '',
         // cards: [
         //   { description: '' },
         // ]
@@ -30,6 +32,9 @@ const cards = {
       // })
       //   state.cards.splice(index, 1, updateCard)
       Object.assign(card, updateCard);
+    },
+    createCard(state, payload) {
+      state.cards.push({ body: payload.body, list_id: payload.list_id })
     },
      deleteCard(state, index) {
         state.cards.splice(index, 1);

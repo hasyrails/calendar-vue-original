@@ -46,7 +46,7 @@
               </div>
             </div>
           </div>
-          <div @click="closeCardSettingModal">
+          <div @click="closeCardToGanttChartModal">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true" style="font-size:36px;">&times;</span>
             </button>
@@ -54,85 +54,6 @@
         </div>
       <div class="modal-body" style="background-color:white;">
         <div class="schedule-item">
-          <div class="schedule-item-name"
-          @click="cardDescriptionEdit"
-          style="cursor: pointer;"
-          >
-            詳細
-          </div>
-          <div class="schedule-item-content"
-          style="cursor:pointer;"
-          v-if="!cardDescriptionEditFlag"
-          >
-            {{ card.description }}
-          </div>
-          <div class="card-description-editng" v-if="cardDescriptionEditFlag"
-          style="margin-left:30px;">
-            <form  class="description sample2" @submit.prevent="updateCard" style="width:400px;">
-            <input v-model="card.description"
-            type="text" 
-            style="outline:blue;"></input>
-            </form>
-            <div @click="quitCardDescriptionEdit">
-              <CloseCircle :size="45"></CloseCircle>
-            </div>
-            <div @click="updateCard">
-              <ContentSaveEditOutline  :size="45"></ContentSaveEditOutline>
-            </div>
-          </div>
-        </div>
-
-        <div class="schedule-item">
-          <div class="schedule-item-name"
-          @click="cardScheduledEdit"
-          style="cursor: pointer;"
-          >
-            ガントチャートへ
-          </div>
-          <div class="schedule-item-content" 
-          style="cursor:pointer;"
-          >
-            <div
-            v-if="card.scheduled==='non_scheduled'&&!cardScheduledEditFlag"
-            >
-              non_scheduled
-            </div>
-            <div
-            v-if="card.scheduled==='scheduled'&&!cardScheduledEditFlag"
-            >
-              scheduled
-            </div>
-          </div>
-           <div class="card-scheduled-editng" v-if="cardScheduledEditFlag">
-            <form
-            class="scheduled cp_ipselect cp_sl04"
-            @submit.prevent="updateCard"
-            style="width:400px;"
-            >
-            <select v-model="card.scheduled"
-            type="text"
-            name="optionsScheduled"
-            style="outline:blue;"
-            @change="confirmSchedulize"
-            >
-               <option value="scheduled">
-                  shcduled
-                </option>
-                <option value="non_scheduled">
-                  non_scheduled
-                </option>
-            </select>
-            </form>
-            <div @click="quitCardScheduledEdit">
-              <CloseCircle :size="45"></CloseCircle>
-            </div>
-            <div @click="updateCard">
-              <ContentSaveEditOutline  :size="45"></ContentSaveEditOutline>
-            </div>
-          </div>
-        </div> -->
-
-      <div class="schedule-item">
         <div class="schedule-item-name">期間</div>
         <div class="schedule-item-content">
           <div class="schedule-date">
@@ -142,18 +63,13 @@
               <form
               @submit.prevent="updateCard"
               >
-                <div v-if="!datePickerFlag" @click="showDatePicker">
-                  {{ card.start }}
-                </div>
-                <div v-if="datePickerFlag">
-                    <Datepicker
-                    :language="ja"
-                    class="test"
-                    :value="this.default"
-                    :format="DatePickerFormat"
-                    v-model="card.start"
-                    ></Datepicker>
-                </div>
+                <Datepicker
+                :language="ja"
+                class="test"
+                :value="this.default"
+                :format="DatePickerFormat"
+              v-model="card.start"
+                ></Datepicker>
               </form>
               </div>
               <!-- <div>{{.start_yyyymmdd}}</div> -->
@@ -165,66 +81,21 @@
               <form 
               @submit.prevent="updateCard"
               >
-                <div v-if="!datePickerFlag" @click="showDatePicker">
-                  {{ card.end }}
-                </div>
-                <div v-if="datePickerFlag">
-                  <Datepicker
-                  :language="ja" 
-                  class="test"
-                  :value="this.default"
-                  :format="DatePickerFormat"
-                  v-model="card.end"
-                  ></Datepicker>
-                </div>
+                <Datepicker
+                :language="ja" 
+                class="test"
+                :value="this.default"
+                :format="DatePickerFormat"
+              v-model="card.end"
+                ></Datepicker>
               </form>
               </div>
               <!-- <div>{{schedule.end_yyyymmdd}}</div> -->
             </div>
             </div>
           </div>
-        </div>
-        
-        <div class="schedule-item">
-          <div class="schedule-item-name"
-          @click="cardStatusEdit"
-          style="cursor: pointer;"
-          >
-            ステータス
-          </div>
-          <div 
-          style="cursor:pointer;"
-          >
-            <div class="schedule-item-content" v-if="card.status==='todo'&&!cardStatusEditFlag">
-            ToDo
-            </div>
-            <div class="schedule-item-content" v-if="card.status==='doing'&&!cardStatusEditFlag">
-            Doing
-            </div>
-            <div class="schedule-item-content" v-if="card.status==='done'&&!cardStatusEditFlag">
-            Done
-            </div>
-          </div>
-          <div class="card-scheduled-editng" v-if="cardStatusEditFlag"
-          style="margin-left:25px;">
-            <form  class="scheduled cp_ipselect cp_sl04" 
-            @submit.prevent="updateCard"
-            style="width:400px;">
-            <select v-model="card.status"
-            type="text" 
-            style="outline:blue;">
-               <option value="todo">
-                  ToDo
-                </option>
-                <option value="doing">
-                  Doing
-                </option>
-                <option value="done">
-                  Done
-                </option>
-            </select>
-            </form>
-            <div @click="quitCardStatusEdit">
+
+            <div @click="quitCardScheduledEdit">
               <CloseCircle :size="45"></CloseCircle>
             </div>
             <div @click="updateCard">
@@ -232,11 +103,10 @@
             </div>
           </div>
         </div>
-      </div>
+       
       <div class="modal-footer" style="background-color:white; height:100px;">
-          <div class="btn btn-lg btn-secondary" @click="closeCardSettingModal">閉じる</div>
+          <div class="btn btn-lg btn-secondary" @click="closeCardToGanttChartModal">閉じる</div>
           <div class="btn btn-lg btn-primary" @click="cardEdit">編集する</div>
-          <div class="btn btn-lg btn-primary" @click="createSchedulesFromCard">ガントチャートに追加する</div>
           <div class="btn btn-lg btn-danger" @click="deleteCard">このToDoカードを削除する</div>
         </div>
       </div>
@@ -244,104 +114,102 @@
   </div>
 </template>
 
+
 <script>
-import Tag from 'vue-material-design-icons/Tag.vue';
-import moment from 'moment'
-import ContentSaveEditOutline  from 'vue-material-design-icons/ContentSaveEditOutline.vue';
-import PencilOff from 'vue-material-design-icons/PencilOff.vue';
-import CardPlus from 'vue-material-design-icons/CardPlus.vue';
-import Update from 'vue-material-design-icons/Update.vue';
-import CloseCircle from 'vue-material-design-icons/CloseCircle.vue';
+import CardAdd from '../components/CardAdd'
+import Card from '../components/Card'
+import CardSettingModal from '../components/CardSettingModal'
+import CardToGanttChartModal from '../components/CardToGanttChartModal'
+
+
+import draggable from "vuedraggable";
 import Datepicker from 'vuejs-datepicker';
 import {ja} from 'vuejs-datepicker/dist/locale'
+import moment from 'moment'
 
-
+import { mapState, mapActions } from 'vuex'
 
 export default {
-  name: 'CardSettingModal',
   data(){
     return{
       ja:ja,
       default: moment().format('YYYY/MM/DD'),
       DatePickerFormat: 'yyyy/MM/dd',
-      cardEditFlag: false,
-      cardDescriptionEditFlag: false,
-      cardScheduledEditFlag: false,
-      cardStatusEditFlag: false,
-      datePickerFlag: false,
+      options: {
+        group: {
+          name: 'myGroup',
+          // pull: 'clone',
+          // put: 'clone'
+        },
+        animation: 200
+      },
+      cardSettingModalFlag: false,
+      cardEditModalFlag: false,
     }
   },
   props: {
-    card:{
-      type: Object
+    // id: {
+    //   type: Number,
+    //   required: true
+    // },
+    // title: {
+    //   type: String,
+    //   required: true
+    // },
+    list: {
+      type: Object,
+      required: true
     },
-    list:{
-      type: Object
-    }
+    card: {
+      type: Object,
+      required: true
+    },
+    schedule: {
+      type: Object,
+      required: true
+    },
+    // listIndex: {
+    //   type: Number,
+    //   required: true
+    // }
+  },
+  computed: {
+    // totalCardInList() {
+    //   return this.cards.length
+    // }
+    ...mapState('cards',{
+      cards: 'cards'
+    }),
+    
+    // ...mapState('lists',{
+    //   lists: 'lists'
+    // }),
+  },
+  mounted(){
+    this.$store.dispatch('cards/fetchCardsAction')
   },
   components:{
-    Tag,
-    ContentSaveEditOutline,
-    PencilOff,
-    CardPlus,
-    Update,
-    CloseCircle,
-    Datepicker,
+    CardAdd,
+    Card,
+    CardSettingModal,
+    // CardEditModal,
+    CardToGanttChartModal,
+    draggable,
+    Datepicker
   },
-  computed:{
-    // schedule: {
-    //     title: this.card.body,
-    //     start: this.card.start,
-    //     end: this.card.end
-    //   },
-  },
-  methods:{
-    confirmSchedulize(){
-      if($('[name="optionsScheduled"] option[value="scheduled"]').prop('selected',true)){
-        window.alert('hoge');
-      }else if($('[name="optionsScheduled"] option[value="non-scheduled"]').prop('selected',true)){
-        window.alert('fuga');
-      }
-    },
-    openCardEditModal(){
-      this.$emit('clickCardEditOpenButton', this.card)
-    },
-    closeCardSettingModal(){
-      this.$emit('clickCardSettingModalCloseButton')
-    },
-    cardDescriptionEdit(){
-      this.cardDescriptionEditFlag = true
-    },
-    cardScheduledEdit(){
-      this.cardScheduledEditFlag = true
-    },
-    cardStatusEdit(){
-      this.cardStatusEditFlag = true
-    },
-    cardEdit(){
-      this.cardDescriptionEditFlag = true
-      this.cardScheduledEditFlag = true
-      this.cardStatusEditFlag = true
-    },
-    quitCardDescriptionEdit(){
-      this.cardDescriptionEditFlag = false
-    },
-    quitCardScheduledEdit(){
-      this.cardScheduledEditFlag = false
-    },
-    quitCardStatusEdit(){
-      this.cardStatusEditFlag = false
+  methods: {
+    ...mapActions('cards',[
+      'updateCardAction',
+      'deleteCardAction',
+    ]),
+    closeCardToGanttChartModal(){
+      this.$emit('clickedCloseCardToGanttChartButton')
     },
     updateCard(){
-      this.cardDescriptionEditFlag = false
-      this.$emit('updateCard', this.card)
-    },
-    deleteCard(){
-      this.$emit('clickedCardDeleteButton', this.card)
+      this.$emit('datePickerInputted', this.card)
     }
   }
 }
-
 </script>
 
 <style scoped>
@@ -523,4 +391,5 @@ pointer-events: none;
 padding: 8px 38px 8px 8px;
 color: black;
 }
+
 </style>

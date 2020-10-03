@@ -34,16 +34,22 @@
       @clickCardEditOpenButton="openCardEditModal(cardDetail)"
       @updateCard="updateCard"
       @clickedCardDeleteButton="deleteCard"
+      @selectedValueScheduled="openCardToGanttChartModal"
+      @clickedCreateScheduleFromCardButton="createSchedulesFromCard"
       ></CardSettingModal>
     </div>
     <div>
-      <CardEditModal
+      <CardToGanttChartModal
       :card="cardEdit"
-      v-if="cardEditModalFlag"
-      @clickCardEditModalCloseButton="closeCardEditModal"
-      @clickCardUpdateButton="updateCard"
-      ></CardEditModal>
+      :list="list"
+      :schedule="schedule"
+      v-if="cardToGanttChartModalFlag"
+      @clickCardEditModalCloseButton="closeCardEditModal(cardEdit)"
+      @clickedCloseCardToGanttChartButton="closeCardToGanttChartModal"
+      @datePickerInputted="updateCard"
+      ></CardToGanttChartModal>
     </div>
+    <div class="btn btn-primary" @click="confirm">confirm</div>
   </div>
 </template>
 
@@ -51,7 +57,7 @@
 import CardAdd from '../components/CardAdd'
 import Card from '../components/Card'
 import CardSettingModal from '../components/CardSettingModal'
-import CardEditModal from '../components/CardEditModal'
+import CardToGanttChartModal from '../components/CardToGanttChartModal'
 
 import draggable from "vuedraggable";
 
@@ -70,6 +76,7 @@ export default {
       },
       cardSettingModalFlag: false,
       cardEditModalFlag: false,
+      cardToGanttChartModalFlag: false,
     }
   },
   props: {
@@ -97,6 +104,9 @@ export default {
     ...mapState('cards',{
       cards: 'cards'
     }),
+    ...mapState('schedules',{
+      schedules: 'schedules'
+    }),
     // ...mapState('lists',{
     //   lists: 'lists'
     // }),
@@ -108,14 +118,30 @@ export default {
     CardAdd,
     Card,
     CardSettingModal,
-    CardEditModal,
+    // CardEditModal,
+    CardToGanttChartModal,
     draggable
   },
   methods: {
+    confirm(){
+      console.log(this.schedules[this.schedules.length-1].start.substr(0,10))
+    },
+    async createSchedulesFromCard(card){
+      await this.$store.dispatch('schedules/createScheduleAction', card)
+      this.$router.go({path: this.$router.currentRoute.path, force: true})
+    },
+    openCardToGanttChartModal(card){
+      this.cardSettingModalFlag = false
+      this.cardToGanttChartModalFlag = true
+      this.cardEdit = card
+    },
     ...mapActions('cards',[
       'updateCardAction',
       'deleteCardAction',
     ]),
+    // ...mapActions('schedules',[
+    //   'createScheduleAction'
+    // ]),
     removeList: function() {
       if(confirm('本当にこのリストを削除しますか？')){
         this.$store.dispatch('lists/removelist', { listIndex: this.listIndex })
@@ -124,6 +150,7 @@ export default {
     openCardSettingModal(card){
       this.cardDetail = card
       this.cardSettingModalFlag = true
+      this.cardEdit = card
     },
     openCardEditModal(card){
       this.closeCardSettingModal()
@@ -133,8 +160,8 @@ export default {
     closeCardSettingModal(){
       this.cardSettingModalFlag = false
     },
-    closeCardEditModal(){
-      this.cardEditModalFlag = false
+    closeCardToGanttChartModal(){
+      this.cardToGanttChartModalFlag = false
     },
     async updateCard(card){
       await this.updateCardAction(card)

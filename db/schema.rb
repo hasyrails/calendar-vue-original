@@ -15,8 +15,10 @@ ActiveRecord::Schema.define(version: 2020_09_27_042243) do
   create_table "cards", force: :cascade do |t|
     t.string "body"
     t.text "description"
-    t.integer "status"
     t.integer "scheduled"
+    t.date "start"
+    t.date "end"
+    t.integer "status"
     t.integer "list_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -30,7 +32,8 @@ ActiveRecord::Schema.define(version: 2020_09_27_042243) do
   end
 
   create_table "schedules", force: :cascade do |t|
-    t.string "title"
+    t.string "body"
+    t.string "description"
     t.datetime "start"
     t.integer "start_year"
     t.integer "start_month"
