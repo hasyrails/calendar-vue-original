@@ -7,7 +7,7 @@
     </div>
     <div class="cards-area">
       <div>
-        <CardAdd :listIndex="listIndex"></CardAdd>
+        <CardAdd :list_id="list_id"></CardAdd>
       </div>
       <draggable
         :options="options"
@@ -18,9 +18,9 @@
           :key="card.id"
           :card="card"
           :cardIndex="index"
-          :listIndex="listIndex"
+          :list_id="list_id"
           @clickCardSettingButton="openCardSettingModal(card)"
-          v-if="id===card.list_id"
+          v-if="list_id===card.list_id"
           @cardBodyFormComplete="updateCard"
         ></Card>
       </draggable>
@@ -85,7 +85,7 @@ export default {
       type: Object,
       required: true
     },
-    listIndex: {
+    list_id: {
       type: Number,
       required: true
     }

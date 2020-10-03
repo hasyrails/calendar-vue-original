@@ -18,7 +18,7 @@
 <script>
 export default {
   props: {
-    listIndex: {
+    list_id: {
       type: Number,
       required: true
     }
@@ -52,7 +52,7 @@ export default {
       this.isEditing = false
     },
     addCardToList: function() {
-      this.$store.dispatch('lists/addCardToList', { body: this.body, listIndex: this.listIndex })
+      this.$store.dispatch('cards/createCardAction', { body: this.body, list_id: this.list_id })
       this.body = ''
     }
   }
