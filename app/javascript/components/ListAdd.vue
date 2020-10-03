@@ -1,6 +1,6 @@
 <template>
   <form :class="classList" @submit.prevent="addList">
-    <input v-model="title"
+    <input v-model="list.title"
            type="text"
            class="text-input"
            placeholder="Add new list"
@@ -16,11 +16,15 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
   data: function() {
     return {
-      title: '',
       isEditing: false,
+      list: {
+        title: ''
+      },
     }
   },
   computed: {
@@ -36,12 +40,15 @@ export default {
       return classList
     },
     titleExists() {
-      return this.title.length > 0
+      return this.list.title.length > 0
     },
+    // ...mapState('lists',{
+    //   lists: 'lists',
+    // }),
   },
   methods: {
     addList() {
-      this.$store.dispatch('lists/addlist', { title: this.title })
+      this.$store.dispatch('lists/createListAction', this.list)
       this.title = ''
     },
     startEditing() {
@@ -50,6 +57,7 @@ export default {
     finishEditing() {
       this.isEditing = false
     },
+
   }
 }
 </script>
