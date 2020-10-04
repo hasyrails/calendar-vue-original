@@ -22,7 +22,7 @@
       <div class="show-detail-button" v-show="!cardBodyEditFlag">
         <Cog fillColor="grey" :size="30" @click="openCardSettingModal"></Cog>
       </div>
-      <div class="close-button" @click="removeCardFromList" v-show="!cardBodyEditFlag">
+      <div class="close-button" @click="deleteCard" v-show="!cardBodyEditFlag">
         <TrashCanOutline fillColor="red" :size="30"></TrashCanOutline>
       </div>
     </div>
@@ -62,9 +62,10 @@ export default {
     Pencil,
   },
   methods: {
-    removeCardFromList() {
+    deleteCard(card) {
       if(confirm('本当にこのカードを削除しますか？')) {
         this.$store.dispatch('cards/deleteCardAction', this.card)
+        this.$router.go({path: this.$router.currentRoute.path, force: true})
       }
     },
     openCardSettingModal(body){

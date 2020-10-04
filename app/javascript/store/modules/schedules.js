@@ -77,6 +77,7 @@ const schedules = {
     setSchedules(state, {schedules}){
       state.schedules = schedules
     },
+    
     // createDevidedSchedules(state){
     //   let i = 0;
     //   let j = 0;
@@ -139,6 +140,14 @@ const schedules = {
     createSchedule(state, schedule){
       state.schedules.push(schedule)
     },
+    deleteSchedule(state, deleteSchedule){
+      const index = state.schedules.findIndex(schedule => {
+        return schedule.id === deleteSchedule.id
+      })
+        state.schedules.splice(index, 1, deleteSchedule)
+
+      state.schedules.splice(index, 1);
+    },
   },
   actions: {
     async fetchSchedulesAction({ commit }) {
@@ -171,7 +180,17 @@ const schedules = {
           commit('createSchedule', res.data)
         })
         .catch(error => console.log(error.response));
-    }
+    },
+    async deleteScheduleAction ({state, commit}, schedule) {
+ 
+        return await axios.delete('/api/schedules/' + schedule.id)
+            .then(res => {
+                commit('deleteSchedule', index);
+                return true;
+            }).catch(error => {
+                return error;
+            });
+    },
   },
   getters: {
     schedules: (state) => state.schedules,

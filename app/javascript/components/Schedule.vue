@@ -5,22 +5,28 @@
   :class="classButton" 
   :id="'schedule-card-'+schedule.id"
   >
-    <div class="schedule-handle-button"
-    @click="openScheduleSettingModal"
-    >
-      <ScheduleSettingButton style="margin-left:10px;"></ScheduleSettingButton>
-    </div>
     
+
     <div class="body" style="display:flex; justify-content:center; padding-top:1px;font-size:20px;" @click="displayChange">
       <div class="schedule-title" style="margin-left:10px;margin-top:1px;">
         {{schedule.body}}
       </div>
     </div>
+    <div class="card-handle-button"
+    >
+      <div @click="openScheduleSettingModal">
+        <ScheduleSettingButton style="margin-left:1px;"></ScheduleSettingButton>
+      </div>
+      <div>
+        <TrashCanOutline
+        fillColor="red"
+        :size="30"
+        style="margin-left:10px;margin-bottom:40px;"
+        @click="deleteSchedule"
+        ></TrashCanOutline>
+      </div>
+    </div>
   </div>
-  <!-- <div>
-    <ScheduleSettingModal
-    v-if="scheduleSettingModalFlag"></ScheduleSettingModal>
-  </div> -->
 </div>
 </template>
 
@@ -28,15 +34,12 @@
 <script>
 import ScheduleSettingButton from '../components/ScheduleSettingButton'
 import ScheduleDeleteButton from '../components/ScheduleDeleteButton'
-
-// import ScheduleSettingModal from '../components/ScheduleSettingModal';
+import TrashCanOutline from 'vue-material-design-icons/TrashCanOutline.vue';
 
 export default {
   name: 'Schedule',
   data(){
     return{
-      // scheduleSettingModalFlag: false,
-      // devidedSchedule: {},
       displayNum: '',
       icon: 0,
       nonDisplay:false
@@ -50,27 +53,21 @@ export default {
   components:{
     ScheduleSettingButton,
     ScheduleDeleteButton,
-    // ScheduleSettingModal
+    TrashCanOutline,
   },
   methods: {
-  //   iconChange(){
-  //     if(this.icon <6){
-  //       this.icon = this.icon + 1;
-  //     }else{
-  //       this.iconReset()
-  //     }
-  //   },
-  //   iconReset(){
-  //     this.icon = 0
-  //   }
-  // }
+    deleteSchedule(e){
+      if(confirm('本当にこのスケジュールカードを削除しますか？')) {
+        this.$store.dispatch('schedules/deleteScheduleAction', this.schedule)
+        this.$router.go({path: this.$router.currentRoute.path, force: true})
+      }
+    },
     displayChange(){
       this.nonDisplay = !this.nonDisplay;
       this.commitChange();
       this.$emit('commitChange')
     },
     commitChange(){
-      // this.devidedSchedule.commit = !this.devidedSchedule.commit
     },
     openScheduleSettingModal(schedule){
       this.$emit('clickScheduleSettingButton', this.schedule)
@@ -102,47 +99,34 @@ export default {
 }
 
 .card {
-  margin-top: 10px;
-  margin-bottom: 10px;
-  /* position: relative; */
+  height: 80px;
+  width: 250px;
+  cursor: pointer;
   display: flex;
-  padding: 30px 15px 40px;
-  background-color: #fff;
-  border-radius: 8px;
-  height: 30px;
-  width: 270px;
-  /* z-index:1; */
-}
-
-.schedule-title{
-  cursor: pointer;
-}
-
-.schedule-handle-button{
-  width:20%;
-  height:100px;
-}
-
-.show-detail-button {
-  position: absolute;
-  top: 6px;
-  right: 10px;
-  cursor: pointer;
-  border-radius: 8px;
-  color: white;
-  margin-top: 5px;
-  margin-left: 10px;
-  padding-left:5px;
-  padding-top:5px;
 }
 
 .body {
   position: absolute;
-  top: 15px;
+  top: 20px;
   right: 10px;
   font-size: 18px;
-  width: 100%;
+  width: 90%;
   word-wrap: break-word;
   margin-bottom :3%;
 }
+
+.card-body-editing{
+  display: flex;
+}
+
+.card-handle-button{
+  position: absolute;
+  top: 1px;
+  right: 10px;
+  cursor: pointer;
+  border-radius: 8px;
+  color: white;
+  width: 10%;
+}
 </style>
+
