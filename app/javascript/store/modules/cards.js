@@ -1,11 +1,8 @@
 import axios from 'axios'
 
-// const savedLists = localStorage.getItem('trello-lists')
-
 const cards = {
   namespaced: true,
   state: {
-    // lists: savedLists ? JSON.parse(savedLists): [
     cards: [
       {
         id: '',
@@ -16,9 +13,6 @@ const cards = {
         scheduled: '',
         start: '',
         end: '',
-        // cards: [
-        //   { description: '' },
-        // ]
       },
     ],
   },
@@ -36,12 +30,17 @@ const cards = {
     createCard(state, payload) {
       state.cards.push({ body: payload.body, list_id: payload.list_id })
     },
-     deleteCard(state, index) {
-        state.cards.splice(index, 1);
+    deleteCard(state, deleteCard) {
+      const index = state.cards.findIndex(card => {
+        return card.id === deleteCard.id
+      })
+        state.cards.splice(index, 1, deleteCard)
+
+      state.cards.splice(index, 1);
     },
-    createCard(state, payload) {
-      state.cards.push({ body: payload.body, list_id: payload.list_id })
-    },
+    // deleteCard(state, payload) {
+    //   state.cards.splice(payload.id, 1)
+    // },
     // removelist(state, payload) {
     //   state.lists.splice(payload.listIndex, 1)
     // },
@@ -107,16 +106,18 @@ const cards = {
     //   context.commit('updateList', payload)
     // }
      async deleteCardAction ({state, commit}, card) {
-        const index = state.cards.indexOf(card);
  
-        return await axios.delete('/api/cards/' + card.id)
+        await axios.delete('/api/cards/' + card.id)
             .then(res => {
                 commit('deleteCard', index);
-                return true;
+                // return true;
             }).catch(error => {
                 return error;
             });
     },
+    // deleteCardAction(context, payload) {
+    //   context.commit('deleteCard', payload)
+    // },
   },
   getters: {
     // totalCardCount(state) {

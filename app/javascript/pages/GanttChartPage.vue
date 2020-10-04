@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="app-area">
-      <div class="calendar-area">
+      <div class="calendar-area" id="calendar-area">
         <GanttChart  
         @showDatePicker="showDatePicker"
         ></GanttChart>
