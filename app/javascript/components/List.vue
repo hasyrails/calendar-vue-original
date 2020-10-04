@@ -2,7 +2,7 @@
   <div class="list">
     <div class="listheader">
       <div class="list-title">{{ title }}</div>
-       <!-- <div class="list-counter">total: {{ totalCardInList }}</div> -->
+       <div class="list-counter">total: {{ totalCardInList }}</div>
       <div class="deletelist" @click="removeList">×</div>
     </div>
     <div class="cards-area">
@@ -49,7 +49,6 @@
       @datePickerInputted="updateCard"
       ></CardToGanttChartModal>
     </div>
-    <div class="btn btn-primary" @click="confirm">confirm</div>
   </div>
 </template>
 
@@ -98,9 +97,9 @@ export default {
     }
   },
   computed: {
-    // totalCardInList() {
-    //   return this.cards.length
-    // }
+    totalCardInList() {
+      return this.cards.length
+    },
     ...mapState('cards',{
       cards: 'cards'
     }),
@@ -123,9 +122,6 @@ export default {
     draggable
   },
   methods: {
-    confirm(){
-      console.log(this.schedules[this.schedules.length-1].start.substr(0,10))
-    },
     async createSchedulesFromCard(card){
       await this.$store.dispatch('schedules/createScheduleAction', card)
       this.$router.go({path: this.$router.currentRoute.path, force: true})

@@ -25,12 +25,12 @@
           <div class="schedule-date">
             <div class="schedule-start-date">
               <div>始める日</div>
-              <div>{{schedule.start_yyyymmdd}}</div>
+              <div>{{ new Date(schedule.start).getFullYear() }}/{{ new Date(schedule.start).getMonth() }}/{{ new Date(schedule.start).getDate() }}</div>
             </div>
             <div>〜</div>
             <div class="schedule-end-date">
               <div>終わらせる日</div>
-              <div>{{schedule.end_yyyymmdd}}</div>
+              <div>{{ new Date(schedule.end).getFullYear() }}/{{ new Date(schedule.end).getMonth() }}/{{ new Date(schedule.end).getDate() }}</div>
             </div>
           </div>
         </div>

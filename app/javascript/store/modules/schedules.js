@@ -164,6 +164,7 @@ const schedules = {
         end_year: new Date(card.end).getFullYear(),
         end_month: new Date(card.end).getMonth()+1,
         end_date: new Date(card.end).getDate(),
+        card_id: card.id
       }
       await axios.post('api/schedules', schedule)
         .then(res => {
