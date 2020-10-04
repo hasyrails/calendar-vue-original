@@ -99,7 +99,7 @@ import draggable from 'vuedraggable'
 
 import GanttChartHeader from "../components/GanttChartHeader";
 import Schedule from "../components/Schedule"
-import DevidedSchedule from "../components/DevidedSchedule"
+// import DevidedSchedule from "../components/DevidedSchedule"
 import { mapState, mapGetters } from 'vuex'
 import ScheduleSettingModal from "../components/ScheduleSettingModal"
 import ScheduleEditModal from "../components/ScheduleEditModal"
@@ -129,7 +129,7 @@ export default {
     draggable,
     GanttChartHeader,
     Schedule,
-    DevidedSchedule,
+    // DevidedSchedule,
     ScheduleSettingModal,
     ScheduleEditModal,
   },
