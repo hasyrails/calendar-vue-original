@@ -43,8 +43,8 @@ ActiveRecord::Schema.define(version: 2020_09_27_042243) do
     t.integer "end_year"
     t.integer "end_month"
     t.integer "end_date"
-    t.integer "color"
-    t.integer "commit"
+    t.string "color"
+    t.boolean "commit", default: true
     t.integer "card_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

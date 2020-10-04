@@ -30,15 +30,22 @@
           :schedule="schedule"
           v-for="schedule in schedules"
           v-if="
-          schedule.start_date<=day.date
-          &&schedule.end_date>=day.date
-          &&schedule.start_month===day.month
+          new Date(schedule.start).getDate() <= day.date
+          &&new Date(schedule.end).getDate() >= day.date
+          &&new Date(schedule.start).getMonth()+1 === day.month
           "
           :key="schedule.id"
           style="flex:1;min-height:1px;min-width:1px;max-width:230px;text-align: center;margin-bottom:10px;"
           @clickScheduleSettingButton="openScheduleSettingModal"
           >
           </Schedule>
+          <DevidedSchedule 
+          v-for="devidedschedule in devidedschedules"
+          :key="devidedschedule.id"
+          v-if="devidedschedule.date===day.date&&devidedschedule.month===day.month&&devidedschedule.year===day.year"
+          :devidedschedule="devidedschedule"
+          >
+          </DevidedSchedule>
         </draggable>
       </div>
     </div>
@@ -46,11 +53,11 @@
   <div>
     <ScheduleSettingModal
     :schedule="scheduleDetail"
-    v-for="schedule in schedules"
-    :key="schedule.id"
     v-if="scheduleSettingModalFlag"
     @clickCloseButton="closeScheduleSettingModal"
     @clickScheduleEditButton="openScheduleEditModal(scheduleDetail)"
+    @updateSchedule="updateSchedule(scheduleDetail)"
+    @clickScheduleSettingModalCloseButton="closeScheduleSettingModal"
     ></ScheduleSettingModal>
   </div>
   <div>
@@ -92,6 +99,7 @@ import draggable from 'vuedraggable'
 
 import GanttChartHeader from "../components/GanttChartHeader";
 import Schedule from "../components/Schedule"
+// import DevidedSchedule from "../components/DevidedSchedule"
 import { mapState, mapGetters } from 'vuex'
 import ScheduleSettingModal from "../components/ScheduleSettingModal"
 import ScheduleEditModal from "../components/ScheduleEditModal"
@@ -121,11 +129,13 @@ export default {
     draggable,
     GanttChartHeader,
     Schedule,
+    // DevidedSchedule,
     ScheduleSettingModal,
     ScheduleEditModal,
   },
   mounted () {
     this.$store.dispatch('schedules/fetchSchedulesAction')
+    // this.$store.commit('devidedschedules/createDevidedSchedules')
   },
   methods: {
     confirmSchedules(){
@@ -152,18 +162,14 @@ export default {
     closeScheduleEditModal(){
       this.scheduleEditModalFlag = false
     },
-    updateSchedule(updateSchedule){
-      const index = this.schedules.findIndex(schedule => {
-        return schedule.id == updateSchedule.id
-      })
-      this.schedules = this.schedules.splice(index, 1, updateSchedule)
-      return this.schedules
-      this.scheduleEditModalFlag = false
+    updateSchedule(schedule){
+      this.$store.dispatch('schedules/updateScheduleAction', schedule)
+      this.$store.dispatch('devidedschedules/createDevidedSchedulesAction')
     },
     commitChange(){
-      let selectedCardId = Number(event.currentTarget.id.substr(14));
-      this.devidedSchedules[selectedCardId].commit = !this.devidedSchedules[selectedCardId].commit;
-      return this.devidedSchedules;
+      // let selectedCardId = Number(event.currentTarget.id.substr(14));
+      // this.devidedSchedules[selectedCardId].commit = !this.devidedSchedules[selectedCardId].commit;
+      // return this.devidedSchedules;
     },
     confirmStartDate(){
       let date = moment(this.currentDate);
@@ -188,7 +194,8 @@ export default {
       this.$store.dispatch('schedules/createDevidedSchedulesAction')
     },
     showDevidedSchedule() {
-      console.log(this.devidedSchedules);
+      this.$store.dispatch('devidedschedules/createDevidedSchedulesAction')
+      console.log(this.devidedschedules);
     },
     getStartDate() {
       let date = moment(this.currentDate);
@@ -282,6 +289,9 @@ export default {
     ...mapState('schedules',{
       schedules: 'schedules',
     }),
+    ...mapState('devidedschedules',{
+      devidedschedules: 'devidedschedules',
+    }),
     ...mapState('date',{
       currentDate: 'currentDate',
       currentMonth: 'currentMonth',
@@ -293,9 +303,9 @@ export default {
     ),
   },
   created(){
-    console.log(currentDate);
     // return this.createDevidedSchedules();
     // this.displayScheduleNum();
+    this.$store.commit('devidedschedules/createDevidedSchedules')
   },
   watch:{
     // devidedSchedules(){

@@ -36,13 +36,14 @@ import ScheduleSettingButton from '../components/ScheduleSettingButton'
 import ScheduleDeleteButton from '../components/ScheduleDeleteButton'
 import TrashCanOutline from 'vue-material-design-icons/TrashCanOutline.vue';
 
+
 export default {
   name: 'Schedule',
   data(){
     return{
       displayNum: '',
       icon: 0,
-      nonDisplay:false
+      nonDisplay:false,
     }
   },
   props: {
@@ -56,7 +57,7 @@ export default {
     TrashCanOutline,
   },
   methods: {
-    deleteSchedule(e){
+    deleteSchedule(){
       if(confirm('本当にこのスケジュールカードを削除しますか？')) {
         this.$store.dispatch('schedules/deleteScheduleAction', this.schedule)
         this.$router.go({path: this.$router.currentRoute.path, force: true})
@@ -68,6 +69,7 @@ export default {
       this.$emit('commitChange')
     },
     commitChange(){
+      this.schedule.commit = !this.schedule.commit
     },
     openScheduleSettingModal(schedule){
       this.$emit('clickScheduleSettingButton', this.schedule)
@@ -75,7 +77,7 @@ export default {
   },
   computed:{
     classButton() {
-      const classButton = ['tryButton']
+      const classButton = []
 
       if (this.nonDisplay) {
         classButton.push('nonDisplay')
