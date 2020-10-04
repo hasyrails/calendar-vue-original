@@ -7,6 +7,7 @@ class CreateCards < ActiveRecord::Migration[5.2]
       t.date :start
       t.date :end
       t.integer  :status
+      t.integer  :color
       t.references  :list, null: false, foreign_key: true
       t.timestamps
     end

@@ -1,5 +1,6 @@
 class Api::SchedulesController < ApplicationController
   before_action :set_schedule, only: %i[show update destroy]
+  skip_before_action :verify_authenticity_token
 
   def index
     @schedules = Schedule.all
@@ -40,6 +41,6 @@ class Api::SchedulesController < ApplicationController
   end
 
   def schedule_params
-    params.fetch(:schedule, {}).permit(:body, :start, :start_year, :start_month, :start_date, :end, :end_year, :end_month, :end_date)
+    params.fetch(:schedule, {}).permit(:body, :start, :start_year, :start_month, :start_date, :end, :end_year, :end_month, :end_date, :card_id)
   end
 end

@@ -4,7 +4,7 @@
       TODO List
     </header> -->
       <div class="list-add-form">
-        <div>All: {{ totalCardCount }} tasks</div>
+        <!-- <div>All: {{ totalCardCount }} tasks</div> -->
         <ListAdd
         style="margin-top:50px;"
         ></ListAdd>
@@ -25,9 +25,6 @@
             @change="movingCard"
           ></List>
         </draggable>
-      </div>
-      <div>
-        <div class="btn btn-primary" @click="confirmList"></div>
       </div>
   </div>
 </template>

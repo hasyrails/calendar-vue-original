@@ -82,7 +82,7 @@
           </div>
         </div>
 
-        <div class="schedule-item">
+        <!-- <div class="schedule-item">
           <div class="schedule-item-name"
           @click="cardScheduledEdit"
           style="cursor: pointer;"
@@ -110,11 +110,9 @@
             style="width:400px;"
             >
             <select v-model="card.scheduled"
-            type="text"
-            name="optionsScheduled"
+            type="text" 
             style="outline:blue;"
-            @change="confirmSchedulize"
-            >
+            @change="confirmSchedulize">
                <option value="scheduled">
                   shcduled
                 </option>
@@ -133,7 +131,12 @@
         </div> -->
 
       <div class="schedule-item">
-        <div class="schedule-item-name">期間</div>
+        <div class="schedule-item-name" 
+        @click="showDatePicker"
+        style="cursor: pointer;"
+        >
+          期間
+        </div>
         <div class="schedule-item-content">
           <div class="schedule-date">
             <div class="schedule-start-date">
@@ -142,6 +145,9 @@
               <form
               @submit.prevent="updateCard"
               >
+                <div v-if="!card.start" @click="showDatePicker">
+                  <Pencil></Pencil>
+                </div>
                 <div v-if="!datePickerFlag" @click="showDatePicker">
                   {{ card.start }}
                 </div>
@@ -161,10 +167,13 @@
             <div>〜</div>
             <div class="schedule-end-date">
               <div>終わらせる日</div>
-              <div>
+            <div class="datepicker-form">
               <form 
               @submit.prevent="updateCard"
               >
+                <div v-if="!card.start" @click="showDatePicker">
+                  <Pencil></Pencil>
+                </div>
                 <div v-if="!datePickerFlag" @click="showDatePicker">
                   {{ card.end }}
                 </div>
@@ -178,7 +187,13 @@
                   ></Datepicker>
                 </div>
               </form>
+              <div v-if="datePickerFlag" @click="showDatePicker">
+                <CloseCircle :size="45"></CloseCircle>
               </div>
+              <div v-if="datePickerFlag" @click="updateCard">
+                <ContentSaveEditOutline  :size="45"></ContentSaveEditOutline>
+              </div>
+            </div>
               <!-- <div>{{schedule.end_yyyymmdd}}</div> -->
             </div>
             </div>
@@ -232,6 +247,55 @@
             </div>
           </div>
         </div>
+        
+        <!-- <div class="schedule-item">
+          <div class="schedule-item-name"
+          @click="cardStatusEdit"
+          style="cursor: pointer;"
+          >
+            カードの色
+          </div>
+          <div 
+          style="cursor:pointer;"
+          >
+            <div class="schedule-item-content" v-if="card.status==='todo'&&!cardStatusEditFlag">
+            ToDo
+            </div>
+            <div class="schedule-item-content" v-if="card.status==='doing'&&!cardStatusEditFlag">
+            Doing
+            </div>
+            <div class="schedule-item-content" v-if="card.status==='done'&&!cardStatusEditFlag">
+            Done
+            </div>
+          </div>
+          <div class="card-scheduled-editng" v-if="cardStatusEditFlag"
+          style="margin-left:25px;">
+            <form  class="scheduled cp_ipselect cp_sl04" 
+            @submit.prevent="updateCard"
+            style="width:400px;">
+            <select v-model="card.status"
+            type="text" 
+            style="outline:blue;">
+               <option value="todo">
+                  ToDo
+                </option>
+                <option value="doing">
+                  Doing
+                </option>
+                <option value="done">
+                  Done
+                </option>
+            </select>
+            </form>
+            <div @click="quitCardStatusEdit">
+              <CloseCircle :size="45"></CloseCircle>
+            </div>
+            <div @click="updateCard">
+              <ContentSaveEditOutline  :size="45"></ContentSaveEditOutline>
+            </div>
+          </div>
+        </div> -->
+
       </div>
       <div class="modal-footer" style="background-color:white; height:100px;">
           <div class="btn btn-lg btn-secondary" @click="closeCardSettingModal">閉じる</div>
@@ -246,6 +310,8 @@
 
 <script>
 import Tag from 'vue-material-design-icons/Tag.vue';
+import Pencil from 'vue-material-design-icons/Pencil.vue';
+
 import moment from 'moment'
 import ContentSaveEditOutline  from 'vue-material-design-icons/ContentSaveEditOutline.vue';
 import PencilOff from 'vue-material-design-icons/PencilOff.vue';
@@ -281,6 +347,7 @@ export default {
   },
   components:{
     Tag,
+    Pencil,
     ContentSaveEditOutline,
     PencilOff,
     CardPlus,
@@ -296,11 +363,20 @@ export default {
     //   },
   },
   methods:{
+    createSchedulesFromCard(){
+       this.$emit('clickedCreateScheduleFromCardButton', this.card)
+    },
+    showDatePicker(){
+      this.datePickerFlag = !this.datePickerFlag
+    },
     confirmSchedulize(){
       if($('[name="optionsScheduled"] option[value="scheduled"]').prop('selected',true)){
-        window.alert('hoge');
-      }else if($('[name="optionsScheduled"] option[value="non-scheduled"]').prop('selected',true)){
-        window.alert('fuga');
+        this.datePickerFlag = true
+      // }else if($('[name="optionsScheduled"] option[value="non_scheduled"]').prop('selected',true)){
+      //   this.datePickerFlag = false
+      // }
+      }else if($('[name="optionsScheduled"] option[value="scheduled"]').prop('selected',false)){
+        this.datePickerFlag = false
       }
     },
     openCardEditModal(){
@@ -333,8 +409,10 @@ export default {
       this.cardStatusEditFlag = false
     },
     updateCard(){
-      this.cardDescriptionEditFlag = false
       this.$emit('updateCard', this.card)
+      this.cardDescriptionEditFlag = false
+      this.cardStatusEditFlag = false
+      this.datePickerFlag = false
     },
     deleteCard(){
       this.$emit('clickedCardDeleteButton', this.card)
@@ -522,5 +600,9 @@ pointer-events: none;
 .cp_ipselect.cp_sl04 select {
 padding: 8px 38px 8px 8px;
 color: black;
+}
+
+.datepicker-form{
+  display: flex;
 }
 </style>
