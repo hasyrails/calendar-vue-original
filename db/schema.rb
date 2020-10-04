@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 2020_09_27_042243) do
     t.date "start"
     t.date "end"
     t.integer "status"
+    t.integer "color"
     t.integer "list_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -44,8 +45,10 @@ ActiveRecord::Schema.define(version: 2020_09_27_042243) do
     t.integer "end_date"
     t.integer "color"
     t.integer "commit"
+    t.integer "card_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["card_id"], name: "index_schedules_on_card_id"
   end
 
 end

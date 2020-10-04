@@ -14,6 +14,8 @@ class CreateSchedules < ActiveRecord::Migration[5.2]
       t.integer :color
       t.integer :commit
 
+      t.references  :card, null: false, foreign_key: true
+
       t.timestamps
     end
   end
