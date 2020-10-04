@@ -11,8 +11,8 @@ class CreateSchedules < ActiveRecord::Migration[5.2]
       t.integer :end_year
       t.integer :end_month
       t.integer :end_date
-      t.integer :color
-      t.integer :commit
+      t.string :color
+      t.boolean :commit, default: true, null: true
 
       t.references  :card, null: false, foreign_key: true
 

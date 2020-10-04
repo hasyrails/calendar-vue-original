@@ -124,7 +124,8 @@ export default {
   methods: {
     async createSchedulesFromCard(card){
       await this.$store.dispatch('schedules/createScheduleAction', card)
-      this.$router.go({path: this.$router.currentRoute.path, force: true})
+      // this.$router.go({path: this.$router.currentRoute.path, force: true})
+      this.$store.dispatch('devidedschedules/createDevidedSchedulesAction')
     },
     openCardToGanttChartModal(card){
       this.cardSettingModalFlag = false
