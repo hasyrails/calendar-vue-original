@@ -94,7 +94,7 @@ export default {
 }
 
 .list-add-form{
-  margin-left: 1%;
+  margin-left: 15%;
 }
 </style>
 
