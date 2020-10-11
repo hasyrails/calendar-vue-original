@@ -82,54 +82,6 @@
           </div>
         </div>
 
-        <!-- <div class="schedule-item">
-          <div class="schedule-item-name"
-          @click="cardScheduledEdit"
-          style="cursor: pointer;"
-          >
-            ガントチャートへ
-          </div>
-          <div class="schedule-item-content" 
-          style="cursor:pointer;"
-          >
-            <div
-            v-if="card.scheduled==='non_scheduled'&&!cardScheduledEditFlag"
-            >
-              non_scheduled
-            </div>
-            <div
-            v-if="card.scheduled==='scheduled'&&!cardScheduledEditFlag"
-            >
-              scheduled
-            </div>
-          </div>
-           <div class="card-scheduled-editng" v-if="cardScheduledEditFlag">
-            <form
-            class="scheduled cp_ipselect cp_sl04"
-            @submit.prevent="updateCard"
-            style="width:400px;"
-            >
-            <select v-model="card.scheduled"
-            type="text" 
-            style="outline:blue;"
-            @change="confirmSchedulize">
-               <option value="scheduled">
-                  shcduled
-                </option>
-                <option value="non_scheduled">
-                  non_scheduled
-                </option>
-            </select>
-            </form>
-            <div @click="quitCardScheduledEdit">
-              <CloseCircle :size="45"></CloseCircle>
-            </div>
-            <div @click="updateCard">
-              <ContentSaveEditOutline  :size="45"></ContentSaveEditOutline>
-            </div>
-          </div>
-        </div> -->
-
       <div class="schedule-item">
         <div class="schedule-item-name" 
         @click="showDatePicker"
@@ -194,7 +146,6 @@
                 <ContentSaveEditOutline  :size="45"></ContentSaveEditOutline>
               </div>
             </div>
-              <!-- <div>{{schedule.end_yyyymmdd}}</div> -->
             </div>
             </div>
           </div>
@@ -356,11 +307,6 @@ export default {
     Datepicker,
   },
   computed:{
-    // schedule: {
-    //     title: this.card.body,
-    //     start: this.card.start,
-    //     end: this.card.end
-    //   },
   },
   methods:{
     createSchedulesFromCard(){
@@ -372,9 +318,6 @@ export default {
     confirmSchedulize(){
       if($('[name="optionsScheduled"] option[value="scheduled"]').prop('selected',true)){
         this.datePickerFlag = true
-      // }else if($('[name="optionsScheduled"] option[value="non_scheduled"]').prop('selected',true)){
-      //   this.datePickerFlag = false
-      // }
       }else if($('[name="optionsScheduled"] option[value="scheduled"]').prop('selected',false)){
         this.datePickerFlag = false
       }

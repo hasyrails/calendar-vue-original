@@ -10,18 +10,11 @@
         <DatePicker
          v-if="datePickerFlag" @closeDatePicker="closeDatePicker"></DatePicker>
       </div>
-      <!-- <div>
-        <ScheduleSettingModal
-        v-if="scheduleSettingModalFlag"
-        @clickCloseButton="closeScheduleSettingModal"
-        ></ScheduleSettingModal>
-      </div> -->
       <div class="todo-area">
         <Board></Board>
       </div>
       <div class="footer-area">
         <footer>(C)footer</footer>
-        <!-- <div class="btn btn-primary" @click="openScheduleSettingModal"></div> -->
       </div>
     </div>
   </div>
@@ -31,7 +24,6 @@
 import Board from '../components/Board'
 import GanttChart from '../components/GanttChart'
 import DatePicker from '../components/DatePicker'
-// import ScheduleSettingModal from '../components/ScheduleSettingModal'
 
 export default {
   name: 'Top',
@@ -45,7 +37,6 @@ export default {
     Board,
     GanttChart,
     DatePicker,
-    // ScheduleSettingModal
   },
   methods: {
     showDatePicker(){
@@ -54,12 +45,6 @@ export default {
     closeDatePicker(){
       this.datePickerFlag = false
     },
-  //   openScheduleSettingModal(){
-  //     this.scheduleSettingModalFlag = true
-  //   },
-  //   closeScheduleSettingModal(){
-  //     this.scheduleSettingModalFlag = false
-  //   }
   }
 }
 </script>
@@ -73,16 +58,16 @@ p {
 .app-area{
   width: 250vw;
   height: 100vh;
-  background: #EEFFFF;
+  /* background: #EEFFFF; */
   display:flex;
   flex-direction: column;
   align-items: center;
 }
 
 .calendar-area{
-  width:125%;
+  width: 250vw;
   height:70%;
-  overflow-x: scroll;
+  /* overflow-x: scroll; */
 }
 
 .date-picker{
