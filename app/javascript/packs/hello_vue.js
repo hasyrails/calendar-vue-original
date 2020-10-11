@@ -15,9 +15,6 @@ import axios from 'axios'
 import { pick } from 'lodash'
 import status from 'http-status'
 
-
-
-
 document.addEventListener('DOMContentLoaded', () => {
   const app = new Vue({
     store,
@@ -29,7 +26,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   console.log(app)
 })
-
 
 // Put your instance of Axios in `Vue.prototype` which gives you easy global access to it.
 // You can pass in configuration that is shared application-wide.
@@ -109,3 +105,6 @@ Vue.use(BootstrapVue);
 
 import 'bootstrap/dist/css/bootstrap.css' 
 import 'bootstrap-vue/dist/bootstrap-vue.css' 
+
+
+

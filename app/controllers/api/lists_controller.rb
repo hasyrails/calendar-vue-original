@@ -41,7 +41,8 @@ class Api::ListsController < ApplicationController
   end
 
   def list_params
-    params.fetch(:list, {}).permit(:title)
+    # params.fetch(:list, {}).permit(:title)
+    params.permit(:title)
   end
 
 end

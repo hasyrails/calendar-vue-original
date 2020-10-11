@@ -41,6 +41,6 @@ class Api::CardsController < ApplicationController
   end
 
   def card_params
-    params.fetch(:card, {}).permit(:body, :description, :start, :end, :status, :scheduled, :list_id, :created_at, :updated_at)
+    params.permit(:body, :description, :start, :end, :status, :scheduled, :list_id, :created_at, :updated_at)
   end
 end
