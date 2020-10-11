@@ -85,11 +85,18 @@ export default {
 <style scoped>
 .register{
   /* background: #EEFFFF; */
-  width: 100%;
-  height: 100%;
-  margin-right: 20%;
-  margin-left: 20%;
-  margin-top: 15%;
+   width: 100vw;
+  height: 100vh;
+  background: #EEFFFF;
+  /* width: 100%;
+  height: 100%; */
+}
+
+.row{
+  width: 100vw;
+  position: fixed;
+  top:23%;
+  left:30%;
 }
 
 .register-step {

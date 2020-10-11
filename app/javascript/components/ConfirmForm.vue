@@ -45,7 +45,7 @@ export default {
 .register-btn.disabled, .register-btn:disabled{
 	font-size: 25px;
 	height: 50px;
-	width: 10%;
+	width: 20%;
 	margin-left: 30%;
 	margin-top: 3%;
 	border-radius: 30px 30px 30px 30px;
