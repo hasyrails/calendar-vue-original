@@ -6,6 +6,7 @@ import cards from '../store/modules/cards'
 import schedules from '../store/modules/schedules'
 import devidedschedules from '../store/modules/devidedschedules'
 import date from '../store/modules/date'
+import auth from '../store/modules/auth'
 
 Vue.use(Vuex)
 
@@ -17,6 +18,7 @@ const store =  new Vuex.Store({
     schedules,
     // devidedschedules,
     date,
+    auth,
   }
 })
 
