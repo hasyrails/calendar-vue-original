@@ -174,55 +174,6 @@
             </div>
           </div>
         </div>
-        
-        <!-- <div class="schedule-item">
-          <div class="schedule-item-name"
-          @click="cardStatusEdit"
-          style="cursor: pointer;"
-          >
-            カードの色
-          </div>
-          <div 
-          style="cursor:pointer;"
-          >
-            <div class="schedule-item-content" v-if="card.status==='todo'&&!cardStatusEditFlag">
-            ToDo
-            </div>
-            <div class="schedule-item-content" v-if="card.status==='doing'&&!cardStatusEditFlag">
-            Doing
-            </div>
-            <div class="schedule-item-content" v-if="card.status==='done'&&!cardStatusEditFlag">
-            Done
-            </div>
-          </div>
-          <div class="card-scheduled-editng" v-if="cardStatusEditFlag"
-          style="margin-left:25px;">
-            <form  class="scheduled cp_ipselect cp_sl04" 
-            @submit.prevent="updateCard"
-            style="width:400px;">
-            <select v-model="card.status"
-            type="text" 
-            style="outline:blue;">
-               <option value="todo">
-                  ToDo
-                </option>
-                <option value="doing">
-                  Doing
-                </option>
-                <option value="done">
-                  Done
-                </option>
-            </select>
-            </form>
-            <div @click="quitCardStatusEdit">
-              <CloseCircle :size="45"></CloseCircle>
-            </div>
-            <div @click="updateCard">
-              <ContentSaveEditOutline  :size="45"></ContentSaveEditOutline>
-            </div>
-          </div>
-        </div> -->
-
       </div>
       <div class="modal-footer" style="background-color:white; height:100px;">
           <div class="btn btn-lg btn-secondary" @click="closeScheduleSettingModal">閉じる</div>
@@ -294,9 +245,6 @@ export default {
     confirmSchedulize(){
       if($('[name="optionsScheduled"] option[value="scheduled"]').prop('selected',true)){
         this.datePickerFlag = true
-      // }else if($('[name="optionsScheduled"] option[value="non_scheduled"]').prop('selected',true)){
-      //   this.datePickerFlag = false
-      // }
       }else if($('[name="optionsScheduled"] option[value="scheduled"]').prop('selected',false)){
         this.datePickerFlag = false
       }

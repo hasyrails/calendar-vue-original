@@ -40,13 +40,6 @@
           @commitChange="commitChange(schedule)"
           >
           </Schedule>
-          <DevidedSchedule 
-          v-for="devidedschedule in devidedschedules"
-          :key="devidedschedule.id"
-          v-if="devidedschedule.date===day.date&&devidedschedule.month===day.month&&devidedschedule.year===day.year"
-          :devidedschedule="devidedschedule"
-          >
-          </DevidedSchedule>
         </draggable>
       </div>
     </div>
@@ -100,7 +93,6 @@ import draggable from 'vuedraggable'
 
 import GanttChartHeader from "../components/GanttChartHeader";
 import Schedule from "../components/Schedule"
-// import DevidedSchedule from "../components/DevidedSchedule"
 import { mapState, mapGetters } from 'vuex'
 import ScheduleSettingModal from "../components/ScheduleSettingModal"
 import ScheduleEditModal from "../components/ScheduleEditModal"
@@ -109,14 +101,11 @@ export default {
   name: 'Calendar',
   data() {
     return {
-      // count: 0,
-      // hoge: '',
       currentDate: moment().format('YYYY/MM'),
       currentMonth: moment().month()+1,
       currentYear: moment().year(),
       scheduleSettingModalFlag: false,
       scheduleEditModalFlag: false,
-      // devidedSchedules:[],
       options: {
         group: {
           name: 'myGroup',
@@ -130,13 +119,11 @@ export default {
     draggable,
     GanttChartHeader,
     Schedule,
-    // DevidedSchedule,
     ScheduleSettingModal,
     ScheduleEditModal,
   },
   mounted () {
     this.$store.dispatch('schedules/fetchSchedulesAction')
-    // this.$store.commit('devidedschedules/createDevidedSchedules')
   },
   methods: {
     confirmSchedules(){
@@ -216,7 +203,6 @@ export default {
 
       let calendars = [];
 
-      // for (let week = 0; week < 1; week++) {
         let weekRow = [];
         for (let day = 0; day < 42; day++) {
           weekRow.push({
@@ -227,7 +213,6 @@ export default {
           startDate.add(1, "days");
         }
           calendars.push(weekRow);
-      // }
       return calendars;
       console.log(calendars);
     },
@@ -254,28 +239,6 @@ export default {
       }
       this.getCalendar();
     },
-    // displayScheduleNum(){
-    // this.calendars = []; //カレンダーパネルを初期化
-    //   for (let i = 0; i < moment(this.currentMonth).daysInMonth(); i++) {
-    //     //カレンダーパネルを更新
-    //     let todoNumber = "-";
-    //     for (let k of Object.keys(this.devidedSchedules)) {
-    //       //todoListの情報をカレンダーパネルに追加
-    //       if (this.calendars[i]) {
-    //         if (this.devidedSchedules[k].date === this.calendars[i].date) {
-    //           todoNumber++;
-    //         }
-    //       }
-    //     }
-    //     this.calendars[i] = {
-    //       date: moment(this.currentMonth)
-    //         .startOf("month")
-    //         .add(i, "day")
-    //         .format("YYYY-MM-DD"),
-    //       dateNumber: i + 1,
-    //       todoNumber: todoNumber
-    //     };
-    // }
   },
   computed: {
     calendars() {
@@ -301,52 +264,9 @@ export default {
     ),
   },
   created(){
-    // return this.createDevidedSchedules();
-    // this.displayScheduleNum();
     this.$store.commit('devidedschedules/createDevidedSchedules')
   },
   watch:{
-    // devidedSchedules(){
-    //   this.createDevidedSchedules();
-    //   this.getCalendar();
-    // },
-    // calendar(){
-    //   this.getCalendar();
-    // }
-    // getCalendar() {
-    //   let startDate = this.getStartDate();
-    //   const endDate = this.getEndDate();
-    //   const weekNumber = Math.ceil(endDate.diff(startDate, "days") / 7);
-
-    //   let calendars = [];
-    //   this.createDevidedSchedules();
-
-    //   for (let week = 0; week < 1; week++) {
-    //     let weekRow = [];
-    //     for (let day = 0; day < moment(this.currentMonth).daysInMonth(); day++) {
-    //       let scheduleNum = 0;
-    //       for (let k=0; k < this.devidedSchedules.length; k++) {
-    //       //todoListの情報をカレンダーパネルに追加
-    //         if (this.devidedSchedules[k].date === startDate.get("date")&&this.devidedSchedules[k].commit===true) {
-    //           scheduleNum++;
-    //         }
-    //       }
-
-    //       weekRow.push({
-    //         year: startDate.get("year"),
-    //         month: startDate.get("month")+1,
-    //         date: startDate.get("date"),
-    //         scheduleNum: scheduleNum
-    //       });
-    //       startDate.add(1, "days");
-    //     }
-    //       this.calendars.push(weekRow);
-    //   }
-
-    //   return this.calendars;
-    //   console.log(this.calendars);
-
-    // },
   }
 }
 </script>
