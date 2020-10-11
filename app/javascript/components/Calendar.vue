@@ -308,9 +308,9 @@ export default {
         let weekRow = [];
         for (let day = 0; day < 7; day++) {
           let scheduleNum = 0;
-          for (let k=0; k < this.devidedSchedules.length; k++) {
+          for (let k=0; k < this.$store.getters['schedules/schedules'].length; k++) {
           //todoListの情報をカレンダーパネルに追加
-            if (this.devidedSchedules[k].date === startDate.get("date")&&this.devidedSchedules[k].commit===true) {
+            if (this.$store.getters['schedules/schedules'][k].date_day === startDate.get("date")&&this.$store.getters['schedules/schedules'][k].commit===true) {
               scheduleNum++;
             }
           }
