@@ -8,7 +8,10 @@
         <UserNameForm v-if="stepNumber===1" @update="updateForm"></UserNameForm>
         <EmailForm v-if="stepNumber===2" @update="updateForm"></EmailForm>
         <PasswordForm v-if="stepNumber===3" @update="updateForm"></PasswordForm>
-        <ConfirmForm :form="form" v-if="stepNumber===4" @update="updateForm"></ConfirmForm>
+        <ConfirmForm 
+        :form="form" 
+        v-if="stepNumber===4" 
+        @update="updateForm" @clickedRegisterButton="register"></ConfirmForm >
       </keep-alive>
       <div class="register-step-button">
         <div class="register-step-prev-button" v-if="stepNumber != 1">
@@ -35,16 +38,18 @@ import ConfirmForm from '../components/ConfirmForm'
 import ArrowRightThick from 'vue-material-design-icons/ArrowRightThick.vue'
 import ArrowLeftThick from 'vue-material-design-icons/ArrowLeftThick.vue'
 
+import axios from 'axios'
+
 export default {
   name: 'Register',
   data(){
     return{
       stepNumber: 1,
 			form: {
-				userName: null,
+				name: null,
         email: null,
         password: null,
-        passwordConfirmation: null
+        password_confirmation: null
 			}
     }
   },
@@ -65,17 +70,26 @@ export default {
 	  },			
 	  nextStep:function(){
 		  this.stepNumber++;
-	  },
+    },
+    async register(){ 
+      await axios.post('api/v1/auth', this.form)
+        .then(res => {
+          this.$store.commit('user', response.data)
+        })
+      .catch(error => console.log(error.response));
+    }
 	}
 }
 </script>
 
 <style scoped>
 .register{
-  width: 80%;
-  margin-right: 10%;
-  margin-left: 10%;
-  margin-top: 5%;
+  /* background: #EEFFFF; */
+  width: 100%;
+  height: 100%;
+  margin-right: 20%;
+  margin-left: 20%;
+  margin-top: 15%;
 }
 
 .register-step {

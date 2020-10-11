@@ -31,6 +31,7 @@ p {
 }
 
 .app-area{
+  background: #EEFFFF;
   width: 150%;
   display:flex;
   flex-direction: column;

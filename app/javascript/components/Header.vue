@@ -1,5 +1,5 @@
 <template>
-  <div class="header">
+  <div class="app-header">
       <div class="app-header-contents">
         <router-link to="/">
           <div class="app-header-title">Header</div>
@@ -23,6 +23,20 @@
 </script>
 
 <style scoped>
+.app-header{
+  background: #AFEEEE;
+  height: 150px;
+  color: black;
+  font-style: italic;
+  /* text-align: left; */
+  /* padding: 20px; */
+  position:absolute;
+  top: 0px;
+  width:100%;
+  position: fixed;
+  /* z-index: 2; */
+}
+
 .app-header-contents{
   display:flex;
 }
@@ -36,9 +50,9 @@
 }
 .app-header-link{
   display:flex;
-  margin-left:70%;
+  margin-left:60%;
   margin-right:10px;
-  margin-top:30px;
+  margin-top:40px;
   float: right;
   font-size: 30px;
   font-weight: 30px;
