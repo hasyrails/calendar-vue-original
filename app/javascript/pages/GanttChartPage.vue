@@ -71,7 +71,9 @@ p {
 }
 
 .app-area{
-  width: 125%;
+  width: 250vw;
+  height: 100vh;
+  background: #EEFFFF;
   display:flex;
   flex-direction: column;
   align-items: center;
@@ -96,7 +98,7 @@ p {
 }
 
 .todo-area{
-  width:200%;
+  width: 250vw;
   /* overflow-x: auto; */
   overflow-x: scroll;
   height: 30%;

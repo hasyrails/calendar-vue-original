@@ -90,11 +90,9 @@ export default {
   /* width: calc(100% - 40px); */
   width: 125%;
   height: 100%;
-  margin-left: 1%;
 }
 
 .list-add-form{
-  margin-left: 15%;
 }
 </style>
 

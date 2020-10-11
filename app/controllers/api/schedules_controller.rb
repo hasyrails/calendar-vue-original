@@ -41,6 +41,6 @@ class Api::SchedulesController < ApplicationController
   end
 
   def schedule_params
-    params.fetch(:schedule, {}).permit(:body, :color, :start, :start_year, :start_month, :start_date, :end, :end_year, :end_month, :end_date, :card_id)
+    params.permit(:body, :color, :start, :start_year, :start_month, :start_date, :end, :end_year, :end_month, :end_date, :card_id)
   end
 end
