@@ -8,7 +8,7 @@
     </div>
     <div class="form-group">
       <label for="userName">パスワード(確認)</label>
-      <input type="text" class="form-control form-control-lg" v-model="passwordConfirmation" placeholder="Enter Password Confirmation">
+      <input type="text" class="form-control form-control-lg" v-model="password_confirmation" placeholder="Enter Password Confirmation">
     </div>
   </form>
   </div>
@@ -20,14 +20,14 @@ export default {
   data(){
     return{
       password: null,
-      passwordConfirmation: null
+      password_confirmation: null
     }
   },
   methods: {
 		submit(){
 			this.$emit('update',{
-				password: this.passwordConfirmation,
-				passwordConfirmation: this.passwordConfirmation
+				password: this.password,
+				password_confirmation: this.password_confirmation
 			});
 		}
 	}

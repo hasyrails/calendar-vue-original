@@ -4,7 +4,7 @@
     <h2>ユーザー名を入力してください</h2>
     <div class="form-group">
       <label for="userName">ユーザー名</label>
-      <input type="text" class="form-control form-control-lg" v-model="userName" placeholder="Enter User Name">
+      <input type="text" class="form-control form-control-lg" v-model="name" placeholder="Enter User Name">
     </div>
   </form>
   </div>
@@ -15,13 +15,13 @@ export default {
   name: 'UserNameForm',
   data(){
     return{
-      userName: null
+      name: null
     }
   },
   methods: {
     submit(){
 			this.$emit('update',{
-				userName: this.userName
+				name: this.name
 			});
 		}
   }

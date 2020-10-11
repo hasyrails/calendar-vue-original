@@ -9,6 +9,10 @@
       <label for="Email">パスワード</label>
       <input type="text" class="form-control form-control-lg" v-model="password" placeholder="Enter Password">
     </div>
+    <div class="form-group">
+      <label for="Email">パスワード(確認)</label>
+      <input type="text" class="form-control form-control-lg" v-model="password_confirmation" placeholder="Enter Password">
+    </div>
   </form>
   </div>
 </template>
@@ -19,14 +23,16 @@ export default {
   data(){
     return{
       email: null,
-      password: null
+      password: null,
+      // password_confirmation: null
     }
   },
   methods: {
 		submit(){
 			this.$emit('update',{
 				email: this.email,
-        password: this.password
+        password: this.password,
+        // password_confirmation: this.password_confirmation
 			});
 		}
 	}

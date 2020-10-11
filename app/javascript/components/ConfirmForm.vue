@@ -3,12 +3,12 @@
     <div>ご入力内容</div>
 		<div class="flex-contents">
 		  <div class="confirm-contents">
-		    <div>ユーザー名: {{ form.userName }} {{ form.lastName }}</div>
+		    <div>ユーザー名: {{ form.name }} </div>
 		    <div>メールアドレス: {{ form.email }}</div>
 		    <div>パスワード: {{ form.password }}</div>
-		    <div>パスワード（確認）: {{ form.passwordConfirmation }}</div>
+		    <div>パスワード（確認）: {{ form.password_confirmation }}</div>
 		  </div>
-		  <div class="btn btn-green register-btn">登録する</div>
+		  <div class="btn btn-green register-btn" @click="register">登録する</div>
 		</div>
   </div>
 </template>
@@ -18,7 +18,12 @@ export default {
   name: 'ConfirmForm',
   props:{
 		form: Object
-	}
+  },
+  methods:{
+    register(){
+      this.$emit('clickedRegisterButton', this.form)
+    }
+  }
 }
 </script>
 

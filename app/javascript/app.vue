@@ -18,7 +18,16 @@ export default {
   },
   components: {
     Header
-  }
+  },
+  beforeCreate(){
+    const existingSession = this.$cookie.get('session')
+
+    if (existingSession && existingSession.length) { // A string at this point
+      const session = JSON.parse(existingSession)
+      this.$store.commit('user', session.user)
+      this.$store.commit('auth', session.tokens)
+    }
+  },
 }
 </script>
 
