@@ -13,6 +13,7 @@ const cards = {
         scheduled: '',
         start: '',
         end: '',
+        schedulized: ''
       },
     ],
   },

@@ -1,7 +1,10 @@
 <template>
   <div class="card">
-    <div class="body" v-if="!cardBodyEditFlag" @click="cardBodyEdit">
-      {{ card.body }}
+    <div class="card-main">
+      <div class="card-icon" v-if="card.schedulized===true"><CalendarImport fillColor="#FFA500" :size="30"></CalendarImport></div>
+      <div class="body" v-if="!cardBodyEditFlag" @click="cardBodyEdit">
+        {{ card.body }}
+      </div>
     </div>
     <div class="body" v-if="!cardBodyEditFlag&&card.body.length===0" @click="cardBodyEdit">
       <Pencil :size="40"></Pencil>
@@ -34,6 +37,7 @@ import Cog from 'vue-material-design-icons/Cog.vue';
 import TrashCanOutline from 'vue-material-design-icons/TrashCanOutline.vue';
 import CloseCircle from 'vue-material-design-icons/CloseCircle.vue';
 import Pencil from 'vue-material-design-icons/Pencil.vue';
+import CalendarImport from 'vue-material-design-icons/CalendarImport.vue';
 
 export default {
   data(){
@@ -60,6 +64,7 @@ export default {
     TrashCanOutline,
     CloseCircle,
     Pencil,
+    CalendarImport,
   },
   methods: {
     deleteCard(card) {
@@ -93,12 +98,22 @@ export default {
   display: flex;
 }
 
+.card-main{
+  display: flex;
+}
+
+.card-icon{
+  margin-top: 15px;
+  margin-left: 15px;
+}
+
 .body {
   position: absolute;
   top: 15px;
-  right: 10px;
+  /* right: 5px; */
   font-size: 18px;
-  width: 90%;
+  margin-left:50px;
+  width: 80%;
   word-wrap: break-word;
   margin-bottom :3%;
 }
