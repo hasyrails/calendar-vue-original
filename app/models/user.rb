@@ -7,4 +7,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :validatable
         #  authentication_keys: [:login]
   include DeviseTokenAuth::Concerns::User
+
+  def token_validation_response
+    as_json(only: [:id, :email, :uid, :allow_password_change, :name, :nickname, :image])
+  end
 end
