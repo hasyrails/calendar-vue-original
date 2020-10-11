@@ -3,16 +3,11 @@ class CreateSchedules < ActiveRecord::Migration[5.2]
     create_table :schedules do |t|
       t.string :body
       t.string :description
-      t.datetime :start
-      t.integer :start_year
-      t.integer :start_month
-      t.integer :start_date
-      t.datetime :end
-      t.integer :end_year
-      t.integer :end_month
-      t.integer :end_date
-      t.string :color
-      t.boolean :commit, default: true, null: true
+      t.datetime :date
+      t.integer :date_year
+      t.integer :date_month
+      t.integer :date_day
+      t.boolean :commit, default: true, null: false
 
       t.references  :card, null: false, foreign_key: true
 

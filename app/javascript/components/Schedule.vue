@@ -66,7 +66,7 @@ export default {
     displayChange(){
       this.nonDisplay = !this.nonDisplay;
       this.commitChange();
-      this.$emit('commitChange')
+      this.$emit('commitChange', this.schedule)
     },
     commitChange(){
       this.schedule.commit = !this.schedule.commit
@@ -79,7 +79,7 @@ export default {
     classButton() {
       const classButton = []
 
-      if (this.nonDisplay) {
+      if (this.schedule.commit===false) {
         classButton.push('nonDisplay')
       }
       return classButton

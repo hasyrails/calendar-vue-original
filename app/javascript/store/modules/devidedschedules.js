@@ -6,13 +6,14 @@
 //     devidedschedules: []
 //   },
 //   mutations: {
-//     createDevidedSchedules(state){
+//     createDevidedSchedules(state, devidedschedule){
+//       state.devidedschedules = devidedschedule
       
 //     },
 //   },
 //   actions: {
-//     createDevidedSchedulesAction(state){
-
+//     createDevidedSchedulesAction(){
+    
 //     },
 //   },
 //   getters: {

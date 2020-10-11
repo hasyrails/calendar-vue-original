@@ -8,16 +8,12 @@ const schedules = {
       schedules: [
         {
           body: '',
-          color: '',
+          date: '',
+          date_year: '',
+          date_month: '',
+          date_day: '',
+          card_id: '',
           commit: '',
-          start: '',
-          start_year: '',
-          start_month: '',
-          start_date: '',
-          end: '',
-          end_year: '',
-          end_month: '',
-          end_date: '',
         }
       ],
   },
@@ -70,23 +66,47 @@ const schedules = {
           });
     },
     async createScheduleAction({ comiit }, card){
-      const schedule = {
-        body: card.body,
-        start: card.start,
-        start_year: new Date(card.start).getFullYear(),
-        start_month: new Date(card.start).getMonth()+1,
-        start_date: new Date(card.start).getDate(),
-        end: card.end,
-        end_year: new Date(card.end).getFullYear(),
-        end_month: new Date(card.end).getMonth()+1,
-        end_date: new Date(card.end).getDate(),
-        card_id: card.id
+      const scheduleDate = {
+        start: new Date(card.start),
+        end: new Date(card.end),
       }
-      await axios.post('api/schedules', schedule)
-        .then(res => {
-          commit('createSchedule', res.data)
-        })
-        .catch(error => console.log(error.response));
+      // var schedule = {
+        //   body: card.body,
+      //   start: card.start,
+      //   start_year: new Date(card.start).getFullYear(),
+      //   start_month: new Date(card.start).getMonth()+1,
+      //   start_date: new Date(card.start).getDate(),
+      //   end: card.end,
+      //   end_year: new Date(card.end).getFullYear(),
+      //   end_month: new Date(card.end).getMonth()+1,
+      //   end_date: new Date(card.end).getDate(),
+      //   card_id: card.id
+      // }
+      
+      var currentDate = scheduleDate.start
+      const startDate = scheduleDate.start
+      var stopDate = scheduleDate.end
+      
+      for(let i =1;  i <=Math.floor((new Date(stopDate).getTime()-new Date(startDate).getTime())/86400000)+1; i++) {
+        var schedule = {
+          body: card.body,
+          date: currentDate,
+          date_year: new Date(currentDate).getFullYear(),
+          date_month: new Date(currentDate).getMonth()+1,
+          date_day: new Date(currentDate).getDate(),
+          card_id: card.id
+        }
+
+        await axios.post('api/schedules', schedule)
+          .then(res => {
+            commit('createSchedule', res.data)
+          })
+          .catch(error => console.log(error.response));
+        
+        currentDate = new Date(currentDate).setDate(new Date(currentDate).getDate() + 1);
+        schedule.date = currentDate
+      }
+
     },
     async deleteScheduleAction ({state, commit}, schedule) {
  

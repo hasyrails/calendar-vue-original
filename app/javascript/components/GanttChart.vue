@@ -30,13 +30,14 @@
           :schedule="schedule"
           v-for="schedule in schedules"
           v-if="
-          new Date(schedule.start).getDate() <= day.date
-          &&new Date(schedule.end).getDate() >= day.date
-          &&new Date(schedule.start).getMonth()+1 === day.month
+          schedule.date_day === day.date
+          &&schedule.date_month === day.month
+          &&schedule.date_year === day.year
           "
           :key="schedule.id"
           style="flex:1;min-height:1px;min-width:1px;max-width:230px;text-align: center;margin-bottom:10px;"
           @clickScheduleSettingButton="openScheduleSettingModal"
+          @commitChange="commitChange(schedule)"
           >
           </Schedule>
           <DevidedSchedule 
@@ -78,16 +79,16 @@
     class="form-control"
     >
   </div> -->
-  <div>
-    <button class="btn btn-primary" @click="confirmCurrentDate">CofirmCurrentDate</button>
-    <button class="btn btn-primary" @click="confirmCalendar">CofirmCalendar</button>
-    <button class="btn btn-primary" @click="confirmCurrentMonth">CofirmCurrentMonth</button>
-    <button class="btn btn-primary" @click="showDevidedSchedule">showDevidedSchedule</button>
-    <button class="btn btn-primary" @click="confirmStartDate">confirmStartDate</button>
-    <button class="btn btn-primary" @click="openScheduleSettingModal">setting</button>
-    <button  class="btn btn-primary" @click="confirmIdToMoent">Id to Moment</button>
-    <button  class="btn btn-primary" @click="confirmSchedules">confirmSchedules</button>
-    <button  class="btn btn-primary" @click="confirmMoment">confirmSchedules</button>
+  <div style="margin-top:1%;">
+    <button class="btn btn-primary btn-lg" @click="confirmCurrentDate">CofirmCurrentDate</button>
+    <button class="btn btn-primary btn-lg" @click="confirmCalendar">CofirmCalendar</button>
+    <button class="btn btn-primary btn-lg" @click="confirmCurrentMonth">CofirmCurrentMonth</button>
+    <button class="btn btn-primary btn-lg" @click="showDevidedSchedule">showDevidedSchedule</button>
+    <button class="btn btn-primary btn-lg" @click="confirmStartDate">confirmStartDate</button>
+    <button class="btn btn-primary btn-lg" @click="openScheduleSettingModal">setting</button>
+    <button  class="btn btn-primary btn-lg" @click="confirmIdToMoent">Id to Moment</button>
+    <button  class="btn btn-primary btn-lg" @click="confirmSchedules">confirmSchedules</button>
+    <button  class="btn btn-primary btn-lg" @click="confirmMoment">confirmSchedules</button>
   </div>
 </div>
 </template>
@@ -164,12 +165,9 @@ export default {
     },
     updateSchedule(schedule){
       this.$store.dispatch('schedules/updateScheduleAction', schedule)
-      this.$store.dispatch('devidedschedules/createDevidedSchedulesAction')
     },
-    commitChange(){
-      // let selectedCardId = Number(event.currentTarget.id.substr(14));
-      // this.devidedSchedules[selectedCardId].commit = !this.devidedSchedules[selectedCardId].commit;
-      // return this.devidedSchedules;
+    commitChange(schedule){
+      this.$store.dispatch('schedules/updateScheduleAction', schedule)
     },
     confirmStartDate(){
       let date = moment(this.currentDate);
