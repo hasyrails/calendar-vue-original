@@ -31,7 +31,7 @@ p {
 }
 
 .app-area{
-  width: 100vw;
+  width: 150vw;
   height: 100vh;
   background: #EEFFFF;
   /* width: 150%; */
@@ -43,10 +43,10 @@ p {
 }
 
 .calendar-area{
-  width:150%;
-  /* height:100%; */
-  height:2000px;
+  width: 150vw;
+  height: 100vh;
   /* overflow-x: scroll; */
+  /* margin-top: 30%; */
   margin-left: 10%;
   margin-right : 10%;
 }
