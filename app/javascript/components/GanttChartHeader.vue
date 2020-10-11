@@ -109,7 +109,7 @@ export default {
   align-items: center;
   position:fixed;
   
-  top: 15%;
+  top: 18%;
   margin-left:1%;
 }
 .calendar-header-date {

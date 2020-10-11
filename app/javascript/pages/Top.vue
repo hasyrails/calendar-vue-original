@@ -37,6 +37,7 @@ p {
   /* width: 150%; */
   /* display:flex;
   flex-direction: column;
+  width: 100vw;
   align-items: center; */
   overflow-y: scroll;
 }
