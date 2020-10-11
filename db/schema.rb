@@ -35,16 +35,11 @@ ActiveRecord::Schema.define(version: 2020_10_10_232123) do
   create_table "schedules", force: :cascade do |t|
     t.string "body"
     t.string "description"
-    t.datetime "start"
-    t.integer "start_year"
-    t.integer "start_month"
-    t.integer "start_date"
-    t.datetime "end"
-    t.integer "end_year"
-    t.integer "end_month"
-    t.integer "end_date"
-    t.string "color"
-    t.boolean "commit", default: true
+    t.datetime "date"
+    t.integer "date_year"
+    t.integer "date_month"
+    t.integer "date_day"
+    t.boolean "commit", default: true, null: false
     t.integer "card_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

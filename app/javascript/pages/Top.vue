@@ -39,7 +39,7 @@ p {
   flex-direction: column;
   width: 100vw;
   align-items: center; */
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
 }
 
 .calendar-area{
