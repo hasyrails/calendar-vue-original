@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 2020_10_10_232123) do
     t.date "end"
     t.integer "status"
     t.integer "color"
+    t.boolean "schedulized", default: false, null: false
     t.integer "list_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
