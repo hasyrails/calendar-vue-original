@@ -310,7 +310,8 @@ export default {
   },
   methods:{
     createSchedulesFromCard(){
-       this.$emit('clickedCreateScheduleFromCardButton', this.card)
+      this.card.schedulized = true
+      this.$emit('clickedCreateScheduleFromCardButton', this.card)
     },
     showDatePicker(){
       this.datePickerFlag = !this.datePickerFlag
