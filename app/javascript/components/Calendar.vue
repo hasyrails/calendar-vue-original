@@ -27,12 +27,10 @@
       </div>
     </div>
     <div>
-      <button class="btn btn-primary" @click="confirmCurrentDate">CofirmCurrentDate</button>
       <button class="btn btn-primary" @click="confirmCalendar">CofirmCalendar</button>
       <button class="btn btn-primary" @click="confirmCurrentMonth">CofirmCurrentMonth</button>
       <button class="btn btn-primary" @click="showDevidedSchedule">showDevidedSchedule</button>
       <button class="btn btn-primary" @click="confirmStateSchedule">confirmStateSchedule</button>
-      <button class="btn btn-primary" @click="createDateArray">createDateArray</button>
     </div>
   </div>
 </template>
@@ -399,7 +397,7 @@ export default {
     // this.displayScheduleNum();
   },
   mounted(){
-    this.$store.dispatch('schedules/fetchSchedulesAction')
+    // this.$store.dispatch('schedules/fetchSchedulesAction')
   },
   watch:{
     // devidedSchedules(){
@@ -449,7 +447,7 @@ export default {
 
 <style scoped>
 .calendar {
-  margin-top:5%;
+  padding-top:5%;
   margin-left: 15%;
   margin-right: 15%;
   /* margin-right: 10%; */
