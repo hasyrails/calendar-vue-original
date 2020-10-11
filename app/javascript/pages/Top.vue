@@ -4,9 +4,9 @@
       <div class="calendar-area">
         <Calendar></Calendar>
       </div>
-      <div class="footer-area">
+      <!-- <div class="footer-area">
         <footer>(C)footer</footer>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
@@ -31,17 +31,20 @@ p {
 }
 
 .app-area{
+  width: 100vw;
+  height: 100vh;
   background: #EEFFFF;
-  width: 150%;
-  display:flex;
+  /* width: 150%; */
+  /* display:flex;
   flex-direction: column;
-  align-items: center;
+  align-items: center; */
   overflow-y: scroll;
 }
 
 .calendar-area{
   width:150%;
-  height:70%;
+  /* height:100%; */
+  height:2000px;
   /* overflow-x: scroll; */
   margin-left: 10%;
   margin-right : 10%;

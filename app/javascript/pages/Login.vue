@@ -1,5 +1,6 @@
 <template>
-<div class="register-page">
+<div class="login-page">
+<div class="register">
   <div class="row">
 		<div class="col-md-8">
 		  <h1 class="register-step">ログイン</h1>
@@ -10,6 +11,7 @@
 	</div>
   <div class="btn btn-primary login-btn" @click="login">ログイン</div>
   <!-- <pre><code>{{form}}</code></pre> -->
+</div>
 </div>
 </template>
 
@@ -53,11 +55,19 @@ export default {
 </script>
 
 <style scoped>
-.register-page{
-  width: 80%;
-  margin-right: 10%;
-  margin-left: 10%;
-  margin-top: 5%;
+.login-page{
+  width: 100vw;
+  height: 100vh;
+  background: #EEFFFF;
+}
+
+.register{
+  /* margin-right: 10%;
+  margin-left: 10%; */
+  width: 100vw;
+  position: fixed;
+  top:20%;
+  left:30%;
 }
 
 .register-step {
