@@ -3,7 +3,7 @@
     <div class="listheader">
       <div class="list-title">{{ title }}</div>
        <div class="list-counter">total: {{ totalCardInList }}</div>
-      <div class="deletelist" @click="removeList">×</div>
+      <div class="deletelist" @click="deleteList">×</div>
     </div>
     <div class="cards-area">
       <div>
@@ -129,9 +129,9 @@ export default {
     // ...mapActions('schedules',[
     //   'createScheduleAction'
     // ]),
-    removeList: function() {
+    deleteList: function() {
       if(confirm('本当にこのリストを削除しますか？')){
-        this.$store.dispatch('lists/removelist', { listIndex: this.listIndex })
+        this.$store.dispatch('lists/deleteListAction', { listIndex: this.listIndex })
       }
     },
     openCardSettingModal(card){

@@ -44,6 +44,17 @@ const lists = {
     removelist(context, payload) {
       context.commit('removelist', payload)
     },
+    async deleteListAction ({commit}, list) {
+      
+      await axios.delete('/api/list/' + list.id)
+      .then(res => {
+        // commit('deleteList');
+        commit('removelist',)
+              // return true;
+          }).catch(error => {
+              return error;
+          });
+  },
     removeCardFromList(context, payload) {
       context.commit('removeCardFromList', payload)
     },
