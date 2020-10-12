@@ -38,17 +38,6 @@
       @clickedCreateScheduleFromCardButton="createSchedulesFromCard"
       ></CardSettingModal>
     </div>
-    <div>
-      <CardToGanttChartModal
-      :card="cardEdit"
-      :list="list"
-      :schedule="schedule"
-      v-if="cardToGanttChartModalFlag"
-      @clickCardEditModalCloseButton="closeCardEditModal(cardEdit)"
-      @clickedCloseCardToGanttChartButton="closeCardToGanttChartModal"
-      @datePickerInputted="updateCard"
-      ></CardToGanttChartModal>
-    </div>
   </div>
 </template>
 
@@ -74,8 +63,6 @@ export default {
         animation: 200
       },
       cardSettingModalFlag: false,
-      cardEditModalFlag: false,
-      cardToGanttChartModalFlag: false,
     }
   },
   props: {
@@ -124,9 +111,10 @@ export default {
   methods: {
     async createSchedulesFromCard(card){
       this.cardDetail = card
+      this.closeCardSettingModal()
       await this.updateCardAction(card)
       await this.$store.dispatch('schedules/createScheduleAction', card)
-      this.$router.go({path: this.$router.currentRoute.path, force: true})
+      // this.$router.go({path: this.$router.currentRoute.path, force: true})
       // this.$store.dispatch('devidedschedules/createDevidedSchedulesAction')
     },
     openCardToGanttChartModal(card){

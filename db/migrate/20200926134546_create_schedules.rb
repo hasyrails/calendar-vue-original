@@ -8,7 +8,8 @@ class CreateSchedules < ActiveRecord::Migration[5.2]
       t.integer :date_month
       t.integer :date_day
       t.boolean :commit, default: true, null: false
-
+      t.string :color
+      
       t.references  :card, null: false, foreign_key: true
 
       t.timestamps
