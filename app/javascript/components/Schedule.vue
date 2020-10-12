@@ -41,7 +41,6 @@ export default {
   name: 'Schedule',
   data(){
     return{
-      displayNum: '',
       icon: 0,
       nonDisplay:false,
     }

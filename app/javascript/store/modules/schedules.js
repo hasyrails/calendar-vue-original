@@ -21,15 +21,11 @@ const schedules = {
     setSchedules(state, {schedules}){
       state.schedules = schedules
     },
-    updateSchedule(state, {schedule,updateSchedule}){
-      // const index = state.cards.findIndex(card => {
-      //   return card.id === updateCard.id
-      // })
-      //   state.cards.splice(index, 1, updateCard)
-      Object.assign(schedule, updateSchedule);
+    updateSchedule(state, payload){
+      state.schedules = payload.schedules
     },
-    createSchedule(state, schedule){
-      state.schedules.push(schedule)
+    createSchedule(state, payload){
+      state.schedules.push(payload)
     },
     deleteSchedule(state, deleteSchedule){
       const index = state.schedules.findIndex(schedule => {
@@ -47,42 +43,34 @@ const schedules = {
           commit('setSchedules', { schedules: response.data })
         })
     },
-    async updateScheduleAction ({state, commit}, updateSchedule) {
-      // stateからマッチしたtaskを取り出す
-      const schedule = state.schedules.find((o) => {
-          return o.id === updateSchedule.id;
-      });
+    async updateScheduleAction ({commit}, payload) {
+      // // stateからマッチしたtaskを取り出す
+      // const schedule = state.schedules.find((o) => {
+      //     return o.id === updateSchedule.id;
+      // });
 
-      if (!schedule) {
-          return false;
-      }
+      // if (!schedule) {
+      //     return false;
+      // }
 
-      return await axios.patch('/api/schedules/' + updateSchedule.id, updateSchedule)
-          .then(res => {
-              commit('updateSchedule', {schedule, updateSchedule});
-              return true;
-          }).catch(error => {
-              return error;
-          });
+      // return await axios.patch('/api/schedules/' + updateSchedule.id, updateSchedule)
+      //     .then(res => {
+      //         commit('updateSchedule', {schedule, updateSchedule});
+      //         return true;
+      //     }).catch(error => {
+      //         return error;
+      //     });
+      await axios.patch('api/schedules/'+ payload.id , payload)
+      .then(res => {
+        commit('updateSchedule')
+        })
+        .catch(error => console.log(error.response));
     },
-    async createScheduleAction({ comiit }, card){
+    async createScheduleAction({ commit }, card){
       const scheduleDate = {
         start: new Date(card.start),
         end: new Date(card.end),
-      }
-      // var schedule = {
-        //   body: card.body,
-      //   start: card.start,
-      //   start_year: new Date(card.start).getFullYear(),
-      //   start_month: new Date(card.start).getMonth()+1,
-      //   start_date: new Date(card.start).getDate(),
-      //   end: card.end,
-      //   end_year: new Date(card.end).getFullYear(),
-      //   end_month: new Date(card.end).getMonth()+1,
-      //   end_date: new Date(card.end).getDate(),
-      //   card_id: card.id
-      // }
-      
+      }      
       var currentDate = scheduleDate.start
       const startDate = scheduleDate.start
       var stopDate = scheduleDate.end

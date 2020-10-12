@@ -21,23 +21,25 @@ const cards = {
     setCards(state, {cards}){
       state.cards = cards
     },
-    updateCard(state, {card,updateCard}){
+    updateCard(state, payload){
       // const index = state.cards.findIndex(card => {
       //   return card.id === updateCard.id
       // })
       //   state.cards.splice(index, 1, updateCard)
-      Object.assign(card, updateCard);
+      // Object.assign(card, updateCard);
+      state.cards = payload.cards
     },
     createCard(state, payload) {
       state.cards.push({ body: payload.body, list_id: payload.list_id })
     },
-    deleteCard(state, deleteCard) {
-      const index = state.cards.findIndex(card => {
-        return card.id === deleteCard.id
-      })
-        state.cards.splice(index, 1, deleteCard)
+    deleteCard(state, payload) {
+      // const index = state.cards.findIndex(card => {
+      //   return card.id === deleteCard.id
+      // })
+      //   state.cards.splice(index, 1, deleteCard)
 
-      state.cards.splice(index, 1);
+      // state.cards.splice(index, 1);
+      state.cards.splice(payload.id, 1)
     },
     // deleteCard(state, payload) {
     //   state.cards.splice(payload.id, 1)
@@ -62,31 +64,17 @@ const cards = {
           commit('setCards', { cards: response.data })
         })
     },
-    // async updateCardAction( { commit }, card ) {
-    //   await axios.post('api/cards/' ,card)
-    //     .then(res => {
-    //       commit('updateCard', res.data)
-    //     })
-    //     .catch(error => console.log(error.response));
-    // },
-    async updateCardAction ({state, commit}, updateCard) {
-      // stateからマッチしたtaskを取り出す
-      const card = state.cards.find((o) => {
-          return o.id === updateCard.id;
-      });
-
-      if (!card) {
-          return false;
-      }
-
-      return await axios.patch('/api/cards/' + updateCard.id, updateCard)
-          .then(res => {
-              commit('updateCard', {card, updateCard});
-              return true;
-          }).catch(error => {
-              return error;
-          });
+    async updateCardAction( { commit }, payload) {
+      await axios.patch('api/cards/'+ payload.id ,payload)
+      .then(res => {
+        commit('updateCard', payload)
+        })
+        .catch(error => console.log(error.response));
     },
+    // async updateCardAction ({state, commit}, updateCard) {
+    //   updateCardAction(context, payload) {
+    //   }
+    // },
     async createCardAction( { commit }, card ) {
       await axios.post('api/cards',card)
         .then(res => {
@@ -106,11 +94,11 @@ const cards = {
     // updateList(context, payload) {
     //   context.commit('updateList', payload)
     // }
-     async deleteCardAction ({state, commit}, card) {
+     async deleteCardAction ({commit}, card) {
  
         await axios.delete('/api/cards/' + card.id)
             .then(res => {
-                commit('deleteCard', index);
+                commit('deleteCard');
                 // return true;
             }).catch(error => {
                 return error;
@@ -119,6 +107,7 @@ const cards = {
     // deleteCardAction(context, payload) {
     //   context.commit('deleteCard', payload)
     // },
+  // },
   },
   getters: {
     // totalCardCount(state) {

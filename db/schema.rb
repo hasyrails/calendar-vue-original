@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 2020_10_10_232123) do
     t.integer "date_month"
     t.integer "date_day"
     t.boolean "commit", default: true, null: false
+    t.string "color"
     t.integer "card_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
