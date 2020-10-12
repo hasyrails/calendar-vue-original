@@ -39,7 +39,7 @@ const cards = {
       //   state.cards.splice(index, 1, deleteCard)
 
       // state.cards.splice(index, 1);
-      state.cards.splice(payload.cardIndex, 1)
+      state.cards.splice(payload.id, 1)
     },
     // deleteCard(state, payload) {
     //   state.cards.splice(payload.id, 1)
@@ -98,7 +98,7 @@ const cards = {
  
         await axios.delete('/api/cards/' + card.id)
             .then(res => {
-                commit('deleteCard', index);
+                commit('deleteCard');
                 // return true;
             }).catch(error => {
                 return error;
