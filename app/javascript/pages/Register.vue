@@ -77,6 +77,7 @@ export default {
           this.$store.commit('user', response.data)
         })
       .catch(error => console.log(error.response));
+      this.$router.push('login')
     }
 	}
 }
