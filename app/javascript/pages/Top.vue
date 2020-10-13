@@ -43,7 +43,7 @@ p {
 }
 
 .calendar-area{
-  width: 150vw;
+  width: 100vw;
   height: 100vh;
   /* overflow-x: scroll; */
   /* margin-top: 30%; */

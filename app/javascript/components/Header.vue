@@ -34,7 +34,7 @@ import {mapState} from 'vuex'
   /* padding: 20px; */
   position:absolute;
   top: 0px;
-  width:100%;
+  width:100vw;
   position: fixed;
   /* z-index: 2; */
 }
@@ -44,7 +44,7 @@ import {mapState} from 'vuex'
 }
 
 .app-header-title{
-  margin-left:10px;
+  margin-left:20%;
   margin-right:10px;
   font-size: 75px;
   font-weight: 30px;
@@ -52,7 +52,7 @@ import {mapState} from 'vuex'
 }
 .app-header-link{
   display:flex;
-  margin-left:60%;
+  margin-left:70%;
   margin-right:10px;
   margin-top:40px;
   float: right;
