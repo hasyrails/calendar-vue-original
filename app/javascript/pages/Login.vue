@@ -1,17 +1,23 @@
 <template>
 <div class="login-page">
-<div class="register">
-  <div class="row">
-		<div class="col-md-8">
-		  <h1 class="register-step">ログイン</h1>
-      <keep-alive>
-        <LoginForm @update="updateForm"></LoginForm>
-      </keep-alive>
-		</div>
-	</div>
-  <div class="btn btn-primary login-btn" @click="login">ログイン</div>
-  <!-- <pre><code>{{form}}</code></pre> -->
-</div>
+  <div>
+    <UserRegisterMessage></UserRegisterMessage>
+  </div>
+  <div class="register">
+    <div>
+      <UserRegisterMessage></UserRegisterMessage>
+    </div>
+    <div class="row">
+      <div class="col-md-8">
+        <h1 class="register-step">ログイン</h1>
+        <keep-alive>
+          <LoginForm @update="updateForm"></LoginForm>
+        </keep-alive>
+      </div>
+    </div>
+    <div class="btn btn-primary login-btn" @click="login">ログイン</div>
+    <!-- <pre><code>{{form}}</code></pre> -->
+  </div>
 </div>
 </template>
 
@@ -22,6 +28,8 @@ import LoginForm from '../components/LoginForm'
 
 import ArrowRightThick from 'vue-material-design-icons/ArrowRightThick.vue'
 import ArrowLeftThick from 'vue-material-design-icons/ArrowLeftThick.vue'
+
+import UserRegisterMessage from '../components/UserRegisterMessage'
 
 export default {
   name: 'Login',
@@ -37,7 +45,8 @@ export default {
   components: {
     LoginForm,
     ArrowRightThick,
-    ArrowLeftThick
+    ArrowLeftThick,
+    UserRegisterMessage,
   },
   methods:{
 		updateForm(formData){
