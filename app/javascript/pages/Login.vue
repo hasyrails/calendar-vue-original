@@ -1,15 +1,12 @@
 <template>
 <div class="login-page">
-  <div>
-    <UserRegisterMessage></UserRegisterMessage>
-  </div>
   <div class="register">
-    <div>
-      <UserRegisterMessage></UserRegisterMessage>
-    </div>
     <div class="row">
       <div class="col-md-8">
         <h1 class="register-step">ログイン</h1>
+        <div style="margin-left:10%;">
+          <UserRegisterMessage></UserRegisterMessage>
+        </div>
         <keep-alive>
           <LoginForm @update="updateForm"></LoginForm>
         </keep-alive>
