@@ -1,19 +1,19 @@
 <template>
   <div class="app-header">
-      <div class="app-header-contents">
-        <router-link to="/">
-          <div class="app-header-title">Header</div>
+    <div class="app-header-contents">
+      <router-link to="/">
+        <div class="app-header-title">Header</div>
+      </router-link>
+      <div class="app-header-link">
+        <router-link to="/register">
+          <div class="app-header-link-register">ユーザー登録</div>
         </router-link>
-        <div class="app-header-link">
-          <router-link to="/register">
-            <div class="app-header-link-register">ユーザー登録</div>
-          </router-link>
-          <router-link to="/login">
-            <div class="app-header-link-login">ログイン</div>
-          </router-link>
-        </div>
+        <router-link to="/login">
+          <div class="app-header-link-login">ログイン</div>
+        </router-link>
       </div>
     </div>
+  </div>
 </template>
 
 <script>
@@ -58,16 +58,17 @@ import {mapState} from 'vuex'
   float: right;
   font-size: 30px;
   font-weight: 30px;
+  /* justify-content: space-between; */
 }
 
 .app-header-link-register{
-  margin-left:50px;
-  margin-right:50px;
+  margin-left:10px;
+  margin-right:100px;
   color: black;
 }
 .app-header-link-login{
-  margin-left:50px;
-  margin-right:50px;
+  margin-left:10px;
+  margin-right:10px;
   color: black;
 }
 </style>
