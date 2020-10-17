@@ -72,7 +72,7 @@ export default {
 		  this.stepNumber++;
     },
     async register(){ 
-      const response = await axios.post('api/v1/auth', this.form)
+      await axios.post('api/v1/auth', this.form)
         .then(res => {
           this.$store.commit('user', res.data)
           this.$store.commit(`messages/setUserRegisterSuccessMessage`,{
@@ -80,7 +80,6 @@ export default {
             timeout: 6000
           })
           this.$router.push('login')
-          return false
         })
       .catch(error => console.log(error.res));
     }

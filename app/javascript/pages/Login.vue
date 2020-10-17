@@ -52,9 +52,14 @@ export default {
     async login(){ 
       await axios.post('api/v1/auth/sign_in', this.form)
         .then(res => {
-          this.$store.commit('auth', response.data)
+          this.$store.commit('auth', res.data)
+          this.$router.push('/')
+          this.$store.commit(`messages/setUserLoginSuccessMessage`,{
+            userLoginSuccessMessage: 'ログインしました',
+            timeout: 3000
+          })
         })
-      .catch(error => console.log(error.response));
+      .catch(error => console.log(error.res));
     }
 	}
 }

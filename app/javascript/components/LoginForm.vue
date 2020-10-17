@@ -9,10 +9,10 @@
       <label for="Email">パスワード</label>
       <input type="text" class="form-control form-control-lg" v-model="password" placeholder="Enter Password">
     </div>
-    <div class="form-group">
+    <!-- <div class="form-group">
       <label for="Email">パスワード(確認)</label>
       <input type="text" class="form-control form-control-lg" v-model="password_confirmation" placeholder="Enter Password">
-    </div>
+    </div> -->
   </form>
   </div>
 </template>

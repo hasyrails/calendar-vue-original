@@ -1,8 +1,6 @@
 <template>
   <div id="app">
     <Header></Header>
-    <router-link to="/">
-    </router-link>
     <router-view></router-view>
   </div>
 </template>
@@ -17,7 +15,7 @@ export default {
     }
   },
   components: {
-    Header
+    Header,
   },
   beforeCreate(){
     const existingSession = this.$cookie.get('session')
