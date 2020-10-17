@@ -11,7 +11,7 @@
               <div class="schedule-tag" style="margin-top:10px;"><Tag :size="36"></Tag></div>
               <div class="schedule-title" style="font-size:36px; margin-left:10px;width:900px;">
               {{ card.body }}
-                <div 
+                <!-- <div 
                 class="card-created-at"
                 v-if="card.created_at===card.update_at">
                   <div class="schedule-created-at-date" style="width:300px;">
@@ -26,7 +26,7 @@
                     {{ new Date(card.created_at).getHours() }}:
                     {{ new Date(card.created_at).getMinutes() }}
                   </div>
-                </div>
+                </div> -->
                 <div 
                 class="card-updated-at"
                 v-if="card.created_at!==card.update_at">
@@ -100,8 +100,10 @@
                 <div v-if="!card.start" @click="showDatePicker">
                   <Pencil></Pencil>
                 </div>
-                <div v-if="!datePickerFlag" @click="showDatePicker">
-                  {{ card.start }}
+                <div v-if="!datePickerFlag&&card.start" @click="showDatePicker">
+                  {{ new Date(card.start).getFullYear() }}/
+                  {{ new Date(card.start).getMonth()+1 }}/
+                  {{ new Date(card.start).getDate() }}
                 </div>
                 <div v-if="datePickerFlag">
                     <Datepicker
@@ -127,7 +129,10 @@
                   <Pencil></Pencil>
                 </div>
                 <div v-if="!datePickerFlag" @click="showDatePicker">
-                  {{ card.end }}
+                  {{ new Date(card.end).getFullYear() }}/
+                  {{ new Date(card.end).getMonth()+1 }}/
+                  {{ new Date(card.end).getDate() }}
+
                 </div>
                 <div v-if="datePickerFlag">
                   <Datepicker

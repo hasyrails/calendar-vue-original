@@ -8,7 +8,7 @@
               <div class="schedule-tag" style="margin-top:10px;"><Tag :size="36"></Tag></div>
               <div class="schedule-title" style="font-size:36px; margin-left:10px;width:900px;">
               {{ schedule.body }}
-                <div 
+                <!-- <div 
                 class="card-created-at"
                 v-if="schedule.created_at===schedule.update_at">
                   <div class="schedule-created-at-date" style="width:300px;">
@@ -23,7 +23,7 @@
                     {{ new Date(schedule.created_at).getHours() }}:
                     {{ new Date(schedule.created_at).getMinutes() }}
                   </div>
-                </div>
+                </div> -->
                 <div 
                 class="card-updated-at"
                 v-if="schedule.created_at!==schedule.update_at">
@@ -69,7 +69,7 @@
                 <div v-if="!schedule.start" @click="showDatePicker">
                   <Pencil></Pencil>
                 </div>
-                <div v-if="!datePickerFlag" @click="showDatePicker">
+                <div v-if="!datePickerFlag&&schedule.start" @click="showDatePicker">
                   {{ new Date(schedule.start).getFullYear() }}/
                   {{ new Date(schedule.start).getMonth()+1 }}/
                   {{ new Date(schedule.start).getDate() }}
@@ -94,10 +94,10 @@
               <form 
               @submit.prevent="updateCard"
               >
-                <div v-if="!schedule.start" @click="showDatePicker">
+                <div v-if="!schedule.end" @click="showDatePicker">
                   <Pencil></Pencil>
                 </div>
-                <div v-if="!datePickerFlag" @click="showDatePicker">
+                <div v-if="!datePickerFlag&&schedule.end" @click="showDatePicker">
                   {{ new Date(schedule.end).getFullYear() }}/
                   {{ new Date(schedule.end).getMonth()+1 }}/
                   {{ new Date(schedule.end).getDate() }}
