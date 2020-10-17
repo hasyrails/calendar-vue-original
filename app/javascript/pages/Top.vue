@@ -1,13 +1,14 @@
 <template>
-  <div>
-    <div class="app-area">
-      <div class="calendar-area">
-        <Calendar></Calendar>
-      </div>
-      <!-- <div class="footer-area">
-        <footer>(C)footer</footer>
-      </div> -->
+  <div class="app-area">
+    <transition name="component-fade">
+      <UserLoginMessage></UserLoginMessage>
+    </transition>
+    <div class="calendar-area">
+      <Calendar></Calendar>
     </div>
+    <!-- <div class="footer-area">
+      <footer>(C)footer</footer>
+    </div> -->
   </div>
 </template>
 
@@ -15,11 +16,14 @@
 import Board from '../components/Board'
 import Calendar from '../components/Calendar'
 
+import UserLoginMessage from '../components/UserLoginMessage'
+
 export default {
   name: 'Top',
   components: {
     Board,
-    Calendar
+    Calendar,
+    UserLoginMessage,
   }
 }
 </script>
@@ -54,5 +58,14 @@ p {
 footer{
   position: fixed;
 	bottom: 0px;             
+}
+
+.component-fade-enter-active,
+.component-fade-leave-active {
+  transition: opacity 3s ease;
+}
+.component-fade-enter,
+.component-fade-leave-to {
+    opacity: 0;
 }
 </style>
