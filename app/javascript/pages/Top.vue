@@ -35,19 +35,13 @@ p {
 }
 
 .app-area{
-  width: 100vw;
+  width: 130vw;
   height: 100vh;
   background: #EEFFFF;
-  /* width: 150%; */
-  /* display:flex;
-  flex-direction: column;
-  width: 100vw;
-  align-items: center; */
-  /* overflow-y: scroll; */
 }
 
 .calendar-area{
-  width: 100vw;
+  width: 130vw;
   height: 100vh;
   /* overflow-x: scroll; */
   /* margin-top: 30%; */

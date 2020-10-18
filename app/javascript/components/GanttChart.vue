@@ -21,8 +21,10 @@
         :key="index"
         :id="day.year+'-'+day.month+'-'+day.date"
         >
+        <!-- <div v-if="day.month===currentMonth" style="font-weight:200;font-size:50px;">{{day.date}}</div>
+        <div v-if="day.month!==currentMonth" style="color:#D3D3D3;font-size:50px;">{{ day.date }}</div> -->
         <div v-if="day.month===currentMonth" style="font-weight:200;font-size:50px;">{{day.date}}</div>
-        <div v-if="day.month!==currentMonth" style="color:#D3D3D3;font-size:50px;">{{ day.date }}</div>
+        <div v-if="day.month!==currentMonth&&day.date!==new Date().getDate()" style="color:#D3D3D3;font-size:50px;">{{ day.date }}</div>
         <draggable
         v-model="schedule"
        >
@@ -72,7 +74,7 @@
     class="form-control"
     >
   </div> -->
-  <div style="margin-top:1%;">
+  <!-- <div style="margin-top:1%;">
     <button class="btn btn-primary btn-lg" @click="confirmCurrentDate">CofirmCurrentDate</button>
     <button class="btn btn-primary btn-lg" @click="confirmCalendar">CofirmCalendar</button>
     <button class="btn btn-primary btn-lg" @click="confirmCurrentMonth">CofirmCurrentMonth</button>
@@ -82,7 +84,7 @@
     <button  class="btn btn-primary btn-lg" @click="confirmIdToMoent">Id to Moment</button>
     <button  class="btn btn-primary btn-lg" @click="confirmSchedules">confirmSchedules</button>
     <button  class="btn btn-primary btn-lg" @click="confirmMoment">confirmSchedules</button>
-  </div>
+  </div> -->
 </div>
 </template>
 

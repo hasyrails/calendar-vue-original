@@ -5,7 +5,9 @@
   :class="classButton" 
   :id="'schedule-card-'+schedule.id"
   >
-    
+    <div v-if="schedule.date_year===new Date().getFullYear()&&schedule.date_month===new Date().getMonth()+1&&schedule.date_day===new Date().getDate()">
+      <CountDownTimer :schedule="schedule"></CountDownTimer>
+    </div>
 
     <div class="body" style="display:flex; justify-content:center; padding-top:1px;font-size:20px;" @click="displayChange">
       <div class="schedule-title" style="margin-left:10px;margin-top:1px;">
@@ -34,6 +36,7 @@
 <script>
 import ScheduleSettingButton from '../components/ScheduleSettingButton'
 import ScheduleDeleteButton from '../components/ScheduleDeleteButton'
+import CountDownTimer from '../components/CountDownTimer'
 import TrashCanOutline from 'vue-material-design-icons/TrashCanOutline.vue';
 
 
@@ -54,6 +57,7 @@ export default {
     ScheduleSettingButton,
     ScheduleDeleteButton,
     TrashCanOutline,
+    CountDownTimer,
   },
   methods: {
     deleteSchedule(){
