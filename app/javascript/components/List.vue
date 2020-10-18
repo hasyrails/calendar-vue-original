@@ -46,7 +46,7 @@ import CardAdd from '../components/CardAdd'
 import Card from '../components/Card'
 import CardSettingModal from '../components/CardSettingModal'
 import CardToGanttChartModal from '../components/CardToGanttChartModal'
-
+                
 import draggable from "vuedraggable";
 
 import { mapState, mapActions } from 'vuex'

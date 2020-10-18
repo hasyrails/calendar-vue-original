@@ -125,10 +125,10 @@
               <form 
               @submit.prevent="updateCard"
               >
-                <div v-if="!card.start" @click="showDatePicker">
+                <div v-if="!card.end" @click="showDatePicker">
                   <Pencil></Pencil>
                 </div>
-                <div v-if="!datePickerFlag" @click="showDatePicker">
+                <div v-if="!datePickerFlag&&card.end" @click="showDatePicker">
                   {{ new Date(card.end).getFullYear() }}/
                   {{ new Date(card.end).getMonth()+1 }}/
                   {{ new Date(card.end).getDate() }}
@@ -156,7 +156,7 @@
           </div>
         </div>
         
-        <div class="schedule-item">
+        <!-- <div class="schedule-item">
           <div class="schedule-item-name"
           @click="cardStatusEdit"
           style="cursor: pointer;"
@@ -202,7 +202,7 @@
               <ContentSaveEditOutline  :size="45"></ContentSaveEditOutline>
             </div>
           </div>
-        </div>
+        </div> -->
         
         <!-- <div class="schedule-item">
           <div class="schedule-item-name"
@@ -256,8 +256,8 @@
       <div class="modal-footer" style="background-color:white; height:100px;">
           <div class="btn btn-lg btn-secondary" @click="closeCardSettingModal">閉じる</div>
           <div class="btn btn-lg btn-primary" @click="cardEdit">編集する</div>
-          <div class="btn btn-lg btn-primary" @click="createSchedulesFromCard">ガントチャートに追加する</div>
-          <div class="btn btn-lg btn-danger" @click="deleteCard">このToDoカードを削除する</div>
+          <div class="btn btn-lg btn-outline-warning" @click="createSchedulesFromCard">ガントチャートに追加する</div>
+          <!-- <div class="btn btn-lg btn-danger" @click="deleteCard">このToDoカードを削除する</div> -->
         </div>
       </div>
     </div>
