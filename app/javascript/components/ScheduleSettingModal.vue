@@ -8,7 +8,7 @@
               <div class="schedule-tag" style="margin-top:10px;"><Tag :size="36"></Tag></div>
               <div class="schedule-title" style="font-size:36px; margin-left:10px;width:900px;">
               {{ schedule.body }}
-                <div 
+                <!-- <div 
                 class="card-created-at"
                 v-if="schedule.created_at===schedule.update_at">
                   <div class="schedule-created-at-date" style="width:300px;">
@@ -23,7 +23,7 @@
                     {{ new Date(schedule.created_at).getHours() }}:
                     {{ new Date(schedule.created_at).getMinutes() }}
                   </div>
-                </div>
+                </div> -->
                 <div 
                 class="card-updated-at"
                 v-if="schedule.created_at!==schedule.update_at">
@@ -61,7 +61,7 @@
         <div class="schedule-item-content">
           <div class="schedule-date">
             <div class="schedule-start-date">
-              <div>始める日</div>
+              <div>いつから</div>
               <div>
               <form
               @submit.prevent="updateCard"
@@ -69,7 +69,7 @@
                 <div v-if="!schedule.start" @click="showDatePicker">
                   <Pencil></Pencil>
                 </div>
-                <div v-if="!datePickerFlag" @click="showDatePicker">
+                <div v-if="!datePickerFlag&&schedule.start" @click="showDatePicker">
                   {{ new Date(schedule.start).getFullYear() }}/
                   {{ new Date(schedule.start).getMonth()+1 }}/
                   {{ new Date(schedule.start).getDate() }}
@@ -89,15 +89,15 @@
             </div>
             <div>〜</div>
             <div class="schedule-end-date">
-              <div>終わらせる日</div>
+              <div>いつまで</div>
             <div class="datepicker-form">
               <form 
               @submit.prevent="updateCard"
               >
-                <div v-if="!schedule.start" @click="showDatePicker">
+                <div v-if="!schedule.end" @click="showDatePicker">
                   <Pencil></Pencil>
                 </div>
-                <div v-if="!datePickerFlag" @click="showDatePicker">
+                <div v-if="!datePickerFlag&&schedule.end" @click="showDatePicker">
                   {{ new Date(schedule.end).getFullYear() }}/
                   {{ new Date(schedule.end).getMonth()+1 }}/
                   {{ new Date(schedule.end).getDate() }}
@@ -115,7 +115,7 @@
               <div v-if="datePickerFlag" @click="showDatePicker">
                 <CloseCircle :size="45"></CloseCircle>
               </div>
-              <div v-if="datePickerFlag" @click="updateSchedule">
+              <div v-if="datePickerFlag" @click="alarm">
                 <ContentSaveEditOutline  :size="45"></ContentSaveEditOutline>
               </div>
             </div>
@@ -134,15 +134,16 @@
           </div>
           <div 
           style="cursor:pointer;"
+          @click="scheduleColorEdit"
           >
-            <div class="schedule-item-content" v-if="schedule.color==='#FFD5EC'&&!cardStatusEditFlag">
-            '#FFD5EC'
+            <div class="schedule-item-content" v-if="schedule.color==='#FFD5EC'&&!scheduleColorEditFlag">
+              <div style="width:50px; height:50px; background-color:#FFD5EC;"></div>
             </div>
-            <div class="schedule-item-content" v-if="schedule.color==='#CBFFD3'&&!cardStatusEditFlag">
-            #CBFFD3
+            <div class="schedule-item-content" v-if="schedule.color==='#CBFFD3'&&!scheduleColorEditFlag">
+              <div style="width:50px; height:50px; background-color:#CBFFD3;"></div>
             </div>
-            <div class="schedule-item-content" v-if="schedule.color==='#CCFFFF'&&!cardStatusEditFlag">
-            #CCFFFF
+            <div class="schedule-item-content" v-if="schedule.color==='#CCFFFF'&&!scheduleColorEditFlag">
+              <div style="width:50px; height:50px; background-color:#CCFFFF;"></div>
             </div>
           </div>
           <div class="card-scheduled-editng" v-if="scheduleColorEditFlag"
@@ -154,17 +155,17 @@
             type="text" 
             style="outline:blue;">
                <option value="#FFD5EC">
-                  #FFD5EC
+                  ピンク
                 </option>
                 <option value="#CBFFD3">
-                  #CBFFD3
+                  緑
                 </option>
                 <option value="#CCFFFF">
-                  #CCFFFF
+                  水色
                 </option>
             </select>
             </form>
-            <div @click="quitCardStatusEdit">
+            <div @click="quitScheduleColorEdit">
               <CloseCircle :size="45"></CloseCircle>
             </div>
             <div @click="updateSchedule"
@@ -177,9 +178,9 @@
       </div>
       <div class="modal-footer" style="background-color:white; height:100px;">
           <div class="btn btn-lg btn-secondary" @click="closeScheduleSettingModal">閉じる</div>
-          <div class="btn btn-lg btn-primary" @click="cardEdit">編集する</div>
+          <div class="btn btn-lg btn-primary" @click="scheduleEdit">編集する</div>
           <div class="btn btn-lg btn-primary" @click="updateSchedule">更新する</div>
-          <div class="btn btn-lg btn-danger" @click="deleteCard">このToDoカードを削除する</div>
+          <!-- <div class="btn btn-lg btn-danger" @click="deleteSchedule">このスケジュールを削除する</div> -->
         </div>
       </div>
     </div>
@@ -264,10 +265,9 @@ export default {
     cardStatusEdit(){
       this.cardStatusEditFlag = true
     },
-    cardEdit(){
-      this.cardDescriptionEditFlag = true
-      this.cardScheduledEditFlag = true
-      this.cardStatusEditFlag = true
+    scheduleEdit(){
+      this.datePickerFlag = true
+      this.scheduleColorEditFlag = true
     },
     quitCardDescriptionEdit(){
       this.cardDescriptionEditFlag = false
@@ -275,12 +275,17 @@ export default {
     quitCardScheduledEdit(){
       this.cardScheduledEditFlag = false
     },
-    quitCardStatusEdit(){
-      this.cardStatusEditFlag = false
+    quitScheduleColorEdit(){
+      this.scheduleColorEditFlag = false
     },
     updateSchedule(){
       this.$emit('updateSchedule', this.schedule)
       this.$router.go({path: this.$router.currentRoute.path, force: true})
+    },
+    alarm(){
+      if(confirm('変更できない‥だと！？')){
+        this.datePickerFlag = false
+      }
     },
     deleteCard(){
       this.$emit('clickedCardDeleteButton', this.card)

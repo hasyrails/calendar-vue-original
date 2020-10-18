@@ -3,6 +3,8 @@ class CreateSchedules < ActiveRecord::Migration[5.2]
     create_table :schedules do |t|
       t.string :body
       t.string :description
+      t.date :start
+      t.date :end
       t.datetime :date
       t.integer :date_year
       t.integer :date_month

@@ -17,8 +17,8 @@ const lists = {
     createList(state, list) {
       state.lists.push(list)
     },
-    removelist(state, payload) {
-      state.lists.splice(payload.listIndex, 1)
+    deleteList(state, payload) {
+      state.lists.splice(payload.id, 1)
     },
     removeCardFromList(state, payload) {
       state.lists[payload.listIndex].cards.splice(payload.cardIndex, 1)
@@ -41,20 +41,14 @@ const lists = {
         })
         .catch(error => console.log(error.response));
     },
-    removelist(context, payload) {
-      context.commit('removelist', payload)
-    },
-    async deleteListAction ({commit}, list) {
-      
-      await axios.delete('/api/list/' + list.id)
+    async deleteListAction ({commit}, payload) {
+      await axios.delete('/api/lists/' + payload.id)
       .then(res => {
-        // commit('deleteList');
-        commit('removelist',)
-              // return true;
-          }).catch(error => {
-              return error;
-          });
-  },
+        commit('deleteList')
+      }).catch(error => {
+        return error;
+      });
+    },
     removeCardFromList(context, payload) {
       context.commit('removeCardFromList', payload)
     },

@@ -36,6 +36,8 @@ ActiveRecord::Schema.define(version: 2020_10_10_232123) do
   create_table "schedules", force: :cascade do |t|
     t.string "body"
     t.string "description"
+    t.date "start"
+    t.date "end"
     t.datetime "date"
     t.integer "date_year"
     t.integer "date_month"

@@ -11,7 +11,7 @@
               <div class="schedule-tag" style="margin-top:10px;"><Tag :size="36"></Tag></div>
               <div class="schedule-title" style="font-size:36px; margin-left:10px;width:900px;">
               {{ card.body }}
-                <div 
+                <!-- <div 
                 class="card-created-at"
                 v-if="card.created_at===card.update_at">
                   <div class="schedule-created-at-date" style="width:300px;">
@@ -26,7 +26,7 @@
                     {{ new Date(card.created_at).getHours() }}:
                     {{ new Date(card.created_at).getMinutes() }}
                   </div>
-                </div>
+                </div> -->
                 <div 
                 class="card-updated-at"
                 v-if="card.created_at!==card.update_at">
@@ -92,7 +92,7 @@
         <div class="schedule-item-content">
           <div class="schedule-date">
             <div class="schedule-start-date">
-              <div>始める日</div>
+              <div>いつから</div>
               <div>
               <form
               @submit.prevent="updateCard"
@@ -100,8 +100,10 @@
                 <div v-if="!card.start" @click="showDatePicker">
                   <Pencil></Pencil>
                 </div>
-                <div v-if="!datePickerFlag" @click="showDatePicker">
-                  {{ card.start }}
+                <div v-if="!datePickerFlag&&card.start" @click="showDatePicker">
+                  {{ new Date(card.start).getFullYear() }}/
+                  {{ new Date(card.start).getMonth()+1 }}/
+                  {{ new Date(card.start).getDate() }}
                 </div>
                 <div v-if="datePickerFlag">
                     <Datepicker
@@ -118,16 +120,19 @@
             </div>
             <div>〜</div>
             <div class="schedule-end-date">
-              <div>終わらせる日</div>
+              <div>いつまで</div>
             <div class="datepicker-form">
               <form 
               @submit.prevent="updateCard"
               >
-                <div v-if="!card.start" @click="showDatePicker">
+                <div v-if="!card.end" @click="showDatePicker">
                   <Pencil></Pencil>
                 </div>
-                <div v-if="!datePickerFlag" @click="showDatePicker">
-                  {{ card.end }}
+                <div v-if="!datePickerFlag&&card.end" @click="showDatePicker">
+                  {{ new Date(card.end).getFullYear() }}/
+                  {{ new Date(card.end).getMonth()+1 }}/
+                  {{ new Date(card.end).getDate() }}
+
                 </div>
                 <div v-if="datePickerFlag">
                   <Datepicker
@@ -151,7 +156,7 @@
           </div>
         </div>
         
-        <div class="schedule-item">
+        <!-- <div class="schedule-item">
           <div class="schedule-item-name"
           @click="cardStatusEdit"
           style="cursor: pointer;"
@@ -197,7 +202,7 @@
               <ContentSaveEditOutline  :size="45"></ContentSaveEditOutline>
             </div>
           </div>
-        </div>
+        </div> -->
         
         <!-- <div class="schedule-item">
           <div class="schedule-item-name"
@@ -251,8 +256,8 @@
       <div class="modal-footer" style="background-color:white; height:100px;">
           <div class="btn btn-lg btn-secondary" @click="closeCardSettingModal">閉じる</div>
           <div class="btn btn-lg btn-primary" @click="cardEdit">編集する</div>
-          <div class="btn btn-lg btn-primary" @click="createSchedulesFromCard">ガントチャートに追加する</div>
-          <div class="btn btn-lg btn-danger" @click="deleteCard">このToDoカードを削除する</div>
+          <div class="btn btn-lg btn-outline-warning" v-if="!card.schedulized" @click="createSchedulesFromCard">ガントチャートに追加する</div>
+          <!-- <div class="btn btn-lg btn-danger" @click="deleteCard">このToDoカードを削除する</div> -->
         </div>
       </div>
     </div>
@@ -340,8 +345,7 @@ export default {
     },
     cardEdit(){
       this.cardDescriptionEditFlag = true
-      this.cardScheduledEditFlag = true
-      this.cardStatusEditFlag = true
+      this.datePickerFlag = true
     },
     quitCardDescriptionEdit(){
       this.cardDescriptionEditFlag = false

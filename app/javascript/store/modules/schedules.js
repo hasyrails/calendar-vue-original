@@ -33,7 +33,7 @@ const schedules = {
       })
         state.schedules.splice(index, 1, deleteSchedule)
 
-      state.schedules.splice(index, 1);
+      // state.schedules.splice(index, 1);
     },
   },
   actions: {
@@ -44,25 +44,9 @@ const schedules = {
         })
     },
     async updateScheduleAction ({commit}, payload) {
-      // // stateからマッチしたtaskを取り出す
-      // const schedule = state.schedules.find((o) => {
-      //     return o.id === updateSchedule.id;
-      // });
-
-      // if (!schedule) {
-      //     return false;
-      // }
-
-      // return await axios.patch('/api/schedules/' + updateSchedule.id, updateSchedule)
-      //     .then(res => {
-      //         commit('updateSchedule', {schedule, updateSchedule});
-      //         return true;
-      //     }).catch(error => {
-      //         return error;
-      //     });
-      await axios.patch('api/schedules/'+ payload.id , payload)
-      .then(res => {
-        commit('updateSchedule')
+      await axios.patch('api/schedules/'+payload.id, payload)
+        .then(res => {
+          commit('updateSchedule')
         })
         .catch(error => console.log(error.response));
     },
@@ -78,6 +62,8 @@ const schedules = {
       for(let i =1;  i <=Math.floor((new Date(stopDate).getTime()-new Date(startDate).getTime())/86400000)+1; i++) {
         var schedule = {
           body: card.body,
+          start: scheduleDate.start,
+          end: scheduleDate.end,
           date: currentDate,
           date_year: new Date(currentDate).getFullYear(),
           date_month: new Date(currentDate).getMonth()+1,

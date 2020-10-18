@@ -29,12 +29,6 @@
         </div>
       </div>
     </div>
-    <div>
-      <button class="btn btn-primary" @click="confirmCalendar">CofirmCalendar</button>
-      <button class="btn btn-primary" @click="confirmCurrentMonth">CofirmCurrentMonth</button>
-      <button class="btn btn-primary" @click="showDevidedSchedule">showDevidedSchedule</button>
-      <button class="btn btn-primary" @click="confirmStateSchedule">confirmStateSchedule</button>
-    </div>
   </div>
 </template>
 

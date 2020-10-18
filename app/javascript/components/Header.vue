@@ -2,7 +2,8 @@
   <div class="app-header">
     <div class="app-header-contents">
       <router-link to="/">
-        <div class="app-header-title">Header</div>
+        <div class="app-header-title">初志しか勝たん<BoxingGlove :size="70"></BoxingGlove></div>
+        <!-- <p class="app-header-title-footer">初志貫徹アプリ</p> -->
       </router-link>
       <div class="app-header-link">
         <router-link to="/register">
@@ -18,10 +19,15 @@
 
 <script>
 import {mapState} from 'vuex'
+import BoxingGlove from 'vue-material-design-icons/BoxingGlove.vue';
 
   export default {
     name: 'Header',
+    components:{
+      BoxingGlove,
+    }
   }
+
 </script>
 
 <style scoped>
@@ -46,13 +52,24 @@ import {mapState} from 'vuex'
 .app-header-title{
   margin-left:20%;
   margin-right:10px;
-  font-size: 75px;
+  font-size: 60px;
   font-weight: 30px;
+  font-family: "Hiragino Sans","ヒラギノ角ゴシック"; font-weight: 900;
   color: black;
+  width:500px;
+}
+.app-header-title-footer{
+  margin-left:20%;
+  margin-right:10px;
+  font-size: 20px;
+  font-weight: 30px;
+  font-family: "Hiragino Sans","ヒラギノ角ゴシック"; font-weight: 900;
+  color: black;
+  width:500px;
 }
 .app-header-link{
   display:flex;
-  margin-left:70%;
+  margin-left:60%;
   margin-right:10px;
   margin-top:40px;
   float: right;

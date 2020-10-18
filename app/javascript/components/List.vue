@@ -110,10 +110,12 @@ export default {
   },
   methods: {
     async createSchedulesFromCard(card){
-      this.cardDetail = card
-      this.closeCardSettingModal()
-      await this.updateCardAction(card)
-      await this.$store.dispatch('schedules/createScheduleAction', card)
+      if(confirm('一度決めた「いつから」「いつまで」は変更できません！よろしいですか？')){
+        this.cardDetail = card
+        this.closeCardSettingModal()
+        await this.updateCardAction(card)
+        await this.$store.dispatch('schedules/createScheduleAction', card)
+      }
       // this.$router.go({path: this.$router.currentRoute.path, force: true})
       // this.$store.dispatch('devidedschedules/createDevidedSchedulesAction')
     },
@@ -129,10 +131,11 @@ export default {
     // ...mapActions('schedules',[
     //   'createScheduleAction'
     // ]),
-    deleteList: function() {
+    deleteList() {
       if(confirm('本当にこのリストを削除しますか？')){
-        this.$store.dispatch('lists/deleteListAction', { listIndex: this.listIndex })
+        this.$store.dispatch('lists/deleteListAction', this.list)
       }
+      this.$router.go({path: this.$router.currentRoute.path, force: true})
     },
     openCardSettingModal(card){
       this.cardDetail = card
