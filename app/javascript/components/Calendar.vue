@@ -19,12 +19,15 @@
         v-for="(day, index) in week"
         :key="index"
         style="width:150px;"
-        >
+        > 
           <div v-if="day.month===currentMonth" style="font-weight:200;font-size:50px;">{{day.date}}</div>
           <div v-if="day.month!==currentMonth" style="color:#D3D3D3;font-size:50px;">{{ day.date }}</div>
-          <div style="margin-left:20px;width:50px;height:50px;border-radius:25px 25px 25px 25px;background-color:#2C7CFF;" v-if="day.scheduleNum!==0" class="schedule-num-display">
+            <div v-if="day.date===new Date().getDate()&&day.month===new Date().getMonth()+1&&day.year===new Date().getFullYear()&&day.scheduleNum!==0">
+              <CountDownTimer></CountDownTimer>
+            </div>
+          <div style="margin-left:40px;width:50px;height:50px;border-radius:25px 25px 25px 25px;background-color:#2C7CFF;" v-if="day.scheduleNum!==0&&day.month===new Date().getMonth()+1&&day.year===new Date().getFullYear()" class="schedule-num-display">
             <div style="color:white; font-size:35px;margin-top:1px;margin-left:12px;">{{day.scheduleNum}}</div>
-            <div style="margin-left:10px;"><CardBulletedOutline fillColor="grey" :size="120"></CardBulletedOutline></div>
+            <div style="margin-left:10px;"><CardBulletedOutline fillColor="grey" :size="100"></CardBulletedOutline></div>
           </div>
         </div>
       </div>
@@ -43,6 +46,7 @@ import CardBulletedOutline from 'vue-material-design-icons/CardBulletedOutline.v
 import CalendarHeader from "../components/CalendarHeader";
 import Schedule from "../components/Schedule"
 import DatePicker from '../components/DatePicker'
+import CountDownTimer from '../components/CountDownTimer'
 
 import {mapState, mapGetters} from 'vuex'
 
@@ -80,6 +84,7 @@ export default {
     Schedule,
     DatePicker,
     CardBulletedOutline,
+    CountDownTimer,
   },
   methods: {
     commitChange(){
@@ -215,8 +220,8 @@ export default {
 
 <style scoped>
 .calendar {
-  padding-top:10%;
-  margin-left: 3%;
+  padding-top:7%;
+  margin-left: 2%;
   margin-right: 15%;
   /* margin-right: 10%; */
   width:70%;

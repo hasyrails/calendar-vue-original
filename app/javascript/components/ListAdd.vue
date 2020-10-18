@@ -65,7 +65,7 @@ export default {
 <style scoped>
 .text-input {
   padding: 20px 15px;
-  width: calc(100% - 30px);
+  width: 300px;
   background-color: #ccc;
   border-radius: 8px;
   cursor: pointer;
@@ -76,6 +76,7 @@ export default {
   color: #242424;
   cursor: pointer;
   overflow: overlay;
+  /* position: fixed; */
 }
 
 .text-input:focus {

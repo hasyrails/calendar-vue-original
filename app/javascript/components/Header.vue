@@ -50,6 +50,7 @@ import BoxingGlove from 'vue-material-design-icons/BoxingGlove.vue';
 }
 
 .app-header-title{
+  margin-top:20px;
   margin-left:20%;
   margin-right:10px;
   font-size: 60px;
@@ -73,19 +74,21 @@ import BoxingGlove from 'vue-material-design-icons/BoxingGlove.vue';
   margin-right:10px;
   margin-top:40px;
   float: right;
-  font-size: 30px;
+  font-size: 40px;
   font-weight: 30px;
   /* justify-content: space-between; */
 }
 
 .app-header-link-register{
-  margin-left:10px;
-  margin-right:100px;
+  /* margin-left:10px; */
+  /* margin-right:100px; */
   color: black;
+  width:300px;
 }
 .app-header-link-login{
-  margin-left:10px;
-  margin-right:10px;
+  /* margin-left:10px; */
+  /* margin-right:10px; */
   color: black;
+  width:300px;
 }
 </style>
