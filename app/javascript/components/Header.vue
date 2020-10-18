@@ -5,6 +5,7 @@
         <div class="app-header-title">初志しか勝たん<BoxingGlove :size="70"></BoxingGlove></div>
         <!-- <p class="app-header-title-footer">初志貫徹アプリ</p> -->
       </router-link>
+      <div>{{ this.$store.state.auth.headers }}</div>
       <div class="app-header-link">
         <router-link to="/register">
           <div class="app-header-link-register">ユーザー登録</div>
@@ -23,9 +24,14 @@ import BoxingGlove from 'vue-material-design-icons/BoxingGlove.vue';
 
   export default {
     name: 'Header',
+    data(){
+      return{
+        users:{}
+      }
+    },
     components:{
       BoxingGlove,
-    }
+    },
   }
 
 </script>

@@ -18,12 +18,12 @@ export default {
     Header,
   },
   beforeCreate(){
-    const existingSession = this.$cookie.get('session')
+    const existingSession = this.$cookies.get('session')
 
     if (existingSession && existingSession.length) { // A string at this point
       const session = JSON.parse(existingSession)
-      this.$store.commit('user', session.user)
-      this.$store.commit('auth', session.tokens)
+      this.$store.commit('auth/signIn', session.user)
+      // this.$store.commit('auth', session.tokens)
     }
   },
 }

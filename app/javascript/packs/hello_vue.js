@@ -10,7 +10,7 @@ import BootstrapVue from 'bootstrap-vue'
 import router from '../router'
 import store from '../store'
 import App from '../app.vue'
-import vueCookie from 'vue-cookie'
+import VueCookies from 'vue-cookies'
 import axios from 'axios'
 import { pick } from 'lodash'
 import status from 'http-status'
@@ -102,6 +102,7 @@ Vue.prototype.$http.interceptors.request.use((config) => {
 })
 
 Vue.use(BootstrapVue);
+Vue.use(VueCookies);
 
 import 'bootstrap/dist/css/bootstrap.css' 
 import 'bootstrap-vue/dist/bootstrap-vue.css' 
