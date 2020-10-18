@@ -92,7 +92,7 @@
         <div class="schedule-item-content">
           <div class="schedule-date">
             <div class="schedule-start-date">
-              <div>始める日</div>
+              <div>いつから</div>
               <div>
               <form
               @submit.prevent="updateCard"
@@ -120,7 +120,7 @@
             </div>
             <div>〜</div>
             <div class="schedule-end-date">
-              <div>終わらせる日</div>
+              <div>いつまで</div>
             <div class="datepicker-form">
               <form 
               @submit.prevent="updateCard"
@@ -345,8 +345,7 @@ export default {
     },
     cardEdit(){
       this.cardDescriptionEditFlag = true
-      this.cardScheduledEditFlag = true
-      this.cardStatusEditFlag = true
+      this.datePickerFlag = true
     },
     quitCardDescriptionEdit(){
       this.cardDescriptionEditFlag = false

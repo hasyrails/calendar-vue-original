@@ -17,14 +17,14 @@
       <div @click="openScheduleSettingModal">
         <ScheduleSettingButton style="margin-left:1px;"></ScheduleSettingButton>
       </div>
-      <div>
+      <!-- <div>
         <TrashCanOutline
         fillColor="red"
         :size="30"
         style="margin-left:10px;margin-bottom:40px;"
         @click="deleteSchedule"
         ></TrashCanOutline>
-      </div>
+      </div> -->
     </div>
   </div>
 </div>

@@ -89,7 +89,7 @@ export default {
   /* padding: 0 10px; */
   /* width: calc(100% - 40px); */
   width: 125%;
-  height: 100%;
+  height: 100vh;
 }
 
 .list-add-form{
