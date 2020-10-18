@@ -9,6 +9,8 @@ import date from '../store/modules/date'
 import auth from '../store/modules/auth'
 import messages from '../store/modules/messages'
 
+import createPersistedState from "vuex-persistedstate";
+
 Vue.use(Vuex)
 
 
@@ -21,7 +23,13 @@ const store =  new Vuex.Store({
     date,
     auth,
     messages,
-  }
+  },
+  strict: true,
+  plugins: [createPersistedState({
+      key: 'ShoshiSikaKatan',
+      paths: ['auth.headers'],
+      storage: window.sessionStorage
+  })]
 })
 
 // store.subscribe((mutation, state) => {

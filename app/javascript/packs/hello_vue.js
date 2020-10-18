@@ -101,6 +101,13 @@ Vue.prototype.$http.interceptors.request.use((config) => {
   return config
 })
 
+if (sessionStorage.getItem('ShoshiSikaKatan')) {
+  const strageData = JSON.parse(sessionStorage.getItem('ShoshiSikaKatan'));
+  if (strageData.auth.token) {
+      axios.defaults.headers.common['Authorization'] = 'Bearer ' + strageData.auth.token;
+  }
+}
+
 Vue.use(BootstrapVue);
 Vue.use(VueCookies);
 
