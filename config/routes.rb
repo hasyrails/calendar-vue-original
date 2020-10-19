@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     resources :schedules
     resources :lists
     resources :cards
+    get '/whoami', to: 'sessions#whoami'
   end
   get '*path', to: 'home#index'
 end

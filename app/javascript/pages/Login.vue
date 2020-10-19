@@ -53,6 +53,7 @@ export default {
       // await axios.post('api/v1/auth/sign_in', this.form)
         // .then(res => {
           await this.$store.dispatch('auth/signIn', this.form)
+          await this.$store.dispatch('auth/userInfo')
           this.$router.push('/')
           this.$store.commit(`messages/setUserLoginSuccessMessage`,{
             userLoginSuccessMessage: 'ログインしました',

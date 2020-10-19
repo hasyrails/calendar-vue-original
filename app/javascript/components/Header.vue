@@ -5,6 +5,7 @@
         <div class="app-header-title">初志しか勝たん<BoxingGlove :size="70"></BoxingGlove></div>
         <!-- <p class="app-header-title-footer">初志貫徹アプリ</p> -->
       </router-link>
+      <div>{{ this.$store.state.auth.user }}</div>
       <div>{{ this.$store.state.auth.headers }}</div>
       <div class="app-header-link">
         <router-link to="/register">

@@ -27,7 +27,7 @@ const store =  new Vuex.Store({
   strict: true,
   plugins: [createPersistedState({
       key: 'ShoshiSikaKatan',
-      paths: ['auth.headers'],
+      paths: ['auth'],
       storage: window.sessionStorage
   })]
 })
