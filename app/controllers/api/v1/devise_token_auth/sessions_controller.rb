@@ -6,6 +6,10 @@ module Api
         # Unpermitted parameter: session
         wrap_parameters format: []
 
+        # def whoami
+        #   render json: current_api_user, status: :ok
+        # end
+
         private
 
         def sign_in_params

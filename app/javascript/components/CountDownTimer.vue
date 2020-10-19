@@ -1,5 +1,5 @@
 <template>
-  <div class="countdown">残り{{ countDown }}秒!!!</div>
+  <div class="countdown" v-if="countDown>0">残り{{ countDown }}秒!!!</div>
 </template>
 
 <script>

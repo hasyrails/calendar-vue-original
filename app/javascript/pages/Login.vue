@@ -50,16 +50,17 @@ export default {
 			Object.assign(this.form, formData);
     },
     async login(){ 
-      await axios.post('api/v1/auth/sign_in', this.form)
-        .then(res => {
-          this.$store.commit('auth', res.data)
+      // await axios.post('api/v1/auth/sign_in', this.form)
+        // .then(res => {
+          await this.$store.dispatch('auth/signIn', this.form)
+          await this.$store.dispatch('auth/userInfo')
           this.$router.push('/')
           this.$store.commit(`messages/setUserLoginSuccessMessage`,{
             userLoginSuccessMessage: 'ログインしました',
             timeout: 3000
           })
-        })
-      .catch(error => console.log(error.res));
+        // })
+      // .catch(error => console.log(error.res));
     }
 	}
 }
