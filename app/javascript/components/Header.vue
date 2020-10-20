@@ -5,12 +5,14 @@
         <div class="app-header-title">初志しか勝たん<BoxingGlove :size="70"></BoxingGlove></div>
         <!-- <p class="app-header-title-footer">初志貫徹アプリ</p> -->
       </router-link>
-      <div class="user-icon" v-if="$store.state.auth.headers">
-        <img style="border-radius:50%;" :src="src" width="100" height="100">
-      </div>
-      <div class="user-name" v-if="$store.state.auth.headers">
-        {{ this.$store.state.auth.user.user.data.name }}さん
-      </div>
+      <router-link to="/userinfo">
+        <div class="user-icon" v-if="$store.state.auth.headers">
+          <img style="border-radius:50%;" :src="src" width="100" height="100">
+        </div>
+      </router-link>
+        <div class="user-name" v-if="$store.state.auth.headers">
+          {{ this.$store.state.auth.user.user.data.name }}さん
+        </div>
       <div class="app-header-link unlogin-user-link" v-if="!$store.state.auth.headers">
         <router-link to="/register">
           <div class="app-header-link-register">ユーザー登録</div>
@@ -58,7 +60,7 @@ import BoxingGlove from 'vue-material-design-icons/BoxingGlove.vue';
 <style scoped>
 .app-header{
   background: hsl(180, 65%, 81%);
-  height: 170px;
+  height: 150px;
   color: black;
   font-style: italic;
   /* text-align: left; */
@@ -75,7 +77,7 @@ import BoxingGlove from 'vue-material-design-icons/BoxingGlove.vue';
 }
 
 .app-header-title{
-  margin-top:20px;
+  margin-top:40px;
   margin-left:20%;
   margin-right:10px;
   font-size: 60px;

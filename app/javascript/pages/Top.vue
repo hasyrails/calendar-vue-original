@@ -35,13 +35,13 @@ p {
 }
 
 .app-area{
-  width: 120vw;
+  width: 130vw;
   height: 100vh;
   background: #EEFFFF;
 }
 
 .calendar-area{
-  width: 120vw;
+  width: 130vw;
   height: 100vh;
   /* overflow-x: scroll; */
   /* margin-top: 30%; */
