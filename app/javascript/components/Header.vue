@@ -5,8 +5,8 @@
         <div class="app-header-title">初志しか勝たん<BoxingGlove :size="70"></BoxingGlove></div>
         <!-- <p class="app-header-title-footer">初志貫徹アプリ</p> -->
       </router-link>
-      <div class="user-icon">
-        <img style="border-radius:50%;" :src="src">
+      <div class="user-icon" v-if="$store.state.auth.headers">
+        <img style="border-radius:50%;" :src="src" width="100" height="100">
       </div>
       <div class="user-name" v-if="$store.state.auth.headers">
         {{ this.$store.state.auth.user.user.data.name }}さん
@@ -38,7 +38,7 @@ import BoxingGlove from 'vue-material-design-icons/BoxingGlove.vue';
     data(){
       return{
         users:{},
-        src: 'http://placehold.jp/100x100.png'
+        src: this.$store.state.auth.user.user.data.image
       }
     },
     components:{
