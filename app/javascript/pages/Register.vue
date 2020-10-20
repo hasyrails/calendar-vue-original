@@ -7,10 +7,11 @@
 
         <UserNameForm v-if="stepNumber===1" @update="updateForm"></UserNameForm>
         <EmailForm v-if="stepNumber===2" @update="updateForm"></EmailForm>
-        <PasswordForm v-if="stepNumber===3" @update="updateForm"></PasswordForm>
+        <UserIconForm v-if="stepNumber===3" @update="updateForm"></UserIconForm>
+        <PasswordForm v-if="stepNumber===4" @update="updateForm"></PasswordForm>
         <ConfirmForm 
         :form="form" 
-        v-if="stepNumber===4" 
+        v-if="stepNumber===5" 
         @update="updateForm" @clickedRegisterButton="register"></ConfirmForm >
       </keep-alive>
       <div class="register-step-button">
@@ -18,7 +19,7 @@
           <div class="register-step-next-button-label">戻る</div>
           <ArrowLeftThick class="btn btn-primary" @click="backStep"></ArrowLeftThick>
         </div>
-        <div class="register-step-next-button" v-if="stepNumber != 4">
+        <div class="register-step-next-button" v-if="stepNumber != 5">
           <div class="register-step-next-button-label">次へ</div>
           <ArrowRightThick class="btn btn-primary" @click="nextStep"></ArrowRightThick>
         </div>
@@ -34,6 +35,7 @@ import UserNameForm from '../components/UserNameForm'
 import EmailForm from '../components/EmailForm'
 import PasswordForm from '../components/PasswordForm'
 import ConfirmForm from '../components/ConfirmForm'
+import UserIconForm from '../components/UserIconForm'
 
 import ArrowRightThick from 'vue-material-design-icons/ArrowRightThick.vue'
 import ArrowLeftThick from 'vue-material-design-icons/ArrowLeftThick.vue'
@@ -48,9 +50,9 @@ export default {
 			form: {
 				name: null,
         email: null,
+        image: null,
         password: null,
         password_confirmation: null,
-        image: null
 			}
     }
   },
@@ -58,6 +60,7 @@ export default {
     UserNameForm,
     EmailForm,
     PasswordForm,
+    UserIconForm,
     ConfirmForm,
     ArrowRightThick,
     ArrowLeftThick
