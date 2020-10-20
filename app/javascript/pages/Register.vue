@@ -4,7 +4,6 @@
 		<div class="col-md-8">
 		  <h1 class="register-step">ユーザー登録  Step{{ stepNumber}}</h1>
       <keep-alive>
-
         <UserNameForm v-if="stepNumber===1" @update="updateForm"></UserNameForm>
         <EmailForm v-if="stepNumber===2" @update="updateForm"></EmailForm>
         <UserIconForm v-if="stepNumber===3" @update="updateForm"></UserIconForm>
