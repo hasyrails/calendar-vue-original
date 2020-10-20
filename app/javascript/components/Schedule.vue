@@ -5,7 +5,7 @@
   :class="classButton" 
   :id="'schedule-card-'+schedule.id"
   >
-    <div v-if="schedule.date_year===new Date().getFullYear()&&schedule.date_month===new Date().getMonth()+1&&schedule.date_day===new Date().getDate()">
+    <div v-if="schedule.date_year===new Date().getFullYear()&&schedule.date_month===new Date().getMonth()+1&&schedule.date_day===new Date().getDate()&&schedule.end===formatDate(new Date())">
       <CountDownTimer :schedule="schedule"></CountDownTimer>
     </div>
 
@@ -77,6 +77,12 @@ export default {
     openScheduleSettingModal(schedule){
       this.$emit('clickScheduleSettingButton', this.schedule)
     },
+    formatDate(dt) {
+      var y = dt.getFullYear();
+      var m = ('00' + (dt.getMonth()+1)).slice(-2);
+      var d = ('00' + dt.getDate()).slice(-2);
+      return (y + '-' + m + '-' + d);
+    }
   },
   computed:{
     classButton() {
