@@ -5,15 +5,25 @@
         <div class="app-header-title">初志しか勝たん<BoxingGlove :size="70"></BoxingGlove></div>
         <!-- <p class="app-header-title-footer">初志貫徹アプリ</p> -->
       </router-link>
-      <div>{{ this.$store.state.auth.user }}</div>
-      <div>{{ this.$store.state.auth.headers }}</div>
-      <div class="app-header-link">
+      <div class="user-icon">
+        <img style="border-radius:50%;" :src="src">
+      </div>
+      <div class="user-name" v-if="$store.state.auth.headers">
+        {{ this.$store.state.auth.user.user.data.name }}さん
+      </div>
+      <div class="app-header-link unlogin-user-link" v-if="!$store.state.auth.headers">
         <router-link to="/register">
           <div class="app-header-link-register">ユーザー登録</div>
         </router-link>
         <router-link to="/login">
           <div class="app-header-link-login">ログイン</div>
         </router-link>
+      </div>
+      <div class="app-header-link unlogin-user-link" v-if="$store.state.auth.headers">
+        <!-- <router-link to="/register">
+          <div class="app-header-link-register">ユーザー登録</div>
+        </router-link> -->
+          <div class="app-header-link-logout" @click="logout">ログアウト</div>
       </div>
     </div>
   </div>
@@ -27,20 +37,28 @@ import BoxingGlove from 'vue-material-design-icons/BoxingGlove.vue';
     name: 'Header',
     data(){
       return{
-        users:{}
+        users:{},
+        src: 'http://placehold.jp/100x100.png'
       }
     },
     components:{
       BoxingGlove,
     },
+    methods:{
+      logout(){
+        if(confirm('ログアウトしますか？')){
+          this.$store.dispatch('auth/signOut')
+        }
+      }
+    }
   }
 
 </script>
 
 <style scoped>
 .app-header{
-  background: #AFEEEE;
-  height: 150px;
+  background: hsl(180, 65%, 81%);
+  height: 170px;
   color: black;
   font-style: italic;
   /* text-align: left; */
@@ -76,11 +94,11 @@ import BoxingGlove from 'vue-material-design-icons/BoxingGlove.vue';
   width:500px;
 }
 .app-header-link{
-  display:flex;
-  margin-left:60%;
+  /* display:flex;
+  margin-left:55%;
   margin-right:10px;
   margin-top:40px;
-  float: right;
+  float: right; */
   font-size: 40px;
   font-weight: 30px;
   /* justify-content: space-between; */
@@ -89,13 +107,40 @@ import BoxingGlove from 'vue-material-design-icons/BoxingGlove.vue';
 .app-header-link-register{
   /* margin-left:10px; */
   /* margin-right:100px; */
+  position:fixed;
+  top:3%;
+  left:80%;
   color: black;
-  width:300px;
+  /* width:200px; */
 }
 .app-header-link-login{
   /* margin-left:10px; */
   /* margin-right:10px; */
+  position:fixed;
+  top:3%;
+  left:90%;
   color: black;
-  width:300px;
+  /* width:300px; */
+}
+.app-header-link-logout{
+  /* margin-left:10px; */
+  /* margin-right:10px; */
+  position:fixed;
+  top:3%;
+  left:90%;
+  color: black;
+  cursor: pointer;
+  /* width:300px; */
+}
+.user-icon{
+  position:fixed;
+  top:1%;
+  right:50%;
+}
+.user-name{
+  position:fixed;
+  top:7%;
+  right:50%;
+  font-size: 30px;
 }
 </style>
