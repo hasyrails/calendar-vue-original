@@ -220,12 +220,10 @@ export default {
 
 <style scoped>
 .calendar {
-  padding-top:7%;
-  margin-left: 2%;
-  margin-right: 15%;
-  /* margin-right: 10%; */
   width:70%;
   position: fixed;
+  top:15%;
+  left:13%;
   /* z-index:1; */
 }
 
