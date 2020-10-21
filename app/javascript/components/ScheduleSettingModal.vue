@@ -180,6 +180,7 @@
           <div class="btn btn-lg btn-secondary" @click="closeScheduleSettingModal">閉じる</div>
           <div class="btn btn-lg btn-primary" @click="scheduleEdit">編集する</div>
           <div class="btn btn-lg btn-primary" @click="updateSchedule">更新する</div>
+          <div class="btn btn-lg btn-primary" @click="completeSchedule">完了！</div>
           <!-- <div class="btn btn-lg btn-danger" @click="deleteSchedule">このスケジュールを削除する</div> -->
         </div>
       </div>
@@ -280,6 +281,11 @@ export default {
     },
     updateSchedule(){
       this.$emit('updateSchedule', this.schedule)
+      this.$router.go({path: this.$router.currentRoute.path, force: true})
+    },
+    completeSchedule(){
+      this.schedule.done = true
+      this.$emit('completeSchedule', this.schedule)
       this.$router.go({path: this.$router.currentRoute.path, force: true})
     },
     alarm(){

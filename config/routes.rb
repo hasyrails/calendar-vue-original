@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   end
   namespace :api, { format: "json" } do
     resources :schedules
+    patch '/schedules/:id/done', to: 'schedules#done'
     resources :lists
     resources :cards
     get '/whoami', to: 'sessions#whoami'

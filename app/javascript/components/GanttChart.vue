@@ -21,10 +21,8 @@
         :key="index"
         :id="day.year+'-'+day.month+'-'+day.date"
         >
-        <!-- <div v-if="day.month===currentMonth" style="font-weight:200;font-size:50px;">{{day.date}}</div>
-        <div v-if="day.month!==currentMonth" style="color:#D3D3D3;font-size:50px;">{{ day.date }}</div> -->
-        <div v-if="day.month===currentMonth" style="font-weight:200;font-size:50px;">{{day.date}}</div>
-        <div v-if="day.month!==currentMonth&&day.date!==new Date().getDate()" style="color:#D3D3D3;font-size:50px;">{{ day.date }}</div>
+          <div v-if="day.month===currentMonth" style="font-weight:200;font-size:50px;">{{day.date}}</div>
+          <div v-if="day.month!==currentMonth&&day.date!==new Date().getDate()" style="color:#D3D3D3;font-size:50px;">{{ day.date }}</div>
         <draggable
         v-model="schedule"
        >
@@ -53,6 +51,7 @@
     @clickCloseButton="closeScheduleSettingModal"
     @clickScheduleEditButton="openScheduleEditModal(scheduleDetail)"
     @updateSchedule="updateSchedule(scheduleDetail)"
+    @completeSchedule="completeSchedule(scheduleDetail)"
     @clickScheduleSettingModalCloseButton="closeScheduleSettingModal"
     ></ScheduleSettingModal>
   </div>
@@ -154,6 +153,9 @@ export default {
     },
     updateSchedule(schedule){
       this.$store.dispatch('schedules/updateScheduleAction', schedule)
+    },
+    completeSchedule(schedule){
+      this.$store.dispatch('schedules/completeScheduleAction', schedule)
     },
     commitChange(schedule){
       this.$store.dispatch('schedules/updateScheduleAction', schedule)

@@ -8,6 +8,7 @@ const schedules = {
       schedules: [
         {
           body: '',
+          done: '',
           date: '',
           date_year: '',
           date_month: '',
@@ -32,8 +33,6 @@ const schedules = {
         return schedule.id === deleteSchedule.id
       })
         state.schedules.splice(index, 1, deleteSchedule)
-
-      // state.schedules.splice(index, 1);
     },
   },
   actions: {
@@ -45,6 +44,13 @@ const schedules = {
     },
     async updateScheduleAction ({commit}, payload) {
       await axios.patch('api/schedules/'+payload.id, payload)
+        .then(res => {
+          commit('updateSchedule')
+        })
+        .catch(error => console.log(error.response));
+    },
+    async completeScheduleAction ({commit}, payload) {
+      await axios.patch('api/schedules/'+payload.id+'/done', payload)
         .then(res => {
           commit('updateSchedule')
         })
