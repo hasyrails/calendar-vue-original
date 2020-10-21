@@ -8,6 +8,8 @@
     <div v-if="schedule.date_year===new Date().getFullYear()&&schedule.date_month===new Date().getMonth()+1&&schedule.date_day===new Date().getDate()&&schedule.end===formatDate(new Date())">
       <CountDownTimer :schedule="schedule"></CountDownTimer>
     </div>
+    
+    
 
     <div class="body" style="display:flex; justify-content:center; padding-top:1px;font-size:20px;" @click="displayChange">
       <div class="schedule-title" style="margin-left:10px;margin-top:1px;">

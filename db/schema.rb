@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 2020_10_10_232123) do
     t.string "description"
     t.date "start"
     t.date "end"
+    t.boolean "done", default: false, null: false
     t.datetime "date"
     t.integer "date_year"
     t.integer "date_month"

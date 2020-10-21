@@ -1,5 +1,5 @@
 class Api::SchedulesController < ApplicationController
-  before_action :set_schedule, only: %i[show update destroy]
+  before_action :set_schedule, only: %i[show update destroy done]
   skip_before_action :verify_authenticity_token
 
   def index
@@ -34,6 +34,15 @@ class Api::SchedulesController < ApplicationController
     render json: @schedule
   end
 
+  def done
+    @schedules = Schedule.where(card_id: @schedule.card_id)
+    if @schedules.present?
+      @schedules.each do |schedule|
+        schedule.update(done: 'true')
+      end
+    end
+  end
+
   private
 
   def set_schedule
@@ -41,6 +50,6 @@ class Api::SchedulesController < ApplicationController
   end
 
   def schedule_params
-    params.permit(:id, :body, :description, :commit, :color, :date, :date_year, :date_month, :date_day, :card_id, :start, :end)
+    params.permit(:id, :body, :description, :done, :commit, :color, :date, :date_year, :date_month, :date_day, :card_id, :start, :end)
   end
 end
