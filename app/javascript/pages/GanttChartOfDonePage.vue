@@ -2,25 +2,20 @@
   <div>
     <div class="app-area">
       <div class="calendar-area" id="calendar-area">
-        <GanttChart v-if="!showDone"
+        <GanttChartOfDone  
         @showDatePicker="showDatePicker"
-        @showDoneSchedules="showDoneSchedules"
-        ></GanttChart>
-        <GanttChartOfDone v-if="showDone"
-        @showDatePicker="showDatePicker"
-        @showSchedules="showSchedules"
         ></GanttChartOfDone>
       </div>
       <div class="date-picker">
         <DatePicker
          v-if="datePickerFlag" @closeDatePicker="closeDatePicker"></DatePicker>
       </div>
-      <div class="todo-area">
+      <!-- <div class="todo-area">
         <Board></Board>
       </div>
       <div class="footer-area">
         <footer>(C)footer</footer>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
@@ -36,8 +31,7 @@ export default {
   data(){
     return{
       datePickerFlag: false,
-      scheduleSettingModalFlag: false,
-      showDone: false,
+      scheduleSettingModalFlag: false
     }
   },
   components: {
@@ -53,12 +47,6 @@ export default {
     closeDatePicker(){
       this.datePickerFlag = false
     },
-    showDoneSchedules(){
-      this.showDone = true
-    },
-    showSchedules(){
-      this.showDone = false
-    }
   }
 }
 </script>
