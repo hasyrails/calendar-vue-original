@@ -41,6 +41,11 @@ class Api::SchedulesController < ApplicationController
         schedule.update(done: 'true')
       end
     end
+
+    @card = Card.where(id: @schedule.card_id)
+    if @card.present?
+      @card.update(done: 'true')
+    end
   end
 
   private
