@@ -15,12 +15,11 @@ ActiveRecord::Schema.define(version: 2020_10_10_232123) do
   create_table "cards", force: :cascade do |t|
     t.string "body"
     t.text "description"
-    t.integer "scheduled"
     t.date "start"
     t.date "end"
-    t.integer "status"
     t.integer "color"
     t.boolean "schedulized", default: false, null: false
+    t.boolean "done", default: false, null: false
     t.integer "list_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

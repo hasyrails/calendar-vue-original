@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+  <div class="card" :class="classCard">
     <div class="card-main">
       <div class="card-icon" v-if="card.schedulized===true"><CalendarImport fillColor="#FFA500" :size="30"></CalendarImport></div>
       <div class="body" v-if="!cardBodyEditFlag" @click="cardBodyEdit">
@@ -59,6 +59,23 @@ export default {
       required: true
     }
   },
+  computed:{
+    classCard() {
+      const classCard = []
+
+      // if (this.schedule.done===false&&this.schedule.commit===false) {
+      //   classCard.push('nonDisplay')
+      // }
+      // cardもscheduleのcomiit状態を連動させたい
+      // if (this.schedule.done===false) {
+      //   classCard.push('nonDisplay')
+      // }
+      if (this.card.done===true) {
+        classCard.push('finishedToDo')
+      }
+      return classCard
+    },
+  },
   components:{
     Cog,
     TrashCanOutline,
@@ -91,6 +108,21 @@ export default {
 </script>
 
 <style scoped>
+.nonDisplay{
+  /* visibility:hidden */
+  outline: dashed thin;
+  background-color :white;
+  color:white;
+  opacity:0.3;
+}
+.finishedToDo{
+  /* visibility:hidden */
+  background-color :#FFDBC9;
+  color:black;
+  opacity:0.8;
+}
+
+
 .card {
   height: 70px;
   width: 250px;
