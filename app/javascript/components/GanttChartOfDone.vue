@@ -1,20 +1,20 @@
 <template>
   <div class="calendar">
     <div class="calendar-header-area">
-      <GanttChartHeader
+      <GanttChartOfDoneHeader
       :currentDate="currentDate"
       @prev="prevMonth"
       @next="nextMonth"
       @showDatePicker="$listeners['showDatePicker']"
-      @showDoneSchedules="$listeners['showDoneSchedules']"
-      style="background-color:#8EB8FF;height:200px;">
-      </GanttChartHeader>
+      @showSchedules="$listeners['showSchedules']"
+      style="background-color:#FFCC99;height:200px;">
+      </GanttChartOfDoneHeader>
     </div>
-    <div style="min-width:100px;border-top:5px #BAD3FF;background-color:#EEEEEE;">
+    <div style="min-width:100px;border-top:5px #FFCCCC	;background-color:#EEEEEE;">
       <div
         v-for="(week, index) in calendars"
         :key="index"
-        style="display:flex;border-left:5px solid #BAD3FF;height:700px;"
+        style="display:flex;border-left:5px solid #FFCCCC;height:700px;"
       >
         <div
         class="calendar-date"
@@ -33,7 +33,7 @@
           v-if="
           schedule.date_day === day.date
           &&schedule.date_month === day.month
-          &&schedule.date_year === day.year&&schedule.done===false
+          &&schedule.date_year === day.year&&schedule.done===true
           "
           :key="schedule.id"
           style="flex:1;min-height:1px;min-width:1px;max-width:230px;text-align: center;margin-bottom:10px;"
@@ -66,25 +66,6 @@
     >
     </ScheduleEditModal>
   </div>
-  <!-- <div class="form-group">
-    <label for="title">{{hoge}}</label>
-    <input
-    v-model="hoge"
-    type="text"
-    class="form-control"
-    >
-  </div> -->
-  <!-- <div style="margin-top:1%;">
-    <button class="btn btn-primary btn-lg" @click="confirmCurrentDate">CofirmCurrentDate</button>
-    <button class="btn btn-primary btn-lg" @click="confirmCalendar">CofirmCalendar</button>
-    <button class="btn btn-primary btn-lg" @click="confirmCurrentMonth">CofirmCurrentMonth</button>
-    <button class="btn btn-primary btn-lg" @click="showDevidedSchedule">showDevidedSchedule</button>
-    <button class="btn btn-primary btn-lg" @click="confirmStartDate">confirmStartDate</button>
-    <button class="btn btn-primary btn-lg" @click="openScheduleSettingModal">setting</button>
-    <button  class="btn btn-primary btn-lg" @click="confirmIdToMoent">Id to Moment</button>
-    <button  class="btn btn-primary btn-lg" @click="confirmSchedules">confirmSchedules</button>
-    <button  class="btn btn-primary btn-lg" @click="confirmMoment">confirmSchedules</button>
-  </div> -->
 </div>
 </template>
 
@@ -93,7 +74,7 @@ import moment from "moment";
 import axios from 'axios';
 import draggable from 'vuedraggable'
 
-import GanttChartHeader from "../components/GanttChartHeader";
+import GanttChartOfDoneHeader from "../components/GanttChartOfDoneHeader";
 import Schedule from "../components/Schedule"
 import { mapState, mapGetters } from 'vuex'
 import ScheduleSettingModal from "../components/ScheduleSettingModal"
@@ -119,7 +100,7 @@ export default {
   },
   components: {
     draggable,
-    GanttChartHeader,
+    GanttChartOfDoneHeader,
     Schedule,
     ScheduleSettingModal,
     ScheduleEditModal,
@@ -295,8 +276,8 @@ export default {
 .calendar-date{
   flex:1;
   min-height:125px;
-  border-right:5px solid #BAD3FF;
-  border-bottom:5px solid #BAD3FF;
+  border-right:5px solid #FFCCCC	;
+  border-bottom:5px solid #FFCCCC	;
   text-align: center;
   font-size:25px;
 }

@@ -9,9 +9,11 @@
       <CountDownTimer :schedule="schedule"></CountDownTimer>
     </div>
     
-    
 
     <div class="body" style="display:flex; justify-content:center; padding-top:1px;font-size:20px;" @click="displayChange">
+      <div class="schedule-done-icon" v-if="schedule.done">
+        <Star fillColor="orange" :size="30"></Star>
+      </div>
       <div class="schedule-title" style="margin-left:10px;margin-top:1px;">
         {{schedule.body}}
       </div>
@@ -40,6 +42,7 @@ import ScheduleSettingButton from '../components/ScheduleSettingButton'
 import ScheduleDeleteButton from '../components/ScheduleDeleteButton'
 import CountDownTimer from '../components/CountDownTimer'
 import TrashCanOutline from 'vue-material-design-icons/TrashCanOutline.vue';
+import Star from 'vue-material-design-icons/Star.vue';
 
 
 export default {
@@ -59,6 +62,7 @@ export default {
     ScheduleSettingButton,
     ScheduleDeleteButton,
     TrashCanOutline,
+    Star,
     CountDownTimer,
   },
   methods: {
@@ -90,8 +94,11 @@ export default {
     classButton() {
       const classButton = []
 
-      if (this.schedule.commit===false) {
+      if (this.schedule.done===false&&this.schedule.commit===false) {
         classButton.push('nonDisplay')
+      }
+      if (this.schedule.done===true) {
+        classButton.push('finishedSchedule')
       }
       return classButton
     },
@@ -109,6 +116,12 @@ export default {
   background-color :white;
   color:white;
   opacity:0.3;
+}
+.finishedSchedule{
+  /* visibility:hidden */
+  background-color :#FFDBC9;
+  color:black;
+  opacity:0.8;
 }
 
 .card {
@@ -140,6 +153,12 @@ export default {
   border-radius: 8px;
   color: white;
   width: 10%;
+}
+
+.schedule-done-icon{
+  position: absolute;
+  top: 1px;
+  left: 10px;
 }
 </style>
 

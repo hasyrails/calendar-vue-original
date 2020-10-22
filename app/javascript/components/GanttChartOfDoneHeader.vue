@@ -1,15 +1,14 @@
-<template>
+  <template>
   <div class="calendar-header">
     <div class="calendar-header-content">
       <ChevronLeft fillColor="white"  @click="prev" :size="100"></ChevronLeft>
       <div class="calendar-header-date">{{ currentDate }}</div>
       <ChevronRight fillColor="white" @click="next" :size="100"></ChevronRight>
       <div
-      class="btn btn-primary btn-lg button-to-ganttchart-of-done"
+      class="btn btn-warning btn-lg button-to-ganttchart-of-done"
       style="width:400px;"
-      @click="showDone"
-      >
-        <Paw size="50"></Paw>完遂の軌跡 <Paw size="50"></Paw>
+      @click="showSchedules">
+        <TableCheck size="50"></TableCheck>予定を表示する<TableCheck size="50"></TableCheck>
       </div>
       <div class="datepicker" style="margin-left:100px;" @mouseover="calendarIconBallonDisplay" @mouseleave="calendarIconBallonNonDisplay"
       @click="showDatePicker">
@@ -43,7 +42,7 @@
 import ChevronLeft from 'vue-material-design-icons/ChevronLeft.vue';
 import ChevronRight from 'vue-material-design-icons/ChevronRight.vue';
 import Home from 'vue-material-design-icons/Home.vue';
-import Paw from 'vue-material-design-icons/Paw.vue';
+import TableCheck from 'vue-material-design-icons/TableCheck.vue';
 import Calendar from 'vue-material-design-icons/Calendar.vue';
 
 
@@ -66,7 +65,7 @@ export default {
     ChevronLeft,
     ChevronRight,
     Home,
-    Paw,
+    TableCheck,
     Calendar,
   },
   methods:{
@@ -100,8 +99,8 @@ export default {
     next(){
       this.$emit('next')
     },
-    showDone(){
-      this.$emit('showDoneSchedules')
+    showSchedules(){
+      this.$emit('showSchedules')
     }
   }
 }
@@ -148,9 +147,9 @@ export default {
   padding: 15px 15px;
   /* min-width: 100px; */
   max-width: 400px;
-  color: #555;
+  color: black;
   font-size: 16px;
-  background: #e0edff;
+  background: orange;
   border-radius:10px 10px 10px 10px;
 }
 .link-description-ballon::before{
@@ -160,14 +159,14 @@ export default {
   left: -30px;
   margin-top: -15px;
   border: 15px solid transparent;
-  border-right: 15px solid #e0edff;
+  border-right: 15px solid orange;
 }
-
-.btn-primary {
-    background: cyan;
+.btn-warning {
+    background: #FFCC00;
+    border: 3px solid orange;    
     color: grey;
 }
-.btn-primary.outline {
-    border: 3px solid blue;    
+.btn-warning.outline {
+    border: 3px solid orange;    
 }
 </style>
