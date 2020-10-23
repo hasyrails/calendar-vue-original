@@ -36,6 +36,7 @@
           &&schedule.date_year === day.year&&schedule.done===true
           "
           :key="schedule.id"
+          class="purun"
           style="flex:1;min-height:1px;min-width:1px;max-width:230px;text-align: center;margin-bottom:10px;"
           @clickScheduleSettingButton="openScheduleSettingModal"
           @commitChange="commitChange(schedule)"
@@ -286,5 +287,16 @@ export default {
   background-color: silver;
   border-radius: 4px;
 }
+.purun {
+  animation: purun 0.8s linear 0s 1;
+}
 
+@keyframes purun {
+  0%   { transform: scale(1.0, 1.0) translate(0%, 0%); }
+  15%  { transform: scale(0.9, 0.9) translate(0%, 5%); }
+  30%  { transform: scale(1.3, 0.8) translate(0%, 10%); }
+  50%  { transform: scale(0.8, 1.3) translate(0%, -10%); }
+  70%  { transform: scale(1.1, 0.9) translate(0%, 5%); }
+  100% { transform: scale(1.0, 1.0) translate(0%, 0%); }
+}
 </style>

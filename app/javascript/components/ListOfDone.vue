@@ -1,14 +1,11 @@
 <template>
-  <div class="list">
+  <div class="list purun">
     <div class="listheader">
       <div class="list-title">{{ title }}</div>
        <div class="list-counter">total: {{ totalCardInList }}</div>
       <div class="deletelist" @click="deleteList">×</div>
     </div>
     <div class="cards-area">
-      <div>
-        <CardAdd :list_id="list_id"></CardAdd>
-      </div>
       <draggable
         :options="options"
         :list="cards"
@@ -221,4 +218,16 @@ export default {
   font-size: 28px;
 }
 
+.purun {
+  animation: purun 0.8s linear 0s 1;
+}
+
+@keyframes purun {
+  0%   { transform: scale(1.0, 1.0) translate(0%, 0%); }
+  15%  { transform: scale(0.9, 0.9) translate(0%, 5%); }
+  30%  { transform: scale(1.3, 0.8) translate(0%, 10%); }
+  50%  { transform: scale(0.8, 1.3) translate(0%, -10%); }
+  70%  { transform: scale(1.1, 0.9) translate(0%, 5%); }
+  100% { transform: scale(1.0, 1.0) translate(0%, 0%); }
+}
 </style>

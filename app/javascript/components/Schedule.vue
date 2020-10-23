@@ -5,7 +5,7 @@
   :class="classButton" 
   :id="'schedule-card-'+schedule.id"
   >
-    <div v-if="schedule.date_year===new Date().getFullYear()&&schedule.date_month===new Date().getMonth()+1&&schedule.date_day===new Date().getDate()&&schedule.end===formatDate(new Date())">
+    <div v-if="schedule.date_year===new Date().getFullYear()&&schedule.date_month===new Date().getMonth()+1&&schedule.date_day===new Date().getDate()&&schedule.end===formatDate(new Date())&&schedule.done===false">
       <CountDownTimer :schedule="schedule"></CountDownTimer>
     </div>
     
