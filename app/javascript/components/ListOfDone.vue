@@ -14,15 +14,15 @@
         :list="cards"
         @sort="$emit('change')"
       >
-        <Card v-for="card in cards"
+        <CardOfDone v-for="card in cards"
           :key="card.id"
           :card="card"
           :cardIndex="index"
           :list_id="list_id"
           @clickCardSettingButton="openCardSettingModal(card)"
-          v-if="list_id===card.list_id&&card.done===false"
+          v-if="list_id===card.list_id&&card.done===true"
           @cardBodyFormComplete="updateCard"
-        ></Card>
+        ></CardOfDone>
       </draggable>
     </div>
     <div>
@@ -43,7 +43,7 @@
 
 <script>
 import CardAdd from '../components/CardAdd'
-import Card from '../components/Card'
+import CardOfDone from '../components/CardOfDone'
 import CardSettingModal from '../components/CardSettingModal'
 import CardToGanttChartModal from '../components/CardToGanttChartModal'
 
@@ -102,7 +102,7 @@ export default {
   },
   components:{
     CardAdd,
-    Card,
+    CardOfDone,
     CardSettingModal,
     // CardEditModal,
     CardToGanttChartModal,
@@ -190,7 +190,7 @@ export default {
   align-items: flex-start;
   min-width: 290px;
   width: 290px;
-  background-color: #D7EEFF;
+  background-color: #FFFFDD;
   border-radius: 8px;
   padding: 15px;
   border: solid #D9E5FF	1px;

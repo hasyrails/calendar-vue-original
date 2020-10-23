@@ -1,8 +1,10 @@
 <template>
   <div class="card" :class="classCard">
     <div class="card-main">
-      <div class="card-icon" v-if="card.schedulized===true&&card.done===false"><CalendarImport fillColor="#FFA500" :size="30"></CalendarImport></div>
-      <div class="card-icon" v-if="card.done===true"><Star fillColor="#FFA500" :size="30"></Star></div>
+      <!-- <div class="card-icon" v-if="card.schedulized===true&&card.done===false">
+        <CalendarImport fillColor="#FFA500" :size="30"></CalendarImport>
+      </div> -->
+      <div class="card-icon" v-if="card.done===true"><CheckBold fillColor="#FFA500" :size="30"></CheckBold></div>
       <div class="body" v-if="!cardBodyEditFlag" @click="cardBodyEdit">
         {{ card.body }}
       </div>
@@ -39,7 +41,7 @@ import TrashCanOutline from 'vue-material-design-icons/TrashCanOutline.vue';
 import CloseCircle from 'vue-material-design-icons/CloseCircle.vue';
 import Pencil from 'vue-material-design-icons/Pencil.vue';
 import CalendarImport from 'vue-material-design-icons/CalendarImport.vue';
-import Star from 'vue-material-design-icons/Star.vue';
+import CheckBold from 'vue-material-design-icons/CheckBold.vue';
 
 export default {
   data(){
@@ -84,7 +86,7 @@ export default {
     CloseCircle,
     Pencil,
     CalendarImport,
-    Star,
+    CheckBold,
   },
   methods: {
     deleteCard(card) {

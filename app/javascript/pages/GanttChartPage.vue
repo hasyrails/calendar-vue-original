@@ -16,7 +16,8 @@
          v-if="datePickerFlag" @closeDatePicker="closeDatePicker"></DatePicker>
       </div>
       <div class="todo-area">
-        <Board></Board>
+        <Board v-if="!showDone"></Board>
+        <BoardOfDone v-if="showDone"></BoardOfDone>
       </div>
       <div class="footer-area">
         <footer>(C)footer</footer>
@@ -27,9 +28,12 @@
 
 <script>
 import Board from '../components/Board'
+import BoardOfDone from '../components/BoardOfDone'
 import GanttChart from '../components/GanttChart'
 import GanttChartOfDone from '../components/GanttChartOfDone'
 import DatePicker from '../components/DatePicker'
+
+import {mapState} from 'vuex'
 
 export default {
   name: 'Top',
@@ -37,14 +41,20 @@ export default {
     return{
       datePickerFlag: false,
       scheduleSettingModalFlag: false,
-      showDone: false,
+      // showDone: false,
     }
   },
   components: {
     Board,
+    BoardOfDone,
     GanttChart,
     GanttChartOfDone,
     DatePicker,
+  },
+  computed:{
+    ...mapState([
+      'showDone'
+    ])
   },
   methods: {
     showDatePicker(){
@@ -54,10 +64,12 @@ export default {
       this.datePickerFlag = false
     },
     showDoneSchedules(){
-      this.showDone = true
+      // this.showDone = true
+      this.$store.dispatch('showDonesAction')
     },
     showSchedules(){
-      this.showDone = false
+      // this.showDone = false
+      this.$store.dispatch('showSchedulesAction')
     }
   }
 }
