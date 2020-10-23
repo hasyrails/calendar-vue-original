@@ -17,7 +17,6 @@
         <Card v-for="card in cards"
           :key="card.id"
           :card="card"
-          :cardIndex="index"
           :list_id="list_id"
           @clickCardSettingButton="openCardSettingModal(card)"
           v-if="list_id===card.list_id&&card.done===false"

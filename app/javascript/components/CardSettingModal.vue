@@ -156,6 +156,58 @@
           </div>
         </div>
         
+        <div class="schedule-item">
+          <div class="schedule-item-name"
+          @click="cardColorEdit"
+          style="cursor: pointer;"
+          >
+            カードの色
+          </div>
+          <div 
+          style="cursor:pointer;"
+          @click="cardColorEdit"
+          >
+            <div class="schedule-item-content" v-if="card.color==='#FFD5EC'&&!cardColorEditFlag">
+              <div style="width:50px; height:50px; background-color:#FFD5EC;"></div>
+            </div>
+            <div class="schedule-item-content" v-if="card.color==='#CBFFD3'&&!cardColorEditFlag">
+              <div style="width:50px; height:50px; background-color:#CBFFD3;"></div>
+            </div>
+            <div class="schedule-item-content" v-if="card.color==='#CCFFFF'&&!cardColorEditFlag">
+              <div style="width:50px; height:50px; background-color:#CCFFFF;"></div>
+            </div>
+          </div>
+          <div class="card-scheduled-editng" v-if="cardColorEditFlag"
+          style="margin-left:25px;">
+            <form  class="scheduled cp_ipselect cp_sl04" 
+            @submit.prevent="updateCard"
+            style="width:400px;">
+            <select v-model="card.color"
+            type="text" 
+            style="outline:blue;">
+               <option value="#FFD5EC">
+                  ピンク
+                </option>
+                <option value="#CBFFD3">
+                  緑
+                </option>
+                <option value="#CCFFFF">
+                  水色
+                </option>
+            </select>
+            </form>
+            <div @click="quitCardColorEdit">
+              <CloseCircle :size="45"></CloseCircle>
+            </div>
+            <div @click="updateCard"
+             style="cursor: pointer;"
+            >
+              <ContentSaveEditOutline  :size="45"></ContentSaveEditOutline>
+            </div>
+          </div>
+        </div>
+      </div>
+
         <!-- <div class="schedule-item">
           <div class="schedule-item-name"
           @click="cardStatusEdit"
@@ -287,6 +339,7 @@ export default {
       default: moment().format('YYYY/MM/DD'),
       DatePickerFormat: 'yyyy/MM/dd',
       cardEditFlag: false,
+      cardColorEditFlag: false,
       cardDescriptionEditFlag: false,
       cardScheduledEditFlag: false,
       cardStatusEditFlag: false,
@@ -316,6 +369,7 @@ export default {
   methods:{
     createSchedulesFromCard(){
       this.card.schedulized = true
+      this.updateCard()
       this.$emit('clickedCreateScheduleFromCardButton', this.card)
     },
     showDatePicker(){
@@ -346,9 +400,16 @@ export default {
     cardEdit(){
       this.cardDescriptionEditFlag = true
       this.datePickerFlag = true
+      this.cardColorEditFlag = true
     },
+    cardColorEdit(){
+      this.cardColorEditFlag = true
+      },
     quitCardDescriptionEdit(){
       this.cardDescriptionEditFlag = false
+    },
+    quitCardColorEdit(){
+      this.cardColorEditFlag = false
     },
     quitCardScheduledEdit(){
       this.cardScheduledEditFlag = false
@@ -359,7 +420,7 @@ export default {
     updateCard(){
       this.$emit('updateCard', this.card)
       this.cardDescriptionEditFlag = false
-      this.cardStatusEditFlag = false
+      this.cardColorEditFlag = false
       this.datePickerFlag = false
     },
     deleteCard(){

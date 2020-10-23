@@ -1,5 +1,6 @@
 <template>
-  <div class="card purun" :class="classCard">
+  <div class="card purun" :class="classCard"
+  :style="'background-color:'+card.color+';'">
     <div class="card-main">
       <!-- <div class="card-icon" v-if="card.schedulized===true&&card.done===false">
         <CalendarImport fillColor="#FFA500" :size="30"></CalendarImport>
