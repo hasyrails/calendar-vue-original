@@ -66,12 +66,12 @@ export default {
 <style scoped>
 
 /* .slide {
-  animation: infinity-loop 15s infinite linear 1s both; 
+  animation: infinity-loop 10s infinite linear 1s both; 
   position: relative;
   z-index: 1;
-} */
+}
 
-/* @keyframes infinity-loop {
+@keyframes infinity-loop {
   from {
     transform: translateX(0vw);
   }
