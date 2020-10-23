@@ -68,6 +68,7 @@ const schedules = {
       for(let i =1;  i <=Math.floor((new Date(stopDate).getTime()-new Date(startDate).getTime())/86400000)+1; i++) {
         var schedule = {
           body: card.body,
+          color: card.color,
           start: scheduleDate.start,
           end: scheduleDate.end,
           date: currentDate,

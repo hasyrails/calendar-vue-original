@@ -1,5 +1,6 @@
 <template>
-  <div class="card" :class="classCard">
+  <div class="card" :class="classCard"
+  :style="'background-color:'+card.color+';'">
     <div class="card-main">
       <div class="card-icon" v-if="card.schedulized===true&&card.done===false"><CalendarImport fillColor="#FFA500" :size="30"></CalendarImport></div>
       <div class="card-icon" v-if="card.done===true"><Star fillColor="#FFA500" :size="30"></Star></div>
@@ -56,10 +57,10 @@ export default {
       type: Number,
       required: true
     },
-    cardIndex: {
-      type: Number,
-      required: true
-    }
+    // cardIndex: {
+    //   type: Number,
+    //   required: true
+    // }
   },
   computed:{
     classCard() {

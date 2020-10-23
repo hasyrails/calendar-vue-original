@@ -53,8 +53,6 @@
         
       <div class="schedule-item">
         <div class="schedule-item-name" 
-        @click="showDatePicker"
-        style="cursor: pointer;"
         >
           期間
         </div>
@@ -63,18 +61,19 @@
             <div class="schedule-start-date">
               <div>いつから</div>
               <div>
-              <form
+              <!-- <form
               @submit.prevent="updateCard"
               >
                 <div v-if="!schedule.start" @click="showDatePicker">
                   <Pencil></Pencil>
-                </div>
-                <div v-if="!datePickerFlag&&schedule.start" @click="showDatePicker">
+                </div> -->
+                <!-- <div v-if="!datePickerFlag&&schedule.start" @click="showDatePicker"> -->
+                <div v-if="!datePickerFlag&&schedule.start">
                   {{ new Date(schedule.start).getFullYear() }}/
                   {{ new Date(schedule.start).getMonth()+1 }}/
                   {{ new Date(schedule.start).getDate() }}
                 </div>
-                <div v-if="datePickerFlag">
+                <!-- <div v-if="datePickerFlag">
                     <Datepicker
                     :language="ja"
                     class="test"
@@ -83,7 +82,7 @@
                     v-model="schedule.start"
                     ></Datepicker>
                 </div>
-              </form>
+              </form> -->
               </div>
               <!-- <div>{{.start_yyyymmdd}}</div> -->
             </div>
@@ -91,18 +90,19 @@
             <div class="schedule-end-date">
               <div>いつまで</div>
             <div class="datepicker-form">
-              <form 
+              <!-- <form 
               @submit.prevent="updateCard"
               >
                 <div v-if="!schedule.end" @click="showDatePicker">
                   <Pencil></Pencil>
-                </div>
-                <div v-if="!datePickerFlag&&schedule.end" @click="showDatePicker">
+                </div> -->
+                <!-- <div v-if="!datePickerFlag&&schedule.end" @click="showDatePicker"> -->
+                <div v-if="!datePickerFlag&&schedule.end">
                   {{ new Date(schedule.end).getFullYear() }}/
                   {{ new Date(schedule.end).getMonth()+1 }}/
                   {{ new Date(schedule.end).getDate() }}
                 </div>
-                <div v-if="datePickerFlag">
+                <!-- <div v-if="datePickerFlag">
                   <Datepicker
                   :language="ja" 
                   class="test"
@@ -111,7 +111,7 @@
                   v-model="schedule.end"
                   ></Datepicker>
                 </div>
-              </form>
+              </form> -->
               <div v-if="datePickerFlag" @click="showDatePicker">
                 <CloseCircle :size="45"></CloseCircle>
               </div>

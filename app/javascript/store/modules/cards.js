@@ -9,7 +9,7 @@ const cards = {
         list_id: '',
         body: '',
         description: '',
-        status: '',
+        color: '',
         scheduled: '',
         start: '',
         end: '',
