@@ -12,7 +12,7 @@
 
     <div class="body" style="display:flex; justify-content:center; padding-top:1px;font-size:20px;" @click="displayChange">
       <div class="schedule-done-icon" v-if="schedule.done">
-        <Star fillColor="orange" :size="30"></Star>
+        <CheckBold fillColor="orange" :size="30"></CheckBold>
       </div>
       <div class="schedule-title" style="margin-left:10px;margin-top:1px;">
         {{schedule.body}}
@@ -42,7 +42,7 @@ import ScheduleSettingButton from '../components/ScheduleSettingButton'
 import ScheduleDeleteButton from '../components/ScheduleDeleteButton'
 import CountDownTimer from '../components/CountDownTimer'
 import TrashCanOutline from 'vue-material-design-icons/TrashCanOutline.vue';
-import Star from 'vue-material-design-icons/Star.vue';
+import CheckBold from 'vue-material-design-icons/CheckBold.vue';
 
 
 export default {
@@ -62,7 +62,7 @@ export default {
     ScheduleSettingButton,
     ScheduleDeleteButton,
     TrashCanOutline,
-    Star,
+    CheckBold,
     CountDownTimer,
   },
   methods: {
@@ -119,7 +119,7 @@ export default {
 }
 .finishedSchedule{
   /* visibility:hidden */
-  background-color :#FFDBC9;
+  /* background-color :#FFDBC9; */
   color:black;
   opacity:0.8;
 }

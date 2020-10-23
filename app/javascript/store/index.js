@@ -15,6 +15,25 @@ Vue.use(Vuex)
 
 
 const store =  new Vuex.Store({
+  state: {
+    showDone: false
+  },
+  mutations: {
+    showDones(state){
+      state.showDone = true
+    },
+    showSchedules(state){
+      state.showDone = false
+    }
+  },
+  actions:{
+    showDonesAction({commit}){
+      commit('showDones')
+    },
+    showSchedulesAction({commit}){
+      commit('showSchedules')
+    }
+  },
   modules: {
     lists,
     cards,

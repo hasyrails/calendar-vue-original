@@ -1,21 +1,35 @@
 <template>
   <div id="app">
-    <Header></Header>
+    <Header v-if="!showDone"></Header>
+    <HeaderOfDone v-if="showDone"></HeaderOfDone>
     <router-view></router-view>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import Header from '../javascript/components/Header'
+import HeaderOfDone from '../javascript/components/HeaderOfDone'
 
 export default {
   data: function () {
     return {
-      message: "Hello Vue!"
+      // showDone: false
     }
   },
   components: {
     Header,
+    HeaderOfDone,
+  },
+  methods:{
+    // showDoneSchedules(){
+    //   this.showDone = true
+    // }
+  },
+  computed:{
+    ...mapState([
+      'showDone'
+    ])
   },
   beforeCreate(){
     const existingSession = this.$cookies.get('session')
