@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 2020_10_10_232123) do
     t.boolean "deadlined", default: false, null: false
     t.boolean "done", default: false, null: false
     t.integer "list_id", null: false
+    t.datetime "done_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["list_id"], name: "index_cards_on_list_id"
@@ -47,6 +48,7 @@ ActiveRecord::Schema.define(version: 2020_10_10_232123) do
     t.boolean "commit", default: true, null: false
     t.string "color"
     t.integer "card_id", null: false
+    t.datetime "done_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["card_id"], name: "index_schedules_on_card_id"

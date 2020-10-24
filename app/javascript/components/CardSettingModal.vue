@@ -155,8 +155,23 @@
             </div>
           </div>
         </div>
+
+      <div class="schedule-item" v-if="card.done">
+        <div class="schedule-item-name" 
+        @click="showDatePicker"
+        style="cursor: pointer;"
+        >
+          完了日
+        </div>
+        <div class="schedule-item-content">
+          <div class="schedule-date">
+            {{ new Date(card.done_at).getFullYear() }}/
+            {{ new Date(card.done_at).getMonth()+1 }}/
+            {{ new Date(card.done_at).getDate() }}
+          </div>
+        </div>
         
-        <div class="schedule-item">
+        <div class="schedule-item" v-if="!card.done">
           <div class="schedule-item-name"
           @click="cardColorEdit"
           style="cursor: pointer;"

@@ -10,6 +10,9 @@ class CreateCards < ActiveRecord::Migration[5.2]
       t.boolean :deadlined, default: false, null: false
       t.boolean :done, default: false, null: false
       t.references  :list, null: false, foreign_key: true
+
+      t.datetime :done_at
+
       t.timestamps
     end
   end

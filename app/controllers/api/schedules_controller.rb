@@ -40,13 +40,13 @@ class Api::SchedulesController < ApplicationController
     @schedules = Schedule.where(card_id: @schedule.card_id)
     if @schedules.present?
       @schedules.each do |schedule|
-        schedule.update(done: 'true')
+        schedule.update(done: 'true', done_at: @schedule.updated_at)
       end
     end
 
     @card = Card.where(id: @schedule.card_id)
     if @card.present?
-      @card.update(done: 'true')
+      @card.update(done: 'true', done_at: @schedule.updated_at)
     end
   end
 
@@ -68,6 +68,6 @@ class Api::SchedulesController < ApplicationController
   end
 
   def schedule_params
-    params.permit(:id, :body, :description, :done, :commit, :color, :date, :date_year, :date_month, :date_day, :card_id, :start, :end)
+    params.permit(:id, :body, :description, :done, :commit, :color, :date, :date_year, :date_month, :date_day, :card_id, :start, :end, :done_at)
   end
 end
