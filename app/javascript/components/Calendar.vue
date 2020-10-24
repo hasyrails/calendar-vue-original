@@ -22,6 +22,9 @@
         > 
           <div v-if="day.month===currentMonth" style="font-weight:200;font-size:50px;">{{day.date}}</div>
           <div v-if="day.month!==currentMonth" style="color:#D3D3D3;font-size:50px;">{{ day.date }}</div>
+          <div v-if="day.date===new Date().getDate()&&day.month===new Date().getMonth()+1&&day.year===new Date().getFullYear()"
+          style="color:red;font-size:50px;position:relative;top:-74px;font-weight:10;">
+          {{day.date}}</div>
             <div v-if="day.date===new Date().getDate()&&day.month===new Date().getMonth()+1&&day.year===new Date().getFullYear()&&day.scheduleNum!==0">
               <CountDownTimer></CountDownTimer>
             </div>
@@ -148,7 +151,7 @@ export default {
           let scheduleNum = 0;
           for (let k=0; k < this.$store.getters['schedules/schedules'].length; k++) {
           //todoListの情報をカレンダーパネルに追加
-            if (this.$store.getters['schedules/schedules'][k].date_day === startDate.get("date")&&this.$store.getters['schedules/schedules'][k].date_month === this.currentMonth&&this.$store.getters['schedules/schedules'][k].date_year === this.currentYear&&this.$store.getters['schedules/schedules'][k].commit===true&&this.$store.getters['schedules/schedules'][k].deadlined===false) {
+            if (this.$store.getters['schedules/schedules'][k].date_day === startDate.get("date")&&this.$store.getters['schedules/schedules'][k].date_month === this.currentMonth&&this.$store.getters['schedules/schedules'][k].date_year === this.currentYear&&this.$store.getters['schedules/schedules'][k].commit===true&&this.$store.getters['schedules/schedules'][k].deadlined===false&&this.$store.getters['schedules/schedules'][k].done===false) {
               scheduleNum++;
             }
           }
