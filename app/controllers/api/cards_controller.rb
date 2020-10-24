@@ -1,5 +1,6 @@
 class Api::CardsController < ApplicationController
   before_action :set_card, only: %i[show update destroy]
+  before_action :deadlined
   skip_before_action :verify_authenticity_token
 
   def index
@@ -33,6 +34,18 @@ class Api::CardsController < ApplicationController
     @card.destroy!
     render json: @card
   end
+
+  def deadlined
+    today = Date.today
+    @cards = Card.all
+    @cards.each do |card|
+      if card.end < today
+        card.update(deadlined: 'true')
+        card.save
+      end
+    end 
+  end
+
 
   private
 

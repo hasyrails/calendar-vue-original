@@ -78,7 +78,9 @@ export default {
       this.$emit('commitChange', this.schedule)
     },
     commitChange(){
-      this.schedule.commit = !this.schedule.commit
+      if(this.schedule.deadlined===false){
+        this.schedule.commit = !this.schedule.commit
+      }
     },
     openScheduleSettingModal(schedule){
       this.$emit('clickScheduleSettingButton', this.schedule)
@@ -94,11 +96,8 @@ export default {
     classButton() {
       const classButton = []
 
-      if (this.schedule.done===false&&this.schedule.commit===false&&schedule.deadlined===false) {
+      if (this.schedule.done===false&&this.schedule.commit===false&&this.schedule.deadlined===false) {
         classButton.push('nonDisplay')
-      }
-      if (this.schedule.done===true) {
-        classButton.push('finishedSchedule')
       }
       if (this.schedule.deadlined===true) {
         classButton.push('deadlinedSchedule')
