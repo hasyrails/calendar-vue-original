@@ -11,7 +11,7 @@
     <div class="body" v-if="!cardBodyEditFlag&&card.body.length===0" @click="cardBodyEdit">
       <Pencil :size="40"></Pencil>
     </div>
-    <div class="card-body-editng" v-if="cardBodyEditFlag">
+    <div class="card-body-editng" v-if="cardBodyEditFlag&&card.deadlined===false">
       <form  class="body" @submit.prevent="updateCard" style="-moz-box-shadow: inset 0 0 4px rgba(0,0,0,0.2);
       -webkit-box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.2);
       box-shadow: inner 0 0 4px rgba(150, 180, 200, 0.2);">
@@ -24,10 +24,10 @@
       </div>
     </div>
     <div class="card-handle-button" >
-      <div class="show-detail-button" v-show="!cardBodyEditFlag">
+      <div class="show-detail-button" v-show="!cardBodyEditFlag&&card.deadlined===false">
         <Cog fillColor="grey" :size="30" @click="openCardSettingModal"></Cog>
       </div>
-      <div class="close-button" @click="deleteCard" v-show="!cardBodyEditFlag">
+      <div class="close-button" @click="deleteCard" v-show="!cardBodyEditFlag&&card.deadlined===false">
         <TrashCanOutline fillColor="red" :size="30"></TrashCanOutline>
       </div>
     </div>
@@ -75,6 +75,9 @@ export default {
       // }
       if (this.card.done===true) {
         classCard.push('finishedToDo')
+      }
+      if (this.card.deadlined===true) {
+        classCard.push('deadlinedCard')
       }
       return classCard
     },
@@ -124,6 +127,12 @@ export default {
   /* background-color :#FFDBC9; */
   color:black;
   opacity:0.8;
+}
+.deadlinedCard{
+  /* visibility:hidden */
+  /* background-color :#FFDBC9; */
+  color:black;
+  opacity:0.3;
 }
 
 
