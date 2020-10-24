@@ -61,19 +61,18 @@
             <div class="schedule-start-date">
               <div>いつから</div>
               <div>
-              <!-- <form
+              <form
               @submit.prevent="updateCard"
               >
                 <div v-if="!schedule.start" @click="showDatePicker">
                   <Pencil></Pencil>
-                </div> -->
-                <!-- <div v-if="!datePickerFlag&&schedule.start" @click="showDatePicker"> -->
-                <div v-if="!datePickerFlag&&schedule.start">
+                </div>
+                <div v-if="!datePickerFlag&&schedule.start" @click="showDatePicker">
                   {{ new Date(schedule.start).getFullYear() }}/
                   {{ new Date(schedule.start).getMonth()+1 }}/
                   {{ new Date(schedule.start).getDate() }}
                 </div>
-                <!-- <div v-if="datePickerFlag">
+                <div v-if="datePickerFlag">
                     <Datepicker
                     :language="ja"
                     class="test"
@@ -82,9 +81,8 @@
                     v-model="schedule.start"
                     ></Datepicker>
                 </div>
-              </form> -->
+              </form>
               </div>
-              <!-- <div>{{.start_yyyymmdd}}</div> -->
             </div>
             <div>〜</div>
             <div class="schedule-end-date">

@@ -13,7 +13,8 @@ const cards = {
         scheduled: '',
         start: '',
         end: '',
-        schedulized: ''
+        schedulized: '',
+        deadlined: ''
       },
     ],
   },
@@ -116,6 +117,15 @@ const cards = {
     //   return count
     // },
     cards: (state) => state.cards,
+    schedulizedCards: state => {
+      return state.cards.filter(card => card.schedulized)
+    },
+    deadlinedCards: state => {
+      return state.cards.filter(card => card.deadlined)
+    },
+    doneCards: state => {
+      return state.cards.filter(card => card.done)
+    }
   },
 }
 

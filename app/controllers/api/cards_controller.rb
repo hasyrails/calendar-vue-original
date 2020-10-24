@@ -1,6 +1,6 @@
 class Api::CardsController < ApplicationController
   before_action :set_card, only: %i[show update destroy]
-  before_action :deadlined
+  before_action :deadlined,  only: %i[show update destroy]
   skip_before_action :verify_authenticity_token
 
   def index
@@ -45,7 +45,6 @@ class Api::CardsController < ApplicationController
       end
     end 
   end
-
 
   private
 
