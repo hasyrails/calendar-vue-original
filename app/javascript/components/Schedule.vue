@@ -20,7 +20,7 @@
     </div>
     <div class="card-handle-button"
     >
-      <div @click="openScheduleSettingModal">
+      <div @click="openScheduleSettingModal" v-if="!schedule.deadlined">
         <ScheduleSettingButton style="margin-left:1px;"></ScheduleSettingButton>
       </div>
       <!-- <div>
@@ -94,11 +94,14 @@ export default {
     classButton() {
       const classButton = []
 
-      if (this.schedule.done===false&&this.schedule.commit===false) {
+      if (this.schedule.done===false&&this.schedule.commit===false&&schedule.deadlined===false) {
         classButton.push('nonDisplay')
       }
       if (this.schedule.done===true) {
         classButton.push('finishedSchedule')
+      }
+      if (this.schedule.deadlined===true) {
+        classButton.push('deadlinedSchedule')
       }
       return classButton
     },
@@ -122,6 +125,12 @@ export default {
   /* background-color :#FFDBC9; */
   color:black;
   opacity:0.8;
+}
+.deadlinedSchedule{
+  /* visibility:hidden */
+  /* background-color :#FFDBC9; */
+  color:black;
+  opacity:0.3;
 }
 
 .card {
@@ -160,5 +169,6 @@ export default {
   top: 1px;
   left: 10px;
 }
+
 </style>
 

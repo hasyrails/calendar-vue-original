@@ -6,6 +6,7 @@ class CreateSchedules < ActiveRecord::Migration[5.2]
       t.date :start
       t.date :end
       t.boolean :done, default: false, null: false
+      t.boolean :deadlined, default: false, null: false
       t.datetime :date
       t.integer :date_year
       t.integer :date_month
