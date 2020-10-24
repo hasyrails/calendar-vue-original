@@ -1,6 +1,6 @@
 class Api::CardsController < ApplicationController
   before_action :set_card, only: %i[show update destroy]
-  before_action :deadlined,  only: %i[show update destroy]
+  before_action :deadlined,  only: %i[show]
   skip_before_action :verify_authenticity_token
 
   def index
@@ -53,6 +53,6 @@ class Api::CardsController < ApplicationController
   end
 
   def card_params
-    params.permit(:body, :description, :start, :end, :color, :scheduled, :list_id, :schedulized, :created_at, :updated_at)
+    params.permit(:body, :description, :start, :end, :color, :scheduled, :list_id, :schedulized, :created_at, :updated_at, :done_at)
   end
 end

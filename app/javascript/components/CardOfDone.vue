@@ -29,9 +29,6 @@
       <div class="show-detail-button" v-show="!cardBodyEditFlag">
         <Cog fillColor="grey" :size="30" @click="openCardSettingModal"></Cog>
       </div>
-      <div class="close-button" @click="deleteCard" v-show="!cardBodyEditFlag">
-        <TrashCanOutline fillColor="red" :size="30"></TrashCanOutline>
-      </div>
     </div>
   </div>
 </template>
@@ -59,10 +56,10 @@ export default {
       type: Number,
       required: true
     },
-    cardIndex: {
-      type: Number,
-      required: true
-    }
+    // cardIndex: {
+    //   type: Number,
+    //   required: true
+    // }
   },
   computed:{
     classCard() {

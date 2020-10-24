@@ -14,26 +14,25 @@
         <CardOfDone v-for="card in cards"
           :key="card.id"
           :card="card"
-          :cardIndex="index"
           :list_id="list_id"
-          @clickCardSettingButton="openCardSettingModal(card)"
+          @clickCardSettingButton="openCardOfDoneModal(card)"
           v-if="list_id===card.list_id&&card.done===true"
           @cardBodyFormComplete="updateCard"
         ></CardOfDone>
       </draggable>
     </div>
     <div>
-      <CardSettingModal 
+      <CardOfDoneModal 
       :card="cardDetail"
       :list="list"
-      v-if="cardSettingModalFlag"
-      @clickCardSettingModalCloseButton="closeCardSettingModal"
+      v-if="cardOfDoneModalFlag"
+      @clickCardOfDoneModalCloseButton="closeCardOfDoneModal"
       @clickCardEditOpenButton="openCardEditModal(cardDetail)"
       @updateCard="updateCard"
       @clickedCardDeleteButton="deleteCard"
       @selectedValueScheduled="openCardToGanttChartModal"
       @clickedCreateScheduleFromCardButton="createSchedulesFromCard"
-      ></CardSettingModal>
+      ></CardOfDoneModal>
     </div>
   </div>
 </template>
@@ -41,7 +40,7 @@
 <script>
 import CardAdd from '../components/CardAdd'
 import CardOfDone from '../components/CardOfDone'
-import CardSettingModal from '../components/CardSettingModal'
+import CardOfDoneModal from '../components/CardOfDoneModal'
 import CardToGanttChartModal from '../components/CardToGanttChartModal'
 
 import draggable from "vuedraggable";
@@ -60,13 +59,10 @@ export default {
         animation: 200
       },
       cardSettingModalFlag: false,
+      cardOfDoneModalFlag: false,
     }
   },
   props: {
-    id: {
-      type: Number,
-      required: true
-    },
     title: {
       type: String,
       required: true
@@ -100,7 +96,7 @@ export default {
   components:{
     CardAdd,
     CardOfDone,
-    CardSettingModal,
+    CardOfDoneModal,
     // CardEditModal,
     CardToGanttChartModal,
     draggable
@@ -139,13 +135,18 @@ export default {
       this.cardSettingModalFlag = true
       this.cardEdit = card
     },
+    openCardOfDoneModal(card){
+      this.cardDetail = card
+      this.cardOfDoneModalFlag = true
+      this.cardEdit = card
+    },
     openCardEditModal(card){
       this.closeCardSettingModal()
       this.cardEditModalFlag = true
       this.cardEdit = card
     },
-    closeCardSettingModal(){
-      this.cardSettingModalFlag = false
+    closeCardOfDoneModal(){
+      this.cardOfDoneModalFlag = false
     },
     closeCardToGanttChartModal(){
       this.cardToGanttChartModalFlag = false

@@ -87,7 +87,12 @@ const schedules = {
         currentDate = new Date(currentDate).setDate(new Date(currentDate).getDate() + 1);
         schedule.date = currentDate
       }
-
+      
+      await axios.patch('api/cards/'+card.id, card)
+          .then(res => {
+            commit('cards/updateCard', res.data)
+          })
+          .catch(error => console.log(error.response));
     },
     async deleteScheduleAction ({state, commit}, schedule) {
  
