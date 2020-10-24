@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 2020_10_10_232123) do
     t.date "end"
     t.integer "color"
     t.boolean "schedulized", default: false, null: false
+    t.boolean "deadlined", default: false, null: false
     t.boolean "done", default: false, null: false
     t.integer "list_id", null: false
     t.datetime "created_at", null: false
@@ -38,6 +39,7 @@ ActiveRecord::Schema.define(version: 2020_10_10_232123) do
     t.date "start"
     t.date "end"
     t.boolean "done", default: false, null: false
+    t.boolean "deadlined", default: false, null: false
     t.datetime "date"
     t.integer "date_year"
     t.integer "date_month"

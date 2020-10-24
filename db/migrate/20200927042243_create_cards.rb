@@ -7,6 +7,7 @@ class CreateCards < ActiveRecord::Migration[5.2]
       t.date :end
       t.integer  :color
       t.boolean :schedulized, default: false, null: false
+      t.boolean :deadlined, default: false, null: false
       t.boolean :done, default: false, null: false
       t.references  :list, null: false, foreign_key: true
       t.timestamps

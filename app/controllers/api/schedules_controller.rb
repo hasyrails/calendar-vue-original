@@ -1,5 +1,7 @@
 class Api::SchedulesController < ApplicationController
   before_action :set_schedule, only: %i[show update destroy done]
+  before_action :deadlined
+
   skip_before_action :verify_authenticity_token
 
   def index
@@ -46,6 +48,17 @@ class Api::SchedulesController < ApplicationController
     if @card.present?
       @card.update(done: 'true')
     end
+  end
+
+  def deadlined
+    today = Date.today
+    @schedules = Schedule.all
+    @schedules.each do |schedule|
+      if schedule.end < today
+        schedule.update(deadlined: 'true')
+        schedule.save
+      end
+    end 
   end
 
   private
