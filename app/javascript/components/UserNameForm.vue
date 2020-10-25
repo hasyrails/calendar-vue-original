@@ -4,13 +4,20 @@
     <h2>ユーザー名を入力してください</h2>
     <div class="form-group">
       <label for="userName">ユーザー名</label>
-      <input type="text" class="form-control form-control-lg" v-model="name" placeholder="Enter User Name">
+      <ValidationProvider name="email" rules="required|name">
+        <div slot-scope="{ errors }">
+          <input type="text" class="form-control form-control-lg" v-model="name" placeholder="Enter User Name">
+          <p class="error-message">{{ errors[0] }}</p>
+        </div>
+      </ValidationProvider>
     </div>
   </form>
   </div>
 </template>
 
 <script>
+import { ValidationProvider } from 'vee-validate';
+
 export default {
   name: 'UserNameForm',
   data(){
@@ -24,6 +31,9 @@ export default {
 				name: this.name
 			});
 		}
+  },
+  components:{
+    ValidationProvider
   }
 }
 </script>
@@ -42,5 +52,10 @@ export default {
 
   .form-control{
     width: 50%;
+  }
+
+  .error-message{
+    color: red;
+    font-size:20px;
   }
 </style>
