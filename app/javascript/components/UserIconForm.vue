@@ -5,16 +5,17 @@
     <div v-if="image">
       <img :src="image" alt="Avatar" class="image">
     </div>
-    <div>
+    <div class="form-group">
     <input
            type="file"
            id="avatar_name"
            accept="image/jpeg, image/png"
+           class="form-control-file" 
            @change="onImageChange"
            />
     </div>
   </label>
-  <button @click="upload()">アップロード</button>
+  <button class="btn btn-info" @click="upload()">アップロード</button>
   <p>{{ message }}</p>
 </div>
 </template>
@@ -52,7 +53,7 @@ export default{
             this.$emit('update',{
 			      	image: this.image
 			      });
-          this.message = 'アップロードしました' 
+          this.message = 'ユーザーアイコンを登録しました' 
           this.error = ''
         } else {
           this.error = '画像がありません'
