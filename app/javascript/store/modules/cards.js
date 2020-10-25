@@ -7,8 +7,45 @@ const cards = {
       {
         id: '',
         list_id: '',
+        user_id: '',
         body: '',
         description: '',
+        color: '',
+        scheduled: '',
+        start: '',
+        end: '',
+        schedulized: '',
+        deadlined: ''
+      },
+    ],
+    sampleCards: [
+      {
+        sampleListId: 1,
+        body: 'サンプルです',
+        description: 'サンプルです',
+        color: '',
+        scheduled: '',
+        start: '',
+        end: '',
+        schedulized: '',
+        deadlined: ''
+      },
+      {
+        sampleListId: 2,
+        body: '服買おう',
+        description: 'イオンで',
+        color: '',
+        scheduled: '',
+        start: '',
+        end: '',
+        schedulized: '',
+        deadlined: ''
+      },
+      {
+        sampleListId: 2,
+        user_id: '',
+        body: '夕食の食材',
+        description: 'カレー',
         color: '',
         scheduled: '',
         start: '',
@@ -117,6 +154,7 @@ const cards = {
     //   return count
     // },
     cards: (state) => state.cards,
+    sampleCards: (state) => state.sampleCards,
     schedulizedCards: state => {
       return state.cards.filter(card => card.schedulized&&!card.done)
     },

@@ -139,7 +139,7 @@ import Account from 'vue-material-design-icons/Account.vue';
   font-size: 40px;
   position:fixed;
   top:3%;
-  left:65%;
+  left:63%;
   color: black;
   cursor: pointer;
 }
