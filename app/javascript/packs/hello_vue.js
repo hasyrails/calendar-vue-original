@@ -15,7 +15,7 @@ import axios from 'axios'
 import { pick } from 'lodash'
 import status from 'http-status'
 import { extend } from 'vee-validate';
-import { required, email } from 'vee-validate/dist/rules';
+import { required, email, confirmed } from 'vee-validate/dist/rules';
 
 // Add the required rule
 extend('required', {
@@ -27,6 +27,11 @@ extend('required', {
 extend('email', {
   ...email,
   message: '正しいメールアドレスの形式で入力してください'
+});
+
+extend('confirmed', {
+  ...confirmed,
+  message: '入力内容が一致していません'
 });
 
 document.addEventListener('DOMContentLoaded', () => {
