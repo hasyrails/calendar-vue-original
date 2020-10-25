@@ -54,6 +54,7 @@ export default {
     addCardToList: function() {
       this.$store.dispatch('cards/createCardAction', { body: this.body, list_id: this.list_id })
       this.body = ''
+      this.$router.go({path: this.$router.currentRoute.path, force: true})
     }
   }
 }
