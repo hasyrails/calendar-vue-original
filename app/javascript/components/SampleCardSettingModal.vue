@@ -66,14 +66,14 @@
       <div class="modal-footer" style="background-color:white; height:100px;">
           <div class="btn btn-lg btn-secondary" @click="closeSampleCardSettingModal">閉じる</div>
           <div class="btn btn-lg btn-primary" @click="cardEdit">編集する</div>
-          <div class="btn btn-lg btn-outline-warning" v-if="!card.schedulized" @click="createSchedulesFromCard">ガントチャートに追加する</div>
+          <div class="btn btn-lg btn-outline-warning" v-if="!card.schedulized" @click="createSampleSchedulesFromSampleCard">ガントチャートに追加する</div>
           <!-- <div class="btn btn-lg btn-danger" @click="deleteCard">このToDoカードを削除する</div> -->
         </div>
       </div>
-    <!-- <div>
-      <code><pre>{{date.start}}</pre></code>
-    </div>
     <div>
+      <code><pre>{{this.$store.state.schedules.sampleSchedules}}</pre></code>
+    </div>
+    <!-- <div>
       <code><pre>{{date.end}}</pre></code>
     </div> -->
     </div>
@@ -92,6 +92,7 @@ import Update from 'vue-material-design-icons/Update.vue';
 import CloseCircle from 'vue-material-design-icons/CloseCircle.vue';
 import Datepicker from 'vuejs-datepicker';
 import {ja} from 'vuejs-datepicker/dist/locale'
+import SampleCardVue from './SampleCard.vue';
 
 
 
@@ -102,10 +103,6 @@ export default {
       ja:ja,
       default: moment().format('YYYY/MM/DD'),
       DatePickerFormat: 'yyyy/MM/dd',
-      date:{
-        start: '',
-        end: '',
-      }
     }
   },
   props: {
@@ -129,10 +126,16 @@ export default {
   computed:{
   },
   methods:{
-    createSchedulesFromCard(){
-      this.card.schedulized = true
-      this.updateCard()
-      this.$emit('clickedCreateScheduleFromCardButton', this.card)
+    createSampleSchedulesFromSampleCard(){
+      if(this.card.id===1){
+        this.$store.dispatch('schedules/createSampleSchedulesActionVerFirst')
+      }
+      if(this.card.id===2){
+        this.$store.dispatch('schedules/createSampleSchedulesActionVerSecond')
+      }
+      if(this.card.id===3){
+        this.$store.dispatch('schedules/createSampleSchedulesActionVerThird')
+      }
     },
     showDatePicker(){
       this.datePickerFlag = !this.datePickerFlag
@@ -178,10 +181,6 @@ export default {
     },
     quitCardStatusEdit(){
       this.cardStatusEditFlag = false
-    },
-    updateDate(){
-      this.date.start = date.start
-      this.date.end = date.end
     },
     deleteCard(){
       this.$emit('clickedCardDeleteButton', this.card)

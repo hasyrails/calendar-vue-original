@@ -18,6 +18,7 @@ const schedules = {
           commit: '',
         }
       ],
+      sampleSchedules: [],
   },
   mutations: {
     setSchedules(state, {schedules}){
@@ -28,6 +29,15 @@ const schedules = {
     },
     createSchedule(state, payload){
       state.schedules.push(payload)
+    },
+    createSampleScheduleVerFirst(state, payload){
+      state.sampleSchedules.push(payload)
+    },
+    createSampleScheduleVerSecond(state, payload){
+      state.sampleSchedules.push(payload)
+    },
+    createSampleScheduleVerThird(state, payload){
+      state.sampleSchedules.push(payload)
     },
     deleteSchedule(state, deleteSchedule){
       const index = state.schedules.findIndex(schedule => {
@@ -95,6 +105,47 @@ const schedules = {
             commit('cards/updateCard', res.data)
           })
           .catch(error => console.log(error.response));
+    },
+    createSampleSchedulesActionVerFirst({ commit }){
+      const scheduleFirst = 
+        {
+          body: 'サンプルです',
+          done: '',
+          date: moment().format('YYYY/MM/DD'),
+          date_year: moment().year(),
+          date_month: moment().month()+1,
+          date_day: moment().date(),
+          card_id: 1,
+          user_id: '',
+          commit: '',
+        }
+        const scheduleSecond =
+        {
+          body: 'サンプルです',
+          done: '',
+          date: moment().add(1,"days").format('YYYY/MM/DD'),
+          date_year: moment().add(1,"days").year(),
+          date_month: moment().add(1,"days").month()+1,
+          date_day: moment().add(1,"days").date(),
+          card_id: 1,
+          user_id: '',
+          commit: '',
+        }
+        const scheduleThird =
+        {
+          body: 'サンプルです',
+          done: '',
+          date: moment().add(2,"days").format('YYYY/MM/DD'),
+          date_year: moment().add(2,"days").year(),
+          date_month: moment().add(2,"days").month()+1,
+          date_day: moment().add(2,"days").date(),
+          card_id: 1,
+          user_id: '',
+          commit: '',
+        }
+      commit('createSampleScheduleVerFirst',scheduleFirst)
+      commit('createSampleScheduleVerFirst',scheduleSecond)
+      commit('createSampleScheduleVerFirst',scheduleThird)
     },
     async deleteScheduleAction ({state, commit}, schedule) {
  
