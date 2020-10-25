@@ -35,7 +35,7 @@ p {
 }
 
 .app-area{
-  width: 130vw;
+  width: 150vw;
   height: 100vh;
   background: #EEFFFF;
 }
