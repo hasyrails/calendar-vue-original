@@ -23,7 +23,8 @@ export default {
     return {
       isEditing: false,
       list: {
-        title: ''
+        title: '',
+        user_id: this.$store.state.auth.user.user.data.id
       },
     }
   },
@@ -45,6 +46,9 @@ export default {
     // ...mapState('lists',{
     //   lists: 'lists',
     // }),
+    ...mapState('auth',{
+      user: 'user'
+    }),
   },
   methods: {
     addList() {

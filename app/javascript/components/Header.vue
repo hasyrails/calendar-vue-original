@@ -2,7 +2,7 @@
   <div class="app-header">
     <div class="app-header-contents">
       <router-link to="/">
-        <div class="app-header-title">初志しか勝たん<BoxingGlove :size="70"></BoxingGlove></div>
+        <div class="app-header-title">初志しか勝たん<BoxingGlove :size="70"></BoxingGlove>{{$store.state.auth.user}}</div>
         <!-- <p class="app-header-title-footer">初志貫徹アプリ</p> -->
       </router-link>
       <router-link to="/userinfo">
@@ -64,6 +64,7 @@ import Account from 'vue-material-design-icons/Account.vue';
       logout(){
         if(confirm('ログアウトしますか？')){
           this.$store.dispatch('auth/signOut')
+          this.$store.dispatch('auth/guestLogOutAction')
         }
       },
       guestLogin(){

@@ -22,16 +22,20 @@ ActiveRecord::Schema.define(version: 2020_10_10_232123) do
     t.boolean "deadlined", default: false, null: false
     t.boolean "done", default: false, null: false
     t.integer "list_id", null: false
+    t.integer "user_id", null: false
     t.date "done_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["list_id"], name: "index_cards_on_list_id"
+    t.index ["user_id"], name: "index_cards_on_user_id"
   end
 
   create_table "lists", force: :cascade do |t|
     t.string "title"
+    t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_lists_on_user_id"
   end
 
   create_table "schedules", force: :cascade do |t|
@@ -48,10 +52,12 @@ ActiveRecord::Schema.define(version: 2020_10_10_232123) do
     t.boolean "commit", default: true, null: false
     t.string "color"
     t.integer "card_id", null: false
+    t.integer "user_id", null: false
     t.date "done_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["card_id"], name: "index_schedules_on_card_id"
+    t.index ["user_id"], name: "index_schedules_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -72,7 +78,6 @@ ActiveRecord::Schema.define(version: 2020_10_10_232123) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
-    t.index [nil], name: "index_users_on_confirmation_token", unique: true
   end
 
 end

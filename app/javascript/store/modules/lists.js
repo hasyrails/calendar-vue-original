@@ -7,8 +7,19 @@ const lists = {
   state: {
     // lists: savedLists ? JSON.parse(savedLists): [
       lists: [{
-        title: ''
-      }]
+        title: '',
+        user_id: ''
+      }],
+      sampleLists: [
+        {
+          title: 'sample1',
+          user_id: ''
+        },
+        {
+          title: 'sample2',
+          user_id: ''
+        },
+      ]
   },
   mutations: {
     setLists(state, {lists}){
@@ -63,6 +74,7 @@ const lists = {
     //   return count
     // },
     lists: (state) => state.lists,
+    sampleLists: (state) => state.sampleLists,
   },
 }
 
