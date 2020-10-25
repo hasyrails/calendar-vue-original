@@ -28,6 +28,13 @@ class Api::CardsController < ApplicationController
     else
       render json: @card.errors, status: :bad_request
     end
+
+    @schedules = Schedule.where(card_id: @card.id)
+    if @schedules.present?
+      @schedules.each do |schedule|
+        schedule.update(schedule_params)
+      end
+    end
   end
 
   def destroy
@@ -54,5 +61,9 @@ class Api::CardsController < ApplicationController
 
   def card_params
     params.permit(:body, :description, :start, :end, :color, :scheduled, :list_id, :schedulized, :created_at, :updated_at, :done_at)
+  end
+
+  def schedule_params
+    params.permit(:body, :description, :start, :end, :color, :card_id, :done_at)
   end
 end
