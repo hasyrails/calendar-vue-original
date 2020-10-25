@@ -14,6 +14,20 @@ import VueCookies from 'vue-cookies'
 import axios from 'axios'
 import { pick } from 'lodash'
 import status from 'http-status'
+import { extend } from 'vee-validate';
+import { required, email } from 'vee-validate/dist/rules';
+
+// Add the required rule
+extend('required', {
+  ...required,
+  message: '入力必須の項目です'
+});
+
+// Add the email rule
+extend('email', {
+  ...email,
+  message: '正しいメールアドレスの形式で入力してください'
+});
 
 document.addEventListener('DOMContentLoaded', () => {
   const app = new Vue({
