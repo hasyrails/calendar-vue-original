@@ -11,4 +11,11 @@ class User < ActiveRecord::Base
   def token_validation_response
     as_json(only: [:id, :email, :uid, :allow_password_change, :name, :nickname, :image])
   end
+
+  def self.guest
+    find_or_create_by!(email: 'guest@example.com') do |user|
+      user.password = SecureRandom.urlsafe_base64
+      # user.confirmed_at = Time.now  # Confirmable を使用している場合は必要
+    end
+  end
 end

@@ -9,10 +9,22 @@
         <div class="user-icon" v-if="$store.state.auth.headers">
           <img style="border-radius:50%;" :src="src" width="100" height="100">
         </div>
+        <div class="user-icon" v-if="$store.state.auth.user&&!$store.state.auth.headers">
+          <Account :size="120"></Account>
+        </div>
       </router-link>
         <div class="user-name" v-if="$store.state.auth.headers">
           {{ this.$store.state.auth.user.user.data.name }}さん
         </div>
+        <div class="user-name" v-if="$store.state.auth.user&&!$store.state.auth.headers">
+          {{ this.$store.state.auth.user.user.name }}さん
+        </div>
+      <div v-if="!$store.state.auth.user">
+        <div class="app-header-link-guest-login" @click="guestLogin">ゲストログイン</div>
+      </div>
+      <div v-if="$store.state.auth.user&&!$store.state.auth.headers">
+        <div class="app-header-link-guest-logout" @click="guestLogOut">ログアウト（ゲスト）</div>
+      </div>
       <div class="app-header-link unlogin-user-link" v-if="!$store.state.auth.headers">
         <router-link to="/register">
           <div class="app-header-link-register">ユーザー登録</div>
@@ -34,6 +46,7 @@
 <script>
 import {mapState} from 'vuex'
 import BoxingGlove from 'vue-material-design-icons/BoxingGlove.vue';
+import Account from 'vue-material-design-icons/Account.vue';
 
   export default {
     name: 'Header',
@@ -45,12 +58,19 @@ import BoxingGlove from 'vue-material-design-icons/BoxingGlove.vue';
     },
     components:{
       BoxingGlove,
+      Account,
     },
     methods:{
       logout(){
         if(confirm('ログアウトしますか？')){
           this.$store.dispatch('auth/signOut')
         }
+      },
+      guestLogin(){
+        this.$store.dispatch('auth/guestLoginAction')
+      },
+      guestLogOut(){
+        this.$store.dispatch('auth/guestLogOutAction')
       }
     }
   }
@@ -106,13 +126,31 @@ import BoxingGlove from 'vue-material-design-icons/BoxingGlove.vue';
   /* justify-content: space-between; */
 }
 
+.app-header-link-guest-login{
+  font-size: 40px;
+  position:fixed;
+  top:3%;
+  left:68%;
+  color: black;
+  cursor: pointer;
+}
+.app-header-link-guest-logout{
+  font-size: 40px;
+  position:fixed;
+  top:3%;
+  left:65%;
+  color: black;
+  cursor: pointer;
+}
+
 .app-header-link-register{
   /* margin-left:10px; */
   /* margin-right:100px; */
   position:fixed;
   top:3%;
-  left:80%;
+  left:79%;
   color: black;
+  cursor: pointer;
   /* width:200px; */
 }
 .app-header-link-login{
@@ -122,6 +160,7 @@ import BoxingGlove from 'vue-material-design-icons/BoxingGlove.vue';
   top:3%;
   left:90%;
   color: black;
+  cursor: pointer;
   /* width:300px; */
 }
 .app-header-link-logout{
