@@ -1,70 +1,61 @@
 <template>
 <div class="user-info-graph">
   <div class="record">
-    <div>{{ sixDaysAgoYYMMDD }}</div>
-    <div class="tumiage" v-for="doneCard in doneCards">
-      <WeightLifter size="100"></WeightLifter>
-      {{ doneCard.body }}
-      {{ doneCard.done_at }}
+    <div class="record-date">{{ sixDaysAgoYYMMDD }}</div>
+    <div class="tumiage" v-for="doneCard in doneAtSixDaysAgoCards">
+      <div><WeightLifter :size="60" fillColor="orange"></WeightLifter></div>
+      <div class="done-card-body">{{ doneCard.body }}</div>
     </div>
   </div>
   
   <div class="record">
-    <div>{{ fiveDaysAgoYYMMDD }}</div>
-    <div class="tumiage" v-for="doneCard in doneCards">
-      <WeightLifter size="100"></WeightLifter>
-      {{ doneCard.body }}
-      {{ doneCard.done_at }}
+    <div class="record-date">{{ fiveDaysAgoYYMMDD }}</div>
+    <div class="tumiage" v-for="doneCard in doneAtFiveDaysAgoCards">
+      <div><WeightLifter :size="60" fillColor="orange"></WeightLifter></div>
+      <div class="done-card-body">{{ doneCard.body }}</div>
     </div>
   </div>
   
   <div class="record">
-    <div>{{ fourDaysAgoYYMMDD }}</div>
-    <div class="tumiage" v-for="doneCard in doneCards">
-      <WeightLifter size="100"></WeightLifter>
-      {{ doneCard.body }}
-      {{ doneCard.done_at }}
+    <div class="record-date">{{ fourDaysAgoYYMMDD }}</div>
+    <div class="tumiage" v-for="doneCard in doneAtFourDaysAgoCards">
+      <div><WeightLifter :size="60" fillColor="orange"></WeightLifter></div>
+      <div class="done-card-body">{{ doneCard.body }}</div>
     </div>
   </div>
   
   <div class="record">
-    <div>{{ threeDaysAgoYYMMDD }}</div>
-    <div class="tumiage" v-for="doneCard in doneCards">
-      <WeightLifter size="100"></WeightLifter>
-      {{ doneCard.body }}
-      {{ doneCard.done_at }}
+    <div class="record-date">{{ threeDaysAgoYYMMDD }}</div>
+    <div class="tumiage" v-for="doneCard in doneAtThreeDaysAgoCards">
+      <div><WeightLifter :size="60" fillColor="orange"></WeightLifter></div>
+      <div class="done-card-body">{{ doneCard.body }}</div>
     </div>
   </div>
   
   <div class="record">
-    <div>{{ twoDaysAgoYYMMDD }}</div>
-    <div class="tumiage" v-for="doneCard in doneCards">
-      <WeightLifter size="100"></WeightLifter>
-      {{ doneCard.body }}
-      {{ doneCard.done_at }}
+    <div class="record-date">{{ twoDaysAgoYYMMDD }}</div>
+    <div class="tumiage" v-for="doneCard in doneAtTwoDaysAgoCards">
+      <div><WeightLifter :size="60" fillColor="orange"></WeightLifter></div>
+      <div class="done-card-body">{{ doneCard.body }}</div>
     </div>
   </div>
   
   <div class="record">
-    <div>{{ oneDaysAgoYYMMDD }}</div>
+    <div class="record-date">{{ oneDaysAgoYYMMDD }}</div>
     <div class="tumiage" v-for="doneCard in doneAtOneDaysAgoCards">
-      <WeightLifter size="100"></WeightLifter>
-      {{ doneCard.body }}
-      {{ doneCard.done_at }}
+      <div><WeightLifter :size="60" fillColor="orange"></WeightLifter></div>
+      <div class="done-card-body">{{ doneCard.body }}</div>
     </div>
   </div>
   
   <div class="record">
-    <div>{{ currentYYMMDD }}</div>
+    <div class="record-date">{{ currentYYMMDD }}</div>
     <div class="tumiage" v-for="doneCard in doneAtTodayCards">
-      <WeightLifter size="100"></WeightLifter>
-      {{ doneCard.body }}
-      {{ doneCard.done_at }}
+      <div><WeightLifter :size="60" fillColor="orange"></WeightLifter></div>
+      <div class="done-card-body">{{ doneCard.body }}</div>
     </div>
   </div>
 
-  <div @click="confirmCurrentHyphenedCurrentYYMMDD"><button>confirmCurrentHyphenedCurrentYYMMDD</button></div>
-  
 </div>
 </template>
 
@@ -107,6 +98,21 @@ export default{
     doneAtOneDaysAgoCards() {
        return this.$store.getters['cards/doneCards'].filter(card=>card.done_at===this.hyphenedOneDaysAgoYYMMDD)
     },
+    doneAtTwoDaysAgoCards() {
+       return this.$store.getters['cards/doneCards'].filter(card=>card.done_at===this.hyphenedTwoDaysAgoYYMMDD)
+    },
+    doneAtThreeDaysAgoCards() {
+       return this.$store.getters['cards/doneCards'].filter(card=>card.done_at===this.hyphenedThreeDaysAgoYYMMDD)
+    },
+    doneAtFourDaysAgoCards() {
+       return this.$store.getters['cards/doneCards'].filter(card=>card.done_at===this.hyphenedFourDaysAgoYYMMDD)
+    },
+    doneAtFiveDaysAgoCards() {
+       return this.$store.getters['cards/doneCards'].filter(card=>card.done_at===this.hyphenedFiveDaysAgoYYMMDD)
+    },
+    doneAtSixDaysAgoCards() {
+       return this.$store.getters['cards/doneCards'].filter(card=>card.done_at===this.hyphenedSixDaysAgoYYMMDD)
+    },
   },
 }
 </script>
@@ -120,5 +126,15 @@ export default{
 .record{
   margin-left: 20%;
   display: flex;
+}
+.record-date{
+  margin-top: 1%;
+}
+.tumiage{
+  margin-top: 1%;
+  margin-left: 1%;
+}
+.done-card-body{
+  font-size: 20px;
 }
 </style>

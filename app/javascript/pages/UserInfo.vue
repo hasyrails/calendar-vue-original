@@ -57,7 +57,7 @@
         <div class="user-graph-item">
           初志の勝率：
         </div>
-        <div class="user-graph">
+        <div class="user-graph purun">
           {{percentage}} %
         </div>
       </div>
@@ -199,13 +199,13 @@ height: 100%; */
 }
 .schedulized-cards-item{
   position: fixed;
-  top:45%;
+  top:43%;
   left: 50%;
   font-size: 40px;
 }
 .schedulized-cards{
   position: fixed;
-  top: 45%;
+  top: 43%;
   left: 70%;
   font-size: 40px;
 }
@@ -217,7 +217,20 @@ height: 100%; */
 }
 .graph{
   position: fixed;
-  top: 50%;
+  top: 48%;
   font-size: 40px;
+}
+
+.purun {
+  animation: purun 0.8s linear 0s 1;
+}
+
+@keyframes purun {
+  0%   { transform: scale(1.0, 1.0) translate(0%, 0%); }
+  15%  { transform: scale(0.9, 0.9) translate(0%, 5%); }
+  30%  { transform: scale(1.3, 0.8) translate(0%, 10%); }
+  50%  { transform: scale(0.8, 1.3) translate(0%, -10%); }
+  70%  { transform: scale(1.1, 0.9) translate(0%, 5%); }
+  100% { transform: scale(1.0, 1.0) translate(0%, 0%); }
 }
 </style>
