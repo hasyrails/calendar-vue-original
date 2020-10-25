@@ -31,14 +31,14 @@
           :list="cards"
           @sort="$emit('change')"
         >
-          <Card v-for="card in sampleCards"
+          <SampleCard v-for="card in sampleCards"
             :key="card.id"
             :card="card"
             :list_id="list_id"
             @clickCardSettingButton="openCardSettingModal(card)"
             v-if="sampleListId===card.sampleListId"
             @cardBodyFormComplete="updateCard"
-          ></Card>
+          ></SampleCard>
         </draggable>
 
       </div>
@@ -62,6 +62,7 @@
 <script>
 import CardAdd from '../components/CardAdd'
 import Card from '../components/Card'
+import SampleCard from '../components/SampleCard'
 import CardSettingModal from '../components/CardSettingModal'
 import CardToGanttChartModal from '../components/CardToGanttChartModal'
 
@@ -131,6 +132,7 @@ export default {
   components:{
     CardAdd,
     Card,
+    SampleCard,
     CardSettingModal,
     // CardEditModal,
     CardToGanttChartModal,
