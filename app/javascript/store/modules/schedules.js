@@ -14,6 +14,7 @@ const schedules = {
           date_month: '',
           date_day: '',
           card_id: '',
+          user_id: '',
           commit: '',
         }
       ],
@@ -75,7 +76,8 @@ const schedules = {
           date_year: new Date(currentDate).getFullYear(),
           date_month: new Date(currentDate).getMonth()+1,
           date_day: new Date(currentDate).getDate(),
-          card_id: card.id
+          card_id: card.id,
+          user_id: card.user_id
         }
 
         await axios.post('api/schedules', schedule)
