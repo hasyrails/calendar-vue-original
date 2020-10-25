@@ -9,13 +9,13 @@
         style="margin-top:50px;"
         ></ListAdd>
       </div>
-      <div class="todo-lists">
+      <div class="todo-lists" v-if="$store.state.auth.user&&$store.state.auth.headers">
         <draggable
           :list="lists"
           class="list-index"
           @end="movingList"
           >
-          <List v-for="list in lists"
+          <List v-for="list in ownLists"
             style="margin-top:50px;margin-bottom:50px;"
             class="slide"
             :list="list"
@@ -25,6 +25,17 @@
             @change="movingCard"
           ></List>
         </draggable>
+      </div>
+     <div class="todo-lists" v-if="$store.state.auth.user&&!$store.state.auth.headers">
+        <List v-for="list in sampleLists"
+          style="margin-top:50px;margin-bottom:50px;"
+          class="slide"
+          :list="list"
+          :key="list.id"
+          :list_id="list.id"
+          :title="list.title"
+          @change="movingCard"
+        ></List>
       </div>
   </div>
 </template>
@@ -47,7 +58,13 @@ export default {
     }),
     totalCardCount() {
       return this.$store.getters.totalCardCount
-    }
+    },
+    ownLists() {
+       return this.$store.getters['lists/lists'].filter(list=>list.user_id===this.$store.state.auth.user.user.data.id)
+    },
+    sampleLists() {
+       return this.$store.getters['lists/sampleLists']
+    },
   },
   mounted(){
     this.$store.dispatch('lists/fetchListsAction')
@@ -62,7 +79,7 @@ export default {
     movingList: function() {
       this.$store.dispatch('lists/updateList', { lists: this.lists })
     }
-  }
+  },
 }
 </script>
 
