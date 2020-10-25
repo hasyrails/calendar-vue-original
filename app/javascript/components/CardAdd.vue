@@ -52,7 +52,13 @@ export default {
       this.isEditing = false
     },
     addCardToList: function() {
-      this.$store.dispatch('cards/createCardAction', { body: this.body, list_id: this.list_id })
+      this.$store.dispatch('cards/createCardAction',
+        { 
+          body: this.body, 
+          list_id: this.list_id,
+          user_id: this.$store.state.auth.user.user.data.id
+        }
+      )
       this.body = ''
       this.$router.go({path: this.$router.currentRoute.path, force: true})
     }

@@ -9,20 +9,39 @@
       <div>
         <CardAdd :list_id="list_id"></CardAdd>
       </div>
-      <draggable
-        :options="options"
-        :list="cards"
-        @sort="$emit('change')"
-      >
-        <Card v-for="card in cards"
-          :key="card.id"
-          :card="card"
-          :list_id="list_id"
-          @clickCardSettingButton="openCardSettingModal(card)"
-          v-if="list_id===card.list_id&&card.done===false"
-          @cardBodyFormComplete="updateCard"
-        ></Card>
-      </draggable>
+      <div v-if="$store.state.auth.user&&$store.state.auth.headers">
+        <draggable
+          :options="options"
+          :list="cards"
+          @sort="$emit('change')"
+        >
+          <Card v-for="card in ownCards"
+            :key="card.id"
+            :card="card"
+            :list_id="list_id"
+            @clickCardSettingButton="openCardSettingModal(card)"
+            v-if="list_id===card.list_id&&card.done===false"
+            @cardBodyFormComplete="updateCard"
+          ></Card>
+        </draggable>
+      </div>
+      <div v-if="$store.state.auth.user&&!$store.state.auth.headers">
+        <draggable
+          :options="options"
+          :list="cards"
+          @sort="$emit('change')"
+        >
+          <Card v-for="card in sampleCards"
+            :key="card.id"
+            :card="card"
+            :list_id="list_id"
+            @clickCardSettingButton="openCardSettingModal(card)"
+            v-if="sampleListId===card.sampleListId"
+            @cardBodyFormComplete="updateCard"
+          ></Card>
+        </draggable>
+
+      </div>
     </div>
     <div>
       <CardSettingModal 
@@ -80,6 +99,10 @@ export default {
     list_id: {
       type: Number,
       required: true
+    },
+    sampleListId: {
+      type: Number,
+      required: true
     }
   },
   computed: {
@@ -95,6 +118,12 @@ export default {
     // ...mapState('lists',{
     //   lists: 'lists'
     // }),
+    ownCards() {
+       return this.$store.getters['cards/cards'].filter(card=>card.user_id===this.$store.state.auth.user.user.data.id)
+    },
+    sampleCards() {
+       return this.$store.getters['cards/sampleCards']
+    },
   },
   mounted(){
     this.$store.dispatch('cards/fetchCardsAction')

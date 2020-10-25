@@ -12,11 +12,13 @@ const lists = {
       }],
       sampleLists: [
         {
-          title: 'sample1',
+          sampleListId: 1,
+          title: 'サンプルです',
           user_id: ''
         },
         {
-          title: 'sample2',
+          sampleListId: 2,
+          title: '買い物',
           user_id: ''
         },
       ]

@@ -32,7 +32,7 @@
           class="slide"
           :list="list"
           :key="list.id"
-          :list_id="list.id"
+          :sampleListId="list.sampleListId"
           :title="list.title"
           @change="movingCard"
         ></List>
