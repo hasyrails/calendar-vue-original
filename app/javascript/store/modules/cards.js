@@ -118,7 +118,7 @@ const cards = {
     // },
     cards: (state) => state.cards,
     schedulizedCards: state => {
-      return state.cards.filter(card => card.schedulized)
+      return state.cards.filter(card => card.schedulized&&!card.done)
     },
     deadlinedCards: state => {
       return state.cards.filter(card => card.deadlined)

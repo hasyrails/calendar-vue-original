@@ -16,7 +16,7 @@ class CreateSchedules < ActiveRecord::Migration[5.2]
       
       t.references  :card, null: false, foreign_key: true
 
-      t.datetime :done_at
+      t.date :done_at
 
       t.timestamps
     end

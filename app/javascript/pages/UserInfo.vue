@@ -57,20 +57,28 @@
         <div class="user-graph-item">
           初志の勝率：
         </div>
-        <div class="user-graph">
+        <div class="user-graph purun">
           {{percentage}} %
         </div>
+      </div>
+      <div class="graph">
+        <UserInfoGraph></UserInfoGraph>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import UserInfoGraph from '../components/UserInfoGraph.vue'
+
 export default {
   data(){
     return{
       src: this.$store.state.auth.user.user.data.image,
     }
+  },
+  components:{
+    UserInfoGraph
   },
   computed:{
     percentage(){
@@ -155,56 +163,74 @@ height: 100%; */
 }
 .user-graph-item{
   position: fixed;
-  top: 17%;
-  left: 50%;
+  top: 15%;
+  left: 45%;
   font-size: 100px;
 }
 .user-graph{
   position: fixed;
-  top: 17%;
-  left: 80%;
+  top: 15%;
+  left: 70%;
   font-size: 100px;
 }
 .finished-cards-item{
   position: fixed;
-  top: 30%;
+  top: 25%;
   left: 50%;
   font-size: 40px;
 }
 .finished-cards{
   position: fixed;
-  top: 30%;
+  top: 25%;
   left: 70%;
   font-size: 40px;
 }
 .deadlined-cards-item{
   position: fixed;
-  top: 40%;
+  top: 35%;
   left: 50%;
   font-size: 40px;
 }
 .deadlined-cards{
   position: fixed;
-  top: 40%;
+  top: 35%;
   left: 70%;
   font-size: 40px;
 }
 .schedulized-cards-item{
   position: fixed;
-  top:60%;
+  top:43%;
   left: 50%;
   font-size: 40px;
 }
 .schedulized-cards{
   position: fixed;
-  top: 60%;
+  top: 43%;
   left: 70%;
   font-size: 40px;
 }
 .counted-cards{
   position: fixed;
-  top: 35%;
+  top: 30%;
   left: 80%;
   font-size: 40px;
+}
+.graph{
+  position: fixed;
+  top: 48%;
+  font-size: 40px;
+}
+
+.purun {
+  animation: purun 0.8s linear 0s 1;
+}
+
+@keyframes purun {
+  0%   { transform: scale(1.0, 1.0) translate(0%, 0%); }
+  15%  { transform: scale(0.9, 0.9) translate(0%, 5%); }
+  30%  { transform: scale(1.3, 0.8) translate(0%, 10%); }
+  50%  { transform: scale(0.8, 1.3) translate(0%, -10%); }
+  70%  { transform: scale(1.1, 0.9) translate(0%, 5%); }
+  100% { transform: scale(1.0, 1.0) translate(0%, 0%); }
 }
 </style>
