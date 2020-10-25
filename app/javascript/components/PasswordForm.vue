@@ -4,17 +4,19 @@
     <h2>パスワードを入力してください</h2>
     <div class="form-group">
       <label for="password">パスワード</label>
-      <input type="text" class="form-control form-control-lg" v-model="password" placeholder="Enter Password">
+      <input type="password" class="form-control form-control-lg" v-model="password" placeholder="Enter Password">
     </div>
     <div class="form-group">
       <label for="userName">パスワード(確認)</label>
-      <input type="text" class="form-control form-control-lg" v-model="password_confirmation" placeholder="Enter Password Confirmation">
+      <input type="password" class="form-control form-control-lg" v-model="password_confirmation" placeholder="Enter Password Confirmation">
     </div>
   </form>
   </div>
 </template>
 
 <script>
+import Eye from 'vue-material-design-icons/Eye.vue';
+
 export default {
   name: 'PasswordForm',
   data(){
@@ -23,14 +25,17 @@ export default {
       password_confirmation: null
     }
   },
+  components:{
+    Eye
+  },
   methods: {
 		submit(){
 			this.$emit('update',{
 				password: this.password,
 				password_confirmation: this.password_confirmation
 			});
-		}
-	}
+    },
+  }
 }
 </script>
 

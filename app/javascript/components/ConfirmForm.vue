@@ -5,8 +5,14 @@
 		  <div class="confirm-contents">
 		    <div>ユーザー名: {{ form.name }} </div>
 		    <div>メールアドレス: {{ form.email }}</div>
-		    <div>パスワード: {{ form.password }}</div>
-		    <div>パスワード（確認）: {{ form.password_confirmation }}</div>
+				<div class="password">
+		    	<div>パスワード: </div>
+					<div v-for="password in form.password">●</div>
+				</div>
+				<div class="password">
+		    	<div>パスワード(確認): </div>
+					<div v-for="password_confirmation in form.password_confirmation">●</div>
+				</div>
 		  </div>
 		  <div class="btn btn-green register-btn" @click="register">登録する</div>
 		</div>
@@ -59,5 +65,9 @@ export default {
   color: black;
   background-color: #00FF99;
   border-color: #00FF99;
+}
+
+.password{
+	display: flex;
 }
 </style>
