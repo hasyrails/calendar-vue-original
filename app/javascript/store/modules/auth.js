@@ -44,11 +44,19 @@ const auth = {
             "user": payload
           }
         },
+        guestLogin(state, payload) {
+          state.user = {
+            "user": payload
+          }
+        },
 
     
     //サインアウトしたらヘッダを空にしておく。
         signOut(state) {
           state.headers = null;
+        },
+        guestLogOut(state) {
+          state.user = null;
         },
       },
     
@@ -66,15 +74,27 @@ const auth = {
           },
           userInfo({state, commit}){
             axios
-              .get('/api/whoami', {
-                headers: {
-                  header: state.header
-                }
-              })
-              .then(function (response) {
-                commit('userInfo', response.data);
+            .get('/api/whoami', {
+              headers: {
+                header: state.header
               }
+            })
+            .then(function (response) {
+              commit('userInfo', response.data);
+            }
             )
+          },
+          guestLoginAction({commit}){
+            axios.post('/api/users/guest_sign_in')
+            .then(function(response){
+              commit('guestLogin', response.data);
+            })
+          },
+          guestLogOutAction({state, commit}){
+            axios.post('/api/users/guest_logout', state.user)
+            .then(function(response){
+              commit('guestLogOut', response.data);
+            })
           },
         //ここでレスポンスヘッダを受け取る。
           signOut(context) {
@@ -85,6 +105,7 @@ const auth = {
               context.commit('signOut');
           })
         },
+
       },
 }
 

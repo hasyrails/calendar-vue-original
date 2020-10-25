@@ -14,6 +14,10 @@ Rails.application.routes.draw do
     resources :lists
     resources :cards
     get '/whoami', to: 'sessions#whoami'
+    devise_scope :user do
+      post 'users/guest_sign_in', to: 'users#new_guest'
+      post 'users/guest_logout', to: 'users#guest_logout'
+    end
   end
   get '*path', to: 'home#index'
 end
