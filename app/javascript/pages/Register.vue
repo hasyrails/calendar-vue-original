@@ -26,6 +26,7 @@
     <!-- <pre><code>{{form}}</code></pre> -->
 		</div>
 	</div>
+  <div class="error-message">{{message}}</div>
 </div>
 </template>
 
@@ -47,12 +48,13 @@ export default {
     return{
       stepNumber: 1,
 			form: {
-				name: null,
-        email: null,
-        image: null,
-        password: null,
-        password_confirmation: null,
-			}
+				name: '',
+        email: '',
+        image: '',
+        password: '',
+        password_confirmation: '',
+      },
+      message: ''
     }
   },
   components: {
@@ -84,7 +86,19 @@ export default {
           })
           this.$router.push('login')
         })
-      .catch(error => console.log(error.res));
+      .catch(
+        error =>{
+          console.log(error)
+          if(error){
+            this.message = 'ユーザー登録に失敗しました'
+            setTimeout(() => {
+              this.message = ''
+            }
+            ,1500
+            )
+          }
+        } 
+      );
     }
 	}
 }
@@ -126,5 +140,13 @@ export default {
 }
 .register-step-next-button-label {
   text-align: center;
+}
+
+.error-message{
+  color:red;
+  font-size:20px;
+  position: fixed;
+  top:40%;
+  left:61%;
 }
 </style>

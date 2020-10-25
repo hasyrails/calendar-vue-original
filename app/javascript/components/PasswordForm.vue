@@ -4,11 +4,21 @@
     <h2>パスワードを入力してください</h2>
     <div class="form-group">
       <label for="password">パスワード</label>
-      <input type="password" class="form-control form-control-lg" v-model="password" placeholder="Enter Password">
+      <ValidationProvider name="password" rules="required|password">
+        <div slot-scope="{ errors }">
+        <input type="password" class="form-control form-control-lg" v-model="password" placeholder="Enter Password">
+          <p class="error-message">{{ errors[0] }}</p>
+        </div>
+      </ValidationProvider>
     </div>
     <div class="form-group">
       <label for="userName">パスワード(確認)</label>
-      <input type="password" class="form-control form-control-lg" v-model="password_confirmation" placeholder="Enter Password Confirmation">
+      <ValidationProvider name="password_confirmation" rules="required|confirmed:password">
+        <div slot-scope="{ errors }">
+        <input type="password" class="form-control form-control-lg" v-model="password_confirmation" placeholder="Enter Password">
+          <p class="error-message">{{ errors[0] }}</p>
+        </div>
+      </ValidationProvider>
     </div>
   </form>
   </div>
@@ -16,6 +26,7 @@
 
 <script>
 import Eye from 'vue-material-design-icons/Eye.vue';
+import { ValidationProvider } from 'vee-validate';
 
 export default {
   name: 'PasswordForm',
@@ -26,7 +37,8 @@ export default {
     }
   },
   components:{
-    Eye
+    Eye,
+    ValidationProvider
   },
   methods: {
 		submit(){
@@ -53,5 +65,10 @@ export default {
 
   .form-control{
     width: 50%;
+  }
+
+  .error-message{
+    color: red;
+    font-size:20px;
   }
 </style>
