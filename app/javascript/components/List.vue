@@ -31,19 +31,18 @@
           :list="cards"
           @sort="$emit('change')"
         >
-          <Card v-for="card in sampleCards"
-            :key="card.id"
-            :card="card"
-            :list_id="list_id"
-            @clickCardSettingButton="openCardSettingModal(card)"
-            v-if="sampleListId===card.sampleListId"
+          <SampleCard v-for="sampleCard in sampleCards"
+            :key="sampleCard.id"
+            :sampleCard="sampleCard"
+            @clickSampleCardSettingButton="openSampleCardSettingModal(sampleCard)"
+            v-if="sampleListId===sampleCard.sampleListId"
             @cardBodyFormComplete="updateCard"
-          ></Card>
+          ></SampleCard>
         </draggable>
 
       </div>
     </div>
-    <div>
+    <div v-if="$store.state.auth.user&&$store.state.auth.headers">
       <CardSettingModal 
       :card="cardDetail"
       :list="list"
@@ -56,13 +55,27 @@
       @clickedCreateScheduleFromCardButton="createSchedulesFromCard"
       ></CardSettingModal>
     </div>
+    <div v-if="$store.state.auth.user&&!$store.state.auth.headers">
+      <SampleCardSettingModal 
+      :card="sampleCardDetail"
+      :list="list"
+      v-if="sampleCardModalFlag"
+      @clickSampleCardSettingModalCloseButton="closeSampleCardSettingModal"
+      @updateCard="updateCard"
+      @clickedCardDeleteButton="deleteCard"
+      @selectedValueScheduled="openCardToGanttChartModal"
+      @clickedCreateScheduleFromCardButton="createSchedulesFromCard"
+      ></SampleCardSettingModal>
+    </div>
   </div>
 </template>
 
 <script>
 import CardAdd from '../components/CardAdd'
 import Card from '../components/Card'
+import SampleCard from '../components/SampleCard'
 import CardSettingModal from '../components/CardSettingModal'
+import SampleCardSettingModal from '../components/SampleCardSettingModal'
 import CardToGanttChartModal from '../components/CardToGanttChartModal'
 
 import draggable from "vuedraggable";
@@ -81,6 +94,7 @@ export default {
         animation: 200
       },
       cardSettingModalFlag: false,
+      sampleCardModalFlag: false,
     }
   },
   props: {
@@ -131,7 +145,9 @@ export default {
   components:{
     CardAdd,
     Card,
+    SampleCard,
     CardSettingModal,
+    SampleCardSettingModal,
     // CardEditModal,
     CardToGanttChartModal,
     draggable
@@ -167,7 +183,10 @@ export default {
     openCardSettingModal(card){
       this.cardDetail = card
       this.cardSettingModalFlag = true
-      this.cardEdit = card
+    },
+    openSampleCardSettingModal(card){
+      this.sampleCardDetail = card
+      this.sampleCardModalFlag = true
     },
     openCardEditModal(card){
       this.closeCardSettingModal()
@@ -176,6 +195,9 @@ export default {
     },
     closeCardSettingModal(){
       this.cardSettingModalFlag = false
+    },
+    closeSampleCardSettingModal(){
+      this.sampleCardModalFlag = false
     },
     closeCardToGanttChartModal(){
       this.cardToGanttChartModalFlag = false
