@@ -1,4 +1,5 @@
 import axios from 'axios'
+import moment from "moment";
 
 const cards = {
   namespaced: true,
@@ -25,8 +26,8 @@ const cards = {
         description: 'サンプルです',
         color: '',
         scheduled: '',
-        start: '',
-        end: '',
+        start: moment().format('YYYY/MM/DD'),
+        end: moment().add(2, "days").format('YYYY/MM/DD'),
         schedulized: '',
         deadlined: ''
       },
@@ -36,8 +37,8 @@ const cards = {
         description: 'イオンで',
         color: '',
         scheduled: '',
-        start: '',
-        end: '',
+        start: moment().add(1, "days").format('YYYY/MM/DD'),
+        end: moment().add(3, "days").format('YYYY/MM/DD'),
         schedulized: '',
         deadlined: ''
       },
@@ -48,8 +49,8 @@ const cards = {
         description: 'カレー',
         color: '',
         scheduled: '',
-        start: '',
-        end: '',
+        start: moment().add(2, "days").format('YYYY/MM/DD'),
+        end: moment().add(3, "days").format('YYYY/MM/DD'),
         schedulized: '',
         deadlined: ''
       },

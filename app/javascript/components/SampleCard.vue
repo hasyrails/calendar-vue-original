@@ -1,31 +1,15 @@
 <template>
-  <div class="card" :class="classCard"
-  :style="'background-color:'+card.color+';'">
+  <div class="card">
     <div class="card-main">
-      <div class="card-icon" v-if="card.schedulized===true&&card.done===false"><CalendarImport fillColor="#FFA500" :size="30"></CalendarImport></div>
-      <div class="card-icon" v-if="card.done===true"><Star fillColor="#FFA500" :size="30"></Star></div>
-      <div class="body" v-if="!cardBodyEditFlag" @click="cardBodyEdit">
-        {{ card.body }}
-      </div>
-    </div>
-    <div class="body" v-if="!cardBodyEditFlag&&card.body.length===0" @click="cardBodyEdit">
-      <Pencil :size="40"></Pencil>
-    </div>
-    <div class="card-body-editng" v-if="cardBodyEditFlag&&card.deadlined===false">
-      <form  class="body" @submit.prevent="updateCard" style="-moz-box-shadow: inset 0 0 4px rgba(0,0,0,0.2);
-      -webkit-box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.2);
-      box-shadow: inner 0 0 4px rgba(150, 180, 200, 0.2);">
-        <input v-model="card.body"
-        type="text" 
-        style="outline:blue;"></input>
-      </form>
-      <div @click="quitCardBodyEdit">
-        <CloseCircle :size="30"></CloseCircle>
+      <div class="card-icon" v-if="sampleCard.schedulized===true&&sampleCard.done===false"><CalendarImport fillColor="#FFA500" :size="30"></CalendarImport></div>
+      <div class="card-icon" v-if="sampleCard.done===true"><Star fillColor="#FFA500" :size="30"></Star></div>
+      <div class="body">
+        {{ sampleCard.body }}
       </div>
     </div>
     <div class="card-handle-button" >
       <div class="show-detail-button">
-        <Cog fillColor="grey" :size="30" @click="openCardSettingModal"></Cog>
+        <Cog fillColor="grey" :size="30" @click="openSampleCardSettingModal"></Cog>
       </div>
       <!-- <div class="close-button" @click="deleteCard">
         <TrashCanOutline fillColor="red" :size="30"></TrashCanOutline>
@@ -49,14 +33,14 @@ export default {
     }
   },
   props: {
-    card: {
+    sampleCard: {
       type: Object,
       required: true
     },
-    list_id: {
-      type: Number,
-      required: true
-    },
+    // list_id: {
+    //   type: Number,
+    //   required: true
+    // },
     // cardIndex: {
     //   type: Number,
     //   required: true
@@ -97,8 +81,8 @@ export default {
         this.$router.go({path: this.$router.currentRoute.path, force: true})
       }
     },
-    openCardSettingModal(body){
-      this.$emit('clickCardSettingButton', this.body)
+    openSampleCardSettingModal(body){
+      this.$emit('clickSampleCardSettingButton', this.body)
     },
     cardBodyEdit(){
       this.cardBodyEditFlag = true
