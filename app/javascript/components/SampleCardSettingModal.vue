@@ -65,7 +65,7 @@
     </div>
       <div class="modal-footer" style="background-color:white; height:100px;">
           <div class="btn btn-lg btn-secondary" @click="closeSampleCardSettingModal">閉じる</div>
-          <div class="btn btn-lg btn-primary" @click="cardEdit">編集する</div>
+          <!-- <div class="btn btn-lg btn-primary" @click="cardEdit">編集する</div> -->
           <div class="btn btn-lg btn-outline-warning" v-if="!card.schedulized" @click="createSampleSchedulesFromSampleCard">ガントチャートに追加する</div>
           <!-- <div class="btn btn-lg btn-danger" @click="deleteCard">このToDoカードを削除する</div> -->
         </div>

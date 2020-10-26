@@ -8,8 +8,20 @@
       class="btn btn-primary btn-lg button-to-ganttchart-of-done"
       style="width:400px;"
       @click="showDone"
+      v-if="$store.state.auth.user&&$store.state.auth.headers"
       >
         <Paw size="50"></Paw>完遂の軌跡 <Paw size="50"></Paw>
+      </div>
+      <div>
+        <div style="color:blue; font-size:15px;font-weight:bold;margin-left:5px;">{{message}}</div>
+        <div
+        class="btn btn-primary btn-lg button-to-ganttchart-of-done purun"
+        style="width:400px;"
+        v-if="$store.state.auth.user&&!$store.state.auth.headers"
+        @click="loginInvitationMassage"
+        >
+          <Key size="50"></Key>完遂の軌跡 <Key size="50"></Key>
+        </div>
       </div>
       <div class="datepicker" style="margin-left:100px;" @mouseover="calendarIconBallonDisplay" @mouseleave="calendarIconBallonNonDisplay"
       @click="showDatePicker">
@@ -44,6 +56,7 @@ import ChevronLeft from 'vue-material-design-icons/ChevronLeft.vue';
 import ChevronRight from 'vue-material-design-icons/ChevronRight.vue';
 import Home from 'vue-material-design-icons/Home.vue';
 import Paw from 'vue-material-design-icons/Paw.vue';
+import Key from 'vue-material-design-icons/Key.vue';
 import Calendar from 'vue-material-design-icons/Calendar.vue';
 
 
@@ -54,6 +67,7 @@ export default {
       calendarIconBallonFlag: false,
       homeIconBallonFlag: false,
       // datePickerFlag: false
+      message: '',
     }
   },
   props:{
@@ -67,6 +81,7 @@ export default {
     ChevronRight,
     Home,
     Paw,
+    Key,
     Calendar,
   },
   methods:{
@@ -102,6 +117,14 @@ export default {
     },
     showDone(){
       this.$emit('showDoneSchedules')
+    },
+    loginInvitationMassage(){
+      this.message = 'ユーザー登録・ログインすると使えるようになります！'
+      setTimeout(() => {
+        this.message = ''
+        }
+      ,3000
+      )
     }
   }
 }
@@ -169,5 +192,17 @@ export default {
 }
 .btn-primary.outline {
     border: 3px solid blue;    
+}
+.purun {
+  animation: purun 0.8s linear 0s 1;
+}
+
+@keyframes purun {
+  0%   { transform: scale(1.0, 1.0) translate(0%, 0%); }
+  15%  { transform: scale(0.9, 0.9) translate(0%, 5%); }
+  30%  { transform: scale(1.3, 0.8) translate(0%, 10%); }
+  50%  { transform: scale(0.8, 1.3) translate(0%, -10%); }
+  70%  { transform: scale(1.1, 0.9) translate(0%, 5%); }
+  100% { transform: scale(1.0, 1.0) translate(0%, 0%); }
 }
 </style>

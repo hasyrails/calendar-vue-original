@@ -71,6 +71,7 @@
 </template>
 
 <script>
+
 import CardAdd from '../components/CardAdd'
 import Card from '../components/Card'
 import SampleCard from '../components/SampleCard'
@@ -150,7 +151,7 @@ export default {
     SampleCardSettingModal,
     // CardEditModal,
     CardToGanttChartModal,
-    draggable
+    draggable,
   },
   methods: {
     async createSchedulesFromCard(card){
