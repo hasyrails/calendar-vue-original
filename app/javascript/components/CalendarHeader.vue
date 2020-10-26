@@ -12,7 +12,7 @@
     <router-link to="/schedules" style="text-decoration:none;">
       <div class="link-to-ganttchart-page"
       @mouseover="ballonDisplay" @mouseleave="ballonNonDisplay">
-          <div>
+          <div class="purun">
             <Pencil :size="80"></Pencil>
           </div>
           <div class="link-description-ballon"
@@ -114,5 +114,17 @@ export default {
   margin-top: -15px;
   border: 15px solid transparent;
   border-right: 15px solid #e0edff;
+}
+.purun {
+  animation: purun 0.8s linear 0s 1;
+}
+
+@keyframes purun {
+  0%   { transform: scale(1.0, 1.0) translate(0%, 0%); }
+  15%  { transform: scale(0.9, 0.9) translate(0%, 5%); }
+  30%  { transform: scale(1.3, 0.8) translate(0%, 10%); }
+  50%  { transform: scale(0.8, 1.3) translate(0%, -10%); }
+  70%  { transform: scale(1.1, 0.9) translate(0%, 5%); }
+  100% { transform: scale(1.0, 1.0) translate(0%, 0%); }
 }
 </style>

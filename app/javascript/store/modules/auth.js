@@ -107,6 +107,10 @@ const auth = {
         },
 
       },
+  getters:{
+    user: (state) => state.user,
+    headers: (state) => state.headers,
+  }
 }
 
 export default auth;
