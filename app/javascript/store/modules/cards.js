@@ -21,17 +21,19 @@ const cards = {
     ],
     sampleCards: [
       {
+        id: 1,
         sampleListId: 1,
         body: 'サンプルです',
         description: 'サンプルです',
         color: '',
         scheduled: '',
         start: moment().format('YYYY/MM/DD'),
-        end: moment().add(2, "days").format('YYYY/MM/DD'),
+        end: moment().format('YYYY/MM/DD'),
         schedulized: '',
         deadlined: ''
       },
       {
+        id: 2,
         sampleListId: 2,
         body: '服買おう',
         description: 'イオンで',
@@ -43,6 +45,7 @@ const cards = {
         deadlined: ''
       },
       {
+        id: 3,
         sampleListId: 2,
         user_id: '',
         body: '夕食の食材',

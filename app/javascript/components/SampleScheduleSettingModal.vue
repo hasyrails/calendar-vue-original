@@ -4,38 +4,56 @@
       <div class="modal-content" >
         <div class="modal-header">
           <div>
-            <div style="font-size:25px;">
-              {{ list.title }}
-            </div>
             <div class="schedule-title">
               <div class="schedule-tag" style="margin-top:10px;"><Tag :size="36"></Tag></div>
               <div class="schedule-title" style="font-size:36px; margin-left:10px;width:900px;">
-              {{ card.body }}
+              {{ sampleSchedule.body }}
+                <!-- <div 
+                class="card-created-at"
+                v-if="schedule.created_at===schedule.update_at">
+                  <div class="schedule-created-at-date" style="width:300px;">
+                    <div style="margin-bottom:6px;">
+                      <CardPlus :size="45"></CardPlus>
+                    </div>
+                    {{ new Date(schedule.created_at).getFullYear() }}/
+                    {{ new Date(schedule.created_at).getMonth()+1 }}/
+                    {{ new Date(schedule.created_at).getDate() }}
+                  </div>
+                  <div class="schedule-created-at-time" style="width:200px;">
+                    {{ new Date(schedule.created_at).getHours() }}:
+                    {{ new Date(schedule.created_at).getMinutes() }}
+                  </div>
+                </div> -->
+                <!-- <div 
+                class="card-updated-at"
+                v-if="schedule.created_at!==schedule.update_at">
+                  <div class="schedule-created-at-date" style="width:300px;">
+                    <div style="margin-bottom:6px;">
+                      <Update :size="45"></Update>
+                    </div>
+                    {{ new Date(schedule.updated_at).getFullYear() }}/
+                    {{ new Date(schedule.updated_at).getMonth()+1 }}/
+                    {{ new Date(schedule.updated_at).getDate() }}
+                  </div>
+                  <div class="schedule-created-at-time" style="width:200px;">
+                    {{ new Date(schedule.updated_at).getHours() }}:
+                    {{ new Date(schedule.updated_at).getMinutes() }}
+                  </div>
+                </div> -->
               </div>
             </div>
           </div>
-          <div @click="closeSampleCardSettingModal">
+          <div @click="closeSampleScheduleSettingModal">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true" style="font-size:36px;">&times;</span>
             </button>
           </div>
         </div>
-
       <div class="modal-body" style="background-color:white;">
-        <div class="schedule-item">
-          <div class="schedule-item-name"
-          >
-            詳細
-          </div>
-          <div class="schedule-item-content"
-          >
-            {{ card.description }}
-          </div>
-        </div>
-      </div>
-
-      <div class="schedule-item"  style="margin-left:30%;">
-        <div class="schedule-item-name">
+        
+      <div class="schedule-item">
+        <div class="schedule-item-name" 
+        >
           期間
         </div>
         <div class="schedule-item-content">
@@ -43,39 +61,80 @@
             <div class="schedule-start-date">
               <div>いつから</div>
               <div>
-                {{ new Date(card.start).getFullYear() }}/
-                {{ new Date(card.start).getMonth()+1 }}/
-                {{ new Date(card.start).getDate() }}
+              <!-- <form
+              @submit.prevent="updateCard"
+              >
+                <div v-if="!schedule.start" @click="showDatePicker">
+                  <Pencil></Pencil>
+                </div> -->
+                <!-- <div v-if="!datePickerFlag&&schedule.start" @click="showDatePicker"> -->
+                <div>
+                  <!-- {{ new Date(sampleSchedule.start).getFullYear() }}/
+                  {{ new Date(sampleSchedule.start).getMonth()+1 }}/
+                  {{ new Date(sampleSchedule.start).getDate() }} -->
+                  {{ sampleSchedule.start }}
+                </div>
+                <!-- <div v-if="datePickerFlag">
+                    <Datepicker
+                    :language="ja"
+                    class="test"
+                    :value="this.default"
+                    :format="DatePickerFormat"
+                    v-model="schedule.start"
+                    ></Datepicker>
+                </div>
+              </form> -->
               </div>
+              <!-- <div>{{.start_yyyymmdd}}</div> -->
             </div>
             <div>〜</div>
             <div class="schedule-end-date">
               <div>いつまで</div>
             <div class="datepicker-form">
-              <div>
-                {{ new Date(card.end).getFullYear() }}/
-                {{ new Date(card.end).getMonth()+1 }}/
-                {{ new Date(card.end).getDate() }}
+              <!-- <form 
+              @submit.prevent="updateCard"
+              >
+                <div v-if="!schedule.end" @click="showDatePicker">
+                  <Pencil></Pencil>
+                </div> -->
+                <!-- <div v-if="!datePickerFlag&&schedule.end" @click="showDatePicker"> -->
+                <div>
+                  {{ new Date(sampleSchedule.end).getFullYear() }}/
+                  {{ new Date(sampleSchedule.end).getMonth()+1 }}/
+                  {{ new Date(sampleSchedule.end).getDate() }}
+                </div>
+                <!-- <div v-if="datePickerFlag">
+                  <Datepicker
+                  :language="ja" 
+                  class="test"
+                  :value="this.default"
+                  :format="DatePickerFormat"
+                  v-model="schedule.end"
+                  ></Datepicker>
+                </div>
+              </form> -->
+              <div v-if="datePickerFlag" @click="showDatePicker">
+                <CloseCircle :size="45"></CloseCircle>
               </div>
+              <div v-if="datePickerFlag" @click="alarm">
+                <ContentSaveEditOutline  :size="45"></ContentSaveEditOutline>
+              </div>
+            </div>
+              <!-- <div>{{schedule.end_yyyymmdd}}</div> -->
             </div>
             </div>
           </div>
         </div>
+
       </div>
-    </div>
       <div class="modal-footer" style="background-color:white; height:100px;">
-          <div class="btn btn-lg btn-secondary" @click="closeSampleCardSettingModal">閉じる</div>
-          <div class="btn btn-lg btn-primary" @click="cardEdit">編集する</div>
-          <div class="btn btn-lg btn-outline-warning" v-if="!card.schedulized" @click="createSampleSchedulesFromSampleCard">ガントチャートに追加する</div>
-          <!-- <div class="btn btn-lg btn-danger" @click="deleteCard">このToDoカードを削除する</div> -->
+          <div class="btn btn-lg btn-secondary" @click="closeSampleScheduleSettingModal">閉じる</div>
+          <div class="btn btn-lg btn-primary" @click="scheduleEdit">編集する</div>
+          <div class="btn btn-lg btn-primary" @click="updateSchedule">更新する</div>
+          <div class="btn btn-lg btn-primary" @click="completeSchedule">完了！</div>
+          <!-- <div class="btn btn-lg btn-danger" @click="deleteSchedule">このスケジュールを削除する</div> -->
         </div>
       </div>
-    <div>
-      <code><pre>{{this.$store.state.schedules.sampleSchedules}}</pre></code>
-    </div>
-    <!-- <div>
-      <code><pre>{{date.end}}</pre></code>
-    </div> -->
     </div>
   </div>
 </template>
@@ -92,7 +151,6 @@ import Update from 'vue-material-design-icons/Update.vue';
 import CloseCircle from 'vue-material-design-icons/CloseCircle.vue';
 import Datepicker from 'vuejs-datepicker';
 import {ja} from 'vuejs-datepicker/dist/locale'
-import SampleCardVue from './SampleCard.vue';
 
 
 
@@ -103,13 +161,13 @@ export default {
       ja:ja,
       default: moment().format('YYYY/MM/DD'),
       DatePickerFormat: 'yyyy/MM/dd',
+      cardEditFlag: false,
+      scheduleColorEditFlag: false,
+      datePickerFlag: false,
     }
   },
   props: {
-    card:{
-      type: Object
-    },
-    list:{
+    sampleSchedule:{
       type: Object
     }
   },
@@ -124,18 +182,15 @@ export default {
     Datepicker,
   },
   computed:{
+    // schedule: {
+    //     title: this.card.body,
+    //     start: this.card.start,
+    //     end: this.card.end
+    //   },
   },
   methods:{
-    createSampleSchedulesFromSampleCard(){
-      if(this.card.id===1){
-        this.$store.dispatch('schedules/createSampleSchedulesActionVerFirst')
-      }
-      if(this.card.id===2){
-        this.$store.dispatch('schedules/createSampleSchedulesActionVerSecond')
-      }
-      if(this.card.id===3){
-        this.$store.dispatch('schedules/createSampleSchedulesActionVerThird')
-      }
+    createSchedulesFromCard(){
+       this.$emit('clickedCreateScheduleFromCardButton', this.card)
     },
     showDatePicker(){
       this.datePickerFlag = !this.datePickerFlag
@@ -150,11 +205,11 @@ export default {
     openCardEditModal(){
       this.$emit('clickCardEditOpenButton', this.card)
     },
-    closeSampleCardSettingModal(){
-      this.$emit('clickSampleCardSettingModalCloseButton')
+    closeSampleScheduleSettingModal(){
+      this.$emit('clickSampleScheduleSettingModalCloseButton')
     },
-    cardDescriptionEdit(){
-      this.cardDescriptionEditFlag = true
+    scheduleColorEdit(){
+      this.scheduleColorEditFlag = true
     },
     cardScheduledEdit(){
       this.cardScheduledEditFlag = true
@@ -162,25 +217,32 @@ export default {
     cardStatusEdit(){
       this.cardStatusEditFlag = true
     },
-    cardEdit(){
-      this.cardDescriptionEditFlag = true
+    scheduleEdit(){
       this.datePickerFlag = true
-      this.cardColorEditFlag = true
+      this.scheduleColorEditFlag = true
     },
-    cardColorEdit(){
-      this.cardColorEditFlag = true
-      },
     quitCardDescriptionEdit(){
       this.cardDescriptionEditFlag = false
-    },
-    quitCardColorEdit(){
-      this.cardColorEditFlag = false
     },
     quitCardScheduledEdit(){
       this.cardScheduledEditFlag = false
     },
-    quitCardStatusEdit(){
-      this.cardStatusEditFlag = false
+    quitScheduleColorEdit(){
+      this.scheduleColorEditFlag = false
+    },
+    updateSchedule(){
+      this.$emit('updateSchedule', this.schedule)
+      this.$router.go({path: this.$router.currentRoute.path, force: true})
+    },
+    completeSchedule(){
+      this.schedule.done = true
+      this.$emit('completeSchedule', this.schedule)
+      this.$router.go({path: this.$router.currentRoute.path, force: true})
+    },
+    alarm(){
+      if(confirm('変更できない‥だと！？')){
+        this.datePickerFlag = false
+      }
     },
     deleteCard(){
       this.$emit('clickedCardDeleteButton', this.card)

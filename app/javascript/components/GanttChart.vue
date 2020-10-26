@@ -33,14 +33,26 @@
           v-if="
           schedule.date_day === day.date
           &&schedule.date_month === day.month
-          &&schedule.date_year === day.year&&schedule.done===false
-          "
+          &&schedule.date_year === day.year&&schedule.done===false&&$store.state.auth.user&&$store.state.auth.headers"
           :key="schedule.id"
           style="flex:1;min-height:1px;min-width:1px;max-width:230px;text-align: center;margin-bottom:10px;"
-          @clickScheduleSettingButton="openScheduleSettingModal"
+          @clickScheduleSettingButton="openScheduleSettingModal(schedule)"
           @commitChange="commitChange(schedule)"
           >
           </Schedule>
+          <SampleSchedule 
+          :sampleSchedule="sampleSchedule"
+          v-for="sampleSchedule in sampleSchedules"
+          v-if="
+          sampleSchedule.date_day === day.date
+          &&sampleSchedule.date_month === day.month
+          &&sampleSchedule.date_year === day.year&&$store.state.auth.user&&!$store.state.auth.headers"
+          :key="sampleSchedule.id"
+          style="flex:1;min-height:1px;min-width:1px;max-width:230px;text-align: center;margin-bottom:10px;"
+          @clickSampleScheduleSettingButton="openSampleScheduleSettingModal(sampleSchedule)"
+          @commitChange="commitChange(sampleSchedule)"
+          >
+          </SampleSchedule>
         </draggable>
       </div>
     </div>
@@ -55,16 +67,12 @@
     @completeSchedule="completeSchedule(scheduleDetail)"
     @clickScheduleSettingModalCloseButton="closeScheduleSettingModal"
     ></ScheduleSettingModal>
-  </div>
-  <div>
-    <ScheduleEditModal
-    v-if="scheduleEditModalFlag"
-    :schedule="editSchedule"
-    @clickScheduleUpdateButton="updateSchedule"
-    @clickScheduleEditModalCloseButton="closeScheduleEditModal"
-    @formValueInputting="scheduleEditFormInputting"
-    >
-    </ScheduleEditModal>
+    <SampleScheduleSettingModal
+    :sampleSchedule="sampleScheduleDetail"
+    v-if="sampleScheduleSettingModalFlag"
+    @clickCloseButton="closeScheduleSettingModal"
+    @clickSampleScheduleSettingModalCloseButton="closeSampleScheduleSettingModal"
+    ></SampleScheduleSettingModal>
   </div>
   <!-- <div class="form-group">
     <label for="title">{{hoge}}</label>
@@ -95,8 +103,10 @@ import draggable from 'vuedraggable'
 
 import GanttChartHeader from "../components/GanttChartHeader";
 import Schedule from "../components/Schedule"
+import SampleSchedule from "../components/SampleSchedule"
 import { mapState, mapGetters } from 'vuex'
 import ScheduleSettingModal from "../components/ScheduleSettingModal"
+import SampleScheduleSettingModal from "../components/SampleScheduleSettingModal"
 import ScheduleEditModal from "../components/ScheduleEditModal"
 
 export default {
@@ -107,6 +117,7 @@ export default {
       currentMonth: moment().month()+1,
       currentYear: moment().year(),
       scheduleSettingModalFlag: false,
+      sampleScheduleSettingModalFlag: false,
       scheduleEditModalFlag: false,
       options: {
         group: {
@@ -121,7 +132,9 @@ export default {
     draggable,
     GanttChartHeader,
     Schedule,
+    SampleSchedule,
     ScheduleSettingModal,
+    SampleScheduleSettingModal,
     ScheduleEditModal,
   },
   mounted () {
@@ -141,8 +154,20 @@ export default {
       this.scheduleSettingModalFlag = true
       this.scheduleDetail = schedule
     },
+    openSampleScheduleSettingModal(schedule){
+      this.sampleScheduleSettingModalFlag = true
+      this.sampleScheduleDetail = schedule
+    },
     closeScheduleSettingModal(){
       this.scheduleSettingModalFlag = false
+    },
+    closeSampleScheduleSettingModal(){
+      this.sampleScheduleSettingModalFlag = false
+    },
+    openScheduleEditModal(schedule){
+      this.closeScheduleSettingModal()
+      this.scheduleEditModalFlag = true
+      this.editSchedule = schedule
     },
     openScheduleEditModal(schedule){
       this.closeScheduleSettingModal()
@@ -264,7 +289,8 @@ export default {
       currentYear: 'currentYear'
     }),
     ...mapGetters('schedules',[
-      'schedules'
+      'schedules',
+      'sampleSchedules'
     ]
     ),
   },
