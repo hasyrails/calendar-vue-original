@@ -1,5 +1,6 @@
 <template>
-  <div class="user-info-page">
+<div>
+  <div class="user-info-page" v-if="$store.state.auth.user&&$store.state.auth.headers">
     <div class="user-info">
       <div class="user-info-title">ユーザー情報</div>
       <div class="user-info-content">
@@ -66,9 +67,77 @@
       </div>
     </div>
   </div>
+  <div class="user-info-page" v-if="$store.state.auth.user&&!$store.state.auth.headers">
+    <div class="user-info">
+      <div class="user-info-title">ユーザー情報</div>
+      <div class="user-info-content">
+        <div class="user-name-item">
+          ユーザー名：
+        </div>
+        <div class="user-name">
+          {{ $store.state.auth.user.user.name }}さん
+        </div>
+      </div>
+      <div class="user-info-content">
+        <div class="user-email-item">
+          メールアドレス：
+        </div>
+        <div class="user-email">
+          {{ $store.state.auth.user.user.email }}
+        </div>
+      </div>
+      <div class="user-info-content">
+        <div class="user-image-item">
+          ユーザーアイコン：
+        </div>
+        <div class="guest-user-image">
+          <Account :size="100" fillColor="#2C7CFF"></Account>
+        </div>
+      </div>
+      <div class="user-info-content">
+        <div class="schedulized-cards-item">
+          進行中のタスク数：
+        </div>
+        <div class="guest-schedulized-cards">
+          <Key :size="100" fillColor="#FFC7AF"></Key>
+        </div>
+      </div>
+      <div class="user-info-content">
+        <div class="finished-cards-item">
+          期限を護ったタスクの数：
+        </div>
+        <div class="guest-finished-cards">
+          <Key :size="100" fillColor="#FFC7AF"></Key>
+        </div>
+      </div>
+      <div class="user-info-content">
+        <div class="deadlined-cards-item">
+          期限をﾏﾓﾚﾅｶｯﾀ‥タスクの数：
+        </div>
+        <div class="guest-deadlined-cards">
+          <Key :size="100" fillColor="#FFC7AF"></Key>
+        </div>
+      </div>
+      <div class="guest-counted-cards">
+        合計：<Key :size="100" fillColor="#FFC7AF"></Key>
+      </div>
+      <div class="user-info-content">
+        <div class="user-graph-item">
+          初志の勝率：
+        </div>
+        <div class="guest-user-graph purun">
+          <Key :size="150" fillColor="#FFC7AF"></Key>  %
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 </template>
 
 <script>
+import Account from 'vue-material-design-icons/Account.vue';
+import Key from 'vue-material-design-icons/Key.vue';
+
 import UserInfoGraph from '../components/UserInfoGraph.vue'
 
 export default {
@@ -78,7 +147,11 @@ export default {
     }
   },
   components:{
-    UserInfoGraph
+    UserInfoGraph,
+    Account,
+    Key,
+  },
+  methods:{
   },
   computed:{
     percentage(){
@@ -161,6 +234,12 @@ height: 100%; */
   left: 31%;
   font-size: 40px;
 }
+.guest-user-image{
+  position: fixed;
+  top: 33%;
+  left: 31%;
+  font-size: 40px;
+}
 .user-graph-item{
   position: fixed;
   top: 15%;
@@ -168,6 +247,12 @@ height: 100%; */
   font-size: 100px;
 }
 .user-graph{
+  position: fixed;
+  top: 15%;
+  left: 70%;
+  font-size: 100px;
+}
+.guest-user-graph{
   position: fixed;
   top: 15%;
   left: 70%;
@@ -185,6 +270,12 @@ height: 100%; */
   left: 70%;
   font-size: 40px;
 }
+.guest-finished-cards{
+  position: fixed;
+  top: 24%;
+  left: 70%;
+  font-size: 40px;
+}
 .deadlined-cards-item{
   position: fixed;
   top: 35%;
@@ -194,6 +285,12 @@ height: 100%; */
 .deadlined-cards{
   position: fixed;
   top: 35%;
+  left: 70%;
+  font-size: 40px;
+}
+.guest-deadlined-cards{
+  position: fixed;
+  top: 34%;
   left: 70%;
   font-size: 40px;
 }
@@ -209,7 +306,19 @@ height: 100%; */
   left: 70%;
   font-size: 40px;
 }
+.guest-schedulized-cards{
+  position: fixed;
+  top: 42%;
+  left: 70%;
+  font-size: 40px;
+}
 .counted-cards{
+  position: fixed;
+  top: 30%;
+  left: 80%;
+  font-size: 40px;
+}
+.guest-counted-cards{
   position: fixed;
   top: 30%;
   left: 80%;
