@@ -70,9 +70,9 @@
           <!-- <div class="btn btn-lg btn-danger" @click="deleteCard">このToDoカードを削除する</div> -->
         </div>
       </div>
-    <div>
+    <!-- <div>
       <code><pre>{{this.$store.state.schedules.sampleSchedules}}</pre></code>
-    </div>
+    </div> -->
     <!-- <div>
       <code><pre>{{date.end}}</pre></code>
     </div> -->
