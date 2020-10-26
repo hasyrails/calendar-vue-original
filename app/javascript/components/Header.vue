@@ -6,8 +6,11 @@
         <!-- <p class="app-header-title-footer">初志貫徹アプリ</p> -->
       </router-link>
       <router-link to="/userinfo">
-        <div class="user-icon" v-if="$store.state.auth.headers">
+        <div class="user-icon" v-if="$store.state.auth.headers&&src">
           <img style="border-radius:50%;" :src="src" width="100" height="100">
+        </div>
+        <div class="user-icon" v-if="$store.state.auth.headers&&!src">
+          <Account :size="120"></Account>
         </div>
         <div class="user-icon" v-if="$store.state.auth.user&&!$store.state.auth.headers">
           <Account :size="120"></Account>

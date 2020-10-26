@@ -3,14 +3,19 @@
     <div>ご入力内容</div>
 		<div class="flex-contents">
 		  <div class="confirm-contents">
-		    <div>ユーザー名: {{ form.name }} </div>
-		    <div>メールアドレス: {{ form.email }}</div>
+		    <div style="margin-top:10px;margin-bottom:10px;">ユーザー名: {{ form.name }} </div>
+		    <div style="margin-top:10px;margin-bottom:10px;">メールアドレス: {{ form.email }}</div>
+		    <div v-if="src" style="margin-top:10px;margin-bottom:10px;">アイコン: 
+					<img style="border-radius:50%;" :src="src" width="100" height="100">
+				</div>
+		    <div v-if="!src" style="margin-top:10px;margin-bottom:10px;">アイコン: <Account :size="120"></Account>
+				</div>
 				<div class="password">
-		    	<div>パスワード: </div>
+		    	<div style="margin-top:10px;margin-bottom:10px;">パスワード: </div>
 					<div v-for="password in form.password">●</div>
 				</div>
 				<div class="password">
-		    	<div>パスワード(確認): </div>
+		    	<div style="margin-top:10px;margin-bottom:10px;">パスワード(確認): </div>
 					<div v-for="password_confirmation in form.password_confirmation">●</div>
 				</div>
 		  </div>
@@ -20,11 +25,21 @@
 </template>
 
 <script>
+import Account from 'vue-material-design-icons/Account.vue'
+
 export default {
-  name: 'ConfirmForm',
+	name: 'ConfirmForm',
+	data(){
+		return{
+			src: this.form.image
+		}
+	},
   props:{
 		form: Object
-  },
+	},
+	components:{
+		Account,
+	},
   methods:{
     register(){
       this.$emit('clickedRegisterButton', this.form)
