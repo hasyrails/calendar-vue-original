@@ -28,7 +28,7 @@ const cards = {
         color: '',
         scheduled: '',
         start: moment().format('YYYY/MM/DD'),
-        end: moment().add(2, "days").format('YYYY/MM/DD'),
+        end: moment().format('YYYY/MM/DD'),
         schedulized: '',
         deadlined: ''
       },

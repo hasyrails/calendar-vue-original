@@ -115,37 +115,92 @@ const schedules = {
           date_year: moment().year(),
           date_month: moment().month()+1,
           date_day: moment().date(),
+          start: moment().format('YYYY/MM/DD'),
+          end: moment().format('YYYY/MM/DD'),
           card_id: 1,
+          user_id: '',
+          commit: '',
+        }
+        commit('createSampleScheduleVerFirst',scheduleFirst)
+      },
+      createSampleSchedulesActionVerSecond({ commit }){
+        const scheduleFirst = 
+        {
+          body: '服買おう',
+          done: '',
+          date: moment().add(1, "days").format('YYYY/MM/DD'),
+          date_year: moment().add(1, "days").year(),
+          date_month: moment().add(1, "days").month()+1,
+          date_day: moment().add(1, "days").date(),
+          start: moment().add(1, "days").format('YYYY/MM/DD'),
+          end: moment().add(3, "days").format('YYYY/MM/DD'),
+          card_id: 2,
           user_id: '',
           commit: '',
         }
         const scheduleSecond =
         {
-          body: 'サンプルです',
+          body: '服買おう',
           done: '',
-          date: moment().add(1,"days").format('YYYY/MM/DD'),
-          date_year: moment().add(1,"days").year(),
-          date_month: moment().add(1,"days").month()+1,
-          date_day: moment().add(1,"days").date(),
-          card_id: 1,
+          date: moment().add(2, "days").format('YYYY/MM/DD'),
+          date_year: moment().add(2, "days").year(),
+          date_month: moment().add(2, "days").month()+1,
+          date_day: moment().add(2, "days").date(),
+          start: moment().add(1, "days").format('YYYY/MM/DD'),
+          end: moment().add(3, "days").format('YYYY/MM/DD'),
+          card_id: 2,
           user_id: '',
           commit: '',
         }
         const scheduleThird =
         {
-          body: 'サンプルです',
+          body: '服買おう',
           done: '',
-          date: moment().add(2,"days").format('YYYY/MM/DD'),
-          date_year: moment().add(2,"days").year(),
-          date_month: moment().add(2,"days").month()+1,
-          date_day: moment().add(2,"days").date(),
-          card_id: 1,
+          date: moment().add(3, "days").format('YYYY/MM/DD'),
+          date_year: moment().add(3, "days").year(),
+          date_month: moment().add(3, "days").month()+1,
+          date_day: moment().add(3, "days").date(),
+          start: moment().add(1, "days").format('YYYY/MM/DD'),
+          end: moment().add(3, "days").format('YYYY/MM/DD'),
+          card_id: 2,
           user_id: '',
           commit: '',
         }
-      commit('createSampleScheduleVerFirst',scheduleFirst)
-      commit('createSampleScheduleVerFirst',scheduleSecond)
-      commit('createSampleScheduleVerFirst',scheduleThird)
+        commit('createSampleScheduleVerSecond',scheduleFirst)
+        commit('createSampleScheduleVerSecond',scheduleSecond)
+        commit('createSampleScheduleVerSecond',scheduleThird)
+    },
+    createSampleSchedulesActionVerThird({ commit }){
+      const scheduleFirst = 
+        {
+          body: '夕食の食材',
+          done: '',
+          date: moment().add(2, "days").format('YYYY/MM/DD'),
+          date_year: moment().add(2, "days").year(),
+          date_month: moment().add(2, "days").month()+1,
+          date_day: moment().add(2, "days").date(),
+          start: moment().add(2, "days").format('YYYY/MM/DD'),
+          end: moment().add(3, "days").format('YYYY/MM/DD'),
+          card_id: 3,
+          user_id: '',
+          commit: '',
+        }
+        const scheduleSecond =
+        {
+          body: '夕食の食材',
+          done: '',
+          date: moment().add(3, "days").format('YYYY/MM/DD'),
+          date_year: moment().add(3, "days").year(),
+          date_month: moment().add(3, "days").month()+1,
+          date_day: moment().add(3, "days").date(),
+          start: moment().add(2, "days").format('YYYY/MM/DD'),
+          end: moment().add(3, "days").format('YYYY/MM/DD'),
+          card_id: 3,
+          user_id: '',
+          commit: '',
+        }
+      commit('createSampleScheduleVerThird',scheduleFirst)
+      commit('createSampleScheduleVerThird',scheduleSecond)
     },
     async deleteScheduleAction ({state, commit}, schedule) {
  
@@ -160,6 +215,7 @@ const schedules = {
   },
   getters: {
     schedules: (state) => state.schedules,
+    sampleSchedules: (state) => state.sampleSchedules,
   },
 }
 
