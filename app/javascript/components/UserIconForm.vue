@@ -3,7 +3,7 @@
   <p id="error" v-show="error">{{ error }}</p>
   <label>
     <div v-if="image">
-      <img :src="image" alt="Avatar" class="image">
+      <img :src="image" alt="Avatar" class="image" style="border-radius:50%;">
     </div>
     <div class="form-group">
     <input
