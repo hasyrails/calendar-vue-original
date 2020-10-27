@@ -45,7 +45,7 @@ const auth = {
           }
         },
         updateUserIcon(state, payload) {
-          state.auth.user.user.data.image = payload.image
+          state.user.user.data.image = payload.image
         },
         guestLogin(state, payload) {
           state.user = {

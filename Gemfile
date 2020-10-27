@@ -72,3 +72,5 @@ gem 'devise_token_auth'
 gem 'rack-cors'
 
 gem 'jquery-rails'
+
+gem 'activerecord-session_store', github: 'rails/activerecord-session_store'
