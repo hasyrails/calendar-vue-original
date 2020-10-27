@@ -16,7 +16,8 @@ Vue.use(Vuex)
 
 const store =  new Vuex.Store({
   state: {
-    showDone: false
+    showDone: false,
+    srcFlag :true
   },
   mutations: {
     showDones(state){
@@ -24,7 +25,13 @@ const store =  new Vuex.Store({
     },
     showSchedules(state){
       state.showDone = false
-    }
+    },
+    showSrc(state){
+      state.srcFlag = true
+    },
+    hideSrc(state){
+      state.srcFlag = false
+    },
   },
   actions:{
     showDonesAction({commit}){
@@ -32,7 +39,13 @@ const store =  new Vuex.Store({
     },
     showSchedulesAction({commit}){
       commit('showSchedules')
-    }
+    },
+    showSrcAction({commit}){
+      commit('showSrc')
+    },
+    hideSrcAction({commit}){
+      commit('hideSrc')
+    },
   },
   modules: {
     lists,
