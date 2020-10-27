@@ -26,6 +26,9 @@
         <div>
           <div class="user-image" v-if="src">
             <img style="border-radius:50%;" :src="src" width="300" height="300">
+            <div style="font-size:20px;">
+              <UserIconForm></UserIconForm>
+            </div>
           </div>
           <div class="alternative-user-image" v-if="!src">
             <Account :size="120" fillColor="#2C7CFF"></Account>
@@ -65,6 +68,11 @@
         </div>
         <div class="user-graph purun">
           {{percentage}} 
+          <div v-if="zeroDevideZeroFlag" style="position:fixed;top:15%;display:flex;">
+            <Numeric0 :size="130" fillColor="#A4C6FF"></Numeric0>
+            <SlashForward :size="130" fillColor="#A4C6FF"></SlashForward>
+            <Numeric0 :size="130" fillColor="#A4C6FF"></Numeric0>
+          </div>
         </div>
       </div>
       <div class="graph">
@@ -142,8 +150,11 @@
 <script>
 import Account from 'vue-material-design-icons/Account.vue';
 import Key from 'vue-material-design-icons/Key.vue';
+import Numeric0  from 'vue-material-design-icons/Numeric0.vue';
+import SlashForward  from 'vue-material-design-icons/SlashForward.vue';
 
 import UserInfoGraph from '../components/UserInfoGraph.vue'
+import UserIconForm from '../components/UserIconForm.vue'
 
 export default {
   data(){
@@ -155,6 +166,9 @@ export default {
     UserInfoGraph,
     Account,
     Key,
+    UserIconForm,
+    Numeric0,
+    SlashForward,
   },
   methods:{
   },
@@ -163,7 +177,14 @@ export default {
       if(this.doneCardsCount + this.deadlinedCardsCount!==0){
         return ((this.doneCardsCount/(this.doneCardsCount + this.deadlinedCardsCount))*100 + '%')
       }else{
-        return '集計するタスクがまだありません'
+        return ''
+      }
+    },
+    zeroDevideZeroFlag(){
+      if(this.doneCardsCount + this.deadlinedCardsCount===0){
+        return true
+      }else{
+        return false
       }
     },
     countedCardsCount(){
