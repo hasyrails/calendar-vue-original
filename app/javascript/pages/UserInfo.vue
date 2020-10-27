@@ -25,7 +25,9 @@
         </div>
         <div>
           <div class="user-image" v-if="src">
-            <img style="border-radius:50%;" :src="src" width="300" height="300">
+            <div v-if="$store.state.srcFlag">
+              <img style="border-radius:50%;" :src="src" width="300" height="300">
+            </div>
             <div style="font-size:15px;">
               <UserIconUpdateForm></UserIconUpdateForm>
             </div>

@@ -3,7 +3,9 @@
   <p id="error" v-show="error">{{ error }}</p>
   <label>
     <div v-if="image">
-      <img :src="image" alt="Avatar" class="image" style="border-radius:50%;">
+      <img :src="image" 
+      width="300" height="300"
+      alt="Avatar" class="image" style="border-radius:50%;">
     </div>
     <div class="form-group">
     <input
@@ -17,7 +19,7 @@
     </div>
   </label>
   <div style="margin-left:15%;">
-    <button class="btn btn-info" @click="upload()">アップロード</button>
+    <button class="btn btn-info" @click="updateUserIcon()">アップロード</button>
   </div>
   <p>{{ message }}</p>
 </div>
@@ -46,17 +48,18 @@ export default{
         })
       },
       onImageChange (e) {
+        this.$store.state.srcFlag = false
         const images = e.target.files || e.dataTransfer.files
         this.getBase64(images[0])
           .then(image => this.image = image)
           .catch(error => this.setError(error, '画像のアップロードに失敗しました。'))
       },
-      upload () {
+      updateUserIcon() {
           if (this.image) {
-            this.$emit('update',{
-			      	image: this.image
-			      });
-          this.message = 'ユーザーアイコンを登録しました' 
+            // this.$emit('update',{
+			      // 	image: this.image
+			      // });
+          this.message = 'ユーザーアイコンを更新しました' 
           this.error = ''
         } else {
           this.error = '画像がありません'
