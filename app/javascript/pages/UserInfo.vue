@@ -23,8 +23,13 @@
         <div class="user-image-item">
           ユーザーアイコン：
         </div>
-        <div class="user-image">
-          <img style="border-radius:50%;" :src="src" width="300" height="300">
+        <div>
+          <div class="user-image" v-if="src">
+            <img style="border-radius:50%;" :src="src" width="300" height="300">
+          </div>
+          <div class="alternative-user-image" v-if="!src">
+            <Account :size="120" fillColor="#2C7CFF"></Account>
+          </div>
         </div>
       </div>
       <div class="user-info-content">
@@ -59,7 +64,7 @@
           初志の勝率：
         </div>
         <div class="user-graph purun">
-          {{percentage}} %
+          {{percentage}} 
         </div>
       </div>
       <div class="graph">
@@ -155,7 +160,11 @@ export default {
   },
   computed:{
     percentage(){
-      return (this.doneCardsCount/(this.doneCardsCount + this.deadlinedCardsCount))*100
+      if(this.doneCardsCount + this.deadlinedCardsCount!==0){
+        return ((this.doneCardsCount/(this.doneCardsCount + this.deadlinedCardsCount))*100 + '%')
+      }else{
+        return '集計するタスクがまだありません'
+      }
     },
     countedCardsCount(){
       return this.doneCardsCount + this.deadlinedCardsCount
@@ -233,6 +242,13 @@ height: 100%; */
   top: 28%;
   left: 31%;
   font-size: 40px;
+}
+.alternative-user-image{
+  position: fixed;
+  top: 33%;
+  left: 31%;
+  font-size: 40px;
+
 }
 .guest-user-image{
   position: fixed;
