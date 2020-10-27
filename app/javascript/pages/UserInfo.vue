@@ -26,8 +26,8 @@
         <div>
           <div class="user-image" v-if="src">
             <img style="border-radius:50%;" :src="src" width="300" height="300">
-            <div style="font-size:20px;">
-              <UserIconForm></UserIconForm>
+            <div style="font-size:15px;">
+              <UserIconUpdateForm></UserIconUpdateForm>
             </div>
           </div>
           <div class="alternative-user-image" v-if="!src">
@@ -154,7 +154,7 @@ import Numeric0  from 'vue-material-design-icons/Numeric0.vue';
 import SlashForward  from 'vue-material-design-icons/SlashForward.vue';
 
 import UserInfoGraph from '../components/UserInfoGraph.vue'
-import UserIconForm from '../components/UserIconForm.vue'
+import UserIconUpdateForm from '../components/UserIconUpdateForm.vue'
 
 export default {
   data(){
@@ -166,7 +166,7 @@ export default {
     UserInfoGraph,
     Account,
     Key,
-    UserIconForm,
+    UserIconUpdateForm,
     Numeric0,
     SlashForward,
   },
@@ -223,44 +223,44 @@ height: 100%; */
 } 
 .user-info-title{
   position: fixed;
-  top: 12%;
+  top: 10%;
   left: 10%;
   font-size: 40px;
 } 
 
 .user-name-item{
   position: fixed;
-  top: 17%;
+  top: 14%;
   left: 15%;
   font-size: 40px;
 }
 .user-name{
   position: fixed;
-  top: 17%;
+  top: 14%;
   left: 31%;
   font-size: 40px;
 }
 .user-email-item{
   position: fixed;
-  top: 22%;
+  top: 18%;
   left: 15%;
   font-size: 40px;
 }
 .user-email{
   position: fixed;
-  top: 22%;
+  top: 18%;
   left: 31%;
   font-size: 40px;
 }
 .user-image-item{
   position: fixed;
-  top: 35%;
+  top: 30%;
   left: 15%;
   font-size: 40px;
 }
 .user-image{
   position: fixed;
-  top: 28%;
+  top: 23%;
   left: 31%;
   font-size: 40px;
 }
@@ -363,7 +363,7 @@ height: 100%; */
 }
 .graph{
   position: fixed;
-  top: 48%;
+  top: 49%;
   font-size: 40px;
 }
 
