@@ -56,6 +56,8 @@ export default{
       },
       updateUserIcon() {
           if (this.image) {
+            this.$store.state.auth.user.user.data.image = ''
+            this.$store.dispatch('auth/updateUserIconAction',{"image": this.image})
             // this.$emit('update',{
 			      // 	image: this.image
 			      // });

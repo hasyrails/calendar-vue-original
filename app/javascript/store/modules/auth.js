@@ -44,6 +44,9 @@ const auth = {
             "user": payload
           }
         },
+        updateUserIcon(state, payload) {
+          state.auth.user.user.data.image = payload.image
+        },
         guestLogin(state, payload) {
           state.user = {
             "user": payload
@@ -76,12 +79,22 @@ const auth = {
             axios
             .get('/api/whoami', {
               headers: {
-                header: state.header
+                header: state.headers
               }
             })
             .then(function (response) {
               commit('userInfo', response.data);
             }
+            )
+          },
+          updateUserIconAction({state, commit},payload){
+            axios
+            .patch('/api/v1/auth', 
+            payload,
+            {headers: state.headers}
+            )
+            .then(
+              commit('updateUserIcon', payload)
             )
           },
           guestLoginAction({commit}){
