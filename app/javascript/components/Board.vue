@@ -20,7 +20,6 @@
           >
           <List v-for="list in ownLists"
             style="margin-top:50px;margin-bottom:50px;"
-            class="slide"
             :list="list"
             :key="list.id"
             :list_id="list.id"
