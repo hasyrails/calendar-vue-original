@@ -40,26 +40,22 @@ const auth = {
           }
         },
         userInfo(state, payload) {
-          state.user = {
-            "user": payload
-          }
+          state.user = payload.data
         },
         updateUserIcon(state, payload) {
-          state.user.user.data.image = payload.image
+          state.user.image = payload.image
         },
         guestLogin(state, payload) {
-          state.user = {
-            "user": payload
-          }
+          state.user = payload.data
         },
 
     
     //サインアウトしたらヘッダを空にしておく。
         signOut(state) {
-          state.headers = null;
+          state.headers = [];
         },
         guestLogOut(state) {
-          state.user = null;
+          state.user = [];
         },
       },
     
@@ -100,7 +96,7 @@ const auth = {
           guestLoginAction({commit}){
             axios.post('/api/users/guest_sign_in')
             .then(function(response){
-              commit('guestLogin', response.data);
+              commit('guestLogin', response);
             })
           },
           guestLogOutAction({state, commit}){
@@ -110,12 +106,12 @@ const auth = {
             })
           },
         //ここでレスポンスヘッダを受け取る。
-          signOut(context) {
+          signOut({state, commit}) {
           axios
     //ここでヘッダ情報を呼び出してDELETEリクエストに含める
-            .delete('/api/v1/auth/sign_out', { headers: context.state.headers })
+            .delete('/api/v1/auth/sign_out', { headers: state.headers })
             .then(function () {
-              context.commit('signOut');
+              commit('signOut');
           })
         },
 

@@ -1,6 +1,6 @@
 <template>
 <div>
-  <div class="user-info-page" v-if="$store.state.auth.user&&$store.state.auth.headers">
+  <div class="user-info-page" v-if="$store.state.auth.headers.length!==0&&$store.state.auth.user.length!==0">
     <div class="user-info">
       <div class="user-info-title">ユーザー情報</div>
       <div class="user-info-content">
@@ -8,7 +8,7 @@
           ユーザー名：
         </div>
         <div class="user-name">
-          {{ $store.state.auth.user.user.data.name }}さん
+          {{ $store.state.auth.user.name }}さん
         </div>
       </div>
       <div class="user-info-content">
@@ -16,7 +16,7 @@
           メールアドレス：
         </div>
         <div class="user-email">
-          {{ $store.state.auth.user.user.data.email }}
+          {{ $store.state.auth.user.email }}
         </div>
       </div>
       <div class="user-info-content">
@@ -82,7 +82,8 @@
       </div>
     </div>
   </div>
-  <div class="user-info-page" v-if="$store.state.auth.user&&!$store.state.auth.headers">
+
+  <div class="user-info-page" v-if="this.$store.state.auth.headers.length===0&&this.$store.state.auth.user.length!==0">
     <div class="user-info">
       <div class="user-info-title">ユーザー情報</div>
       <div class="user-info-content">
@@ -90,7 +91,7 @@
           ユーザー名：
         </div>
         <div class="user-name">
-          {{ $store.state.auth.user.user.name }}さん
+          {{ $store.state.auth.user.name }}さん
         </div>
       </div>
       <div class="user-info-content">
@@ -98,7 +99,7 @@
           メールアドレス：
         </div>
         <div class="user-email">
-          {{ $store.state.auth.user.user.email }}
+          {{ $store.state.auth.user.email }}
         </div>
       </div>
       <div class="user-info-content">
@@ -161,7 +162,7 @@ import UserIconUpdateForm from '../components/UserIconUpdateForm.vue'
 export default {
   data(){
     return{
-      src: this.$store.state.auth.user.user.data.image,
+      src: this.$store.state.auth.user.image,
     }
   },
   components:{
