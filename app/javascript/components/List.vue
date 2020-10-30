@@ -134,7 +134,7 @@ export default {
     //   lists: 'lists'
     // }),
     ownCards() {
-       return this.$store.getters['cards/cards'].filter(card=>card.user_id===this.$store.state.auth.user.user.data.id)
+       return this.$store.getters['cards/cards'].filter(card=>card.user_id===this.$store.state.auth.user.id)
     },
     sampleCards() {
        return this.$store.getters['cards/sampleCards']

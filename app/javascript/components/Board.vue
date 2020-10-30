@@ -78,7 +78,7 @@ export default {
       return this.$store.getters.totalCardCount
     },
     ownLists() {
-       return this.$store.getters['lists/lists'].filter(list=>list.user_id===this.$store.state.auth.user.user.data.id)
+       return this.$store.getters['lists/lists'].filter(list=>list.user_id===this.$store.state.auth.user.id)
     },
     sampleLists() {
        return this.$store.getters['lists/sampleLists']
