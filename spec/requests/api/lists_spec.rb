@@ -14,13 +14,19 @@ RSpec.describe "Api::Lists", type: :request do
     end
   end
 
-  # describe "POST /api/lists" do
-  #   subject { post(api_lists_path, params: params) }
-  #   let(:params) { { todo: attributes_for(:todo) } }
+  describe "POST /api/lists" do
+    subject { post(api_lists_path, params: params) }
+    let(:params) {
+      {
+        "id": 1,
+        "title": "TestList",
+        "user_id": 1
+      } 
+    }
 
-  #   it "レコードが作成される" do
-  #     expect { subject }.to change { Todo.count }.by(1)
-  #     expect(response).to have_http_status(200)
-  #   end
-  # end
+    it "レコードが作成される" do
+      expect { subject }.to change { List.count }.by(1)
+      expect(response).to have_http_status(200)
+    end
+  end
 end
