@@ -208,7 +208,7 @@ export default {
           let scheduleNum = 0;
           for (let k=0; k < this.$store.getters['schedules/schedules'].length; k++) {
           //todoListの情報をカレンダーパネルに追加
-            if (this.$store.getters['schedules/schedules'][k].date_day === startDate.get("date")&&this.$store.getters['schedules/schedules'][k].date_month === this.currentMonth&&this.$store.getters['schedules/schedules'][k].date_year === this.currentYear&&this.$store.getters['schedules/schedules'][k].commit===true&&this.$store.getters['schedules/schedules'][k].deadlined===false&&this.$store.getters['schedules/schedules'][k].done===false&&this.$store.getters['schedules/schedules'][k].user_id===this.$store.state.auth.user.user.data.id) {
+            if (this.$store.getters['schedules/schedules'][k].date_day === startDate.get("date")&&this.$store.getters['schedules/schedules'][k].date_month === this.currentMonth&&this.$store.getters['schedules/schedules'][k].date_year === this.currentYear&&this.$store.getters['schedules/schedules'][k].commit===true&&this.$store.getters['schedules/schedules'][k].deadlined===false&&this.$store.getters['schedules/schedules'][k].done===false&&this.$store.getters['schedules/schedules'][k].user_id===this.$store.state.auth.user.id) {
               scheduleNum++;
             }
           }
