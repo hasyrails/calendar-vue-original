@@ -6,6 +6,7 @@ import GanttChartPage from '../pages/GanttChartPage'
 import Register from '../pages/Register'
 import Login from '../pages/Login'
 import UserInfo from '../pages/UserInfo'
+import NotFound from '../pages/NotFound'
 
 Vue.use(VueRouter); 
 
@@ -15,6 +16,8 @@ const routes = [
   { path: '/register', component: Register },
   { path: '/login', component: Login },
   { path: '/userinfo', component: UserInfo },
+  { path: '/notfound', component: NotFound },
+  { path: '*', redirect: '/notfound' },
 ];
 
 const router = new VueRouter({
