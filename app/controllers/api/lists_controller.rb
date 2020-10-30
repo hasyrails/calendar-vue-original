@@ -4,7 +4,7 @@ class Api::ListsController < ApplicationController
 
   def index
     @lists = List.all
-    render json: @lists
+    # render json: @lists ←jbuilderの設定により不要化
   end
 
   def show
