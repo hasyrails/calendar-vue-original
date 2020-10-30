@@ -2,12 +2,13 @@
   <div class="app-header">
     <div class="app-header-contents">
       <router-link to="/">
-        <div class="app-header-title">初志しか勝たん<BoxingGlove :size="70"></BoxingGlove>{{$store.state.auth.headers}}{{$store.state.auth.user}}</div>
+        <div class="app-header-title">初志しか勝たん<BoxingGlove :size="70"></BoxingGlove>
+        </div>
         <!-- <p class="app-header-title-footer">初志貫徹アプリ</p> -->
       </router-link>
       
       <div>
-        <div class="user-icon" v-if="this.$store.state.auth.headers.length!==0&&this.$store.state.auth.user.length!==0">
+        <div class="user-icon" v-if="this.$store.state.auth.headers.length!==0&&this.$store.state.auth.user.length!==0&&src">
           <router-link to="/userinfo"> 
             <img style="border-radius:50%;" :src="src" width="100" height="100">
           </router-link>
@@ -177,6 +178,7 @@ import Account from 'vue-material-design-icons/Account.vue';
         if(confirm('ログアウトしますか？')){
           this.$store.dispatch('auth/signOut')
           this.$store.dispatch('auth/guestLogOutAction')
+          this.$router.push('/')
         }
       },
       guestLogin(){
@@ -184,6 +186,7 @@ import Account from 'vue-material-design-icons/Account.vue';
       },
       guestLogOut(){
         this.$store.dispatch('auth/guestLogOutAction')
+        this.$router.push('/')
       }
     }
   }

@@ -9,7 +9,7 @@
       </CalendarHeader>
     </div>
     <div style="min-width:100px;width:100%;border-top:5px #BAD3FF;background-color:#EEEEEE;"
-    v-if="!$store.state.auth.user&&!$store.state.auth.headers"
+    v-if="$store.state.auth.user.length===0&&$store.state.auth.headers.length===0"
     @click="loginInvitationMassage">
       <div
         v-for="(week, index) in calendars"
@@ -39,7 +39,7 @@
       <div style="z-index:100;position:fixed;top:50%;left:29%;font-size:40px;color:blue;font-weight:bold;background-color:#DDFFFF;">{{message}}</div>
     </div>
     <div style="min-width:100px;width:100%;border-top:5px #BAD3FF;background-color:#EEEEEE;"
-    v-if="$store.state.auth.user&&$store.state.auth.headers">
+    v-if="$store.state.auth.user.length!==0&&$store.state.auth.headers.length!==0">
       <div
         v-for="(week, index) in calendars"
         :key="index"
@@ -67,7 +67,7 @@
       </div>
     </div>
     <div style="min-width:100px;width:100%;border-top:5px #BAD3FF;background-color:#EEEEEE;"
-    v-if="$store.state.auth.user&&!$store.state.auth.headers"
+    v-if="$store.state.auth.user.length!==0&&$store.state.auth.headers.length===0"
     @click="loginInvitationMassage">
       <div
         v-for="(week, index) in calendars"

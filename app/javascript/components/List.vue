@@ -9,7 +9,7 @@
       <div>
         <CardAdd :list_id="list_id"></CardAdd>
       </div>
-      <div v-if="$store.state.auth.user&&$store.state.auth.headers">
+      <div v-if="$store.state.auth.user.length!==0&&$store.state.auth.headers.length!==0">
         <draggable
           :options="options"
           :list="cards"
@@ -25,7 +25,7 @@
           ></Card>
         </draggable>
       </div>
-      <div v-if="$store.state.auth.user&&!$store.state.auth.headers">
+      <div v-if="$store.state.auth.user.length!==0&&$store.state.auth.headers.length===0">
         <draggable
           :options="options"
           :list="cards"
@@ -42,7 +42,7 @@
 
       </div>
     </div>
-    <div v-if="$store.state.auth.user&&$store.state.auth.headers">
+    <div v-if="$store.state.auth.user.length!==0&&$store.state.auth.headers.length!==0">
       <CardSettingModal 
       :card="cardDetail"
       :list="list"
@@ -55,7 +55,7 @@
       @clickedCreateScheduleFromCardButton="createSchedulesFromCard"
       ></CardSettingModal>
     </div>
-    <div v-if="$store.state.auth.user&&!$store.state.auth.headers">
+    <div v-if="$store.state.auth.user.length!==0&&$store.state.auth.headers.length===0">
       <SampleCardSettingModal 
       :card="sampleCardDetail"
       :list="list"
