@@ -56,7 +56,7 @@ export default {
         { 
           body: this.body, 
           list_id: this.list_id,
-          user_id: this.$store.state.auth.user.user.data.id
+          user_id: this.$store.state.auth.user.id
         }
       )
       this.body = ''

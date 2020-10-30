@@ -24,7 +24,7 @@ export default {
       isEditing: false,
       list: {
         title: '',
-        user_id: this.$store.state.auth.user.user.data.id
+        user_id: this.$store.state.auth.user.id
       },
     }
   },

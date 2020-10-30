@@ -11,7 +11,7 @@
         </div>
       </router-link>
         <div class="user-name" v-if="$store.state.auth.headers">
-          {{ this.$store.state.auth.user.user.data.name }}さん
+          {{ this.$store.state.auth.user.name }}さん
         </div>
       <div class="app-header-link unlogin-user-link" v-if="!$store.state.auth.headers">
         <router-link to="/register">
@@ -40,7 +40,7 @@ import BoxingGlove from 'vue-material-design-icons/BoxingGlove.vue';
     data(){
       return{
         users:{},
-        src: this.$store.state.auth.user.user.data.image
+        src: this.$store.getters['auth/user'].image
       }
     },
     components:{
