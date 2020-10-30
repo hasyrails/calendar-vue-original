@@ -29,4 +29,18 @@ RSpec.describe "Api::Lists", type: :request do
       expect(response).to have_http_status(200)
     end
   end
+
+  # Listの更新アクション未実装→要実装
+    # describe "PATCH /api/v1/todos/:id" do
+    #   subject { patch(api_v1_todo_path(todo.id), params: params) }
+    #   let(:todo) { create(:todo) }
+    #   let(:params) { { todo: { done: true, created_at: Time.current } } }
+
+    #   it "指定したレコードが更新される" do
+    #     expect { subject }.to change { Todo.find(todo.id).done }.from(todo.done).to(params[:todo][:done])
+    #     expect { subject }.not_to change { Todo.find(todo.id).body }
+    #     expect { subject }.not_to change { Todo.find(todo.id).created_at }
+    #     expect(response).to have_http_status(204)
+    #   end
+    # end
 end
