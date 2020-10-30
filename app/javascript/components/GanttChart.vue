@@ -44,7 +44,7 @@
           :sampleSchedule="sampleSchedule"
           v-for="sampleSchedule in sampleSchedules"
           v-if="
-          sampleSchedule.date_day === day.date
+          sampleSchedule.date_day===day.date
           &&sampleSchedule.date_month === day.month
           &&sampleSchedule.date_year === day.year&&$store.state.auth.user.length!==0&&$store.state.auth.headers.length===0"
           :key="sampleSchedule.id"

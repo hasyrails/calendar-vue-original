@@ -129,9 +129,9 @@
       </div>
       <div class="modal-footer" style="background-color:white; height:100px;">
           <div class="btn btn-lg btn-secondary" @click="closeSampleScheduleSettingModal">閉じる</div>
-          <div class="btn btn-lg btn-primary" @click="scheduleEdit">編集する</div>
-          <div class="btn btn-lg btn-primary" @click="updateSchedule">更新する</div>
-          <div class="btn btn-lg btn-primary" @click="completeSchedule">完了！</div>
+          <!-- <div class="btn btn-lg btn-primary" @click="scheduleEdit">編集する</div> -->
+          <!-- <div class="btn btn-lg btn-primary" @click="updateSchedule">更新する</div> -->
+          <!-- <div class="btn btn-lg btn-primary" @click="completeSchedule">完了！</div> -->
           <!-- <div class="btn btn-lg btn-danger" @click="deleteSchedule">このスケジュールを削除する</div> -->
         </div>
       </div>
