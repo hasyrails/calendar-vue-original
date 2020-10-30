@@ -33,7 +33,7 @@
           v-if="
           schedule.date_day === day.date
           &&schedule.date_month === day.month
-          &&schedule.date_year === day.year&&schedule.done===false&&$store.state.auth.user&&$store.state.auth.headers"
+          &&schedule.date_year === day.year&&schedule.done===false&&$store.state.auth.user.length!==0&&$store.state.auth.headers.length!==0"
           :key="schedule.id"
           style="flex:1;min-height:1px;min-width:1px;max-width:230px;text-align: center;margin-bottom:10px;"
           @clickScheduleSettingButton="openScheduleSettingModal(schedule)"
@@ -46,7 +46,7 @@
           v-if="
           sampleSchedule.date_day === day.date
           &&sampleSchedule.date_month === day.month
-          &&sampleSchedule.date_year === day.year&&$store.state.auth.user&&!$store.state.auth.headers"
+          &&sampleSchedule.date_year === day.year&&$store.state.auth.user.length!==0&&$store.state.auth.headers.length===0"
           :key="sampleSchedule.id"
           style="flex:1;min-height:1px;min-width:1px;max-width:230px;text-align: center;margin-bottom:10px;"
           @clickSampleScheduleSettingButton="openSampleScheduleSettingModal(sampleSchedule)"

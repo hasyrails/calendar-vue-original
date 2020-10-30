@@ -8,7 +8,7 @@
       class="btn btn-primary btn-lg button-to-ganttchart-of-done"
       style="width:400px;"
       @click="showDone"
-      v-if="$store.state.auth.user&&$store.state.auth.headers"
+      v-if="$store.state.auth.user.length!==0&&$store.state.auth.headers.length!==0"
       >
         <Paw size="50"></Paw>完遂の軌跡 <Paw size="50"></Paw>
       </div>
@@ -17,7 +17,7 @@
         <div
         class="btn btn-primary btn-lg button-to-ganttchart-of-done purun"
         style="width:400px;"
-        v-if="$store.state.auth.user&&!$store.state.auth.headers"
+        v-if="$store.state.auth.user.length!==0&&$store.state.auth.headers.length===0"
         @click="loginInvitationMassage"
         >
           <Key size="50"></Key>完遂の軌跡 <Key size="50"></Key>

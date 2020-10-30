@@ -12,7 +12,7 @@
         style="margin-top:50px;"
         ></ListAdd>
       </div>
-      <div class="todo-lists" v-if="$store.state.auth.user&&$store.state.auth.headers">
+      <div class="todo-lists" v-if="$store.state.auth.user.length!==0&&$store.state.auth.headers.length!==0">
         <draggable
           :list="lists"
           class="list-index"
@@ -28,7 +28,7 @@
           ></List>
         </draggable>
       </div>
-     <div class="todo-lists" v-if="$store.state.auth.user&&!$store.state.auth.headers">
+     <div class="todo-lists" v-if="$store.state.auth.user.length!==0&&$store.state.auth.headers.length===0">
         <List v-for="list in sampleLists"
           style="margin-top:50px;margin-bottom:10px;"
           :list="list"
@@ -84,19 +84,19 @@ export default {
        return this.$store.getters['lists/sampleLists']
     },
     slideRunner(){
-      if(this.$store.getters['auth/user']&&this.$store.getters['auth/headers']){
+      if(this.$store.getters['auth/user'].length!==0&&this.$store.getters['auth/headers'].length!==0){
         const slideRunner = ['']
         return slideRunner;
       }
-      else if(this.$store.getters['auth/user']&&!this.$store.getters['auth/headers']){
+      else if(this.$store.getters['auth/user'].length!==0&&this.$store.getters['auth/headers'].length===0){
         const slideRunner = ['']
         return slideRunner;
       }
-      else if(!this.$store.getters['auth/user']&&this.$store.getters['auth/headers']){
+      else if(this.$store.getters['auth/user'].length===0&&this.$store.getters['auth/headers'].length!==0){
         const slideRunner = ['']
         return slideRunner;
       }
-      else if(!this.$store.getters['auth/user']&&!this.$store.getters['auth/headers']){
+      else if(this.$store.getters['auth/user'].length===0&&this.$store.getters['auth/headers'].length===0){
         const slideRunner = ['']
         slideRunner.push('slide')
         return slideRunner;
@@ -104,16 +104,16 @@ export default {
     },
     message(){
       const loginInvitationMessage = ''
-      if(!this.$store.state.auth.user&&!this.$store.state.auth.headers){
+      if(this.$store.state.auth.user.length===0&&this.$store.state.auth.headers.length===0){
         this.loginInvitationMessage = 'ゲストログインするとお試し機能、ユーザー登録・ログインすると‥!?'
       }
-      if(!this.$store.state.auth.user&&this.$store.state.auth.headers){
-        this.loginInvitationMessage = ''
-      }
-      if(this.$store.state.auth.user&&!this.$store.state.auth.headers){
-        this.loginInvitationMessage = ''
-      }
-      if(this.$store.state.auth.user&&this.$store.state.auth.headers){
+      // if(!this.$store.state.auth.user&&this.$store.state.auth.headers){
+      //   this.loginInvitationMessage = ''
+      // }
+      // if(this.$store.state.auth.user&&!this.$store.state.auth.headers){
+      //   this.loginInvitationMessage = ''
+      // }
+      else{
         this.loginInvitationMessage = ''
       }
       return this.loginInvitationMessage
