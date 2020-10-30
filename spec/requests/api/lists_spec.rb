@@ -43,4 +43,14 @@ RSpec.describe "Api::Lists", type: :request do
     #     expect(response).to have_http_status(204)
     #   end
     # end
+
+  describe "DELETE /api/lists/:id" do
+    subject { delete(api_list_path(list.id)) }
+    let!(:list) { create(:list) }
+
+    it "指定したレコードが削除される" do
+      expect { subject }.to change { List.count }.by(-1)
+      expect(response).to have_http_status(200)
+    end
+  end
 end
