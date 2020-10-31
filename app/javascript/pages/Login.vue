@@ -13,6 +13,7 @@
       </div>
     </div>
     <div class="btn btn-primary login-btn" @click="login">ログイン</div>
+    <div style="color:red;">{{loginFailureMessage}}</div>
     <!-- <pre><code>{{form}}</code></pre> -->
   </div>
 </div>
@@ -36,7 +37,8 @@ export default {
         email: null,
         password: null,
         // password_confirmation: null,
-			}
+      },
+      loginFailureMessage: ''
     }
   },
   components: {
@@ -54,11 +56,25 @@ export default {
         // .then(res => {
           await this.$store.dispatch('auth/signIn', this.form)
           await this.$store.dispatch('auth/userInfo')
-          this.$router.push('/')
-          this.$store.commit(`messages/setUserLoginSuccessMessage`,{
-            userLoginSuccessMessage: 'ログインしました',
-            timeout: 3000
-          })
+          setTimeout(() => {
+                if(this.$store.getters['auth/user'].length!==0&&this.$store.getters['auth/headers'].length!==0){
+                  this.$store.commit(`messages/setUserLoginSuccessMessage`,{
+                    userLoginSuccessMessage: 'ログインしました',
+                    timeout: 3000
+                  })
+                  this.$router.push('/')
+                }else{
+                  this.loginFailureMessage = 'ログインできませんでした'
+                  setTimeout(() => {
+                    this.loginFailureMessage = ''
+                    }
+                    ,3000
+                  )
+                }
+
+              }
+              ,1000
+            )
         // })
       // .catch(error => console.log(error.res));
     }
