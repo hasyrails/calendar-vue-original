@@ -3,11 +3,21 @@
   <form @input="submit" class="register-form">
     <div class="form-group">
       <label for="Email">メールアドレス</label>
-      <input type="text" class="form-control form-control-lg" v-model="email" placeholder="Enter Email">
+      <ValidationProvider rules="required">
+        <div slot-scope="{ errors }">
+          <input type="text" name="email" class="form-control form-control-lg" v-model="email" placeholder="Enter Email">
+          <p class="error-message">{{ errors[0] }}</p>
+        </div>
+      </ValidationProvider>
     </div>
     <div class="form-group">
       <label for="Email">パスワード</label>
-      <input type="password" class="form-control form-control-lg" v-model="password" placeholder="Enter Password">
+      <ValidationProvider rules="required">
+        <div slot-scope="{ errors }">
+          <input type="password" name="password" class="form-control form-control-lg" v-model="password" placeholder="Enter Password">
+          <p class="error-message">{{ errors[0] }}</p>
+        </div>
+      </ValidationProvider>
     </div>
     <!-- <div class="form-group">
       <label for="Email">パスワード(確認)</label>
@@ -18,6 +28,8 @@
 </template>
 
 <script>
+import { ValidationProvider } from 'vee-validate';
+
 export default {
   name: 'LoginForm',
   data(){
@@ -26,6 +38,9 @@ export default {
       password: null,
       // password_confirmation: null
     }
+  },
+  components:{
+    ValidationProvider
   },
   methods: {
 		submit(){
@@ -53,5 +68,10 @@ export default {
 
   .form-control{
     width: 50%;
+  }
+
+  .error-message{
+    color: red;
+    font-size:20px;
   }
 </style>
