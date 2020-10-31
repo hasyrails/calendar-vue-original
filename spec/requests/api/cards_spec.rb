@@ -59,10 +59,30 @@ RSpec.describe "Api::Cards", type: :request do
         expect { subject }.not_to change { Card.find(card.id).description }
         expect { subject }.not_to change { Card.find(card.id).created_at }
         res = JSON.parse(response.body)
-        expect(res["body"]).to eq 'UpdatedTestCardDetail'
+        expect(res[0]["card"]["body"]).to eq 'UpdatedTestCardDetail'
         expect(response).to have_http_status(200)
       end
     end
+
+  describe "PATCH /api/cards/:id" do
+    subject { patch(api_card_path(card.id), params: params) }
+    let(:card) { create(:card) }
+    let!(:schedule) { create(:schedule) }
+    let(:params) {
+      {
+        "body": "UpdatedTestCardDetail",
+      }
+    }
+
+    it "更新したcardレコードと紐づいたscheduleレコードが更新される" do
+        expect { subject }.to change { Schedule.find(schedule.id).body }.from(schedule.body).to(params[:body])
+        expect { subject }.not_to change { Schedule.find(schedule.id).description }
+        expect { subject }.not_to change { Schedule.find(schedule.id).created_at }
+        res = JSON.parse(response.body)
+        expect(res[1]["schedules"][0]["body"]).to eq 'UpdatedTestCardDetail'
+        expect(response).to have_http_status(200)
+    end
+  end
 
   describe "DELETE /api/cards/:id" do
     subject { delete(api_card_path(card.id)) }

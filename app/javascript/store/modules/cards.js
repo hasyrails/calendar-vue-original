@@ -69,7 +69,7 @@ const cards = {
       // })
       //   state.cards.splice(index, 1, updateCard)
       // Object.assign(card, updateCard);
-      state.cards = payload.cards
+      state.cards = payload.card
     },
     createCard(state, payload) {
       state.cards.push({ body: payload.body, list_id: payload.list_id })
