@@ -1,23 +1,23 @@
 <template>
   <div class="calendar-header">
     <div class="calendar-header-content">
-      <div>
-        <ChevronLeft fillColor="white"  @click="prev" :size="100"></ChevronLeft>
+      <div class="prev-month-button">
+        <ChevronLeft fillColor="white"  @click="prev" :size="40"></ChevronLeft>
       </div>
       <div class="calendar-header-date">{{ currentDate }}</div>
-      <div>
-        <ChevronRight fillColor="white" @click="next" :size="100"></ChevronRight>
+      <div class="next-month-button">
+        <ChevronRight fillColor="white" @click="next" :size="40"></ChevronRight>
       </div>
     </div>
     <router-link to="/schedules" style="text-decoration:none;">
-      <div class="link-to-ganttchart-page"
+      <div class="linkicon-to-ganttchart-page"
       @mouseover="ballonDisplay" @mouseleave="ballonNonDisplay">
           <div class="purun">
-            <Pencil :size="80"></Pencil>
+            <Pencil :size="40"></Pencil>
           </div>
           <div class="link-description-ballon"
           v-if="ballonFlag">
-            スケジュールを<br>立てましょう！
+            スケジュールを立てましょう！
           </div>
       </div>
     </router-link>
@@ -84,34 +84,27 @@ export default {
 }
 .calendar-header-date {
   color: white;
-  font-size: 75px;
+  font-size: 30px;
   margin-left: 10%;
   margin-right: 10%;
 }
-.link-to-ganttchart-page{
-  text-align: right;
-  margin-bottom: 15%;
-  margin-left: 85%;
+.linkicon-to-ganttchart-page{
+  margin-left: 75%;
   display: flex;
 }
 
 .link-description-ballon {
-  position: relative;
-  margin: 1.5em 0 1.5em 30px;
-  padding: 15px 15px;
-  /* min-width: 100px; */
+  margin-bottom:15px;
   max-width: 250px;
   color: #555;
-  font-size: 16px;
+  font-size: 15px;
   background: #e0edff;
   border-radius:10px 10px 10px 10px;
 }
 .link-description-ballon::before{
   content: "";
   position: absolute;
-  top: 50%;
   left: -30px;
-  margin-top: -15px;
   border: 15px solid transparent;
   border-right: 15px solid #e0edff;
 }
