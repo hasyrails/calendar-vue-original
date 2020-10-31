@@ -122,7 +122,7 @@ describe 'ユーザー登録ページ(マルチステップ入力ページ)', ty
       assert_text 'ユーザーアイコンを登録しました'
     end
     
-    # なぜかテストパスしてしまう
+    # pdfファイルは許容していないがなぜかテストパスしてしまう
     # fit "（共通）pdf画像がアップロードできない" do
     #   attach_file('file', 'spec/fixtures/testicon.pdf')
     #   click_on 'アップロード'
@@ -220,7 +220,7 @@ describe 'ユーザー登録ページ(マルチステップ入力ページ)', ty
       assert_text 'testuser'
       assert_text 'test@example.com'
       expect(page).to have_css("img[src*='base64']")
-      assert_text '●●●●●●●●'
+      assert_text '●'
     end
     
     it "（共通）ユーザー登録に成功してログイン画面へ遷移する" do
@@ -249,7 +249,7 @@ describe 'ユーザー登録ページ(マルチステップ入力ページ)', ty
       find('.register-step-next-button').click
     end
     
-    fit "（共通）ユーザー登録に失敗する" do
+    it "（共通）ユーザー登録に失敗する" do
       find('.register-btn').click
       expect(current_path).to eq "/register"
       assert_text 'ユーザー登録に失敗しました'

@@ -18,7 +18,7 @@ module SessionHelper
    'password' => password 
   } 
   host! "#{subdomain}.lvh.me" 
-  post "/portal/auth/sign_in", params: request_params 
+  post "localhost:5000/api/v1/auth/sign_in", params: request_params 
   return set_request_headers(response.headers) 
   end 
 end 
