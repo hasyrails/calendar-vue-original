@@ -24,17 +24,17 @@ class Api::CardsController < ApplicationController
 
   def update
     if @card.update(card_params)
-      render json: @card
+      @schedules = Schedule.where(card_id: @card.id)
+      if @schedules.present?
+        @schedules.each do |schedule|
+          schedule.update(schedule_params)
+        end
+      end
+      render json: [{card: @card}, {schedules: @schedules}]
     else
       render json: @card.errors, status: :bad_request
     end
-
-    @schedules = Schedule.where(card_id: @card.id)
-    if @schedules.present?
-      @schedules.each do |schedule|
-        schedule.update(schedule_params)
-      end
-    end
+    
   end
 
   def destroy
