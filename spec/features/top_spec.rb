@@ -74,7 +74,6 @@ describe 'トップページ', type: :system do
       find('.app-header-link-guest-login').click
       assert_text 'ゲストさん'
       expect(page).to have_css '.user-icon'
-      ###
 
       find('.calendar').click
       assert_text 'ユーザー登録・ログインするとカレンダーに予定の数が表示されます！'

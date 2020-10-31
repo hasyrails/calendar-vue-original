@@ -4,9 +4,9 @@
     <h2>メールアドレスを入力してください</h2>
     <div class="form-group">
       <label for="Email">メールアドレス</label>
-      <ValidationProvider name="email" rules="required|email">
+      <ValidationProvider rules="required|email">
         <div slot-scope="{ errors }">
-          <input type="text" class="form-control form-control-lg" v-model="email" placeholder="Enter Email">
+          <input type="text" class="form-control form-control-lg email-input-form" v-model="email" placeholder="Enter Email" name="email">
           <p class="error-message">{{ errors[0] }}</p>
         </div>
       </ValidationProvider>
