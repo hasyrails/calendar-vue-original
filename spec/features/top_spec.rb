@@ -1,85 +1,85 @@
 require 'rails_helper'
 require 'spec_helper'
 
-describe 'トップページ', type: :feature do
-  # let!(:card) { create(:user) }
-  # let!(:user_b) { create(:user) }
-  # let!(:post_a) { create(:post, user_id: user_a.id )}
-  # let!(:task_a) { create(:task, post_id: post_a.id) }
-  describe "表示部分" do
+describe 'トップページ', type: :system do
+  describe "表示部分", js: true do
 
     before do
-      visit '/schedules'
+      visit '/'
     end
+    
 
-    it "表示されること" do
+    # before ('@ChangeBrowserZoom') do
+    #   page = Capybara::page
+    #   page.execute_script("document.getElementsByTagName('html')[0].style['zoom'] = 0.1")
+    # end
+
+    it "（共通）トップページが表示されること" do
       expect(current_path).to eq "/"
-      expect(page).to have_content("Go-En")
+      expect(page).to have_content("初志しか勝たん")
+    end
+    
+    
+    it "（共通？）ヘッダーからユーザー登録ページへ遷移できる" do
+      find('.app-header-link-register').click
+      assert_text 'ユーザー登録'
+      expect(current_path).to eq "/register"
+    end
+    
+    it "（共通）ヘッダーからログイン画面へ遷移できる" do
+      find('.app-header-link-login').click
+      assert_text 'ログイン'
+      expect(current_path).to eq "/login"
+    end
+    
+    it "（共通）ペンアイコンをクリックするとガントチャートページに遷移できる" do
+      find('.linkicon-to-ganttchart-page').click
+      expect(current_path).to eq "/schedules"
     end
 
-    # it "トップページから商品詳細ページに遷移できる" do
-    #   within first('.post-contents') do
-    #     click_on(user_a.name)
-    #   end
-    #   expect(current_path).to eq "/posts/#{post_a.id}"
-    # end
+    it "（共通）ペンアイコン上をマススホバーするとメッセージ吹き出しが現れる" do
+      find('.linkicon-to-ganttchart-page').hover
+      assert_text 'スケジュールを立てましょう！'
+    end
+    
+    it "（共通）前月への移動ボタンでカレンダーの月を前月に変えることができる" do
+      currentYYMM = Date.today.strftime('%Y/%m')
+      prevYYMM = Date.today.prev_month.strftime('%Y/%m')
+      assert_text currentYYMM
+      find('.prev-month-button').click
+      assert_text prevYYMM
+    end
 
-    # context "ログインしていない場合" do
-    #   it "フォローボタンを押すとログイン画面に遷移する" do
-    #     within first('.post-contents') do
-    #       click_on(user_a.name)
-    #     end
-    #     expect(current_path).to eq "/posts/#{post_a.id}"
-    #     click_on("フォローする")
-    #     expect(current_path).to eq new_user_session_path
-    #   end
-    # end
+    it "（共通）次月への移動ボタンでカレンダーの月を次月に変えることができる" do
+      currentYYMM = Date.today.strftime('%Y/%m')
+      nextYYMM = Date.today.next_month.strftime('%Y/%m')
+      assert_text currentYYMM
+      find('.next-month-button').click
+      assert_text nextYYMM
+    end
+    
+    it "（非ログイン時）ヘッダーからゲストログインできる" do
+      find('.app-header-link-guest-login').click
+      assert_text 'ゲストさん'
+      expect(page).to have_css '.user-icon'
+    end
+    
+    it "（非ログイン時）カレンダーをクリックすると、説明メッセージが表示される" do
+      find('.calendar').click
+      assert_text 'ユーザー登録・ログインするとカレンダーに予定の数が表示されます！'
+    end
 
-    # context "ログインしている場合" do
 
-    #   context "当人の投稿の場合" do
-    #     before do
-    #       visit new_user_session_path
-    #       fill_in "user[email]", with: user_a.email
-    #       fill_in "user[password]", with: user_a.password
-    #       click_on 'ログインする'
-    #     end
+    it "（ゲストログイン時）カレンダーをクリックすると、説明メッセージが表示される" do
+      # ゲストログイン→ヘルパーメソッドで表現する
+      find('.app-header-link-guest-login').click
+      assert_text 'ゲストさん'
+      expect(page).to have_css '.user-icon'
+      ###
 
-    #     it "削除ボタンを押すと投稿が削除される" do
-    #       within first('.post-contents') do
-    #         click_on(user_a.name)
-    #       end
-    #       expect(current_path).to eq "/posts/#{post_a.id}"
-    #       expect{
-    #         click_on("投稿を削除")
-    #       }.to change(Post, :count).by(-1)
-    #       expect(current_path).to eq root_path
-    #     end
-
-    #   end
-
-    #   context "当人の投稿ではない場合" do
-    #     before do
-    #       visit new_user_session_path
-    #       fill_in "user[email]", with: user_b.email
-    #       fill_in "user[password]", with: user_b.password
-    #       click_on 'ログインする'
-    #     end
-
-    #     it "フォローボタンを押すとフォローされる" do
-    #       within first('.post-contents') do
-    #         click_on(user_a.name)
-    #       end
-    #       expect(current_path).to eq "/posts/#{post_a.id}"
-    #       expect{
-    #         click_on("フォローする")
-    #       }.to change(Relationship, :count).by(1)
-    #       expect(current_path).to eq "/users/#{user_a.id}"
-    #     end
-
-    #   end
-
-    # end
+      find('.calendar').click
+      assert_text 'ユーザー登録・ログインするとカレンダーに予定の数が表示されます！'
+    end
 
   end
 end
