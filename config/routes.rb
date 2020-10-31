@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     patch '/schedules/:id/done', to: 'schedules#done'
     resources :lists
     resources :cards
+    patch '/cards/:id/deadlined', to: 'cards#deadlined', as: 'deadlined'
     get '/whoami', to: 'sessions#whoami'
     devise_scope :user do
       post 'users/guest_sign_in', to: 'users#new_guest'

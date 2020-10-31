@@ -18,6 +18,7 @@
 
 FactoryBot.define do
   factory :card do
+    id {"1"}
     body { "TestCard" }
     description { "TestCardDetail" }
     user_id { "1" }
