@@ -4,18 +4,18 @@
     <h2>パスワードを入力してください</h2>
     <div class="form-group">
       <label for="password">パスワード</label>
-      <ValidationProvider name="password" rules="required|password">
+      <ValidationProvider rules="required|password">
         <div slot-scope="{ errors }">
-        <input type="password" class="form-control form-control-lg" v-model="password" placeholder="Enter Password">
+        <input type="password" class="form-control form-control-lg" name="password"  v-model="password" placeholder="Enter Password">
           <p class="error-message">{{ errors[0] }}</p>
         </div>
       </ValidationProvider>
     </div>
     <div class="form-group">
       <label for="userName">パスワード(確認)</label>
-      <ValidationProvider name="password_confirmation" rules="required|confirmed:password">
+      <ValidationProvider rules="required|confirmed:password">
         <div slot-scope="{ errors }">
-        <input type="password" class="form-control form-control-lg" v-model="password_confirmation" placeholder="Enter Password">
+        <input type="password" class="form-control form-control-lg" name="password_confirmation" v-model="password_confirmation" placeholder="Enter Password">
           <p class="error-message">{{ errors[0] }}</p>
         </div>
       </ValidationProvider>

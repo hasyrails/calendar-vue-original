@@ -1,5 +1,6 @@
 <template>
 <div>
+  <h3>ユーザーアイコンを登録しましょう</h3>
   <p id="error" v-show="error">{{ error }}</p>
   <label>
     <div v-if="image">
@@ -7,12 +8,13 @@
     </div>
     <div class="form-group">
     <input
-           type="file"
-           id="avatar_name"
-           accept="image/jpeg, image/png"
-           class="form-control-file" 
-           @change="onImageChange"
-           />
+    name="file"
+    type="file"
+    id="avatar_name"
+    accept="image/jpeg, image/png"
+    class="form-control-file" 
+    @change="onImageChange"
+    />
     </div>
   </label>
   <button class="btn btn-info" @click="upload()">アップロード</button>

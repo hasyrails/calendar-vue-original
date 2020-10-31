@@ -14,9 +14,9 @@
         @update="updateForm" @clickedRegisterButton="register"></ConfirmForm >
       </keep-alive>
       <div class="register-step-button">
-        <div class="register-step-prev-button" v-if="stepNumber != 1">
-          <div class="register-step-next-button-label">戻る</div>
-          <ArrowLeftThick class="btn btn-primary" @click="backStep"></ArrowLeftThick>
+        <div v-if="stepNumber != 1">
+          <div class="register-step-prev-button-label">戻る</div>
+          <ArrowLeftThick class="btn btn-primary register-step-prev-button" @click="backStep"></ArrowLeftThick>
         </div>
         <div class="register-step-next-button" v-if="stepNumber != 5">
           <div class="register-step-next-button-label">次へ</div>

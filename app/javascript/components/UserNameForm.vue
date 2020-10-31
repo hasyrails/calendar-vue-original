@@ -4,9 +4,9 @@
     <h2>ユーザー名を入力してください</h2>
     <div class="form-group">
       <label for="userName">ユーザー名</label>
-      <ValidationProvider name="name" rules="required|name">
+      <ValidationProvider rules="required|name">
         <div slot-scope="{ errors }">
-          <input type="text" class="form-control form-control-lg" v-model="name" placeholder="Enter User Name">
+          <input type="text" class="form-control form-control-lg" v-model="name" placeholder="Enter User Name" name="name">
           <p class="error-message">{{ errors[0] }}</p>
         </div>
       </ValidationProvider>
