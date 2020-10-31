@@ -1,12 +1,12 @@
 class Api::SchedulesController < ApplicationController
   before_action :set_schedule, only: %i[show update destroy done]
-  before_action :deadlined
+  before_action :deadlined, only: %i[show]
 
   skip_before_action :verify_authenticity_token
 
   def index
     @schedules = Schedule.all
-    render json: @schedules
+    # render json: @schedules
   end
 
   def show
