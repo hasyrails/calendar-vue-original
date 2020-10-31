@@ -10,116 +10,84 @@ RSpec.describe "Api::Schedules", type: :request do
       res = JSON.parse(response.body)
       expect(res.count).to eq 1
       expect(res[0].keys).to eq [
-        :id,
-        :body,
-        :description,
-        :done,
-        :commit,
-        :color,
-        :date,
-        :date_year,
-        :date_month,
-        :date_day,
-        :card_id,
-        :user_id,
-        :start,
-        :end,
-        :done_at
+        "id",
+        "body",
+        "description",
+        "start",
+        "deadline",
+        "done",
+        "deadlined",
+        "date",
+        "date_year",
+        "date_month",
+        "date_day",
+        "commit",
+        "color",
+        "card_id",
+        "user_id",
+        "done_at",
       ]
       expect(response).to have_http_status(200)
     end
   end
-
-  # describe "POST /api/cards" do
-  #   subject { post(api_cards_path, params: params) }
-  #   let(:params) {
-  #     {
-  #       "id": 1,
-  #       "body": "TestCard",
-  #       "description": "TestCardDetail",
-  #       "user_id": 1,
-  #       "list_id": 1,
-  #     } 
-  #   }
-    
-  #   it "cardレコードが作成される" do
-  #     expect { subject }.to change { Card.count }.by(1)
-  #     expect(response).to have_http_status(200)
-  #   end
-  # end
   
-  # describe "PATCH /api/cards/:id" do
-  #   subject { patch(api_card_path(card.id), params: params) }
-  #   let(:card) { create(:card) }
-  #   let(:params) {
-  #     {
-  #       "body": "UpdatedTestCardDetail",
-  #     }
-  #   }
-
-  #     it "指定したcardレコードが更新される" do
-  #       expect { subject }.to change { Card.find(card.id).body }.from(card.body).to(params[:body])
-  #       expect { subject }.not_to change { Card.find(card.id).description }
-  #       expect { subject }.not_to change { Card.find(card.id).created_at }
-  #       res = JSON.parse(response.body)
-  #       expect(res[0]["card"]["body"]).to eq 'UpdatedTestCardDetail'
-  #       expect(response).to have_http_status(200)
-  #     end
-  #   end
-
-  # describe "PATCH /api/cards/:id" do
-  #   subject { patch(api_card_path(card.id), params: params) }
-  #   let(:card) { create(:card) }
-  #   let!(:schedule) { create(:schedule) }
-  #   let(:params) {
-  #     {
-  #       "body": "UpdatedTestCardDetail",
-  #     }
-  #   }
+  describe "POST /api/schedules" do
+    subject { post(api_schedules_path, params: params) }
+    today = Date.today.strftime('%Y-%m-%d')
+    tomorrow = Date.tomorrow.strftime('%Y-%m-%d')
+    let(:params) {
+      {
+        "id": 1,
+        "body": 'TestSchedule',
+        "description": 'TestScheduleDetail',
+        "start": today,
+        "deadline": tomorrow,
+        "done": false,
+        "deadlined": '',
+        "date": '',
+        "date_year": '',
+        "date_month": '',
+        "date_day": '',
+        "commit": true,
+        "color": '',
+        "card_id": 1,
+        "user_id": 1,
+        "done_at": '',
+      }
+    }
     
-  #   it "更新したcardレコードと紐づいたscheduleレコードが更新される" do
-  #     expect { subject }.to change { Schedule.find(schedule.id).body }.from(schedule.body).to(params[:body])
-  #     expect { subject }.not_to change { Schedule.find(schedule.id).description }
-  #     expect { subject }.not_to change { Schedule.find(schedule.id).created_at }
-  #     res = JSON.parse(response.body)
-  #     expect(res[1]["schedules"][0]["body"]).to eq 'UpdatedTestCardDetail'
-  #     expect(response).to have_http_status(200)
-  #   end
-  # end
+    it "scheduleレコードが作成される" do
+      expect { subject }.to change { Schedule.count }.by(1)
+      expect(response).to have_http_status(200)
+    end
+  end
   
-  # describe "PATCH  /api/cards/:id/deadlined" do
-  #   yesterday = Date.yesterday.strftime("%Y-%m-%d")
-  #   today = Date.today.strftime("%Y-%m-%d")
-  #   tomorrow = Date.tomorrow.strftime("%Y-%m-%d")
-    
-  #   let(:card) {
-  #     create(:card, end: today) 
-  #   }
-    
-  #   it "期限が過ぎたカードはdeadlined:true" do
-  #     travel_to tomorrow do
-  #       patch api_deadlined_path(card.id)
-  #       res = JSON.parse(response.body)
-  #       expect(res[0]["deadlined"]).to eq true
-  #     end
-  #   end
-    
-  #   it "期限が過ぎていないカードはdeadlined:false" do
-  #     travel_to yesterday do
-  #       patch api_deadlined_path(card.id)
-  #       res = JSON.parse(response.body)
-  #       expect(res[0]["deadlined"]).to eq false
-  #     end
-  #   end
-  # end
+  describe "PATCH /api/schedules/:id" do
+    subject { patch(api_schedule_path(schedule.id), params: params) }
+    let(:schedule) { create(:schedule) }
+    let(:params) {
+      {
+        "body": "UpdatedTestCardDetail",
+      }
+    }
 
-  # describe "DELETE /api/cards/:id" do
-  #   subject { delete(api_card_path(card.id)) }
-  #   let!(:card) { create(:card) }
+      it "指定したscheduleレコードが更新される" do
+        expect { subject }.to change { Schedule.find(schedule.id).body }.from(schedule.body).to(params[:body])
+        expect { subject }.not_to change { Schedule.find(schedule.id).description }
+        expect { subject }.not_to change { Schedule.find(schedule.id).created_at }
+        res = JSON.parse(response.body)
+        expect(res["body"]).to eq 'UpdatedTestCardDetail'
+        expect(response).to have_http_status(200)
+      end
+    end
 
-  #   it "指定したcardレコードが削除される" do
-  #     expect { subject }.to change { Card.count }.by(-1)
-  #     expect(response).to have_http_status(200)
-  #   end
-  # end
+  describe "DELETE /api/schedules/:id" do
+    subject { delete(api_schedule_path(schedule.id)) }
+    let!(:schedule) { create(:schedule) }
+
+    it "指定したscheduleレコードが削除される" do
+      expect { subject }.to change { Schedule.count }.by(-1)
+      expect(response).to have_http_status(200)
+    end
+  end
 end
