@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 2020_10_27_223927) do
     t.string "body"
     t.text "description"
     t.date "start"
-    t.date "end"
+    t.date "deadline"
     t.integer "color"
     t.boolean "schedulized", default: false, null: false
     t.boolean "deadlined", default: false, null: false
@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(version: 2020_10_27_223927) do
     t.string "body"
     t.string "description"
     t.date "start"
-    t.date "end"
+    t.date "deadline"
     t.boolean "done", default: false, null: false
     t.boolean "deadlined", default: false, null: false
     t.datetime "date"

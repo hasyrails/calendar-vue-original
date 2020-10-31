@@ -53,9 +53,9 @@
               <div>いつまで</div>
             <div class="datepicker-form">
               <div>
-                {{ new Date(card.end).getFullYear() }}/
-                {{ new Date(card.end).getMonth()+1 }}/
-                {{ new Date(card.end).getDate() }}
+                {{ new Date(card.deadline).getFullYear() }}/
+                {{ new Date(card.deadline).getMonth()+1 }}/
+                {{ new Date(card.deadline).getDate() }}
               </div>
             </div>
             </div>

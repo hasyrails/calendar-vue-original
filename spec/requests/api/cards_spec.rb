@@ -14,7 +14,7 @@ RSpec.describe "Api::Cards", type: :request do
         "body",
         "description",
         "start",
-        "end",
+        "deadline",
         "color",
         "schedulized",
         "deadlined",
@@ -90,7 +90,7 @@ RSpec.describe "Api::Cards", type: :request do
     tomorrow = Date.tomorrow.strftime("%Y-%m-%d")
     
     let(:card) {
-      create(:card, end: today) 
+      create(:card, deadline: today) 
     }
     
     it "期限が過ぎたカードはdeadlined:true" do

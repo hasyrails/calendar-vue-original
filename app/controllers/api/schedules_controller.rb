@@ -54,7 +54,7 @@ class Api::SchedulesController < ApplicationController
     today = Date.today
     @schedules = Schedule.all
     @schedules.each do |schedule|
-      if schedule.end < today
+      if schedule.deadline < today
         schedule.update(deadlined: 'true')
         schedule.save
       end
@@ -68,6 +68,6 @@ class Api::SchedulesController < ApplicationController
   end
 
   def schedule_params
-    params.permit(:id, :body, :description, :done, :commit, :color, :date, :date_year, :date_month, :date_day, :card_id, :user_id, :start, :end, :done_at)
+    params.permit(:id, :body, :description, :done, :commit, :color, :date, :date_year, :date_month, :date_day, :card_id, :user_id, :start, :deadline, :done_at)
   end
 end

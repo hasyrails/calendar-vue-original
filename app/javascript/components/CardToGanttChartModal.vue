@@ -86,7 +86,7 @@
                 class="test"
                 :value="this.default"
                 :format="DatePickerFormat"
-              v-model="card.end"
+              v-model="card.deadline"
                 ></Datepicker>
               </form>
               </div>

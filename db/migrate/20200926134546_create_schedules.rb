@@ -4,7 +4,7 @@ class CreateSchedules < ActiveRecord::Migration[5.2]
       t.string :body
       t.string :description
       t.date :start
-      t.date :end
+      t.date :deadline
       t.boolean :done, default: false, null: false
       t.boolean :deadlined, default: false, null: false
       t.datetime :date
