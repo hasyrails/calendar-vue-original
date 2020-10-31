@@ -136,9 +136,9 @@
         </div>
       </div>
       <div class="app-header-link-logout" v-else-if="this.$store.state.auth.headers.length!==0&&this.$store.state.auth.user.length===0">
-        <div @click="logout">
+        <!-- <div @click="logout">
           ログアウト
-        </div>
+        </div> -->
       </div>
       <div class="app-header-link-logout" v-else-if="this.$store.state.auth.headers.length===0&&this.$store.state.auth.user.length!==0">
         <!-- <div @click="logout">
