@@ -10,7 +10,7 @@
       <div>
         <div class="user-icon" v-if="this.$store.state.auth.headers.length!==0&&this.$store.state.auth.user.length!==0&&src">
           <router-link to="/userinfo"> 
-            <img style="border-radius:50%;" :src="src" width="100" height="100">
+            <img style="border-radius:50%;" :src="src" width="70" height="70">
           </router-link>
         </div>
         <div class="user-icon" v-if="this.$store.state.auth.headers.length!==0&&this.$store.state.auth.user.length!==0&&!src">
@@ -279,11 +279,10 @@ a {
   /* width:300px; */
 }
 .app-header-link-logout{
-  margin-top:40px;
   /* margin-left:10px; */
   /* margin-right:10px; */
   position:fixed;
-  top:20px;
+  top:40px;
   left:88%;
   color: black;
   cursor: pointer;

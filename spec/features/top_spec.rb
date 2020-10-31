@@ -8,7 +8,6 @@ describe 'トップページ', type: :system do
       visit '/'
     end
     
-
     # before ('@ChangeBrowserZoom') do
     #   page = Capybara::page
     #   page.execute_script("document.getElementsByTagName('html')[0].style['zoom'] = 0.1")
