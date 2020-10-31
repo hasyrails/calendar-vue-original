@@ -1,50 +1,52 @@
 <template>
   <div class="calendar">
-    <div class="calendar-header-area">
+    <div>
       <CalendarHeader
       :currentDate="currentDate"
       @prev="prevMonth"
       @next="nextMonth"
-      style="background-color:#8EB8FF;height:200px;">
+      style="background-color:#8EB8FF;">
       </CalendarHeader>
     </div>
-    <div style="min-width:100px;width:100%;border-top:5px #BAD3FF;background-color:#EEEEEE;"
+    <div 
     v-if="$store.state.auth.user.length===0&&$store.state.auth.headers.length===0"
     @click="loginInvitationMassage">
       <div
         v-for="(week, index) in calendars"
+        class="week"
         :key="index"
-        style="display:flex;border-left:5px solid #BAD3FF;height:200px;"
       >
         <div
         class="calendar-date"
         v-for="(day, index) in week"
         :key="index"
-        style="width:150px;"
+        style="width:50px;"
         > 
-          <div v-if="day.month===currentMonth" style="font-weight:200;font-size:50px;">{{day.date}}</div>
-          <div v-if="day.month!==currentMonth" style="color:#D3D3D3;font-size:50px;">{{ day.date }}</div>
+          <div v-if="day.month===currentMonth" 
+          class="day-current-month"
+          style="font-weight:200;font-size:20px;">{{day.date}}</div>
+          <div v-if="day.month!==currentMonth" style="color:#D3D3D3;font-size:20px;">{{ day.date }}</div>
           <div v-if="day.date===new Date().getDate()&&day.month===new Date().getMonth()+1&&day.year===new Date().getFullYear()"
-          style="color:red;font-size:50px;position:relative;top:-74px;font-weight:10;">
+          class="today">
           {{day.date}}</div>
             <div v-if="day.date===new Date().getDate()&&day.month===new Date().getMonth()+1&&day.year===new Date().getFullYear()&&day.scheduleNum!==0">
               <CountDownTimer></CountDownTimer>
             </div>
           <div style="margin-left:40px;width:50px;height:50px;border-radius:25px 25px 25px 25px;background-color:#2C7CFF;" v-if="day.scheduleNum!==0&&day.month===new Date().getMonth()+1&&day.year===new Date().getFullYear()" class="schedule-num-display">
-            <div style="color:white; font-size:35px;margin-top:1px;margin-left:12px;">{{day.scheduleNum}}</div>
+            <div style="color:white; font-size:20px;margin-top:1px;margin-left:12px;">{{day.scheduleNum}}</div>
             <div style="margin-left:10px;"><CardBulletedOutline fillColor="grey" :size="100"></CardBulletedOutline></div>
           </div>
         </div>
       </div>
       <div style="z-index:100;position:fixed;top:50%;left:29%;font-size:40px;color:blue;font-weight:bold;background-color:#DDFFFF;">{{message}}</div>
     </div>
-    <div style="min-width:100px;width:100%;border-top:5px #BAD3FF;background-color:#EEEEEE;"
+    <div
     v-if="$store.state.auth.user.length===0&&$store.state.auth.headers.length!==0"
     @click="loginInvitationMassage">
       <div
         v-for="(week, index) in calendars"
         :key="index"
-        style="display:flex;border-left:5px solid #BAD3FF;height:200px;"
+        class="week" 
       >
         <div
         class="calendar-date"
@@ -52,7 +54,9 @@
         :key="index"
         style="width:150px;"
         > 
-          <div v-if="day.month===currentMonth" style="font-weight:200;font-size:50px;">{{day.date}}</div>
+          <div v-if="day.month===currentMonth" 
+          class="day-current-month"
+          style="font-weight:200;font-size:50px;">{{day.date}}</div>
           <div v-if="day.month!==currentMonth" style="color:#D3D3D3;font-size:50px;">{{ day.date }}</div>
           <div v-if="day.date===new Date().getDate()&&day.month===new Date().getMonth()+1&&day.year===new Date().getFullYear()"
           style="color:red;font-size:50px;position:relative;top:-74px;font-weight:10;">
@@ -68,12 +72,12 @@
       </div>
       <div style="z-index:100;position:fixed;top:50%;left:29%;font-size:40px;color:blue;font-weight:bold;background-color:#DDFFFF;">{{message}}</div>
     </div>
-    <div style="min-width:100px;width:100%;border-top:5px #BAD3FF;background-color:#EEEEEE;"
+    <div 
     v-if="$store.state.auth.user.length!==0&&$store.state.auth.headers.length!==0">
       <div
         v-for="(week, index) in calendars"
         :key="index"
-        style="display:flex;border-left:5px solid #BAD3FF;height:200px;"
+        class="week"
       >
         <div
         class="calendar-date"
@@ -81,10 +85,13 @@
         :key="index"
         style="width:150px;"
         > 
-          <div v-if="day.month===currentMonth" style="font-weight:200;font-size:50px;">{{day.date}}</div>
+          <div v-if="day.month===currentMonth"
+          class="day-current-month"
+          style="font-weight:200;font-size:50px;">{{day.date}}</div>
           <div v-if="day.month!==currentMonth" style="color:#D3D3D3;font-size:50px;">{{ day.date }}</div>
           <div v-if="day.date===new Date().getDate()&&day.month===new Date().getMonth()+1&&day.year===new Date().getFullYear()"
-          style="color:red;font-size:50px;position:relative;top:-74px;font-weight:10;">
+          class="today"
+          >
           {{day.date}}</div>
             <div v-if="day.date===new Date().getDate()&&day.month===new Date().getMonth()+1&&day.year===new Date().getFullYear()&&day.scheduleNum!==0">
               <CountDownTimer></CountDownTimer>
@@ -96,13 +103,13 @@
         </div>
       </div>
     </div>
-    <div style="min-width:100px;width:100%;border-top:5px #BAD3FF;background-color:#EEEEEE;"
+    <div 
     v-if="$store.state.auth.user.length!==0&&$store.state.auth.headers.length===0"
     @click="loginInvitationMassage">
       <div
         v-for="(week, index) in calendars"
         :key="index"
-        style="display:flex;border-left:5px solid #BAD3FF;height:200px;"
+        class="week"
       >
         <div
         class="calendar-date"
@@ -110,15 +117,16 @@
         :key="index"
         style="width:150px;"
         > 
-          <div v-if="day.month===currentMonth" style="font-weight:200;font-size:50px;">{{day.date}}</div>
-          <div v-if="day.month!==currentMonth" style="color:#D3D3D3;font-size:50px;">{{ day.date }}</div>
+          <div v-if="day.month===currentMonth">{{day.date}}</div>
+          <div v-if="day.month!==currentMonth" style="color:#D3D3D3;font-size:20px;">{{ day.date }}</div>
           <div v-if="day.date===new Date().getDate()&&day.month===new Date().getMonth()+1&&day.year===new Date().getFullYear()"
-          style="color:red;font-size:50px;position:relative;top:-74px;font-weight:10;">
+          class="today"
+          >
           {{day.date}}</div>
         </div>
       </div>
     </div>
-    <div style="z-index:100;position:fixed;top:50%;left:29%;font-size:40px;color:blue;font-weight:bold;background-color:#DDFFFF;">{{message}}</div>
+    <div style="z-index:100;position:fixed;top:50%;left:29%;font-size:20px;color:blue;font-weight:bold;background-color:#DDFFFF;">{{message}}</div>
   </div>
 </template>
 
@@ -318,20 +326,36 @@ export default {
 
 <style scoped>
 .calendar {
-  width:70%;
-  position: fixed;
-  top:15%;
-  left:13%;
-  /* z-index:1; */
+  width:80%;
+  margin-top:30px;
 }
 
 .calendar-header-area {
-  height:200px;
+  height:100px;
+}
+
+.week{
+  min-width:50px;
+  border-top:5px #BAD3FF;background-color:#EEEEEE;
+  display:flex;
+  border-left:5px solid #BAD3FF;height:100px;
+}
+
+.day-current-month{
+  font-size:20px;
+}
+
+.today{
+  color:red;
+  font-size:20px;
+  position:relative;
+  top:-30px;
+  font-weight:900;
 }
 
 .calendar-date{
   flex:1;
-  min-height:150px;
+  min-height:50px;
   border-right:5px solid #BAD3FF;
   border-bottom:5px solid #BAD3FF;
   text-align: center;

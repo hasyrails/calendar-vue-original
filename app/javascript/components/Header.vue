@@ -2,7 +2,7 @@
   <div class="app-header">
     <div class="app-header-contents">
       <router-link to="/">
-        <div class="app-header-title">初志しか勝たん<BoxingGlove :size="70"></BoxingGlove>
+        <div class="app-header-title">初志しか勝たん<BoxingGlove :size="30"></BoxingGlove>
         </div>
         <!-- <p class="app-header-title-footer">初志貫徹アプリ</p> -->
       </router-link>
@@ -15,12 +15,12 @@
         </div>
         <div class="user-icon" v-if="this.$store.state.auth.headers.length!==0&&this.$store.state.auth.user.length!==0&&!src">
           <router-link to="/userinfo"> 
-            <Account :size="120"></Account>
+            <Account :size="70"></Account>
           </router-link>
         </div>
         <div class="user-icon" v-if="this.$store.state.auth.headers.length===0&&this.$store.state.auth.user.length!==0">
           <router-link to="/userinfo"> 
-            <Account :size="120"></Account>
+            <Account :size="70"></Account>
           </router-link>
         </div>
       </div>
@@ -41,25 +41,25 @@
       </div>
       
       <div>
-        <div v-if="this.$store.state.auth.headers.length!==0&&this.$store.state.auth.user.length!==0">
-          <div class="app-header-link-guest-login" @click="guestLogin"> 
-            <!-- ゲストログイン -->
-          </div>
+        <div class="app-header-link-guest-login" 
+        v-if="this.$store.state.auth.headers.length!==0&&this.$store.state.auth.user.length!==0"
+        @click="guestLogin"> 
+          <!-- ゲストログイン -->
         </div>
-        <div v-if="this.$store.state.auth.headers.length!==0&&this.$store.state.auth.user.length===0">
-          <div class="app-header-link-guest-login" @click="guestLogin"> 
-            ゲストログイン
-          </div>
+        <div class="app-header-link-guest-login"
+        v-if="this.$store.state.auth.headers.length!==0&&this.$store.state.auth.user.length===0"
+        @click="guestLogin"> 
+          ゲストログイン
         </div>
         <div v-if="this.$store.state.auth.headers.length===0&&this.$store.state.auth.user.length!==0">
           <!-- <div class="app-header-link-guest-login" @click="guestLogin"> 
             ゲストログイン
           </div> -->
         </div>
-        <div v-if="this.$store.state.auth.headers.length===0&&this.$store.state.auth.user.length===0">
-          <div class="app-header-link-guest-login" @click="guestLogin"> 
-            ゲストログイン
-          </div>
+        <div class="app-header-link-guest-login"
+        v-if="this.$store.state.auth.headers.length===0&&this.$store.state.auth.user.length===0"
+        @click="guestLogin"> 
+          ゲストログイン
         </div>
       </div>
 
@@ -201,15 +201,12 @@ a {
 
 .app-header{
   background: hsl(180, 65%, 81%);
-  height: 150px;
+  height: 100px;
   color: black;
   font-style: italic;
   /* text-align: left; */
   /* padding: 20px; */
-  position:absolute;
-  top: 0px;
-  width:100vw;
-  position: fixed;
+  width:100%;
   /* z-index: 2; */
 }
 
@@ -218,14 +215,14 @@ a {
 }
 
 .app-header-title{
-  margin-top:40px;
-  margin-left:20%;
+  margin-top:30px;
+  margin-left:10px;
   margin-right:10px;
-  font-size: 60px;
+  font-size: 30px;
   font-weight: 30px;
   font-family: "Hiragino Sans","ヒラギノ角ゴシック"; font-weight: 900;
   color: black;
-  width:500px;
+  width:300px;
 }
 .app-header-title-footer{
   margin-left:20%;
@@ -237,52 +234,44 @@ a {
   width:500px;
 }
 .app-header-link{
-  /* display:flex;
-  margin-left:55%;
-  margin-right:10px;
-  margin-top:40px;
-  float: right; */
-  /* position: fixed;
-  top:3%;
-  left:60%; */
-  font-size: 40px;
+  font-size: 20px;
   font-weight: 30px;
-  /* justify-content: space-between; */
+  float: left;
+  width:200px;
+  /* float: left; */
 }
 
 .app-header-link-guest-login{
-  font-size: 40px;
+  font-size: 20px;
   position:fixed;
-  top:3%;
-  left:68%;
+  top:40px;
+  left:63%;
   color: black;
   cursor: pointer;
 }
 .app-header-link-guest-logout{
-  font-size: 40px;
+  font-size: 20px;
   position:fixed;
-  top:3%;
-  left:63%;
+  top:40px;
+  left:60%;
   color: black;
   cursor: pointer;
 }
 
 .app-header-link-register{
-  /* margin-left:10px; */
-  /* margin-right:100px; */
   position:fixed;
-  top:3%;
-  left:80%;
+  top:40px;
+  left:77%;
   color: black;
   text-decoration: none;
   cursor: pointer;
-  /* width:200px; */
 }
 .app-header-link-login{
   /* margin-left:10px; */
   /* margin-right:10px; */
+  /* margin-top:40px; */
   position:fixed;
-  top:3%;
+  top:40px;
   left:90%;
   color: black;
   text-decoration: none;
@@ -290,24 +279,24 @@ a {
   /* width:300px; */
 }
 .app-header-link-logout{
+  margin-top:40px;
   /* margin-left:10px; */
   /* margin-right:10px; */
   position:fixed;
-  top:3%;
-  left:90%;
+  top:20px;
+  left:88%;
   color: black;
   cursor: pointer;
   /* width:300px; */
 }
 .user-icon{
   position:fixed;
-  top:1%;
-  right:50%;
+  left:45%;
 }
 .user-name{
+  font-size: 20px;
   position:fixed;
-  top:7%;
-  right:50%;
-  font-size: 30px;
+  left:44%;
+  top:70px;
 }
 </style>

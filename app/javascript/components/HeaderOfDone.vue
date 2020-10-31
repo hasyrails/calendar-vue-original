@@ -67,7 +67,7 @@ import BoxingGlove from 'vue-material-design-icons/BoxingGlove.vue';
   /* padding: 20px; */
   position:absolute;
   top: 0px;
-  width:100vw;
+  width:100%;
   position: fixed;
   /* z-index: 2; */
 }
@@ -80,7 +80,7 @@ import BoxingGlove from 'vue-material-design-icons/BoxingGlove.vue';
   margin-top:40px;
   margin-left:20%;
   margin-right:10px;
-  font-size: 60px;
+  font-size: 40px;
   font-weight: 30px;
   font-family: "Hiragino Sans","ヒラギノ角ゴシック"; font-weight: 900;
   color: black;
