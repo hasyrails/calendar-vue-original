@@ -24,8 +24,10 @@
         > 
           <div v-if="day.month===currentMonth" 
           class="day-current-month"
-          style="font-weight:200;font-size:20px;">{{day.date}}</div>
-          <div v-if="day.month!==currentMonth" style="color:#D3D3D3;font-size:20px;">{{ day.date }}</div>
+          >{{day.date}}</div>
+          <div v-if="day.month!==currentMonth"
+          class="day-other-month"
+          >{{ day.date }}</div>
           <div v-if="day.date===new Date().getDate()&&day.month===new Date().getMonth()+1&&day.year===new Date().getFullYear()"
           class="today">
           {{day.date}}</div>
@@ -38,7 +40,7 @@
           </div>
         </div>
       </div>
-      <div style="z-index:100;position:fixed;top:50%;left:29%;font-size:40px;color:blue;font-weight:bold;background-color:#DDFFFF;">{{message}}</div>
+      <div class="message">{{message}}</div>
     </div>
     <div
     v-if="$store.state.auth.user.length===0&&$store.state.auth.headers.length!==0"
@@ -56,10 +58,12 @@
         > 
           <div v-if="day.month===currentMonth" 
           class="day-current-month"
-          style="font-weight:200;font-size:50px;">{{day.date}}</div>
-          <div v-if="day.month!==currentMonth" style="color:#D3D3D3;font-size:50px;">{{ day.date }}</div>
+          >{{day.date}}</div>
+          <div v-if="day.month!==currentMonth"
+          class="day-other-month">{{ day.date }}</div>
           <div v-if="day.date===new Date().getDate()&&day.month===new Date().getMonth()+1&&day.year===new Date().getFullYear()"
-          style="color:red;font-size:50px;position:relative;top:-74px;font-weight:10;">
+          class="today"
+          >
           {{day.date}}</div>
             <div v-if="day.date===new Date().getDate()&&day.month===new Date().getMonth()+1&&day.year===new Date().getFullYear()&&day.scheduleNum!==0">
               <CountDownTimer></CountDownTimer>
@@ -70,7 +74,7 @@
           </div>
         </div>
       </div>
-      <div style="z-index:100;position:fixed;top:50%;left:29%;font-size:40px;color:blue;font-weight:bold;background-color:#DDFFFF;">{{message}}</div>
+      <div class="message">{{message}}</div>
     </div>
     <div 
     v-if="$store.state.auth.user.length!==0&&$store.state.auth.headers.length!==0">
@@ -87,18 +91,20 @@
         > 
           <div v-if="day.month===currentMonth"
           class="day-current-month"
-          style="font-weight:200;font-size:50px;">{{day.date}}</div>
-          <div v-if="day.month!==currentMonth" style="color:#D3D3D3;font-size:50px;">{{ day.date }}</div>
+          >{{day.date}}</div>
+          <div v-if="day.month!==currentMonth" 
+          class="day-other-month"
+          >{{ day.date }}</div>
           <div v-if="day.date===new Date().getDate()&&day.month===new Date().getMonth()+1&&day.year===new Date().getFullYear()"
           class="today"
           >
           {{day.date}}</div>
-            <div v-if="day.date===new Date().getDate()&&day.month===new Date().getMonth()+1&&day.year===new Date().getFullYear()&&day.scheduleNum!==0">
+            <div v-if="day.date===new Date().getDate()&&day.month===new Date().getMonth()+1&&day.year===new Date().getFullYear()&&day.scheduleNum!==0" style="position:relative;top:-35px;">
               <CountDownTimer></CountDownTimer>
             </div>
-          <div style="margin-left:40px;width:50px;height:50px;border-radius:25px 25px 25px 25px;background-color:#2C7CFF;" v-if="day.scheduleNum!==0&&day.month===new Date().getMonth()+1&&day.year===new Date().getFullYear()" class="schedule-num-display">
-            <div style="color:white; font-size:35px;margin-top:1px;margin-left:12px;">{{day.scheduleNum}}</div>
-            <div style="margin-left:10px;"><CardBulletedOutline fillColor="grey" :size="100"></CardBulletedOutline></div>
+          <div v-if="day.scheduleNum!==0&&day.month===new Date().getMonth()+1&&day.year===new Date().getFullYear()" class="schedule-num-display">
+            <div style="color:white; font-size:15px;margin-top:0px;margin-left:6px;">{{day.scheduleNum}}</div>
+            <div style="margin-left:10px;"><CardBulletedOutline fillColor="grey" :size="60"></CardBulletedOutline></div>
           </div>
         </div>
       </div>
@@ -117,8 +123,17 @@
         :key="index"
         style="width:150px;"
         > 
-          <div v-if="day.month===currentMonth">{{day.date}}</div>
-          <div v-if="day.month!==currentMonth" style="color:#D3D3D3;font-size:20px;">{{ day.date }}</div>
+          <div 
+          v-if="day.month===currentMonth"
+          class="day-current-month"
+          >
+            {{day.date}}
+          </div>
+          <div v-if="day.month!==currentMonth"
+          class="day-other-month"
+          >
+            {{ day.date }}
+          </div>
           <div v-if="day.date===new Date().getDate()&&day.month===new Date().getMonth()+1&&day.year===new Date().getFullYear()"
           class="today"
           >
@@ -126,7 +141,7 @@
         </div>
       </div>
     </div>
-    <div style="z-index:100;position:fixed;top:50%;left:29%;font-size:20px;color:blue;font-weight:bold;background-color:#DDFFFF;">{{message}}</div>
+    <div class="message">{{message}}</div>
   </div>
 </template>
 
@@ -345,6 +360,11 @@ export default {
   font-size:20px;
 }
 
+.day-other-month{
+  color:#D3D3D3;
+  font-size:20px;
+}
+
 .today{
   color:red;
   font-size:20px;
@@ -364,7 +384,27 @@ export default {
 
 .schedule-num-display{
   display: flex;
+  margin-left:40px;
+  width:20px;
+  height:20px;
+  border-radius:10px 10px 10px 10px;
+  background-color:#2C7CFF;
+  position: relative;
+  left: -10px;
+  top: -35px;
 }
+
+.message{
+  z-index:100;
+  position:fixed;
+  top:50%;
+  left:29%;
+  font-size:20px;
+  color:blue;
+  font-weight:bold;
+  background-color:#DDFFFF;
+}
+
 
 /* .calendar-date:hover {
   background-color: silver;

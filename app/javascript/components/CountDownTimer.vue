@@ -28,6 +28,6 @@ export default {
 <style scoped>
   .countdown{
     color: red;
-    font-size:20px;
+    font-size:10px;
   }
 </style>
