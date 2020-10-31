@@ -5,7 +5,7 @@ RSpec.describe "Api::Cards", type: :request do
     subject { get(api_cards_path) }
     before { create(:card) }
 
-    it "Card一覧を取得する" do
+    it "card一覧を取得する" do
       subject
       res = JSON.parse(response.body)
       expect(res.count).to eq 1
@@ -27,43 +27,50 @@ RSpec.describe "Api::Cards", type: :request do
     end
   end
 
-  # describe "POST /api/lists" do
-  #   subject { post(api_lists_path, params: params) }
-  #   let(:params) {
-  #     {
-  #       "id": 1,
-  #       "title": "TestList",
-  #       "user_id": 1
-  #     } 
-  #   }
+  describe "POST /api/cards" do
+    subject { post(api_cards_path, params: params) }
+    let(:params) {
+      {
+        "id": 1,
+        "body": "TestCard",
+        "description": "TestCardDetail",
+        "user_id": 1,
+        "list_id": 1,
+      } 
+    }
+    
+    it "cardレコードが作成される" do
+      expect { subject }.to change { Card.count }.by(1)
+      expect(response).to have_http_status(200)
+    end
+  end
+  
+  describe "PATCH /api/cards/:id" do
+    subject { patch(api_card_path(card.id), params: params) }
+    let(:card) { create(:card) }
+    let(:params) {
+      {
+        "body": "UpdatedTestCardDetail",
+      }
+    }
 
-  #   it "レコードが作成される" do
-  #     expect { subject }.to change { List.count }.by(1)
-  #     expect(response).to have_http_status(200)
-  #   end
-  # end
+      it "指定したcardレコードが更新される" do
+        expect { subject }.to change { Card.find(card.id).body }.from(card.body).to(params[:body])
+        expect { subject }.not_to change { Card.find(card.id).description }
+        expect { subject }.not_to change { Card.find(card.id).created_at }
+        res = JSON.parse(response.body)
+        expect(res["body"]).to eq 'UpdatedTestCardDetail'
+        expect(response).to have_http_status(200)
+      end
+    end
 
-  # Listの更新アクション未実装→要実装
-    # describe "PATCH /api/v1/todos/:id" do
-    #   subject { patch(api_v1_todo_path(todo.id), params: params) }
-    #   let(:todo) { create(:todo) }
-    #   let(:params) { { todo: { done: true, created_at: Time.current } } }
+  describe "DELETE /api/cards/:id" do
+    subject { delete(api_card_path(card.id)) }
+    let!(:card) { create(:card) }
 
-    #   it "指定したレコードが更新される" do
-    #     expect { subject }.to change { Todo.find(todo.id).done }.from(todo.done).to(params[:todo][:done])
-    #     expect { subject }.not_to change { Todo.find(todo.id).body }
-    #     expect { subject }.not_to change { Todo.find(todo.id).created_at }
-    #     expect(response).to have_http_status(204)
-    #   end
-    # end
-
-  # describe "DELETE /api/lists/:id" do
-  #   subject { delete(api_list_path(list.id)) }
-  #   let!(:list) { create(:list) }
-
-  #   it "指定したレコードが削除される" do
-  #     expect { subject }.to change { List.count }.by(-1)
-  #     expect(response).to have_http_status(200)
-  #   end
-  # end
+    it "指定したcardレコードが削除される" do
+      expect { subject }.to change { Card.count }.by(-1)
+      expect(response).to have_http_status(200)
+    end
+  end
 end

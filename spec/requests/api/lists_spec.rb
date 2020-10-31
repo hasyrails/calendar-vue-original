@@ -5,7 +5,7 @@ RSpec.describe "Api::Lists", type: :request do
     subject { get(api_lists_path) }
     before { create_list(:list, 3) }
 
-    it "List一覧を取得する" do
+    it "list一覧を取得する" do
       subject
       res = JSON.parse(response.body)
       expect(res.count).to eq 3
@@ -24,7 +24,7 @@ RSpec.describe "Api::Lists", type: :request do
       } 
     }
 
-    it "レコードが作成される" do
+    it "listレコードが作成される" do
       expect { subject }.to change { List.count }.by(1)
       expect(response).to have_http_status(200)
     end
@@ -48,7 +48,7 @@ RSpec.describe "Api::Lists", type: :request do
     subject { delete(api_list_path(list.id)) }
     let!(:list) { create(:list) }
 
-    it "指定したレコードが削除される" do
+    it "指定したlistレコードが削除される" do
       expect { subject }.to change { List.count }.by(-1)
       expect(response).to have_http_status(200)
     end
