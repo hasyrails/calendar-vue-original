@@ -97,10 +97,10 @@
                   <Pencil></Pencil>
                 </div> -->
                 <!-- <div v-if="!datePickerFlag&&schedule.end" @click="showDatePicker"> -->
-                <div v-if="!datePickerFlag&&schedule.end">
-                  {{ new Date(schedule.end).getFullYear() }}/
-                  {{ new Date(schedule.end).getMonth()+1 }}/
-                  {{ new Date(schedule.end).getDate() }}
+                <div v-if="!datePickerFlag&&schedule.deadline">
+                  {{ new Date(schedule.deadline).getFullYear() }}/
+                  {{ new Date(schedule.deadline).getMonth()+1 }}/
+                  {{ new Date(schedule.deadline).getDate() }}
                 </div>
                 <!-- <div v-if="datePickerFlag">
                   <Datepicker

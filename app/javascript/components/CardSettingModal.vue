@@ -125,13 +125,13 @@
               <form 
               @submit.prevent="updateCard"
               >
-                <div v-if="!card.end" @click="showDatePicker">
+                <div v-if="!card.deadline" @click="showDatePicker">
                   <Pencil></Pencil>
                 </div>
-                <div v-if="!datePickerFlag&&card.end" @click="showDatePicker">
-                  {{ new Date(card.end).getFullYear() }}/
-                  {{ new Date(card.end).getMonth()+1 }}/
-                  {{ new Date(card.end).getDate() }}
+                <div v-if="!datePickerFlag&&card.deadline" @click="showDatePicker">
+                  {{ new Date(card.deadline).getFullYear() }}/
+                  {{ new Date(card.deadline).getMonth()+1 }}/
+                  {{ new Date(card.deadline).getDate() }}
 
                 </div>
                 <div v-if="datePickerFlag">
@@ -140,7 +140,7 @@
                   class="test"
                   :value="this.default"
                   :format="DatePickerFormat"
-                  v-model="card.end"
+                  v-model="card.deadline"
                   ></Datepicker>
                 </div>
               </form>

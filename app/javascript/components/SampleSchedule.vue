@@ -4,7 +4,7 @@
   :class="classButton" 
   :id="'schedule-card-'+sampleSchedule.id"
   >
-    <div v-if="sampleSchedule.date_year===new Date().getFullYear()&&sampleSchedule.date_month===new Date().getMonth()+1&&sampleSchedule.date_day===new Date().getDate()&&sampleSchedule.end===formatDate(new Date())">
+    <div v-if="sampleSchedule.date_year===new Date().getFullYear()&&sampleSchedule.date_month===new Date().getMonth()+1&&sampleSchedule.date_day===new Date().getDate()&&sampleSchedule.deadline===formatDate(new Date())">
       <SampleCountDownTimer :sampleSchedule="sampleSchedule"></SampleCountDownTimer>
     </div>
     

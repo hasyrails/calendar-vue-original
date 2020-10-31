@@ -70,18 +70,18 @@ const schedules = {
     async createScheduleAction({ commit }, card){
       const scheduleDate = {
         start: new Date(card.start),
-        end: new Date(card.end),
+        deadline: new Date(card.deadline),
       }      
       var currentDate = scheduleDate.start
       const startDate = scheduleDate.start
-      var stopDate = scheduleDate.end
+      var stopDate = scheduleDate.deadline
       
       for(let i =1;  i <=Math.floor((new Date(stopDate).getTime()-new Date(startDate).getTime())/86400000)+1; i++) {
         var schedule = {
           body: card.body,
           color: card.color,
           start: scheduleDate.start,
-          end: scheduleDate.end,
+          deadline: scheduleDate.deadline,
           date: currentDate,
           date_year: new Date(currentDate).getFullYear(),
           date_month: new Date(currentDate).getMonth()+1,
@@ -116,7 +116,7 @@ const schedules = {
           date_month: moment().month()+1,
           date_day: moment().date(),
           start: moment().format('YYYY/MM/DD'),
-          end: moment().format('YYYY/MM/DD'),
+          deadline: moment().format('YYYY/MM/DD'),
           card_id: 1,
           user_id: '',
           commit: '',
@@ -133,7 +133,7 @@ const schedules = {
           date_month: moment().add(1, "days").month()+1,
           date_day: moment().add(1, "days").date(),
           start: moment().add(1, "days").format('YYYY/MM/DD'),
-          end: moment().add(3, "days").format('YYYY/MM/DD'),
+          deadline: moment().add(3, "days").format('YYYY/MM/DD'),
           card_id: 2,
           user_id: '',
           commit: '',
@@ -147,7 +147,7 @@ const schedules = {
           date_month: moment().add(2, "days").month()+1,
           date_day: moment().add(2, "days").date(),
           start: moment().add(1, "days").format('YYYY/MM/DD'),
-          end: moment().add(3, "days").format('YYYY/MM/DD'),
+          deadline: moment().add(3, "days").format('YYYY/MM/DD'),
           card_id: 2,
           user_id: '',
           commit: '',
@@ -161,7 +161,7 @@ const schedules = {
           date_month: moment().add(3, "days").month()+1,
           date_day: moment().add(3, "days").date(),
           start: moment().add(1, "days").format('YYYY/MM/DD'),
-          end: moment().add(3, "days").format('YYYY/MM/DD'),
+          deadline: moment().add(3, "days").format('YYYY/MM/DD'),
           card_id: 2,
           user_id: '',
           commit: '',
@@ -180,7 +180,7 @@ const schedules = {
           date_month: moment().add(2, "days").month()+1,
           date_day: moment().add(2, "days").date(),
           start: moment().add(2, "days").format('YYYY/MM/DD'),
-          end: moment().add(3, "days").format('YYYY/MM/DD'),
+          deadline: moment().add(3, "days").format('YYYY/MM/DD'),
           card_id: 3,
           user_id: '',
           commit: '',
@@ -194,7 +194,7 @@ const schedules = {
           date_month: moment().add(3, "days").month()+1,
           date_day: moment().add(3, "days").date(),
           start: moment().add(2, "days").format('YYYY/MM/DD'),
-          end: moment().add(3, "days").format('YYYY/MM/DD'),
+          deadline: moment().add(3, "days").format('YYYY/MM/DD'),
           card_id: 3,
           user_id: '',
           commit: '',

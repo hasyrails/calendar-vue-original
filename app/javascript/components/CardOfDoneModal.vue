@@ -74,13 +74,13 @@
             <div class="schedule-end-date">
               <div>いつまで</div>
             <div class="datepicker-form">
-                <div v-if="!card.end">
+                <div v-if="!card.deadline">
                   <Pencil></Pencil>
                 </div>
-                <div v-if="!datePickerFlag&&card.end">
-                  {{ new Date(card.end).getFullYear() }}/
-                  {{ new Date(card.end).getMonth()+1 }}/
-                  {{ new Date(card.end).getDate() }}
+                <div v-if="!datePickerFlag&&card.deadline">
+                  {{ new Date(card.deadline).getFullYear() }}/
+                  {{ new Date(card.deadline).getMonth()+1 }}/
+                  {{ new Date(card.deadline).getDate() }}
                 </div>
             </div>
             </div>

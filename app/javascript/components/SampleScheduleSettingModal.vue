@@ -99,9 +99,9 @@
                 </div> -->
                 <!-- <div v-if="!datePickerFlag&&schedule.end" @click="showDatePicker"> -->
                 <div>
-                  {{ new Date(sampleSchedule.end).getFullYear() }}/
-                  {{ new Date(sampleSchedule.end).getMonth()+1 }}/
-                  {{ new Date(sampleSchedule.end).getDate() }}
+                  {{ new Date(sampleSchedule.deadline).getFullYear() }}/
+                  {{ new Date(sampleSchedule.deadline).getMonth()+1 }}/
+                  {{ new Date(sampleSchedule.deadline).getDate() }}
                 </div>
                 <!-- <div v-if="datePickerFlag">
                   <Datepicker

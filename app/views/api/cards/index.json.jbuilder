@@ -22,7 +22,7 @@ json.array! @cards do |card|
   json.body card.body
   json.description card.description
   json.start  card.start
-  json.end  card.end
+  json.deadline  card.deadline
   json.color  card.color
   json.schedulized  card.schedulized
   json.deadlined  card.deadlined

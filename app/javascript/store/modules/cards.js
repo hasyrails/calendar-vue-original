@@ -14,7 +14,7 @@ const cards = {
         color: '',
         scheduled: '',
         start: '',
-        end: '',
+        deadline: '',
         schedulized: '',
         deadlined: ''
       },
@@ -28,7 +28,7 @@ const cards = {
         color: '',
         scheduled: '',
         start: moment().format('YYYY/MM/DD'),
-        end: moment().format('YYYY/MM/DD'),
+        deadline: moment().format('YYYY/MM/DD'),
         schedulized: '',
         deadlined: ''
       },
@@ -40,7 +40,7 @@ const cards = {
         color: '',
         scheduled: '',
         start: moment().add(1, "days").format('YYYY/MM/DD'),
-        end: moment().add(3, "days").format('YYYY/MM/DD'),
+        deadline: moment().add(3, "days").format('YYYY/MM/DD'),
         schedulized: '',
         deadlined: ''
       },
@@ -53,7 +53,7 @@ const cards = {
         color: '',
         scheduled: '',
         start: moment().add(2, "days").format('YYYY/MM/DD'),
-        end: moment().add(3, "days").format('YYYY/MM/DD'),
+        deadline: moment().add(3, "days").format('YYYY/MM/DD'),
         schedulized: '',
         deadlined: ''
       },

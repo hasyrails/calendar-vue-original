@@ -46,7 +46,7 @@ class Api::CardsController < ApplicationController
     today = Date.today.strftime("%Y-%m-%d")
     @cards = Card.all
     @cards.each do |card|
-      if card.end.to_s < today
+      if card.deadline.to_s < today
         card.update(deadlined: true)
         card.save
       end
@@ -61,10 +61,10 @@ class Api::CardsController < ApplicationController
   end
 
   def card_params
-    params.permit(:body, :description, :start, :end, :color, :scheduled, :schedulized, :done_at,:list_id, :user_id)
+    params.permit(:body, :description, :start, :deadline, :color, :scheduled, :schedulized, :done_at,:list_id, :user_id)
   end
 
   def schedule_params
-    params.permit(:body, :description, :start, :end, :color, :card_id,  :user_id,:done_at)
+    params.permit(:body, :description, :start, :deadline, :color, :card_id,  :user_id,:done_at)
   end
 end
