@@ -112,7 +112,7 @@ export default {
   /* height:1px; */
   /* display: flex; */
   /* justify-content: space-between; */
-  width:50%;
+  width:200%;
 }
 .calendar-header-content {
   display: flex;

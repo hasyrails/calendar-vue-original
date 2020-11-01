@@ -3,62 +3,304 @@
   <div class="app-header" v-if="this.$route.path!=='/schedules'">
     <div class="app-header-contents">
       <router-link to="/">
-        <div class="app-header-title">初志しか勝たん<BoxingGlove size="30"></BoxingGlove></div>
+        <div class="app-header-title">初志しか勝たん<BoxingGlove :size="30"></BoxingGlove>
+        </div>
         <!-- <p class="app-header-title-footer">初志貫徹アプリ</p> -->
       </router-link>
-      <router-link to="/userinfo">
-        <div class="user-icon" v-if="$store.state.auth.headers">
-          <img style="border-radius:50%;" :src="src" width="70" height="70">
+      
+      <div>
+        <div class="user-icon" v-if="this.$store.state.auth.headers.length!==0&&this.$store.state.auth.user.length!==0&&src">
+          <router-link to="/userinfo"> 
+            <img style="border-radius:50%;" :src="src" width="70" height="70">
+          </router-link>
         </div>
-      </router-link>
-        <div class="user-name" v-if="$store.state.auth.headers">
+        <div class="user-icon" v-if="this.$store.state.auth.headers.length!==0&&this.$store.state.auth.user.length!==0&&!src">
+          <router-link to="/userinfo"> 
+            <Account :size="70"></Account>
+          </router-link>
+        </div>
+        <div class="user-icon" v-if="this.$store.state.auth.headers.length===0&&this.$store.state.auth.user.length!==0">
+          <router-link to="/userinfo"> 
+            <Account :size="70"></Account>
+          </router-link>
+        </div>
+      </div>
+
+      <div>
+        <div class="user-name" v-if="this.$store.state.auth.headers.length!==0&&this.$store.state.auth.user.length!==0">
           {{ this.$store.state.auth.user.name }}さん
         </div>
-      <div class="app-header-link unlogin-user-link" v-if="!$store.state.auth.headers">
+        <div class="user-name" v-else-if="this.$store.state.auth.headers.length!==0&&this.$store.state.auth.user.length===0">
+          {{ this.$store.state.auth.user.name }}さん
+        </div>
+        <div class="user-name" v-else-if="this.$store.state.auth.headers.length===0&&this.$store.state.auth.user.length!==0">
+          {{ this.$store.state.auth.user.name }}さん
+        </div>
+        <div class="user-name" v-else-if="this.$store.state.auth.headers.length===0&&this.$store.state.auth.user.length===0">
+          <!-- {{ this.$store.state.auth.user.name }}さん -->
+        </div>
+      </div>
+      
+      <div>
+        <div class="app-header-link-guest-login" 
+        v-if="this.$store.state.auth.headers.length!==0&&this.$store.state.auth.user.length!==0"
+        @click="guestLogin"> 
+          <!-- ゲストログイン -->
+        </div>
+        <div class="app-header-link-guest-login"
+        v-if="this.$store.state.auth.headers.length!==0&&this.$store.state.auth.user.length===0"
+        @click="guestLogin"> 
+          ゲストログイン
+        </div>
+        <div v-if="this.$store.state.auth.headers.length===0&&this.$store.state.auth.user.length!==0">
+          <!-- <div class="app-header-link-guest-login" @click="guestLogin"> 
+            ゲストログイン
+          </div> -->
+        </div>
+        <div class="app-header-link-guest-login"
+        v-if="this.$store.state.auth.headers.length===0&&this.$store.state.auth.user.length===0"
+        @click="guestLogin"> 
+          ゲストログイン
+        </div>
+      </div>
+
+    <div class="app-header-link">
+      <div v-if="this.$store.state.auth.headers.length!==0&&this.$store.state.auth.user.length!==0">
+        <div class="app-header-link-guest-logout" @click="guestLogOut">
+          <!-- ログアウト（ゲスト） -->
+        </div>
+      </div>
+      <div v-else-if="this.$store.state.auth.headers.length!==0&&this.$store.state.auth.user.length===0">
+        <div class="app-header-link-guest-logout" @click="guestLogOut">
+          <!-- ログアウト（ゲスト） -->
+        </div>
+      </div>
+      <div v-else-if="this.$store.state.auth.headers.length===0&&this.$store.state.auth.user.length!==0">
+        <div class="app-header-link-guest-logout" @click="guestLogOut">
+          ログアウト（ゲスト）
+        </div>
+      </div>
+      <div v-else-if="this.$store.state.auth.headers.length===0&&this.$store.state.auth.user.length===0">
+        <div class="app-header-link-guest-logout" @click="guestLogOut">
+          <!-- ログアウト（ゲスト） -->
+        </div>
+      </div>
+    </div>
+
+    <div class="app-header-link">
+      <div class="app-header-link-register" v-if="this.$store.state.auth.headers.length!==0&&this.$store.state.auth.user.length!==0">
+      </div>
+      <div class="app-header-link-register" v-else-if="this.$store.state.auth.headers.length!==0&&this.$store.state.auth.user.length===0">
         <router-link to="/register">
-          <div class="app-header-link-register">ユーザー登録</div>
-        </router-link>
-        <router-link to="/login">
-          <div class="app-header-link-login">ログイン</div>
+          ユーザー登録
         </router-link>
       </div>
-      <div class="app-header-link unlogin-user-link" v-if="$store.state.auth.headers">
-        <!-- <router-link to="/register">
-          <div class="app-header-link-register">ユーザー登録</div>
-        </router-link> -->
-          <div class="app-header-link-logout" @click="logout">ログアウト</div>
+      <div class="app-header-link-register" v-else-if="this.$store.state.auth.headers.length===0&&this.$store.state.auth.user.length!==0">
+        <router-link to="/register">
+          ユーザー登録
+        </router-link>
       </div>
+      <div class="app-header-link-register" v-else-if="this.$store.state.auth.headers.length===0&&this.$store.state.auth.user.length===0">
+        <router-link to="/register">
+          ユーザー登録
+        </router-link>
+      </div>
+    </div>
+
+      <div class="app-header-link">
+        <div class="app-header-link-login" v-if="this.$store.state.auth.headers.length!==0&&this.$store.state.auth.user.length!==0">
+          <!-- <router-link to="/login">
+            <div>ログイン</div>
+          </router-link> -->
+        </div>
+        <div class="app-header-link-login" v-else-if="this.$store.state.auth.headers.length!==0&&this.$store.state.auth.user.length===0">
+          <router-link to="/login">
+            <div>ログイン</div>
+          </router-link>
+        </div>
+        <div class="app-header-link-login" v-else-if="this.$store.state.auth.headers.length===0&&this.$store.state.auth.user.length!==0">
+          <router-link to="/login">
+            <div>ログイン</div>
+          </router-link>
+        </div>
+        <div class="app-header-link-login" v-else-if="this.$store.state.auth.headers.length===0&&this.$store.state.auth.user.length===0">
+          <router-link to="/login">
+            <div>ログイン</div>
+          </router-link>
+        </div>
+      </div>
+
+    <div class="app-header-link">
+      <div class="app-header-link-logout" v-if="this.$store.state.auth.headers.length!==0&&this.$store.state.auth.user.length!==0">
+        <div @click="logout">
+          ログアウト
+        </div>
+      </div>
+      <div class="app-header-link-logout" v-else-if="this.$store.state.auth.headers.length!==0&&this.$store.state.auth.user.length===0">
+        <!-- <div @click="logout">
+          ログアウト
+        </div> -->
+      </div>
+      <div class="app-header-link-logout" v-else-if="this.$store.state.auth.headers.length===0&&this.$store.state.auth.user.length!==0">
+        <!-- <div @click="logout">
+          ログアウト
+        </div> -->
+      </div>
+      <div class="app-header-link-logout" v-else-if="this.$store.state.auth.headers.length===0&&this.$store.state.auth.user.length===0">
+    </div>
+    </div>
     </div>
   </div>
 
-  <div class="app-header" v-if="this.$route.path==='/schedules'" style="width:400%;">
+  <div class="app-header" v-if="this.$route.path==='/schedules'" style="width:650%;">
     <div class="app-header-contents">
       <router-link to="/">
-        <div class="app-header-title">初志しか勝たん<BoxingGlove :size="30"></BoxingGlove></div>
+        <div class="app-header-title">初志しか勝たん<BoxingGlove :size="30"></BoxingGlove>
+        </div>
         <!-- <p class="app-header-title-footer">初志貫徹アプリ</p> -->
       </router-link>
-      <router-link to="/userinfo">
-        <div class="user-icon" v-if="$store.state.auth.headers">
-          <img style="border-radius:50%;" :src="src" width="70" height="70">
+      
+      <div>
+        <div class="user-icon" v-if="this.$store.state.auth.headers.length!==0&&this.$store.state.auth.user.length!==0&&src">
+          <router-link to="/userinfo"> 
+            <img style="border-radius:50%;" :src="src" width="70" height="70">
+          </router-link>
         </div>
-      </router-link>
-        <div class="user-name" v-if="$store.state.auth.headers">
+        <div class="user-icon" v-if="this.$store.state.auth.headers.length!==0&&this.$store.state.auth.user.length!==0&&!src">
+          <router-link to="/userinfo"> 
+            <Account :size="70"></Account>
+          </router-link>
+        </div>
+        <div class="user-icon" v-if="this.$store.state.auth.headers.length===0&&this.$store.state.auth.user.length!==0">
+          <router-link to="/userinfo"> 
+            <Account :size="70"></Account>
+          </router-link>
+        </div>
+      </div>
+
+      <div>
+        <div class="user-name" v-if="this.$store.state.auth.headers.length!==0&&this.$store.state.auth.user.length!==0">
           {{ this.$store.state.auth.user.name }}さん
         </div>
-      <div class="app-header-link unlogin-user-link" v-if="!$store.state.auth.headers">
+        <div class="user-name" v-else-if="this.$store.state.auth.headers.length!==0&&this.$store.state.auth.user.length===0">
+          {{ this.$store.state.auth.user.name }}さん
+        </div>
+        <div class="user-name" v-else-if="this.$store.state.auth.headers.length===0&&this.$store.state.auth.user.length!==0">
+          {{ this.$store.state.auth.user.name }}さん
+        </div>
+        <div class="user-name" v-else-if="this.$store.state.auth.headers.length===0&&this.$store.state.auth.user.length===0">
+          <!-- {{ this.$store.state.auth.user.name }}さん -->
+        </div>
+      </div>
+      
+      <div>
+        <div class="app-header-link-guest-login" 
+        v-if="this.$store.state.auth.headers.length!==0&&this.$store.state.auth.user.length!==0"
+        @click="guestLogin"> 
+          <!-- ゲストログイン -->
+        </div>
+        <div class="app-header-link-guest-login"
+        v-if="this.$store.state.auth.headers.length!==0&&this.$store.state.auth.user.length===0"
+        @click="guestLogin"> 
+          ゲストログイン
+        </div>
+        <div v-if="this.$store.state.auth.headers.length===0&&this.$store.state.auth.user.length!==0">
+          <!-- <div class="app-header-link-guest-login" @click="guestLogin"> 
+            ゲストログイン
+          </div> -->
+        </div>
+        <div class="app-header-link-guest-login"
+        v-if="this.$store.state.auth.headers.length===0&&this.$store.state.auth.user.length===0"
+        @click="guestLogin"> 
+          ゲストログイン
+        </div>
+      </div>
+
+    <div class="app-header-link">
+      <div v-if="this.$store.state.auth.headers.length!==0&&this.$store.state.auth.user.length!==0">
+        <div class="app-header-link-guest-logout" @click="guestLogOut">
+          <!-- ログアウト（ゲスト） -->
+        </div>
+      </div>
+      <div v-else-if="this.$store.state.auth.headers.length!==0&&this.$store.state.auth.user.length===0">
+        <div class="app-header-link-guest-logout" @click="guestLogOut">
+          <!-- ログアウト（ゲスト） -->
+        </div>
+      </div>
+      <div v-else-if="this.$store.state.auth.headers.length===0&&this.$store.state.auth.user.length!==0">
+        <div class="app-header-link-guest-logout" @click="guestLogOut">
+          ログアウト（ゲスト）
+        </div>
+      </div>
+      <div v-else-if="this.$store.state.auth.headers.length===0&&this.$store.state.auth.user.length===0">
+        <div class="app-header-link-guest-logout" @click="guestLogOut">
+          <!-- ログアウト（ゲスト） -->
+        </div>
+      </div>
+    </div>
+
+    <div class="app-header-link">
+      <div class="app-header-link-register" v-if="this.$store.state.auth.headers.length!==0&&this.$store.state.auth.user.length!==0">
+      </div>
+      <div class="app-header-link-register" v-else-if="this.$store.state.auth.headers.length!==0&&this.$store.state.auth.user.length===0">
         <router-link to="/register">
-          <div class="app-header-link-register">ユーザー登録</div>
-        </router-link>
-        <router-link to="/login">
-          <div class="app-header-link-login">ログイン</div>
+          ユーザー登録
         </router-link>
       </div>
-      <div class="app-header-link unlogin-user-link" v-if="$store.state.auth.headers">
-        <!-- <router-link to="/register">
-          <div class="app-header-link-register">ユーザー登録</div>
-        </router-link> -->
-          <div class="app-header-link-logout" @click="logout">ログアウト</div>
+      <div class="app-header-link-register" v-else-if="this.$store.state.auth.headers.length===0&&this.$store.state.auth.user.length!==0">
+        <router-link to="/register">
+          ユーザー登録
+        </router-link>
       </div>
+      <div class="app-header-link-register" v-else-if="this.$store.state.auth.headers.length===0&&this.$store.state.auth.user.length===0">
+        <router-link to="/register">
+          ユーザー登録
+        </router-link>
+      </div>
+    </div>
+
+      <div class="app-header-link">
+        <div class="app-header-link-login" v-if="this.$store.state.auth.headers.length!==0&&this.$store.state.auth.user.length!==0">
+          <!-- <router-link to="/login">
+            <div>ログイン</div>
+          </router-link> -->
+        </div>
+        <div class="app-header-link-login" v-else-if="this.$store.state.auth.headers.length!==0&&this.$store.state.auth.user.length===0">
+          <router-link to="/login">
+            <div>ログイン</div>
+          </router-link>
+        </div>
+        <div class="app-header-link-login" v-else-if="this.$store.state.auth.headers.length===0&&this.$store.state.auth.user.length!==0">
+          <router-link to="/login">
+            <div>ログイン</div>
+          </router-link>
+        </div>
+        <div class="app-header-link-login" v-else-if="this.$store.state.auth.headers.length===0&&this.$store.state.auth.user.length===0">
+          <router-link to="/login">
+            <div>ログイン</div>
+          </router-link>
+        </div>
+      </div>
+
+    <div class="app-header-link">
+      <div class="app-header-link-logout" v-if="this.$store.state.auth.headers.length!==0&&this.$store.state.auth.user.length!==0">
+        <div @click="logout">
+          ログアウト
+        </div>
+      </div>
+      <div class="app-header-link-logout" v-else-if="this.$store.state.auth.headers.length!==0&&this.$store.state.auth.user.length===0">
+        <!-- <div @click="logout">
+          ログアウト
+        </div> -->
+      </div>
+      <div class="app-header-link-logout" v-else-if="this.$store.state.auth.headers.length===0&&this.$store.state.auth.user.length!==0">
+        <!-- <div @click="logout">
+          ログアウト
+        </div> -->
+      </div>
+      <div class="app-header-link-logout" v-else-if="this.$store.state.auth.headers.length===0&&this.$store.state.auth.user.length===0">
+    </div>
+    </div>
     </div>
   </div>
 </div>

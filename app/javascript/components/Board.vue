@@ -158,7 +158,7 @@ export default {
   background: #E0FFF0;
   /* padding: 0 10px; */
   /* width: calc(100% - 40px); */
-  width: 125%;
+  width: 170%;
   height: 100vh;
 }
 

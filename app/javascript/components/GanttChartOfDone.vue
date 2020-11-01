@@ -36,8 +36,7 @@
           &&schedule.date_year === day.year&&schedule.done===true
           "
           :key="schedule.id"
-          class="purun"
-          style="flex:1;min-height:1px;min-width:1px;max-width:230px;text-align: center;margin-bottom:10px;"
+          class="purun schedule"
           @clickScheduleSettingButton="openScheduleSettingModal"
           @commitChange="commitChange(schedule)"
           >
@@ -303,5 +302,15 @@ export default {
 .calendar-date:hover {
   background-color: silver;
   border-radius: 4px;
+}
+
+.schedule{
+  flex:1;
+  min-height:1px;
+  min-width:1px;
+  width:200px;
+  max-width:200px;
+  text-align: center;
+  margin-bottom:5px;
 }
 </style>

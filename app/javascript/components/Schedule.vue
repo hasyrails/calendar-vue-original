@@ -133,15 +133,15 @@ export default {
 }
 
 .card {
-  height: 80px;
-  width: 250px;
+  height: 50px;
+  width: 180px;
   cursor: pointer;
   display: flex;
 }
 
 .body {
   position: absolute;
-  top: 20px;
+  top: 7px;
   right: 10px;
   font-size: 18px;
   width: 90%;

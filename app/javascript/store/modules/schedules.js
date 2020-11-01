@@ -90,7 +90,7 @@ const schedules = {
           user_id: card.user_id
         }
 
-        await axios.post('api/schedules', schedule)
+        axios.post('api/schedules', schedule)
           .then(res => {
             commit('createSchedule', res.data)
           })
