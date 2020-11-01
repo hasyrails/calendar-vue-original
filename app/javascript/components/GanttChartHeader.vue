@@ -1,16 +1,16 @@
 <template>
   <div class="calendar-header">
     <div class="calendar-header-content">
-      <ChevronLeft fillColor="white"  @click="prev" :size="100"></ChevronLeft>
+      <ChevronLeft fillColor="white"  @click="prev" :size="50"></ChevronLeft>
       <div class="calendar-header-date">{{ currentDate }}</div>
-      <ChevronRight fillColor="white" @click="next" :size="100"></ChevronRight>
+      <ChevronRight fillColor="white" @click="next" :size="50"></ChevronRight>
       <div
-      class="btn btn-primary btn-lg button-to-ganttchart-of-done"
-      style="width:400px;"
+      class="btn btn-primary btn-sm button-to-ganttchart-of-done"
+      style="width:200px;"
       @click="showDone"
       v-if="$store.state.auth.user.length!==0&&$store.state.auth.headers.length!==0"
       >
-        <Paw size="50"></Paw>完遂の軌跡 <Paw size="50"></Paw>
+        <Paw size="25"></Paw>完遂の軌跡 <Paw size="25"></Paw>
       </div>
       <div>
         <div style="color:blue; font-size:15px;font-weight:bold;margin-left:5px;">{{message}}</div>
@@ -26,7 +26,7 @@
       <div class="datepicker" style="margin-left:100px;" @mouseover="calendarIconBallonDisplay" @mouseleave="calendarIconBallonNonDisplay"
       @click="showDatePicker">
         <div>
-          <Calendar :size="80" fillColor="white"></Calendar>
+          <Calendar :size="40" fillColor="white"></Calendar>
         </div>
         <div class="link-description-ballon"
           v-if="calendarIconBallonFlag">
@@ -38,7 +38,7 @@
       style="margin-left:10px;"
       @mouseover="homeIconBallonDisplay" @mouseleave="homeIconBallonNonDisplay">
           <div>
-            <Home :size="80" fillColor="white"></Home>
+            <Home :size="40" fillColor="white"></Home>
           </div>
           <div class="link-description-ballon"
           v-if="homeIconBallonFlag">
@@ -140,22 +140,17 @@ export default {
 }
 .calendar-header-content {
   display: flex;
-  /* justify-content: center; */
   align-items: center;
   position:fixed;
-  
-  top: 18%;
-  margin-left:1%;
+  top: 20%;
 }
 .calendar-header-date {
   color: white;
-  font-size: 50px;
-  margin-left: 5%;
-  margin-right: 5%;
+  font-size: 20px;
 }
 
 .datepicker {
-  width: 400px;
+  width: 200px;
   display: flex;
 }
 
@@ -167,16 +162,16 @@ export default {
 
 .link-description-ballon {
   position: relative;
-  margin: 1.5em 0 1.5em 30px;
   padding: 15px 15px;
   /* min-width: 100px; */
   max-width: 400px;
   color: #555;
-  font-size: 16px;
+  font-size: 10px;
   background: #e0edff;
   border-radius:10px 10px 10px 10px;
+  cursor: pointer;
 }
-.link-description-ballon::before{
+/* .link-description-ballon::before{
   content: "";
   position: absolute;
   top: 50%;
@@ -184,11 +179,12 @@ export default {
   margin-top: -15px;
   border: 15px solid transparent;
   border-right: 15px solid #e0edff;
-}
+} */
 
 .btn-primary {
-    background: cyan;
-    color: grey;
+  margin-left: 5%;
+  background: cyan;
+  color: grey;
 }
 .btn-primary.outline {
     border: 3px solid blue;    

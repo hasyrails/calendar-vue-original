@@ -1,19 +1,19 @@
   <template>
   <div class="calendar-header">
     <div class="calendar-header-content">
-      <ChevronLeft fillColor="white"  @click="prev" :size="100"></ChevronLeft>
+      <ChevronLeft fillColor="white"  @click="prev" :size="50"></ChevronLeft>
       <div class="calendar-header-date">{{ currentDate }}</div>
-      <ChevronRight fillColor="white" @click="next" :size="100"></ChevronRight>
+      <ChevronRight fillColor="white" @click="next" :size="50"></ChevronRight>
       <div
-      class="btn btn-warning btn-lg button-to-ganttchart-of-done"
-      style="width:400px;"
+      class="btn btn-warning btn-sm button-to-ganttchart-of-done"
+      style="width:200px;"
       @click="showSchedules">
-        <TableCheck size="50"></TableCheck>予定を表示する<TableCheck size="50"></TableCheck>
+        <TableCheck size="25"></TableCheck>予定を表示する<TableCheck size="25"></TableCheck>
       </div>
       <div class="datepicker" style="margin-left:100px;" @mouseover="calendarIconBallonDisplay" @mouseleave="calendarIconBallonNonDisplay"
       @click="showDatePicker">
         <div>
-          <Calendar :size="80" fillColor="white"></Calendar>
+          <Calendar :size="40" fillColor="white"></Calendar>
         </div>
         <div class="link-description-ballon"
           v-if="calendarIconBallonFlag">
@@ -25,7 +25,7 @@
       style="margin-left:10px;"
       @mouseover="homeIconBallonDisplay" @mouseleave="homeIconBallonNonDisplay">
           <div>
-            <Home :size="80" fillColor="white"></Home>
+            <Home :size="40" fillColor="white"></Home>
           </div>
           <div class="link-description-ballon"
           v-if="homeIconBallonFlag">
@@ -116,22 +116,17 @@ export default {
 }
 .calendar-header-content {
   display: flex;
-  /* justify-content: center; */
   align-items: center;
   position:fixed;
-  
-  top: 18%;
-  margin-left:1%;
+  top: 20%;
 }
 .calendar-header-date {
   color: white;
-  font-size: 50px;
-  margin-left: 5%;
-  margin-right: 5%;
+  font-size: 20px;
 }
 
 .datepicker {
-  width: 400px;
+  width: 200px;
   display: flex;
 }
 
@@ -143,30 +138,42 @@ export default {
 
 .link-description-ballon {
   position: relative;
-  margin: 1.5em 0 1.5em 30px;
   padding: 15px 15px;
   /* min-width: 100px; */
   max-width: 400px;
-  color: black;
-  font-size: 16px;
-  background: orange;
+  color: #555;
+  font-size: 10px;
+  background: #e0edff;
   border-radius:10px 10px 10px 10px;
+  cursor: pointer;
 }
-.link-description-ballon::before{
+/* .link-description-ballon::before{
   content: "";
   position: absolute;
   top: 50%;
   left: -30px;
   margin-top: -15px;
   border: 15px solid transparent;
-  border-right: 15px solid orange;
-}
+  border-right: 15px solid #e0edff;
+} */
+
 .btn-warning {
-    background: #FFCC00;
-    border: 3px solid orange;    
-    color: grey;
+  margin-left: 5%;
+  color: grey;
 }
 .btn-warning.outline {
-    border: 3px solid orange;    
+  border: 3px solid blue;    
+}
+.purun {
+  animation: purun 0.8s linear 0s 1;
+}
+
+@keyframes purun {
+  0%   { transform: scale(1.0, 1.0) translate(0%, 0%); }
+  15%  { transform: scale(0.9, 0.9) translate(0%, 5%); }
+  30%  { transform: scale(1.3, 0.8) translate(0%, 10%); }
+  50%  { transform: scale(0.8, 1.3) translate(0%, -10%); }
+  70%  { transform: scale(1.1, 0.9) translate(0%, 5%); }
+  100% { transform: scale(1.0, 1.0) translate(0%, 0%); }
 }
 </style>
