@@ -3,7 +3,7 @@
   <div class="record">
     <div class="record-date">{{ sixDaysAgoYYMMDD }}</div>
     <div class="tumiage" v-for="doneCard in doneAtSixDaysAgoCards">
-      <div><WeightLifter :size="60" fillColor="orange"></WeightLifter></div>
+      <div><WeightLifter :size="30" fillColor="orange"></WeightLifter></div>
       <div class="done-card-body">{{ doneCard.body }}</div>
     </div>
   </div>
@@ -11,7 +11,7 @@
   <div class="record">
     <div class="record-date">{{ fiveDaysAgoYYMMDD }}</div>
     <div class="tumiage" v-for="doneCard in doneAtFiveDaysAgoCards">
-      <div><WeightLifter :size="60" fillColor="orange"></WeightLifter></div>
+      <div><WeightLifter :size="30" fillColor="orange"></WeightLifter></div>
       <div class="done-card-body">{{ doneCard.body }}</div>
     </div>
   </div>
@@ -19,7 +19,7 @@
   <div class="record">
     <div class="record-date">{{ fourDaysAgoYYMMDD }}</div>
     <div class="tumiage" v-for="doneCard in doneAtFourDaysAgoCards">
-      <div><WeightLifter :size="60" fillColor="orange"></WeightLifter></div>
+      <div><WeightLifter :size="30" fillColor="orange"></WeightLifter></div>
       <div class="done-card-body">{{ doneCard.body }}</div>
     </div>
   </div>
@@ -27,7 +27,7 @@
   <div class="record">
     <div class="record-date">{{ threeDaysAgoYYMMDD }}</div>
     <div class="tumiage" v-for="doneCard in doneAtThreeDaysAgoCards">
-      <div><WeightLifter :size="60" fillColor="orange"></WeightLifter></div>
+      <div><WeightLifter :size="30" fillColor="orange"></WeightLifter></div>
       <div class="done-card-body">{{ doneCard.body }}</div>
     </div>
   </div>
@@ -35,7 +35,7 @@
   <div class="record">
     <div class="record-date">{{ twoDaysAgoYYMMDD }}</div>
     <div class="tumiage" v-for="doneCard in doneAtTwoDaysAgoCards">
-      <div><WeightLifter :size="60" fillColor="orange"></WeightLifter></div>
+      <div><WeightLifter :size="30" fillColor="orange"></WeightLifter></div>
       <div class="done-card-body">{{ doneCard.body }}</div>
     </div>
   </div>
@@ -43,7 +43,7 @@
   <div class="record">
     <div class="record-date">{{ oneDaysAgoYYMMDD }}</div>
     <div class="tumiage" v-for="doneCard in doneAtOneDaysAgoCards">
-      <div><WeightLifter :size="60" fillColor="orange"></WeightLifter></div>
+      <div><WeightLifter :size="30" fillColor="orange"></WeightLifter></div>
       <div class="done-card-body">{{ doneCard.body }}</div>
     </div>
   </div>
@@ -51,7 +51,9 @@
   <div class="record">
     <div class="record-date">{{ currentYYMMDD }}</div>
     <div class="tumiage" v-for="doneCard in doneAtTodayCards">
-      <div><WeightLifter :size="60" fillColor="orange"></WeightLifter></div>
+      <div>
+        <WeightLifter :size="30" fillColor="orange"></WeightLifter>
+      </div>
       <div class="done-card-body">{{ doneCard.body }}</div>
     </div>
   </div>
@@ -129,12 +131,14 @@ export default{
 }
 .record-date{
   margin-top: 1%;
+  font-size: 20px;
+  top: 60%;
 }
 .tumiage{
   margin-top: 1%;
   margin-left: 1%;
 }
 .done-card-body{
-  font-size: 20px;
+  font-size: 10px;
 }
 </style>

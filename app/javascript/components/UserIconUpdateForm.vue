@@ -4,7 +4,7 @@
   <label>
     <div v-if="image">
       <img :src="image" 
-      width="300" height="300"
+      width="100" height="100"
       alt="Avatar" class="image" style="border-radius:50%;">
     </div>
     <div class="form-group">
@@ -18,8 +18,8 @@
            />
     </div>
   </label>
-  <div style="margin-left:15%;">
-    <button class="btn btn-info" @click="updateUserIcon()">アップロード</button>
+  <div style="margin-left:15%; font-size:15px;">
+    <button class="btn btn-sm btn-info" @click="updateUserIcon()">アップロード</button>
   </div>
   <p>{{ message }}</p>
 </div>

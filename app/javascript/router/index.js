@@ -11,7 +11,10 @@ import NotFound from '../pages/NotFound'
 Vue.use(VueRouter); 
 
 const routes = [
-  { path: '/', component: Top },
+  { 
+    path: '/', 
+    component: Top, 
+  },
   { path: '/schedules', component: GanttChartPage },
   { path: '/register', component: Register },
   { path: '/login', component: Login },

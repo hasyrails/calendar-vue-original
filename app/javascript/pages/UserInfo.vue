@@ -26,14 +26,14 @@
         <div>
           <div class="user-image" v-if="src">
             <div v-if="$store.state.srcFlag">
-              <img style="border-radius:50%;" :src="src" width="300" height="300">
+              <img style="border-radius:50%;" :src="src" width="100" height="100">
             </div>
-            <div style="font-size:15px;">
+            <div style="font-size:10px;">
               <UserIconUpdateForm></UserIconUpdateForm>
             </div>
           </div>
           <div class="alternative-user-image" v-if="!src">
-            <Account :size="120" fillColor="#2C7CFF"></Account>
+            <Account :size="50" fillColor="#2C7CFF"></Account>
           </div>
         </div>
       </div>
@@ -115,7 +115,7 @@
           進行中のタスク数：
         </div>
         <div class="guest-schedulized-cards">
-          <Key :size="100" fillColor="#FFC7AF"></Key>
+          <Key :size="70" fillColor="#FFC7AF"></Key>
         </div>
       </div>
       <div class="user-info-content">
@@ -123,7 +123,7 @@
           期限を護ったタスクの数：
         </div>
         <div class="guest-finished-cards">
-          <Key :size="100" fillColor="#FFC7AF"></Key>
+          <Key :size="70" fillColor="#FFC7AF"></Key>
         </div>
       </div>
       <div class="user-info-content">
@@ -131,11 +131,11 @@
           期限をﾏﾓﾚﾅｶｯﾀ‥タスクの数：
         </div>
         <div class="guest-deadlined-cards">
-          <Key :size="100" fillColor="#FFC7AF"></Key>
+          <Key :size="70" fillColor="#FFC7AF"></Key>
         </div>
       </div>
       <div class="guest-counted-cards">
-        合計：<Key :size="100" fillColor="#FFC7AF"></Key>
+        合計：<Key :size="70" fillColor="#FFC7AF"></Key>
       </div>
       <div class="user-info-content">
         <div class="user-graph-item">
@@ -212,60 +212,60 @@ export default {
 <style scoped>
 .user-info-page{
 /* background: #EEFFFF; */
-width: 100vw;
-height: 100vh;
+width: 100%;
+height: 100%;
 background: #EEFFFF;
 /* width: 100%;
 height: 100%; */
 }
 
 .user-info{
-  width: 80vw;
-  margin-left:10%;
-  margin-right:10%;
+  width: 90%;
+  margin-left:5%;
+  margin-right:5%;
 } 
 .user-info-title{
   position: fixed;
-  top: 10%;
-  left: 10%;
+  top: 12%;
+  left: 5%;
   font-size: 40px;
 } 
 
 .user-name-item{
   position: fixed;
-  top: 14%;
-  left: 15%;
-  font-size: 40px;
+  top: 18%;
+  left: 8%;
+  font-size: 30px;
 }
 .user-name{
   position: fixed;
-  top: 14%;
-  left: 31%;
-  font-size: 40px;
+  top: 19%;
+  left: 25%;
+  font-size: 25px;
 }
 .user-email-item{
   position: fixed;
-  top: 18%;
-  left: 15%;
-  font-size: 40px;
+  top: 23%;
+  left: 8%;
+  font-size: 30px;
 }
 .user-email{
   position: fixed;
-  top: 18%;
-  left: 31%;
-  font-size: 40px;
+  top: 23%;
+  left: 25%;
+  font-size: 25px;
 }
 .user-image-item{
   position: fixed;
   top: 30%;
-  left: 15%;
-  font-size: 40px;
+  left: 8%;
+  font-size: 30px;
 }
 .user-image{
   position: fixed;
-  top: 23%;
-  left: 31%;
-  font-size: 40px;
+  top: 28%;
+  left: 27%;
+  font-size: 30px;
 }
 .alternative-user-image{
   position: fixed;
@@ -277,97 +277,97 @@ height: 100%; */
 .guest-user-image{
   position: fixed;
   top: 33%;
-  left: 31%;
+  left: 28%;
   font-size: 40px;
 }
 .user-graph-item{
   position: fixed;
-  top: 15%;
+  top: 11%;
   left: 45%;
-  font-size: 100px;
+  font-size: 80px;
 }
 .user-graph{
   position: fixed;
-  top: 15%;
-  left: 70%;
-  font-size: 100px;
+  top: 11%;
+  left: 77%;
+  font-size: 80px;
 }
 .guest-user-graph{
   position: fixed;
-  top: 15%;
-  left: 70%;
+  top: 12%;
+  left: 80%;
   font-size: 100px;
 }
 .finished-cards-item{
   position: fixed;
   top: 25%;
-  left: 50%;
-  font-size: 40px;
+  left: 48%;
+  font-size: 30px;
 }
 .finished-cards{
   position: fixed;
   top: 25%;
-  left: 70%;
-  font-size: 40px;
+  left: 73%;
+  font-size: 30px;
 }
 .guest-finished-cards{
   position: fixed;
-  top: 24%;
-  left: 70%;
-  font-size: 40px;
+  top: 28%;
+  left: 73%;
+  font-size: 30px;
 }
 .deadlined-cards-item{
   position: fixed;
-  top: 35%;
-  left: 50%;
-  font-size: 40px;
+  top: 33%;
+  left: 48%;
+  font-size: 30px;
 }
 .deadlined-cards{
   position: fixed;
-  top: 35%;
-  left: 70%;
-  font-size: 40px;
+  top: 33%;
+  left: 75%;
+  font-size: 30px;
 }
 .guest-deadlined-cards{
   position: fixed;
-  top: 34%;
-  left: 70%;
-  font-size: 40px;
+  top: 36%;
+  left: 75%;
+  font-size: 30px;
 }
 .schedulized-cards-item{
   position: fixed;
-  top:43%;
-  left: 50%;
-  font-size: 40px;
+  top:44%;
+  left: 48%;
+  font-size: 30px;
 }
 .schedulized-cards{
   position: fixed;
-  top: 43%;
-  left: 70%;
-  font-size: 40px;
+  top: 44%;
+  left: 67%;
+  font-size: 30px;
 }
 .guest-schedulized-cards{
   position: fixed;
-  top: 42%;
-  left: 70%;
-  font-size: 40px;
+  top: 50%;
+  left: 67%;
+  font-size: 30px;
 }
 .counted-cards{
   position: fixed;
-  top: 30%;
+  top: 29%;
   left: 80%;
-  font-size: 40px;
+  font-size: 30px;
 }
 .guest-counted-cards{
   position: fixed;
-  top: 30%;
-  left: 80%;
-  font-size: 40px;
+  top: 33%;
+  left: 83%;
+  font-size: 30px;
 }
 .graph{
   position: fixed;
-  top: 49%;
-  font-size: 40px;
+  left: 5%;
+  top: 51%;
 }
 
 .purun {

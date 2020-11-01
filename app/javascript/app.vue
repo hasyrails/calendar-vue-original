@@ -1,8 +1,9 @@
 <template>
   <div id="app">
-    <Header v-if="!showDone"></Header>
-    <HeaderOfDone v-if="showDone"></HeaderOfDone>
-    <router-view></router-view>
+    <Header v-if="!showDone" :class="appHeaderClass"></Header>
+    <HeaderOfDone v-if="showDone" :class="appHeaderClass"></HeaderOfDone>
+    <router-view >
+    </router-view>
   </div>
 </template>
 
@@ -29,7 +30,7 @@ export default {
   computed:{
     ...mapState([
       'showDone'
-    ])
+    ]),
   },
   beforeCreate(){
     const existingSession = this.$cookies.get('session')
@@ -44,4 +45,5 @@ export default {
 </script>
 
 <style scoped>
+
 </style>
