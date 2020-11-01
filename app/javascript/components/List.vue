@@ -154,13 +154,13 @@ export default {
     draggable,
   },
   methods: {
-    async createSchedulesFromCard(card){
+    createSchedulesFromCard(card){
       if(confirm('一度決めた「いつから」「いつまで」は変更できません！よろしいですか？')){
         this.cardDetail = card
         this.closeCardSettingModal()
-        await this.updateCardAction(card)
-        await this.$store.dispatch('schedules/createScheduleAction', card)
-        this.$router.go({path: this.$router.currentRoute.path, force: true})
+        this.updateCardAction(card)
+        this.$store.dispatch('schedules/createScheduleAction', card)
+        // this.$router.go({path: this.$router.currentRoute.path, force: true})
       }
     },
     openCardToGanttChartModal(card){

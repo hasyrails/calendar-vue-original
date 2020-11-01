@@ -152,7 +152,7 @@
     </div>
   </div>
 
-  <div class="app-header" v-if="this.$route.path==='/schedules'" style="width:400%;">
+  <div class="app-header" v-if="this.$route.path==='/schedules'" style="width:650%;">
     <div class="app-header-contents">
       <router-link to="/">
         <div class="app-header-title">初志しか勝たん<BoxingGlove :size="30"></BoxingGlove>

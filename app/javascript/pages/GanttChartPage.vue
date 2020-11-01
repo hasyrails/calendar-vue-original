@@ -91,7 +91,7 @@ p {
 }
 
 .calendar-area{
-  width: 250vw;
+  width: 150%;
   height:70%;
   /* overflow-x: scroll; */
 }
@@ -109,7 +109,7 @@ p {
 }
 
 .todo-area{
-  width: 250vw;
+  width: 250%;
   /* overflow-x: auto; */
   overflow-x: scroll;
   height: 30%;
