@@ -1,7 +1,7 @@
 <template>
   <div class="form-container">
   <form @input="submit" class="register-form">
-    <h2>ユーザー名を入力してください</h2>
+    <h4>ユーザー名を入力してください</h4>
     <div class="form-group">
       <label for="userName">ユーザー名</label>
       <ValidationProvider rules="required|name">
@@ -56,6 +56,6 @@ export default {
 
   .error-message{
     color: red;
-    font-size:20px;
+    font-size:15px;
   }
 </style>

@@ -1,6 +1,6 @@
 <template>
 <div>
-  <h3>ユーザーアイコンを登録しましょう</h3>
+  <h4>ユーザーアイコンを登録しましょう</h4>
   <p id="error" v-show="error">{{ error }}</p>
   <label>
     <div v-if="image">
@@ -18,7 +18,7 @@
     </div>
   </label>
   <button class="btn btn-info" @click="upload()">アップロード</button>
-  <p>{{ message }}</p>
+  <p style="color:blue;">{{ message }}</p>
 </div>
 </template>
 
