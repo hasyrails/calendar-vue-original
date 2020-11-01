@@ -304,11 +304,11 @@ export default {
 
 <style scoped>
 .calendar {
-  margin-top:1%;
-  margin-left: 10%;
+  margin-top:2%;
+  margin-left: 20%;
   margin-right: 0.5%;
   /* position: fixed; */
-  width:170%;
+  width:150%;
   /* z-index:1; */
   display: flex;
   flex-direction: column;

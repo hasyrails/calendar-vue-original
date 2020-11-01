@@ -112,7 +112,7 @@ p {
   width: 250%;
   /* overflow-x: auto; */
   overflow-x: scroll;
-  height: 30%;
+  height: 36%;
   position: fixed;
 	bottom: 0px;
 }

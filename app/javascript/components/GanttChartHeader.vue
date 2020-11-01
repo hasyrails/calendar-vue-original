@@ -142,7 +142,7 @@ export default {
   display: flex;
   align-items: center;
   position:fixed;
-  top: 20%;
+  top: 18%;
 }
 .calendar-header-date {
   color: white;
