@@ -3,7 +3,7 @@
   <div class="register">
     <div class="row">
       <div class="col-md-8">
-        <h1 class="register-step">ログイン</h1>
+        <h2 class="register-step">ログイン</h2>
         <div style="margin-left:10%;">
           <UserRegisterMessage></UserRegisterMessage>
         </div>
