@@ -1,7 +1,7 @@
 <template>
   <div class="form-container">
   <form @input="submit" class="register-form">
-    <h2>メールアドレスを入力してください</h2>
+    <h4>メールアドレスを入力してください</h4>
     <div class="form-group">
       <label for="Email">メールアドレス</label>
       <ValidationProvider rules="required|email">
@@ -56,6 +56,6 @@ export default {
 
   .error-message{
     color: red;
-    font-size:20px;
+    font-size:15px;
   }
 </style>

@@ -1,19 +1,20 @@
 <template>
   <div class="form-container">
+  <ValidationObserver>
   <form @input="submit" class="register-form">
-    <h2>パスワードを入力してください</h2>
+    <h4>パスワードを入力してください</h4>
     <div class="form-group">
       <label for="password">パスワード</label>
-      <ValidationProvider rules="required|password">
+      <ValidationProvider rules="required|confirmed:password_confirmation" vid="password">
         <div slot-scope="{ errors }">
-        <input type="password" class="form-control form-control-lg" name="password"  v-model="password" placeholder="Enter Password">
+        <input type="password" class="form-control form-control-lg" name="password" v-model="password" placeholder="Enter Password">
           <p class="error-message">{{ errors[0] }}</p>
         </div>
       </ValidationProvider>
     </div>
     <div class="form-group">
       <label for="userName">パスワード(確認)</label>
-      <ValidationProvider rules="required|confirmed:password">
+      <ValidationProvider rules="required|confirmed:password" vid="password_confirmation">
         <div slot-scope="{ errors }">
         <input type="password" class="form-control form-control-lg" name="password_confirmation" v-model="password_confirmation" placeholder="Enter Password">
           <p class="error-message">{{ errors[0] }}</p>
@@ -21,12 +22,13 @@
       </ValidationProvider>
     </div>
   </form>
+  </ValidationObserver>
   </div>
 </template>
 
 <script>
 import Eye from 'vue-material-design-icons/Eye.vue';
-import { ValidationProvider } from 'vee-validate';
+import { ValidationProvider, ValidationObserver } from 'vee-validate';
 
 export default {
   name: 'PasswordForm',
@@ -38,7 +40,8 @@ export default {
   },
   components:{
     Eye,
-    ValidationProvider
+    ValidationProvider,
+    ValidationObserver,
   },
   methods: {
 		submit(){
@@ -69,6 +72,6 @@ export default {
 
   .error-message{
     color: red;
-    font-size:20px;
+    font-size:15px;
   }
 </style>
