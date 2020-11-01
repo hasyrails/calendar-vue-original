@@ -54,7 +54,7 @@ export default {
   computed:{
     ...mapState([
       'showDone'
-    ])
+    ]),
   },
   methods: {
     showDatePicker(){

@@ -28,7 +28,7 @@
             <div v-if="$store.state.srcFlag">
               <img style="border-radius:50%;" :src="src" width="100" height="100">
             </div>
-            <div style="font-size:15px;">
+            <div style="font-size:10px;">
               <UserIconUpdateForm></UserIconUpdateForm>
             </div>
           </div>
@@ -226,45 +226,45 @@ height: 100%; */
 } 
 .user-info-title{
   position: fixed;
-  top: 15%;
+  top: 12%;
   left: 5%;
   font-size: 40px;
 } 
 
 .user-name-item{
   position: fixed;
-  top: 22%;
-  left: 10%;
+  top: 18%;
+  left: 8%;
   font-size: 30px;
 }
 .user-name{
   position: fixed;
-  top: 23%;
+  top: 19%;
   left: 25%;
   font-size: 25px;
 }
 .user-email-item{
   position: fixed;
-  top: 28%;
-  left: 10%;
+  top: 23%;
+  left: 8%;
   font-size: 30px;
 }
 .user-email{
   position: fixed;
-  top: 28%;
-  left: 26%;
+  top: 23%;
+  left: 25%;
   font-size: 25px;
 }
 .user-image-item{
   position: fixed;
-  top: 36%;
-  left: 10%;
+  top: 30%;
+  left: 8%;
   font-size: 30px;
 }
 .user-image{
   position: fixed;
-  top: 23%;
-  left: 25%;
+  top: 28%;
+  left: 27%;
   font-size: 30px;
 }
 .alternative-user-image{
@@ -282,14 +282,14 @@ height: 100%; */
 }
 .user-graph-item{
   position: fixed;
-  top: 15%;
+  top: 11%;
   left: 45%;
   font-size: 80px;
 }
 .user-graph{
   position: fixed;
-  top: 15%;
-  left: 70%;
+  top: 11%;
+  left: 77%;
   font-size: 80px;
 }
 .guest-user-graph{
@@ -300,14 +300,14 @@ height: 100%; */
 }
 .finished-cards-item{
   position: fixed;
-  top: 30%;
+  top: 25%;
   left: 48%;
   font-size: 30px;
 }
 .finished-cards{
   position: fixed;
-  top: 30%;
-  left: 70%;
+  top: 25%;
+  left: 73%;
   font-size: 30px;
 }
 .guest-finished-cards{
@@ -318,14 +318,14 @@ height: 100%; */
 }
 .deadlined-cards-item{
   position: fixed;
-  top: 38%;
+  top: 33%;
   left: 48%;
   font-size: 30px;
 }
 .deadlined-cards{
   position: fixed;
-  top: 35%;
-  left: 70%;
+  top: 33%;
+  left: 75%;
   font-size: 30px;
 }
 .guest-deadlined-cards{
@@ -336,14 +336,14 @@ height: 100%; */
 }
 .schedulized-cards-item{
   position: fixed;
-  top:51%;
+  top:44%;
   left: 48%;
   font-size: 30px;
 }
 .schedulized-cards{
   position: fixed;
-  top: 43%;
-  left: 70%;
+  top: 44%;
+  left: 67%;
   font-size: 30px;
 }
 .guest-schedulized-cards{
@@ -354,7 +354,7 @@ height: 100%; */
 }
 .counted-cards{
   position: fixed;
-  top: 35%;
+  top: 29%;
   left: 80%;
   font-size: 30px;
 }
@@ -366,8 +366,8 @@ height: 100%; */
 }
 .graph{
   position: fixed;
-  top: 49%;
-  font-size: 30px;
+  left: 5%;
+  top: 51%;
 }
 
 .purun {
