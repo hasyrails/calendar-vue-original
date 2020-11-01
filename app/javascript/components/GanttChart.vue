@@ -10,11 +10,11 @@
       style="background-color:#8EB8FF;height:200px;">
       </GanttChartHeader>
     </div>
-    <div style="min-width:100px;border-top:5px #BAD3FF;background-color:#EEEEEE;">
+    <div class="calendar-date-parts">
       <div
         v-for="(week, index) in calendars"
         :key="index"
-        style="display:flex;border-left:5px solid #BAD3FF;height:700px;"
+        class="week"
       >
         <div
         class="calendar-date"
@@ -22,7 +22,7 @@
         :key="index"
         :id="day.year+'-'+day.month+'-'+day.date"
         >
-          <div v-if="day.month===currentMonth" style="font-weight:200;font-size:50px;">{{day.date}}</div>
+          <div v-if="day.month===currentMonth" class="current-month-dates">{{day.date}}</div>
           <div v-if="day.month!==currentMonth&&day.date!==new Date().getDate()" style="color:#D3D3D3;font-size:50px;">{{ day.date }}</div>
         <draggable
         v-model="schedule"
@@ -304,7 +304,7 @@ export default {
 
 <style scoped>
 .calendar {
-  margin-top:3%;
+  margin-top:1%;
   margin-left: 10%;
   margin-right: 0.5%;
   /* position: fixed; */
@@ -315,16 +315,33 @@ export default {
 }
 
 .calendar-header-area {
-  height:200px;
+  height:100px;
+}
+
+.calendar-date-parts{
+  min-width:100px;
+  border-top:5px #BAD3FF;
+  background-color:#EEEEEE;
+}
+
+.week{
+  display:flex;
+  border-left:5px solid #BAD3FF;
+  height:300px;
 }
 
 .calendar-date{
   flex:1;
-  min-height:125px;
+  min-height:50px;
   border-right:5px solid #BAD3FF;
   border-bottom:5px solid #BAD3FF;
   text-align: center;
   font-size:25px;
+}
+
+.current-month-dates{
+  font-weight:200;
+  font-size:30px;
 }
 
 .calendar-date:hover {
