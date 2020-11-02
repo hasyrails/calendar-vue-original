@@ -180,7 +180,7 @@
 
       <div>
         <div class="user-name" v-if="this.$store.state.auth.headers.length!==0&&this.$store.state.auth.user.length!==0">
-          {{ this.$store.state.auth.user.name }}さん
+          <!-- {{ this.$store.state.auth.user.name }}さん -->
         </div>
         <div class="user-name" v-else-if="this.$store.state.auth.headers.length!==0&&this.$store.state.auth.user.length===0">
           {{ this.$store.state.auth.user.name }}さん
@@ -311,15 +311,19 @@ import {mapState} from 'vuex'
 import BoxingGlove from 'vue-material-design-icons/BoxingGlove.vue';
 
   export default {
-    name: 'Header',
+    name: 'HeaderOfDone',
     data(){
       return{
-        users:{},
-        src: this.$store.getters['auth/user'].image
+        src: this.$store.getters['auth/user'].image,
       }
     },
     components:{
       BoxingGlove,
+    },
+    computed:{
+      // src(){
+      //   return this.$store.getters['auth/user'].image
+      // }
     },
     methods:{
       logout(){
@@ -360,7 +364,7 @@ a {
 
 .app-header-title{
   position: fixed;
-  top:20px;
+  top:30px;
   left:10px;
   right:10px;
   font-size: 30px;

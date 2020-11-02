@@ -73,11 +73,11 @@
         </div>
         <div class="user-graph purun">
           {{percentage}} 
-          <div v-if="zeroDevideZeroFlag" style="position:fixed;top:15%;display:flex;">
-            <Numeric0 :size="130" fillColor="#A4C6FF"></Numeric0>
-            <SlashForward :size="130" fillColor="#A4C6FF"></SlashForward>
-            <Numeric0 :size="130" fillColor="#A4C6FF"></Numeric0>
-          </div>
+        </div>
+        <div v-if="zeroDevideZeroFlag" class="user-graph" style="position:fixed;top:10%;display:flex;">
+          <Numeric0 :size="100" fillColor="#A4C6FF"></Numeric0>
+          <SlashForward :size="100" fillColor="#A4C6FF"></SlashForward>
+          <Numeric0 :size="100" fillColor="#A4C6FF"></Numeric0>
         </div>
       </div>
       <div class="graph">
