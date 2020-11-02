@@ -2,7 +2,7 @@ class Api::CardsController < ApplicationController
   before_action :set_card, only: %i[show update destroy]
   before_action :deadlined,  only: %i[show]
   skip_before_action :verify_authenticity_token
-  before_action :authenticate_api_user!
+  # before_action :authenticate_user!
 
   def index
     @cards = Card.all

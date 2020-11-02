@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_02_093148) do
+ActiveRecord::Schema.define(version: 2020_11_02_125756) do
 
-  create_table "admins", force: :cascade do |t|
+  create_table "admins", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", default: "", null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 2020_11_02_093148) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
-  create_table "cards", force: :cascade do |t|
+  create_table "cards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "body"
     t.text "description"
     t.date "start"
@@ -34,24 +34,26 @@ ActiveRecord::Schema.define(version: 2020_11_02_093148) do
     t.boolean "schedulized", default: false, null: false
     t.boolean "deadlined", default: false, null: false
     t.boolean "done", default: false, null: false
-    t.integer "list_id", null: false
-    t.integer "user_id", null: false
+    t.bigint "list_id", null: false
     t.date "done_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.bigint "schedule_id"
     t.index ["list_id"], name: "index_cards_on_list_id"
+    t.index ["schedule_id"], name: "index_cards_on_schedule_id"
     t.index ["user_id"], name: "index_cards_on_user_id"
   end
 
-  create_table "lists", force: :cascade do |t|
+  create_table "lists", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title"
-    t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
     t.index ["user_id"], name: "index_lists_on_user_id"
   end
 
-  create_table "schedules", force: :cascade do |t|
+  create_table "schedules", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "body"
     t.string "description"
     t.date "start"
@@ -64,16 +66,16 @@ ActiveRecord::Schema.define(version: 2020_11_02_093148) do
     t.integer "date_day"
     t.boolean "commit", default: true, null: false
     t.string "color"
-    t.integer "card_id", null: false
-    t.integer "user_id", null: false
     t.date "done_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.bigint "card_id"
     t.index ["card_id"], name: "index_schedules_on_card_id"
     t.index ["user_id"], name: "index_schedules_on_user_id"
   end
 
-  create_table "sessions", force: :cascade do |t|
+  create_table "sessions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "session_id", null: false
     t.text "data"
     t.datetime "created_at", null: false
@@ -82,7 +84,7 @@ ActiveRecord::Schema.define(version: 2020_11_02_093148) do
     t.index ["updated_at"], name: "index_sessions_on_updated_at"
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "provider", default: "email", null: false
     t.string "uid", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -103,4 +105,10 @@ ActiveRecord::Schema.define(version: 2020_11_02_093148) do
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
+  add_foreign_key "cards", "lists"
+  add_foreign_key "cards", "schedules"
+  add_foreign_key "cards", "users"
+  add_foreign_key "lists", "users"
+  add_foreign_key "schedules", "cards"
+  add_foreign_key "schedules", "users"
 end
