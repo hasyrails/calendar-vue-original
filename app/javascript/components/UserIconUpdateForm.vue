@@ -1,6 +1,6 @@
 <template>
 <div>
-  <p id="error" v-show="error">{{ error }}</p>
+  <p id="error" v-show="error" style="color:red;">{{ error }}</p>
   <label>
     <div v-if="image">
       <img :src="image" 
@@ -18,10 +18,10 @@
            />
     </div>
   </label>
-  <div style="margin-left:15%; font-size:15px;">
+  <div style="margin-left:15%; font-size:10px;">
     <button class="btn btn-sm btn-info" @click="updateUserIcon()">アップロード</button>
   </div>
-  <p>{{ message }}</p>
+  <p style="color:blue;">{{ message }}</p>
 </div>
 </template>
 

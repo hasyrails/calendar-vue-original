@@ -17,7 +17,8 @@ Vue.use(Vuex)
 const store =  new Vuex.Store({
   state: {
     showDone: false,
-    srcFlag :true
+    srcFlag :true,
+    alternativeUserIconFlag :true
   },
   mutations: {
     showDones(state){
@@ -31,6 +32,9 @@ const store =  new Vuex.Store({
     },
     hideSrc(state){
       state.srcFlag = false
+    },
+    hideAlternativeUserIcon(state){
+      state.alternativeUserIconFlag = false
     },
   },
   actions:{
@@ -46,6 +50,12 @@ const store =  new Vuex.Store({
     hideSrcAction({commit}){
       commit('hideSrc')
     },
+    hideAlternativeUserIconAction({commit}){
+      commit('hideAlternativeUserIcon')
+    },
+  },
+  getters:{
+    alternativeUserIconFlag: (state) => state.alternativeUserIconFlag
   },
   modules: {
     lists,
