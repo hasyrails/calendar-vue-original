@@ -2,7 +2,7 @@ class Api::SchedulesController < ApplicationController
   before_action :set_schedule, only: %i[show update destroy done]
   before_action :deadlined, only: %i[show]
   skip_before_action :verify_authenticity_token
-  before_action :authenticate_api_user!
+  # before_action :authenticate_api_user!
 
   def index
     @schedules = Schedule.all

@@ -10,3 +10,10 @@ require 'time'
   )
 end
 
+3.times do
+  List.create!(
+    title: 'hoge',
+    user_id: 1
+  )
+end
+

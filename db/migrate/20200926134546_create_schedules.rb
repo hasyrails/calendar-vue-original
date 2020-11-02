@@ -14,8 +14,8 @@ class CreateSchedules < ActiveRecord::Migration[5.2]
       t.boolean :commit, default: true, null: false
       t.string :color
       
-      t.references  :card, null: false, foreign_key: true
-      t.references  :user, null: false, foreign_key: true
+      # t.references  :card, null: false, foreign_key: true
+      # t.references  :user, null: false, foreign_key: true
 
       t.date :done_at
 
