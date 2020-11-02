@@ -29,7 +29,7 @@
        >
           <Schedule 
           :schedule="schedule"
-          v-for="schedule in schedules"
+          v-for="schedule in ownSchedules"
           v-if="
           schedule.date_day === day.date
           &&schedule.date_month === day.month
@@ -293,6 +293,9 @@ export default {
       'sampleSchedules'
     ]
     ),
+    ownSchedules() {
+       return this.$store.getters['schedules/schedules'].filter(schedule=>schedule.user_id===this.$store.state.auth.user.id)
+    },
   },
   created(){
     this.$store.commit('devidedschedules/createDevidedSchedules')
