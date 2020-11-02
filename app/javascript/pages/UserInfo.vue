@@ -298,7 +298,7 @@ height: 100%; */
 }
 .guest-user-graph{
   position: fixed;
-  top: 12%;
+  top: 9%;
   left: 80%;
   font-size: 100px;
 }
@@ -316,7 +316,7 @@ height: 100%; */
 }
 .guest-finished-cards{
   position: fixed;
-  top: 28%;
+  top: 24%;
   left: 73%;
   font-size: 30px;
 }
@@ -334,7 +334,7 @@ height: 100%; */
 }
 .guest-deadlined-cards{
   position: fixed;
-  top: 36%;
+  top: 32%;
   left: 75%;
   font-size: 30px;
 }
@@ -352,7 +352,7 @@ height: 100%; */
 }
 .guest-schedulized-cards{
   position: fixed;
-  top: 50%;
+  top: 43%;
   left: 67%;
   font-size: 30px;
 }
