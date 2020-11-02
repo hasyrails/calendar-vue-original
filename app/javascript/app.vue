@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapGetters } from 'vuex'
 import Header from '../javascript/components/Header'
 import HeaderOfDone from '../javascript/components/HeaderOfDone'
 
@@ -28,7 +28,7 @@ export default {
     // }
   },
   computed:{
-    ...mapState([
+    ...mapGetters([
       'showDone'
     ]),
   },

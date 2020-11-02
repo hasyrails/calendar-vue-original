@@ -20,7 +20,7 @@
           選んだ日付へ<br>ジャンプ
         </div>
       </div>
-    <router-link to="/" style="text-decoration:none;">
+    <!-- <router-link to="/" style="text-decoration:none;">
       <div class="home-link-icon"
       style="margin-left:10px;"
       @mouseover="homeIconBallonDisplay" @mouseleave="homeIconBallonNonDisplay">
@@ -32,7 +32,7 @@
             ホームへ戻る
           </div>
       </div>
-    </router-link>
+    </router-link> -->
     </div>
   </div>
 </template>
@@ -118,7 +118,7 @@ export default {
   display: flex;
   align-items: center;
   position:fixed;
-  top: 20%;
+  top: 17%;
 }
 .calendar-header-date {
   color: white;

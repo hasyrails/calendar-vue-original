@@ -13,7 +13,7 @@
           @end="movingList"
           >
           <ListOfDone v-for="list in lists"
-            style="margin-top:50px;margin-bottom:50px;"
+            style="margin-top:10px;margin-bottom:50px;"
             class="slide"
             :list="list"
             :key="list.id"
