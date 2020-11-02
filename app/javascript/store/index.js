@@ -55,7 +55,8 @@ const store =  new Vuex.Store({
     },
   },
   getters:{
-    alternativeUserIconFlag: (state) => state.alternativeUserIconFlag
+    alternativeUserIconFlag: (state) => state.alternativeUserIconFlag,
+    showDone: (state) => state.showDone
   },
   modules: {
     lists,

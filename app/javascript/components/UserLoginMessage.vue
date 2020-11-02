@@ -22,11 +22,11 @@
 
 <style scoped>
   .message {
-    font-size:32px;
+    font-size:25px;
     border-radius: 16px 16px 16px 16px;
     color: green;
     background-color: #CCFFCC;
-    width:1000px;
+    width:500px;
     /* margin-left:50%; */
     text-align: center;
   }
@@ -47,8 +47,8 @@
     z-index:200;
 
     /*　画面全体を覆う設定　*/
-    width:100vw;
-    height:100vh;
+    width:100%;
+    height:100%;
     background-color: rgba(219,226,249,0.1);
     /* opacity: 0.5; */
 

@@ -2,7 +2,7 @@
   <div class="list purun">
     <div class="listheader">
       <div class="list-title">{{ title }}</div>
-       <div class="list-counter">total: {{ totalCardInList }}</div>
+       <div class="list-counter">total: {{ totalCardOfDoneInList }}</div>
       <div class="deletelist" @click="deleteList">×</div>
     </div>
     <div class="cards-area">
@@ -45,7 +45,7 @@ import CardToGanttChartModal from '../components/CardToGanttChartModal'
 
 import draggable from "vuedraggable";
 
-import { mapState, mapActions } from 'vuex'
+import { mapState, mapActions, mapGetters } from 'vuex'
 
 export default {
   data(){
@@ -63,6 +63,10 @@ export default {
     }
   },
   props: {
+    id: {
+      type: Number,
+      required: true
+    },
     title: {
       type: String,
       required: true
@@ -77,8 +81,8 @@ export default {
     }
   },
   computed: {
-    totalCardInList() {
-      return this.cards.length
+    totalCardOfDoneInList() {
+      return this.$store.getters['cards/cards'].filter(card=>card.list_id===this.list.id&&card.done&&card.user_id===this.$store.getters['auth/user'].id).length
     },
     ...mapState('cards',{
       cards: 'cards'

@@ -13,14 +13,15 @@
       <!-- <div class="schedule-done-icon">
         <CheckBold fillColor="orange" :size="30"></CheckBold>
       </div> -->
-      <div class="schedule-title" style="margin-left:10px;margin-top:1px;">
+      <div class="schedule-title" style="font-size:15px;margin-left:10px;margin-top:1px;">
         {{sampleSchedule.body}}
       </div>
     </div>
     <div class="card-handle-button"
     >
-      <div @click="openSampleScheduleSettingModal" >
-        <ScheduleSettingButton style="margin-left:1px;"></ScheduleSettingButton>
+      <div @click="openSampleScheduleSettingModal" 
+      style="margin-left:1px;">
+        <ScheduleSettingButton></ScheduleSettingButton>
       </div>
       <!-- <div>
         <TrashCanOutline
@@ -116,15 +117,15 @@ export default {
 }
 
 .card {
-  height: 80px;
-  width: 250px;
+  height: 50px;
+  width: 180px;
   cursor: pointer;
   display: flex;
 }
 
 .body {
   position: absolute;
-  top: 20px;
+  top: 7px;
   right: 10px;
   font-size: 18px;
   width: 90%;
@@ -139,7 +140,7 @@ export default {
 .card-handle-button{
   position: absolute;
   top: 1px;
-  right: 10px;
+  right: 15px;
   cursor: pointer;
   border-radius: 8px;
   color: white;
