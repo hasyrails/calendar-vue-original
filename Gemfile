@@ -74,3 +74,5 @@ gem 'rack-cors'
 gem 'jquery-rails'
 
 gem 'activerecord-session_store', github: 'rails/activerecord-session_store'
+
+gem 'rails_admin'
