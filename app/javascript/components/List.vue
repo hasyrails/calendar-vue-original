@@ -2,7 +2,9 @@
   <div class="list">
     <div class="listheader">
       <div class="list-title">{{ title }}</div>
-       <div class="list-counter">total: {{ totalCardInList }}</div>
+        <div class="list-counter" v-if="$store.state.auth.user.length!==0&&$store.state.auth.headers.length!==0">
+          total: {{ totalCardInList }}
+        </div>
       <div class="deletelist" @click="deleteList">×</div>
     </div>
     <div class="cards-area">
@@ -32,6 +34,7 @@
           @sort="$emit('change')"
         >
           <SampleCard v-for="sampleCard in sampleCards"
+            style="margin-top: 5px;"
             :key="sampleCard.id"
             :sampleCard="sampleCard"
             @clickSampleCardSettingButton="openSampleCardSettingModal(sampleCard)"
@@ -122,7 +125,7 @@ export default {
   },
   computed: {
     totalCardInList() {
-      return this.cards.length
+      return this.$store.getters['cards/cards'].filter(card=>card.list_id===this.list.id&&!card.done).length
     },
     ...mapState('cards',{
       cards: 'cards'

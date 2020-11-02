@@ -3,16 +3,22 @@
     <!-- <header>
       TODO List
     </header> -->
-    <div :class="slideRunner" style="font-size:40px;color:#8EB8FF;font-weight:bold;margin-top:150px;">
+    <div :class="slideRunner" style="font-size:25px;color:#8EB8FF;font-weight:bold;margin-top:150px;">
       {{message}}
     </div>
-      <div class="list-add-form">
+      <div class="list-add-form"
+      v-if="$store.state.auth.user.length!==0&&$store.state.auth.headers.length!==0">
         <!-- <div>All: {{ totalCardCount }} tasks</div> -->
         <ListAdd
         style="margin-top:10px;"
         ></ListAdd>
       </div>
-      <div class="todo-lists" v-if="$store.state.auth.user.length!==0&&$store.state.auth.headers.length!==0">
+      <div
+      v-if="$store.state.auth.user.length!==0&&$store.state.auth.headers.length!==0"
+      style="margin-top:10px;margin-left:10px;color:#32CD32;">
+        タスク：合計{{totalCardsCount}}個
+      </div>
+      <div class="todo-lists" style="margin-top:30px;" v-if="$store.state.auth.user.length!==0&&$store.state.auth.headers.length!==0">
         <draggable
           :list="lists"
           class="list-index"
@@ -28,6 +34,16 @@
           ></List>
         </draggable>
       </div>
+      <div
+      v-if="$store.state.auth.user.length!==0&&$store.state.auth.headers.length===0">
+        <div style="font-size:20px;margin-left:20px;margin-top:50px;">
+          <Cog fillColor="grey"></Cog>をクリックしてカードを予定に追加しましょう！
+        </div>
+        <div  class="yureru-j"
+         style="margin-top:35px;">
+          <ArrowRightBold :size="60" fillColor="orange"></ArrowRightBold>
+        </div>
+      </div>
      <div class="todo-lists" v-if="$store.state.auth.user.length!==0&&$store.state.auth.headers.length===0">
         <List v-for="list in sampleLists"
           style="margin-top:50px;margin-bottom:10px;"
@@ -37,20 +53,12 @@
           :title="list.title"
           @change="movingCard"
         ></List>
-        <div style="font-size:20px;margin-left:20px;">
-          <div  class="yureru-j">
-            <ArrowUpBold :size="60" fillColor="orange"></ArrowUpBold>
-          </div>
-          <div style="font-size:20px;margin-left:20px;">
-            <Cog fillColor="grey"></Cog>をクリックしてカードを予定に追加しましょう！
-          </div>
-        </div>
-      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import ArrowUpBold from 'vue-material-design-icons/ArrowUpBold.vue';
+import ArrowRightBold from 'vue-material-design-icons/ArrowRightBold.vue';
 import Cog from 'vue-material-design-icons/Cog.vue';
 
 import draggable from 'vuedraggable'
@@ -67,15 +75,15 @@ export default {
     draggable,
     ListAdd,
     List,
-    ArrowUpBold,
+    ArrowRightBold,
     Cog,
   },
   computed: {
     ...mapState('lists',{
       lists: 'lists'
     }),
-    totalCardCount() {
-      return this.$store.getters.totalCardCount
+    totalCardsCount() {
+      return this.$store.getters['cards/cards'].filter(card=>!card.done&&card.user_id===this.$store.getters['auth/user'].id).length
     },
     ownLists() {
        return this.$store.getters['lists/lists'].filter(list=>list.user_id===this.$store.state.auth.user.id)
@@ -170,25 +178,25 @@ export default {
 }
 @keyframes yureru-j {
     0% {
-        transform: translate(0px, 5px);
+        transform: translateX(5px);
     }
     5% {
-        transform: translate(0px, -5px);
+        transform: translateX(-5px);
     }
     10% {
-        transform: translate(0px, 5px);
+        transform: translateX(5px);
     }
     15% {
-        transform: translate(0px, -5px);
+        transform: translateX(-5px);
     }
     20% {
-        transform: translate(0px, 5px);
+        transform: translateX(5px);
     }
     25% {
-        transform: translate(0px, -5px);
+        transform: translateX(-5px);
     }
     30% {
-        transform: translate(0px, 0px);
+        transform: translateX(0px);
     }
 }
 </style>

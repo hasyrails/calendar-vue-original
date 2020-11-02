@@ -2,11 +2,11 @@
 <div>
   <div class="app-header" v-if="this.$route.path!=='/schedules'">
     <div class="app-header-contents">
-      <!-- <router-link to="/"> -->
+      <router-link to="/">
         <div class="app-header-title">初志しか勝たん<BoxingGlove :size="30"></BoxingGlove>
         </div>
         <!-- <p class="app-header-title-footer">初志貫徹アプリ</p> -->
-      <!-- </router-link> -->
+      </router-link>
       
       <div>
         <div class="user-icon" v-if="this.$store.state.auth.headers.length!==0&&this.$store.state.auth.user.length!==0&&src">

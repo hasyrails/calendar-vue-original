@@ -99,6 +99,9 @@ export default {
       if (this.schedule.done===false&&this.schedule.commit===false&&this.schedule.deadlined===false) {
         classButton.push('nonDisplay')
       }
+      if (this.schedule.done===true&&this.schedule.commit===false&&this.schedule.deadlined===false) {
+        classButton.push('nonDisplay')
+      }
       if (this.schedule.deadlined===true) {
         classButton.push('deadlinedSchedule')
       }
