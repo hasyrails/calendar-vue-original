@@ -271,53 +271,57 @@
           </div>
         </div> -->
         
-        <!-- <div class="schedule-item">
+        <div class="schedule-item">
           <div class="schedule-item-name"
-          @click="cardStatusEdit"
+          @click="cardColorEdit"
           style="cursor: pointer;"
           >
             カードの色
           </div>
           <div 
           style="cursor:pointer;"
+          @click="cardColorEdit"
           >
-            <div class="schedule-item-content" v-if="card.status==='todo'&&!cardStatusEditFlag">
-            ToDo
+            <div class="schedule-item-content" v-if="card.color==='#FFD5EC'&&!cardColorEditFlag">
+              <div style="width:50px; height:50px; background-color:#FFD5EC;"></div>
             </div>
-            <div class="schedule-item-content" v-if="card.status==='doing'&&!cardStatusEditFlag">
-            Doing
+            <div class="schedule-item-content" v-if="card.color==='#CBFFD3'&&!cardColorEditFlag">
+              <div style="width:50px; height:50px; background-color:#CBFFD3;"></div>
             </div>
-            <div class="schedule-item-content" v-if="card.status==='done'&&!cardStatusEditFlag">
-            Done
+            <div class="schedule-item-content" v-if="card.color==='#CCFFFF'&&!cardColorEditFlag">
+              <div style="width:50px; height:50px; background-color:#CCFFFF;"></div>
             </div>
           </div>
-          <div class="card-scheduled-editng" v-if="cardStatusEditFlag"
+          <div class="card-scheduled-editng" v-if="cardColorEditFlag"
           style="margin-left:25px;">
             <form  class="scheduled cp_ipselect cp_sl04" 
             @submit.prevent="updateCard"
             style="width:400px;">
-            <select v-model="card.status"
+            <select v-model="card.color"
             type="text" 
             style="outline:blue;">
-               <option value="todo">
-                  ToDo
+               <option value="#FFD5EC">
+                  ピンク
                 </option>
-                <option value="doing">
-                  Doing
+                <option value="#CBFFD3">
+                  緑
                 </option>
-                <option value="done">
-                  Done
+                <option value="#CCFFFF">
+                  水色
                 </option>
             </select>
             </form>
-            <div @click="quitCardStatusEdit">
+            <div @click="quitCardColorEdit">
               <CloseCircle :size="45"></CloseCircle>
             </div>
-            <div @click="updateCard">
+            <div @click="updateCard"
+             style="cursor: pointer;"
+            >
               <ContentSaveEditOutline  :size="45"></ContentSaveEditOutline>
             </div>
           </div>
-        </div> -->
+        </div>
+      </div>
 
       </div>
       <div class="modal-footer" style="background-color:white; height:100px;">

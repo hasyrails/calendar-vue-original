@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 2020_10_27_223927) do
     t.text "description"
     t.date "start"
     t.date "deadline"
-    t.integer "color"
+    t.string "color"
     t.boolean "schedulized", default: false, null: false
     t.boolean "deadlined", default: false, null: false
     t.boolean "done", default: false, null: false
