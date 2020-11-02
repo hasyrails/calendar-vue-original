@@ -32,8 +32,11 @@
               <UserIconUpdateForm></UserIconUpdateForm>
             </div>
           </div>
-          <div class="alternative-user-image" v-if="!src">
-            <Account :size="50" fillColor="#2C7CFF"></Account>
+          <div class="alternative-user-image" v-if="!src" style="display:flex;">
+              <Account :size="100" fillColor="#2C7CFF"></Account>
+            <div style="font-size:10px;">
+              <UserIconUpdateForm></UserIconUpdateForm>
+            </div>
           </div>
         </div>
       </div>
@@ -163,6 +166,7 @@ export default {
   data(){
     return{
       src: this.$store.state.auth.user.image,
+      alternativeUserIconFlag: this.$store.getters.alternativeUserIconFlag
     }
   },
   components:{
@@ -201,7 +205,7 @@ export default {
     },
     doneCardsCount() {
       return this.$store.getters['cards/doneCards'].length
-    }
+    },
   },
   mounted(){
     this.$store.dispatch('cards/fetchCardsAction')
@@ -270,7 +274,7 @@ height: 100%; */
 .alternative-user-image{
   position: fixed;
   top: 33%;
-  left: 31%;
+  left: 25%;
   font-size: 40px;
 
 }
@@ -367,7 +371,7 @@ height: 100%; */
 .graph{
   position: fixed;
   left: 5%;
-  top: 51%;
+  top: 52%;
 }
 
 .purun {
