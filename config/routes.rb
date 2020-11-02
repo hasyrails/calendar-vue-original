@@ -1,12 +1,8 @@
 Rails.application.routes.draw do
-  devise_for :admins
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  devise_for :admins
+  devise_for :user
   root to: 'home#index'
-  devise_for :admins, controllers: {
-    sessions:      'admins/sessions',
-    passwords:     'admins/passwords',
-    registrations: 'admins/registrations'
-  }
   namespace :api, { format: "json" } do
     scope :v1 do
       mount_devise_token_auth_for 'User', at: 'auth', controllers: {
