@@ -19,24 +19,25 @@ export default{
 
 <style scoped>
 .not-found{
-  width: 100vw;
+  width: 100%;
 }
 .not-found-error{
   position: fixed;
   top:30%;
-  left:45%;
+  left:36%;
   font-size:50px;
+  color: #8EB8FF;
 }
 .error-message{
   position: fixed;
   top:40%;
-  left:35%;
-  font-size:50px;
+  left:28%;
+  font-size:30px;
 }
 .icon{
   position: fixed;
   top:50%;
-  left:47%;
+  left:40%;
   font-size:50px;
 }
 

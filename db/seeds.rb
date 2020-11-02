@@ -6,7 +6,7 @@ require 'time'
     name: 'hoge',
     email: 'hoge@mail.com',
     password: 'demopass',
-    password_confirmation: 'demopass'
+    password_confirmation: 'demopass',
   )
 end
 
