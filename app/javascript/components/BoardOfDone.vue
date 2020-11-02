@@ -12,7 +12,7 @@
           class="list-index"
           @end="movingList"
           >
-          <ListOfDone v-for="list in lists"
+          <ListOfDone v-for="list in ownListsOfDone"
             style="margin-top:10px;margin-bottom:50px;"
             class="slide"
             :list="list"
@@ -44,7 +44,10 @@ export default {
     }),
     totalCardCount() {
       return this.$store.getters.totalCardCount
-    }
+    },
+    ownListsOfDone() {
+       return this.$store.getters['lists/lists'].filter(list=>list.user_id===this.$store.state.auth.user.id&&list.done)
+    },
   },
   mounted(){
     this.$store.dispatch('lists/fetchListsAction')
