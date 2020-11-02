@@ -35,7 +35,8 @@
         </draggable>
       </div>
       <div
-      v-if="$store.state.auth.user.length!==0&&$store.state.auth.headers.length===0">
+      v-if="$store.state.auth.user.length!==0&&$store.state.auth.headers.length===0"
+      style="display:flex;">
         <div style="font-size:20px;margin-left:20px;margin-top:50px;">
           <Cog fillColor="grey"></Cog>をクリックしてカードを予定に追加しましょう！
         </div>
