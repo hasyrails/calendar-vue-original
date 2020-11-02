@@ -18,11 +18,11 @@
 
 <style scoped>
   .message {
-    font-size:32px;
+    font-size:25px;
     border-radius: 16px 16px 16px 16px;
     color: green;
     background-color: #CCFFCC;
-    width:600px;
+    width:400px;
     text-align: center;
   }
 </style>

@@ -5,7 +5,7 @@ class CreateCards < ActiveRecord::Migration[5.2]
       t.text  :description
       t.date :start
       t.date :deadline
-      t.integer  :color
+      t.string  :color
       t.boolean :schedulized, default: false, null: false
       t.boolean :deadlined, default: false, null: false
       t.boolean :done, default: false, null: false

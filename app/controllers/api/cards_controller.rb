@@ -61,7 +61,7 @@ class Api::CardsController < ApplicationController
   end
 
   def card_params
-    params.permit(:body, :description, :start, :deadline, :color, :scheduled, :schedulized, :done_at,:list_id, :user_id)
+    params.permit(:id, :body, :description, :start, :deadline, :color, :scheduled, :schedulized, :deadlined, :done, :done_at,:list_id, :user_id)
   end
 
   def schedule_params
