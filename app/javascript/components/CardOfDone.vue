@@ -126,11 +126,34 @@ export default {
 }
 
 
+.nonDisplay{
+  /* visibility:hidden */
+  outline: dashed thin;
+  background-color :white;
+  color:white;
+  opacity:0.3;
+}
+.finishedToDo{
+  /* visibility:hidden */
+  /* background-color :#FFDBC9; */
+  color:black;
+  opacity:0.8;
+}
+.deadlinedCard{
+  /* visibility:hidden */
+  /* background-color :#FFDBC9; */
+  color:black;
+  opacity:0.3;
+}
+
+
 .card {
-  height: 70px;
+  height: 50px;
   width: 250px;
   cursor: pointer;
   display: flex;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 .card-main{
@@ -138,16 +161,16 @@ export default {
 }
 
 .card-icon{
-  margin-top: 15px;
+  margin-top: 10px;
   margin-left: 15px;
 }
 
 .body {
   position: absolute;
   top: 15px;
-  /* right: 5px; */
+  left: 20px;
   font-size: 18px;
-  margin-left:50px;
+  margin-left:60px;
   width: 80%;
   word-wrap: break-word;
   margin-bottom :3%;
@@ -161,6 +184,35 @@ export default {
   position: absolute;
   top: 3px;
   right: 3px;
+  /* font-size: 22px; */
+  cursor: pointer;
+  border-radius: 8px;
+  /* border-color: red; */
+  /* border-style: solid; */
+  /* background-color: red; */
+  color: white;
+  margin: 5px;
+  width: 10%;
+}
+.show-detail-button{
+  /* position: absolute; */
+  position: relative;
+  right: 10px;
+  /* font-size: 22px; */
+  cursor: pointer;
+  border-radius: 8px;
+  /* border-color: red; */
+  /* border-style: solid; */
+  /* background-color: red; */
+  color: white;
+  margin: 5px;
+  width: 10%;
+}
+.delete-button{
+  /* position: absolute; */
+  position: relative;
+  bottom: 35px;
+  right:3px;
   /* font-size: 22px; */
   cursor: pointer;
   border-radius: 8px;

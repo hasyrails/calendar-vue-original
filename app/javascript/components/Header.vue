@@ -362,6 +362,8 @@ a {
 }
 
 .app-header{
+  position: fixed;
+  top: 0px;
   background: hsl(180, 65%, 81%);
   height: 100px;
   color: black;

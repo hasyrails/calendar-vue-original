@@ -70,7 +70,7 @@
             </div>
           <div style="margin-left:40px;width:50px;height:50px;border-radius:25px 25px 25px 25px;background-color:#2C7CFF;" v-if="day.scheduleNum!==0&&day.month===new Date().getMonth()+1&&day.year===new Date().getFullYear()" class="schedule-num-display">
             <div style="color:white; font-size:35px;margin-top:1px;margin-left:12px;">{{day.scheduleNum}}</div>
-            <div style="margin-left:10px;"><CardBulletedOutline fillColor="grey" :size="100"></CardBulletedOutline></div>
+            <div style="margin-left:10px;margin-top:30px;"><CardBulletedOutline fillColor="grey" :size="100"></CardBulletedOutline></div>
           </div>
         </div>
       </div>
@@ -89,6 +89,7 @@
         :key="index"
         style="width:150px;"
         > 
+        <div style="display:flex;">
           <div v-if="day.month===currentMonth"
           class="day-current-month"
           >{{day.date}}</div>
@@ -99,12 +100,13 @@
           class="today"
           >
           {{day.date}}</div>
-            <div v-if="day.date===new Date().getDate()&&day.month===new Date().getMonth()+1&&day.year===new Date().getFullYear()&&day.scheduleNum!==0" style="position:relative;top:-35px;">
-              <CountDownTimer></CountDownTimer>
-            </div>
+        </div>
           <div v-if="day.scheduleNum!==0&&day.month===new Date().getMonth()+1&&day.year===new Date().getFullYear()" class="schedule-num-display">
             <div style="color:white; font-size:15px;margin-top:0px;margin-left:6px;">{{day.scheduleNum}}</div>
-            <div style="margin-left:10px;"><CardBulletedOutline fillColor="grey" :size="60"></CardBulletedOutline></div>
+            <div style="margin-left:10px;margin-top:5px;"><CardBulletedOutline fillColor="grey" :size="60"></CardBulletedOutline></div>
+          <div v-if="day.date===new Date().getDate()&&day.month===new Date().getMonth()+1&&day.year===new Date().getFullYear()&&day.scheduleNum!==0" style="position:relative;top:3px;">
+            <CountDownTimer></CountDownTimer>
+          </div>
           </div>
         </div>
       </div>
@@ -342,7 +344,7 @@ export default {
 <style scoped>
 .calendar {
   width:80%;
-  margin-top:30px;
+  margin-top:10%;
 }
 
 .calendar-header-area {
@@ -358,18 +360,21 @@ export default {
 
 .day-current-month{
   font-size:20px;
+  font-weight:300;
 }
 
 .day-other-month{
   color:#D3D3D3;
   font-size:20px;
+  font-weight:300;
 }
 
 .today{
   color:red;
   font-size:20px;
   position:relative;
-  top:-30px;
+  /* top:-30px; */
+  right:11px;
   font-weight:900;
 }
 
@@ -391,7 +396,7 @@ export default {
   background-color:#2C7CFF;
   position: relative;
   left: -10px;
-  top: -35px;
+  /* top: -35px; */
 }
 
 .message{

@@ -9,7 +9,7 @@
       <div class="list-add-form">
         <!-- <div>All: {{ totalCardCount }} tasks</div> -->
         <ListAdd
-        style="margin-top:50px;"
+        style="margin-top:10px;"
         ></ListAdd>
       </div>
       <div class="todo-lists" v-if="$store.state.auth.user.length!==0&&$store.state.auth.headers.length!==0">
@@ -19,7 +19,7 @@
           @end="movingList"
           >
           <List v-for="list in ownLists"
-            style="margin-top:50px;margin-bottom:50px;"
+            style="margin-top:10px;margin-bottom:50px;"
             :list="list"
             :key="list.id"
             :list_id="list.id"

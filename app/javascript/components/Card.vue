@@ -27,7 +27,7 @@
       <div class="show-detail-button" v-show="!cardBodyEditFlag&&card.deadlined===false">
         <Cog fillColor="grey" :size="30" @click="openCardSettingModal"></Cog>
       </div>
-      <div class="close-button" @click="deleteCard" v-show="!cardBodyEditFlag&&card.deadlined===false">
+      <div class="delete-button" @click="deleteCard" v-show="!cardBodyEditFlag&&card.deadlined===false">
         <TrashCanOutline fillColor="red" :size="30"></TrashCanOutline>
       </div>
     </div>
@@ -137,10 +137,12 @@ export default {
 
 
 .card {
-  height: 70px;
+  height: 50px;
   width: 250px;
   cursor: pointer;
   display: flex;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 .card-main{
@@ -148,7 +150,7 @@ export default {
 }
 
 .card-icon{
-  margin-top: 15px;
+  margin-top: 10px;
   margin-left: 15px;
 }
 
@@ -171,6 +173,35 @@ export default {
   position: absolute;
   top: 3px;
   right: 3px;
+  /* font-size: 22px; */
+  cursor: pointer;
+  border-radius: 8px;
+  /* border-color: red; */
+  /* border-style: solid; */
+  /* background-color: red; */
+  color: white;
+  margin: 5px;
+  width: 10%;
+}
+.show-detail-button{
+  /* position: absolute; */
+  position: relative;
+  right: 40px;
+  /* font-size: 22px; */
+  cursor: pointer;
+  border-radius: 8px;
+  /* border-color: red; */
+  /* border-style: solid; */
+  /* background-color: red; */
+  color: white;
+  margin: 5px;
+  width: 10%;
+}
+.delete-button{
+  /* position: absolute; */
+  position: relative;
+  bottom: 35px;
+  right:3px;
   /* font-size: 22px; */
   cursor: pointer;
   border-radius: 8px;

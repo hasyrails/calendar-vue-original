@@ -68,16 +68,16 @@ export default {
 
 <style scoped>
 .addlist {
-  margin: 0 10px auto;
-  display: inline-block;
+  /* margin: 0 0px auto; */
+  /* display: inline-block;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: flex-start; */
   min-width: 320px;
   width: 320px;
 }
 
 .text-input {
-  padding: 20px 15px;
+  padding: 10px 10px;
   width: calc(100% - 30px);
   background-color: #ccc;
   border-radius: 8px;
@@ -85,7 +85,7 @@ export default {
   border: none;
   font-family: "Noto Sans Japanese", "Noto Sans", 'system-ui', sans-serif;
   font-weight: 700;
-  font-size: 24px;
+  font-size: 15px;
   color: #242424;
   cursor: pointer;
   overflow: overlay;

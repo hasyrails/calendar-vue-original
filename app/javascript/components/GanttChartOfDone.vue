@@ -46,7 +46,7 @@
     </div>
   </div>
   <div>
-    <ScheduleSettingModal
+    <ScheduleOfDoneSettingModal
     :schedule="scheduleDetail"
     v-if="scheduleSettingModalFlag"
     @clickCloseButton="closeScheduleSettingModal"
@@ -54,7 +54,7 @@
     @updateSchedule="updateSchedule(scheduleDetail)"
     @completeSchedule="completeSchedule(scheduleDetail)"
     @clickScheduleSettingModalCloseButton="closeScheduleSettingModal"
-    ></ScheduleSettingModal>
+    ></ScheduleOfDoneSettingModal>
   </div>
   <div>
     <ScheduleEditModal
@@ -77,7 +77,7 @@ import draggable from 'vuedraggable'
 import GanttChartOfDoneHeader from "../components/GanttChartOfDoneHeader";
 import Schedule from "../components/Schedule"
 import { mapState, mapGetters } from 'vuex'
-import ScheduleSettingModal from "../components/ScheduleSettingModal"
+import ScheduleOfDoneSettingModal from "../components/ScheduleOfDoneSettingModal"
 import ScheduleEditModal from "../components/ScheduleEditModal"
 
 export default {
@@ -102,7 +102,7 @@ export default {
     draggable,
     GanttChartOfDoneHeader,
     Schedule,
-    ScheduleSettingModal,
+    ScheduleOfDoneSettingModal,
     ScheduleEditModal,
   },
   mounted () {
@@ -259,12 +259,10 @@ export default {
 
 <style scoped>
 .calendar {
-  margin-top:1%;
-  margin-left: 10%;
+  margin-top:2%;
+  margin-left: 20%;
   margin-right: 0.5%;
-  /* position: fixed; */
-  width:170%;
-  /* z-index:1; */
+  width:150%;
   display: flex;
   flex-direction: column;
 }
@@ -275,21 +273,21 @@ export default {
 
 .calendar-date-parts{
   min-width:100px;
-  border-top:5px #BAD3FF;
+  border-top:5px #FFDBC9;
   background-color:#EEEEEE;
 }
 
 .week{
   display:flex;
-  border-left:5px solid #BAD3FF;
-  height:300px;
+  border-left:5px solid #FFDBC9;
+  height:290px;
 }
 
 .calendar-date{
   flex:1;
   min-height:50px;
-  border-right:5px solid #BAD3FF;
-  border-bottom:5px solid #BAD3FF;
+  border-right:5px solid  #FFDBC9;
+  border-bottom:5px solid  #FFDBC9;
   text-align: center;
   font-size:25px;
 }

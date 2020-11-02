@@ -68,8 +68,9 @@ export default {
 
 <style scoped>
 .text-input {
+  margin-left: 15px;
   padding: 20px 15px;
-  width: 300px;
+  width: 200px;
   background-color: #ccc;
   border-radius: 8px;
   cursor: pointer;

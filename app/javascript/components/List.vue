@@ -227,7 +227,7 @@ export default {
   color: rgb(0, 140, 255);
   padding: 15px;
   margin-right: 10px;
-  margin-top: 10px;
+  /* margin-top: 10px; */
 }
 
 .list {
@@ -253,22 +253,24 @@ export default {
   width: 100%;
   display: inline-flex;
   justify-content: center;
+  height:50px;
 }
 
 .list-title {
   background: linear-gradient(transparent 70%, #ff99ab 70%);
   font-size: 25px;
   font-weight: bold;
-  padding: 15px;
-  margin-bottom: 10px;
+  height:40px;
+  /* margin-bottom: 10px; */
   text-align: center;
 }
 
 .deletelist {
   position: absolute;
-  top: 6px;
+  top: 1px;
   right: 14px;
-  font-size: 28px;
+  font-size: 25px;
+  cursor: pointer;
 }
 
 </style>
