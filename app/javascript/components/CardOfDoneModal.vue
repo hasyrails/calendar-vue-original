@@ -217,8 +217,10 @@ export default {
 <style scoped>
 .content{
   z-index:201;
+  position:relative;
+  top:-140px;
   width:80%;
-  padding: 1em;
+  padding: 30px;
   background:#fff;
 }
 
@@ -268,14 +270,15 @@ export default {
   margin-bottom: 10px;
 }
 .schedule-item-name{
-  font-size:36px;
+  font-size:24px;
   text-decoration: underline;
   width:300px;
-  text-align: center;
+  text-align: left;
 }
 .schedule-item-content{
   margin-left: 30px;
-  font-size:24px;
+  font-size:16px;
+  text-align: center;
 }
 
 .schedule-date{
@@ -318,7 +321,7 @@ export default {
   border        : 2px solid #87a689;   /* 入力域の枠線   */
   border-radius : 4px;                 /* 入力域の角丸   */
   padding       : 0 20px;              /* 入力文字の余白 */
-  font-size     : 26px;                /* 入力文字サイズ */
+  font-size     : 16px;                /* 入力文字サイズ */
   color         : #323d33;             /* 入力文字の色   */
   font-weight   : bold;                /* 入力文字の太字 */
   letter-spacing: .1em;                /* 入力文字の間隔 */
@@ -350,7 +353,7 @@ overflow: hidden;
 width: 90%;
 /* margin: 2em auto; */
 text-align: center;
-font-size: 26px;
+font-size: 16px;
 }
 .cp_ipselect select {
 width: 100%;
