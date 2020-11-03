@@ -23,7 +23,7 @@
         :id="day.year+'-'+day.month+'-'+day.date"
         >
           <div v-if="day.month===currentMonth" class="current-month-dates">{{day.date}}</div>
-          <div v-if="day.month!==currentMonth&&day.date!==new Date().getDate()" style="color:#D3D3D3;font-size:50px;">{{ day.date }}</div>
+          <div v-if="day.month!==currentMonth&&day.date!==new Date().getDate()" style="color:#D3D3D3;font-size:30px;">{{ day.date }}</div>
         <draggable
         v-model="schedule"
        >

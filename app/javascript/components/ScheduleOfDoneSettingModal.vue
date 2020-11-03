@@ -5,39 +5,21 @@
         <div class="modal-header">
           <div>
             <div class="schedule-title">
-              <div class="schedule-tag" style="margin-top:10px;"><CheckBold fillColor="#FFA500" :size="36"></CheckBold></div>
+              <div class="schedule-tag" style="margin-top:10px;">
+                <Tag :size="36"></Tag>
+              </div>
               <div class="schedule-title" style="font-size:36px; margin-left:10px;width:900px;">
               {{ schedule.body }}
-                <!-- <div 
-                class="card-created-at"
-                v-if="schedule.created_at===schedule.update_at">
-                  <div class="schedule-created-at-date" style="width:300px;">
-                    <div style="margin-bottom:6px;">
-                      <CardPlus :size="45"></CardPlus>
-                    </div>
-                    {{ new Date(schedule.created_at).getFullYear() }}/
-                    {{ new Date(schedule.created_at).getMonth()+1 }}/
-                    {{ new Date(schedule.created_at).getDate() }}
-                  </div>
-                  <div class="schedule-created-at-time" style="width:200px;">
-                    {{ new Date(schedule.created_at).getHours() }}:
-                    {{ new Date(schedule.created_at).getMinutes() }}
-                  </div>
-                </div> -->
                 <div 
                 class="card-updated-at"
-                v-if="schedule.created_at!==schedule.update_at">
+                >
                   <div class="schedule-created-at-date" style="width:300px;">
                     <div style="margin-bottom:6px;">
-                      <Update :size="45"></Update>
+                       <CheckBold :size="45" fillColor="#FFA500"></CheckBold>
                     </div>
-                    {{ new Date(schedule.updated_at).getFullYear() }}/
-                    {{ new Date(schedule.updated_at).getMonth()+1 }}/
-                    {{ new Date(schedule.updated_at).getDate() }}
-                  </div>
-                  <div class="schedule-created-at-time" style="width:200px;">
-                    {{ new Date(schedule.updated_at).getHours() }}:
-                    {{ new Date(schedule.updated_at).getMinutes() }}
+                    {{ new Date(schedule.done_at).getFullYear() }}/
+                    {{ new Date(schedule.done_at).getMonth()+1 }}/
+                    {{ new Date(schedule.done_at).getDate() }}
                   </div>
                 </div>
               </div>
@@ -186,6 +168,7 @@
 </template>
 
 <script>
+import Tag from 'vue-material-design-icons/Tag.vue';
 import CheckBold from 'vue-material-design-icons/CheckBold.vue';
 import Pencil from 'vue-material-design-icons/Pencil.vue';
 
@@ -218,6 +201,7 @@ export default {
     }
   },
   components:{
+    Tag,
     CheckBold,
     Pencil,
     ContentSaveEditOutline,
@@ -301,9 +285,12 @@ export default {
 <style scoped>
 .content{
   z-index:201;
+  position:relative;
+  top: 100px;
   width:80%;
-  padding: 1em;
+  padding: 30px;
   background:#fff;
+  opacity:0.8;
 }
 
 .overlay{
@@ -352,14 +339,15 @@ export default {
   margin-bottom: 10px;
 }
 .schedule-item-name{
-  font-size:36px;
+  font-size:24px;
   text-decoration: underline;
   width:300px;
-  text-align: center;
+  text-align: left;
 }
 .schedule-item-content{
   margin-left: 30px;
-  font-size:24px;
+  font-size:16px;
+  text-align: center;
 }
 
 .schedule-date{
@@ -402,7 +390,7 @@ export default {
   border        : 2px solid #87a689;   /* 入力域の枠線   */
   border-radius : 4px;                 /* 入力域の角丸   */
   padding       : 0 20px;              /* 入力文字の余白 */
-  font-size     : 26px;                /* 入力文字サイズ */
+  font-size     : 16px;                /* 入力文字サイズ */
   color         : #323d33;             /* 入力文字の色   */
   font-weight   : bold;                /* 入力文字の太字 */
   letter-spacing: .1em;                /* 入力文字の間隔 */
@@ -434,7 +422,7 @@ overflow: hidden;
 width: 90%;
 /* margin: 2em auto; */
 text-align: center;
-font-size: 26px;
+font-size: 16px;
 }
 .cp_ipselect select {
 width: 100%;
