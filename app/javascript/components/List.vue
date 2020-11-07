@@ -249,7 +249,7 @@ export default {
   border: solid #D9E5FF	1px;
   color: gray;
   vertical-align: top;
-  z-index:2;
+  z-index:100;
 }
 
 .listheader {

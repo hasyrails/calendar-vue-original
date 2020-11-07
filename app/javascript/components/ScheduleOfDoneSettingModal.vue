@@ -158,8 +158,8 @@
           </div>
         </div>
       </div>
-      <div class="modal-footer" style="background-color:white; height:100px;">
-          <div class="btn btn-lg btn-secondary" @click="closeScheduleSettingModal">閉じる</div>
+      <div class="modal-footer" style="background-color:white; height:50px;">
+          <div class="btn btn-sm btn-secondary" @click="closeScheduleSettingModal">閉じる</div>
           <!-- <div class="btn btn-lg btn-danger" @click="deleteSchedule">このスケジュールを削除する</div> -->
         </div>
       </div>
