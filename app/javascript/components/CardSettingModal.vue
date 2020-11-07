@@ -80,10 +80,10 @@
             style="outline:blue;"></input>
             </form>
             <div @click="quitCardDescriptionEdit">
-              <CloseCircle :size="45"></CloseCircle>
+              <CloseCircle :size="30"></CloseCircle>
             </div>
             <div @click="updateCard">
-              <ContentSaveEditOutline  :size="45"></ContentSaveEditOutline>
+              <ContentSaveEditOutline  :size="30"></ContentSaveEditOutline>
             </div>
           </div>
         </div>
@@ -99,7 +99,6 @@
           <div class="schedule-date">
             <div class="schedule-start-date">
               <div>いつから</div>
-              <div>
               <form
               @submit.prevent="updateCard"
               >
@@ -117,11 +116,12 @@
                     class="test"
                     :value="this.default"
                     :format="DatePickerFormat"
-                    v-model="card.start"
+                    v-model="start"
                     ></Datepicker>
                 </div>
               </form>
-              </div>
+              <div v-if="validationOfStart" style="color:red;">{{ validationOfStart }}</div>
+              <div v-if="validationOfPastSetting" style="color:red;">{{ validationOfPastSetting }}</div>
               <!-- <div>{{.start_yyyymmdd}}</div> -->
             </div>
             <div>〜</div>
@@ -138,7 +138,6 @@
                   {{ new Date(card.deadline).getFullYear() }}/
                   {{ new Date(card.deadline).getMonth()+1 }}/
                   {{ new Date(card.deadline).getDate() }}
-
                 </div>
                 <div v-if="datePickerFlag">
                   <Datepicker
@@ -146,15 +145,27 @@
                   class="test"
                   :value="this.default"
                   :format="DatePickerFormat"
-                  v-model="card.deadline"
+                  v-model="deadline"
                   ></Datepicker>
                 </div>
               </form>
-              <div v-if="datePickerFlag" @click="showDatePicker">
-                <CloseCircle :size="45"></CloseCircle>
+              <div style="position:relative;left:-10px;width:200px;font-size:15px;color:red;"
+              v-if="validationOfDeadline">
+                {{validationOfDeadline}}
               </div>
-              <div v-if="datePickerFlag" @click="updateCard">
-                <ContentSaveEditOutline  :size="45"></ContentSaveEditOutline>
+              <div
+               v-if="datePickerFlag"
+               @click="showDatePicker"
+               style="position:relative;left:120px;bottom:30px;"
+               >
+                <CloseCircle :size="30"></CloseCircle>
+              </div>
+              <div 
+              v-if="datePickerFlag" 
+              @click="updateCard"
+              style="position:relative;left:150px;bottom:60px;"
+              >
+                <ContentSaveEditOutline  :size="30"></ContentSaveEditOutline>
               </div>
             </div>
             </div>
@@ -218,12 +229,12 @@
             </select>
             </form>
             <div @click="quitCardColorEdit">
-              <CloseCircle :size="45"></CloseCircle>
+              <CloseCircle :size="30"></CloseCircle>
             </div>
             <div @click="updateCard"
              style="cursor: pointer;"
             >
-              <ContentSaveEditOutline  :size="45"></ContentSaveEditOutline>
+              <ContentSaveEditOutline  :size="30"></ContentSaveEditOutline>
             </div>
           </div>
         </div>
@@ -317,13 +328,16 @@
                 </option>
             </select>
             </form>
-            <div @click="quitCardColorEdit">
-              <CloseCircle :size="45"></CloseCircle>
+            <div 
+            @click="quitCardColorEdit"
+             style="cursor: pointer;position:relative;top:5px;"
+            >
+              <CloseCircle :size="30"></CloseCircle>
             </div>
             <div @click="updateCard"
-             style="cursor: pointer;"
+             style="cursor: pointer;position:relative;top:5px;"
             >
-              <ContentSaveEditOutline  :size="45"></ContentSaveEditOutline>
+              <ContentSaveEditOutline  :size="30"></ContentSaveEditOutline>
             </div>
           </div>
         </div>
@@ -335,7 +349,12 @@
           <div class="btn btn-sm btn-primary" @click="cardEdit">編集する</div>
           <div class="btn btn-sm btn-outline-warning" v-if="!card.schedulized" @click="createSchedulesFromCard">ガントチャートに追加する</div>
           <!-- <div class="btn btn-lg btn-danger" @click="deleteCard">このToDoカードを削除する</div> -->
-        </div>
+      </div>
+      <!-- <div><pre><code>{{card}}</code></pre></div>
+      <div>{{start}}</div>
+      <div>{{deadline}}</div>
+      <div>{{ validDate }}</div> -->
+      <!-- <div>{{(deadline - start)/86400000}}</div> -->
       </div>
     </div>
   </div>
@@ -369,6 +388,11 @@ export default {
       cardScheduledEditFlag: false,
       cardStatusEditFlag: false,
       datePickerFlag: false,
+      start: '',
+      deadline: '',
+      startValidationMessage: '',
+      deadlineValidationMessage: '',
+      pastSettingValidationMessage: '',
     }
   },
   props: {
@@ -390,6 +414,21 @@ export default {
     Datepicker,
   },
   computed:{
+    validationOfStart(){
+      if(this.start > this.deadline&&this.deadline!==''){
+        return '設定できません'
+      }
+    },
+    validationOfDeadline(){
+      if((this.deadline - this.start)/86400000 > 7&&this.start!==''){
+        return '1週間より長い予定は設定できません'
+      }
+    },
+    validationOfPastSetting(){
+      if(this.start < new Date()&&this.start!==''){
+        return '過去の日付は設定できません'
+      }
+    },
   },
   methods:{
     createSchedulesFromCard(){
@@ -525,6 +564,8 @@ export default {
 
 .schedule-date{
   display: flex;
+  position: relative;
+  left: -100px;
 }
 .schedule-start-date{
   text-align: center;
@@ -640,6 +681,6 @@ color: black;
 }
 
 .datepicker-form{
-  display: flex;
+  /* display: flex; */
 }
 </style>

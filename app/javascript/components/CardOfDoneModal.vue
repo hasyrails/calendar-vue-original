@@ -89,8 +89,8 @@
         </div>
         </div>
 
-      <div class="modal-footer" style="background-color:white; height:100px;">
-          <div class="btn btn-lg btn-secondary" @click="closeCardOfDoneModal">閉じる</div>
+      <div class="modal-footer" style="background-color:white; height:50px;">
+          <div class="btn btn-sm btn-secondary" @click="closeCardOfDoneModal">閉じる</div>
         </div>
       </div>
     </div>
