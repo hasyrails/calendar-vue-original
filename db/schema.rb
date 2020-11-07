@@ -94,7 +94,7 @@ ActiveRecord::Schema.define(version: 2020_11_02_125756) do
     t.datetime "remember_created_at"
     t.string "name"
     t.string "nickname"
-    t.string "image"
+    t.text "image"
     t.string "email"
     t.text "tokens"
     t.datetime "created_at", null: false
