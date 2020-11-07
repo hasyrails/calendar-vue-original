@@ -71,7 +71,7 @@ const cards = {
       // Object.assign(card, updateCard);
       state.cards = payload.card
     },
-    createCard(state, payload) {
+      createCard(state, payload) {
       state.cards.push({ body: payload.body, list_id: payload.list_id })
     },
     deleteCard(state, payload) {

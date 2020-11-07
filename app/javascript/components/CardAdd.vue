@@ -1,9 +1,11 @@
 <template>
   <form :class="classList" @submit.prevent="addCardToList">
     <input v-model="body"
+      name="card-add"
+      id='card-add-form'
            type="text"
-           class="text-input"
-           placeholder="Add new card"
+           class="text-input card-add-form"
+           placeholder="ToDoカードを追加"
            @focusin="startEditing"
            @focusout="finishEditing"
     />
@@ -18,6 +20,10 @@
 <script>
 export default {
   props: {
+    list: {
+      type: Object,
+      required: true
+    },
     list_id: {
       type: Number,
       required: true

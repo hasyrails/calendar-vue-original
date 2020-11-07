@@ -23,9 +23,9 @@
 
 FactoryBot.define do
   factory :schedule do
-    body { "TestSchedule" }
-    description { "TestScheduleDetail" }
-    card_id { "1" }
-    user_id { "1" }
+    sequence(:body) { |n| "TestScheduleBody#{n}" }
+    sequence(:description) { |n| "TestScheduleDescription#{n}" }
+    # association :user
+    # association :card
   end
 end

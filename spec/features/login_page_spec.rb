@@ -15,7 +15,7 @@ describe 'ログインページ', type: :system do
     end
     
     
-    fit "（共通）ログインが成功する" do
+    it "（共通）ログインが成功する" do
       fill_in 'email', with: user.email
       fill_in 'password', with: user.password
       find('.login-btn').click

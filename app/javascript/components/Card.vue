@@ -4,11 +4,11 @@
     <div class="card-main">
       <div class="card-icon" v-if="card.schedulized===true&&card.done===false"><CalendarImport fillColor="#FFA500" :size="30"></CalendarImport></div>
       <div class="card-icon" v-if="card.done===true"><Star fillColor="#FFA500" :size="30"></Star></div>
-      <div class="body" v-if="!cardBodyEditFlag" @click="cardBodyEdit">
+      <div class="body card-body" v-if="!cardBodyEditFlag" @click="cardBodyEdit">
         {{ card.body }}
       </div>
     </div>
-    <div class="body" v-if="!cardBodyEditFlag&&card.body.length===0" @click="cardBodyEdit">
+    <div class="body card-body" v-if="!cardBodyEditFlag&&card.body.length===0" @click="cardBodyEdit">
       <Pencil :size="40"></Pencil>
     </div>
     <div class="card-body-editng" v-if="cardBodyEditFlag&&card.deadlined===false">
@@ -16,8 +16,10 @@
       -webkit-box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.2);
       box-shadow: inner 0 0 4px rgba(150, 180, 200, 0.2);">
         <input v-model="card.body"
-        type="text" 
-        style="outline:blue;"></input>
+        type="text"
+        style="outline:blue;"
+        class="card-body-form"
+        ></input>
       </form>
       <div @click="quitCardBodyEdit">
         <CloseCircle :size="30"></CloseCircle>
@@ -27,7 +29,7 @@
       <div class="show-detail-button" v-show="!cardBodyEditFlag&&card.deadlined===false">
         <Cog fillColor="grey" :size="30" @click="openCardSettingModal"></Cog>
       </div>
-      <div class="delete-button" @click="deleteCard" v-show="!cardBodyEditFlag&&card.deadlined===false">
+      <div class="delete-card-button" @click="deleteCard" v-show="!cardBodyEditFlag&&card.deadlined===false">
         <TrashCanOutline fillColor="red" :size="30"></TrashCanOutline>
       </div>
     </div>
@@ -156,13 +158,18 @@ export default {
 
 .body {
   position: absolute;
-  top: 15px;
+  top: -10px;
   /* right: 5px; */
   font-size: 18px;
   margin-left:50px;
   width: 80%;
   word-wrap: break-word;
   margin-bottom :3%;
+}
+
+.card-body-form{
+  position: absolute;
+  top: 10px;
 }
 
 .card-body-editing{
@@ -197,7 +204,7 @@ export default {
   margin: 5px;
   width: 10%;
 }
-.delete-button{
+.delete-card-button{
   /* position: absolute; */
   position: relative;
   bottom: 35px;

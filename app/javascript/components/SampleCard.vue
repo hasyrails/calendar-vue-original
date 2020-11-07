@@ -8,7 +8,7 @@
       </div>
     </div>
     <div class="card-handle-button" >
-      <div class="show-detail-button">
+      <div class="show-sample-detail-button">
         <Cog fillColor="grey" :size="30" @click="openSampleCardSettingModal"></Cog>
       </div>
       <!-- <div class="close-button" @click="deleteCard">

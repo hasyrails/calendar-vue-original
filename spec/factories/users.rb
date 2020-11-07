@@ -1,5 +1,3 @@
-include Rack::Test::Methods
-
 FactoryBot.define do
   factory :user do
     sequence(:name) { |n| "testuser#{n}" }
@@ -7,5 +5,9 @@ FactoryBot.define do
     # image { File.open("#{Rails.root}/spec/fixtures/testicon.png") }
     password { "password" }
     password_confirmation { "password" }
+
+    # association :card
+    # association :list
+    # association :schedule
   end
 end

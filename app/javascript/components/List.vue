@@ -5,11 +5,11 @@
         <div class="list-counter" v-if="$store.state.auth.user.length!==0&&$store.state.auth.headers.length!==0">
           total: {{ totalCardInList }}
         </div>
-      <div class="deletelist" @click="deleteList">×</div>
+      <div class="delete-list-button" @click="deleteList" v-if="$store.state.auth.user.length!==0&&$store.state.auth.headers.length!==0">×</div>
     </div>
     <div class="cards-area">
-      <div>
-        <CardAdd :list_id="list_id"></CardAdd>
+      <div v-if="$store.state.auth.user.length!==0&&$store.state.auth.headers.length!==0">
+        <CardAdd :list_id="list_id" :list="list"></CardAdd>
       </div>
       <div v-if="$store.state.auth.user.length!==0&&$store.state.auth.headers.length!==0">
         <draggable
@@ -268,7 +268,7 @@ export default {
   text-align: center;
 }
 
-.deletelist {
+.delete-list-button {
   position: absolute;
   top: 1px;
   right: 14px;

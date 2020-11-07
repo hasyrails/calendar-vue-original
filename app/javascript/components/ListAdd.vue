@@ -1,9 +1,11 @@
 <template>
   <form :class="classList" @submit.prevent="addList">
     <input v-model="list.title"
-           type="text"
-           class="text-input"
-           placeholder="Add new list"
+          id="list-add-form"
+          name="list-add"
+          type="text"
+           class="text-input list-add-form"
+           placeholder="ToDoリストを追加"
            @focusin="startEditing"
            @focusout="finishEditing"
     >
@@ -77,7 +79,7 @@ export default {
   border: none;
   font-family: "Noto Sans Japanese", "Noto Sans", 'system-ui', sans-serif;
   font-weight: 700;
-  font-size: 24px;
+  font-size: 15px;
   color: #242424;
   cursor: pointer;
   overflow: overlay;

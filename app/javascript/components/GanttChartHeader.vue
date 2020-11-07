@@ -1,9 +1,13 @@
 <template>
-  <div class="calendar-header">
+  <div class="ganttchart-header">
     <div class="calendar-header-content">
-      <ChevronLeft fillColor="white"  @click="prev" :size="50"></ChevronLeft>
+      <div class="prev-month-button">
+        <ChevronLeft fillColor="white"  @click="prev" :size="50"></ChevronLeft>
+      </div>
       <div class="calendar-header-date">{{ currentDate }}</div>
-      <ChevronRight fillColor="white" @click="next" :size="50"></ChevronRight>
+      <div class="next-month-button">
+        <ChevronRight fillColor="white" @click="next" :size="50"></ChevronRight>
+      </div>
       <div
       class="btn btn-primary btn-sm button-to-ganttchart-of-done"
       style="width:200px;"
@@ -13,11 +17,27 @@
         <Paw size="25"></Paw>完遂の軌跡 <Paw size="25"></Paw>
       </div>
       <div>
-        <div style="color:blue; font-size:10px;font-weight:bold;margin-left:5px;">{{message}}</div>
+        <div class="message" 
+        style="color:blue; font-size:10px;font-weight:bold;margin-left:5px;"
+        v-if="$store.state.auth.user.length!==0&&$store.state.auth.headers.length===0"
+        >{{message}}</div>
         <div
-        class="btn btn-primary btn-sm button-to-ganttchart-of-done purun"
+        class="btn btn-primary btn-sm locked-button-to-ganttchart-of-done purun"
         style="width:200px;"
         v-if="$store.state.auth.user.length!==0&&$store.state.auth.headers.length===0"
+        @click="loginInvitationMassage"
+        >
+          <Key size="25"></Key>完遂の軌跡 <Key size="25"></Key>
+        </div>
+      </div>
+      <div>
+        <div class="message" style="color:blue; font-size:10px;font-weight:bold;margin-left:5px;"
+        v-if="$store.state.auth.user.length===0&&$store.state.auth.headers.length===0"
+        >{{message}}</div>
+        <div
+        class="btn btn-primary btn-sm locked-button-to-ganttchart-of-done purun"
+        style="width:200px;"
+        v-if="$store.state.auth.user.length===0&&$store.state.auth.headers.length===0"
         @click="loginInvitationMassage"
         >
           <Key size="25"></Key>完遂の軌跡 <Key size="25"></Key>
@@ -131,7 +151,7 @@ export default {
 </script>
 
 <style scoped>
-.calender-header {
+.ganttchart-header {
   /* background-color: #75A9FF; */
   /* height:1px; */
   /* display: flex; */

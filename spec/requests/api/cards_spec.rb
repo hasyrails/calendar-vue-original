@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe "Api::Cards", type: :request do
   describe "GET /api/cards" do
     subject { get(api_cards_path) }
-    before { create(:card) }
+    let(:card) { build(:card) }
 
     it "card一覧を取得する" do
       subject
@@ -31,11 +31,9 @@ RSpec.describe "Api::Cards", type: :request do
     subject { post(api_cards_path, params: params) }
     let(:params) {
       {
-        "id": 1,
-        "body": "TestCard",
-        "description": "TestCardDetail",
-        "user_id": 1,
-        "list_id": 1,
+        "id": card.id,
+        "body": card.body,
+        "description": card.description,
       } 
     }
     

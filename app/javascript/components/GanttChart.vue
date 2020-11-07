@@ -1,5 +1,5 @@
 <template>
-  <div class="calendar">
+  <div class="ganttchart">
     <div class="calendar-header-area">
       <GanttChartHeader
       :currentDate="currentDate"
@@ -17,7 +17,7 @@
         class="week"
       >
         <div
-        class="calendar-date"
+        class="ganttchart-date"
         v-for="(day, index) in week"
         :key="index"
         :id="day.year+'-'+day.month+'-'+day.date"
@@ -306,7 +306,7 @@ export default {
 </script>
 
 <style scoped>
-.calendar {
+.ganttchart {
   margin-top:2%;
   margin-left: 20%;
   margin-right: 0.5%;
@@ -333,7 +333,7 @@ export default {
   height:300px;
 }
 
-.calendar-date{
+.ganttchart-date{
   flex:1;
   min-height:50px;
   border-right:5px solid #BAD3FF;
