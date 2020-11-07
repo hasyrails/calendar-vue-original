@@ -75,7 +75,7 @@
           <div class="card-description-editng" v-if="cardDescriptionEditFlag"
           style="margin-left:30px;">
             <form  class="description sample2" @submit.prevent="updateCard" style="width:400px;">
-            <input v-model="card.description"
+            <input v-model="form.description"
             type="text" 
             style="outline:blue;"></input>
             </form>
@@ -116,7 +116,7 @@
                     class="test"
                     :value="this.default"
                     :format="DatePickerFormat"
-                    v-model="start"
+                    v-model="form.start"
                     ></Datepicker>
                 </div>
               </form>
@@ -145,7 +145,7 @@
                   class="test"
                   :value="this.default"
                   :format="DatePickerFormat"
-                  v-model="deadline"
+                  v-model="form.deadline"
                   ></Datepicker>
                 </div>
               </form>
@@ -214,7 +214,7 @@
             <form  class="scheduled cp_ipselect cp_sl04" 
             @submit.prevent="updateCard"
             style="width:400px;">
-            <select v-model="card.color"
+            <select v-model="form.color"
             type="text" 
             style="outline:blue;">
                <option value="#FFD5EC">
@@ -314,7 +314,7 @@
             <form  class="scheduled cp_ipselect cp_sl04" 
             @submit.prevent="updateCard"
             style="width:400px;">
-            <select v-model="card.color"
+            <select v-model="form.color"
             type="text" 
             style="outline:blue;">
                <option value="#FFD5EC">
@@ -355,6 +355,7 @@
       <div>{{deadline}}</div>
       <div>{{ validDate }}</div> -->
       <!-- <div>{{(deadline - start)/86400000}}</div> -->
+      <div><pre><code>{{form}}</code></pre></div>
       </div>
     </div>
   </div>
@@ -388,11 +389,15 @@ export default {
       cardScheduledEditFlag: false,
       cardStatusEditFlag: false,
       datePickerFlag: false,
-      start: '',
-      deadline: '',
-      startValidationMessage: '',
-      deadlineValidationMessage: '',
-      pastSettingValidationMessage: '',
+      form:{
+        body: this.card.body,
+        description: '',
+        start: '',
+        deadline: '',
+        color: '',
+        card_id: this.card.id,
+        user_id: this.$store.getters['auth/user'].id,
+      }
     }
   },
   props: {
@@ -415,17 +420,17 @@ export default {
   },
   computed:{
     validationOfStart(){
-      if(this.start > this.deadline&&this.deadline!==''){
+      if(this.form.start > this.form.deadline&&this.form.deadline!==''){
         return '設定できません'
       }
     },
     validationOfDeadline(){
-      if((this.deadline - this.start)/86400000 > 7&&this.start!==''){
+      if((this.form.deadline - this.form.start)/86400000 > 7&&this.form.start!==''){
         return '1週間より長い予定は設定できません'
       }
     },
     validationOfPastSetting(){
-      if(this.start < new Date()&&this.start!==''){
+      if(this.form.start < new Date()&&this.form.start!==''){
         return '過去の日付は設定できません'
       }
     },
@@ -434,7 +439,7 @@ export default {
     createSchedulesFromCard(){
       this.card.schedulized = true
       this.updateCard()
-      this.$emit('clickedCreateScheduleFromCardButton', this.card)
+      this.$emit('clickedCreateScheduleFromCardButton', this.form)
     },
     showDatePicker(){
       this.datePickerFlag = !this.datePickerFlag

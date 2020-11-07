@@ -86,7 +86,7 @@ const schedules = {
           date_year: new Date(currentDate).getFullYear(),
           date_month: new Date(currentDate).getMonth()+1,
           date_day: new Date(currentDate).getDate(),
-          card_id: card.id,
+          card_id: card.card_id,
           user_id: card.user_id
         }
 
