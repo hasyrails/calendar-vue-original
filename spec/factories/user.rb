@@ -1,8 +1,10 @@
+include Rack::Test::Methods
+
 FactoryBot.define do
   factory :user do
-    sequence(:name) { |n| "test_#{n}" }
-    sequence(:email) { |n| "test+#{n}@example.com" }
-    image { Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/fixtures/testicon.png'), 'image/png') }
+    sequence(:name) { |n| "testuser#{n}" }
+    sequence(:email) { |n| "testuser#{n}@example.com" }
+    # image { File.open("#{Rails.root}/spec/fixtures/testicon.png") }
     password { "password" }
     password_confirmation { "password" }
   end

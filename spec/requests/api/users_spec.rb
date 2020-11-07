@@ -11,7 +11,7 @@ RSpec.describe 'Users', type: :request do
 
   describe 'GET api/whoami' do
     context '未ログインの場合' do
-      fit 'HTTPステータスが401であること' do
+      it 'HTTPステータスが401であること' do
         get '/api/whoami'
         expect(response.status).to eq(401)
       end
@@ -20,10 +20,10 @@ RSpec.describe 'Users', type: :request do
       before do
         get '/api/whoami', headers: auth_headers
       end
-      fit 'HTTPステータスが200であること' do
+      it 'HTTPステータスが200であること' do
         expect(response.status).to eq(200)
       end
-      fit 'レスポンスが正しいこと' do
+      it 'レスポンスが正しいこと' do
         expect(JSON.parse(response.body)['id']).to eq(user['id'])
       end
     end
