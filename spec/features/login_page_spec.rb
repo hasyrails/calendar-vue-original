@@ -3,10 +3,10 @@ require 'spec_helper'
 
 describe 'ログインページ', type: :system do
   describe "ユーザー名入力ページ（ユーザー登録：Step1）", js: true do
+    let(:user) { create(:user) }
 
     before do
       visit '/login'
-      create(:user)
     end
     
     it "（共通）ページが表示されること" do
@@ -15,9 +15,9 @@ describe 'ログインページ', type: :system do
     end
     
     
-    it "（共通）ログインが成功する" do
-      fill_in('email', with: 'test@example.com')
-      fill_in('password', with: 'password')
+    fit "（共通）ログインが成功する" do
+      fill_in 'email', with: user.email
+      fill_in 'password', with: user.password
       find('.login-btn').click
       assert_text 'ログインしました'
       expect(current_path).to eq "/"

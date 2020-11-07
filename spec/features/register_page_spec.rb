@@ -2,6 +2,7 @@ require 'rails_helper'
 require 'spec_helper'
 
 describe 'ユーザー登録ページ(マルチステップ入力ページ)', type: :system do
+  let(:user) { build(:user) }
   describe "ユーザー名入力ページ（ユーザー登録：Step1）", js: true do
 
     before do
@@ -20,7 +21,7 @@ describe 'ユーザー登録ページ(マルチステップ入力ページ)', ty
     end
 
     it "（共通）ユーザー名入力のバリデーションが現れない" do
-      fill_in('name', with: 'TestUser')
+      fill_in 'name', with: user.name
       assert_no_text '入力必須の項目です'
     end
     
@@ -65,7 +66,7 @@ describe 'ユーザー登録ページ(マルチステップ入力ページ)', ty
     end
 
     it "（共通）メールアドレス入力のバリデーションが現れない" do
-      fill_in('email', with: 'example@mail.com')
+      fill_in 'email', with: user.email
       assert_no_text '入力必須の項目です'
       assert_no_text '正しいメールアドレスの形式で入力してください'
     end
@@ -180,7 +181,7 @@ describe 'ユーザー登録ページ(マルチステップ入力ページ)', ty
     end
     
     it "（共通）パスワード確認のバリデーションが現れる:入力不一致" do
-      fill_in('password_confirmation', with: 'password')
+      fill_in 'password', with: user.password
       fill_in('password_confirmation', with: 'pasiword')
       assert_text '入力内容が一致していません'
     end
@@ -203,22 +204,22 @@ describe 'ユーザー登録ページ(マルチステップ入力ページ)', ty
     
     before do
       visit '/register'
-      fill_in('name', with: 'testuser')
+      fill_in 'name', with: user.name
       find('.register-step-next-button').click
-      fill_in('email', with: 'test@example.com')
+      fill_in 'email', with: user.email
       find('.register-step-next-button').click
       attach_file('file', 'spec/fixtures/testicon.png')
       click_on 'アップロード'
       find('.register-step-next-button').click
-      fill_in('password', with: 'password')
-      fill_in('password_confirmation', with: 'password')
+      fill_in 'password', with: user.password
+      fill_in 'password_confirmation', with: user.password_confirmation
       find('.register-step-next-button').click
     end
     
     
     it "入力内容した内容が表示されている" do
-      assert_text 'testuser'
-      assert_text 'test@example.com'
+      assert_text user.name
+      assert_text user.email
       expect(page).to have_css("img[src*='base64']")
       assert_text '●'
     end
