@@ -6,10 +6,11 @@
         <div class="app-header-title">初志しか勝たん<BoxingGlove :size="30"></BoxingGlove>
         </div>
         <!-- <p class="app-header-title-footer">初志貫徹アプリ</p> -->
+        <!-- <pre><code>{{$store.getters['auth/user']}}</code></pre> -->
       </router-link>
       
       <div>
-        <div class="user-icon" v-if="this.$store.state.auth.headers.length!==0&&this.$store.state.auth.user.length!==0&&src">
+        <div class="user-icon user-image" v-if="this.$store.state.auth.headers.length!==0&&this.$store.state.auth.user.length!==0&&src">
           <router-link to="/userinfo"> 
             <img style="border-radius:50%;" :src="src" width="70" height="70">
           </router-link>
