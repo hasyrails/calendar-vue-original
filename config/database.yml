@@ -34,11 +34,10 @@ test:
   # database: db/test.sqlite3
 
 production:
-  <<: *default
   adapter: mysql2
   encoding: utf8
-  database: calendar-vue-original
   pool: 5
+  database: calendar-vue-original_production
   username: root
   password:
-  # database: db/production.sqlite3
+  socket: /var/lib/mysql/mysql.sock
