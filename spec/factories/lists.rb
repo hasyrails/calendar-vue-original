@@ -1,14 +1,16 @@
-# create_table "lists", force: :cascade do |t|
+# create_table "lists", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
 #   t.string "title"
-#   t.integer "user_id", null: false
 #   t.datetime "created_at", null: false
 #   t.datetime "updated_at", null: false
+#   t.bigint "user_id"
 #   t.index ["user_id"], name: "index_lists_on_user_id"
 # end
 
 FactoryBot.define do
   factory :list do
-    title { "TestList" }
-    user_id { "1" }
+    sequence(:title) { |n| "TestList#{n}" }
+    # association :user
   end
 end
+
+  

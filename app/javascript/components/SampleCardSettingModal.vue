@@ -1,7 +1,7 @@
 <template>
   <div class="overlay">
     <div class="content">
-      <div class="modal-content" >
+      <div class="sample-card-modal-content" >
         <div class="modal-header">
           <div>
             <div style="font-size:25px;">
@@ -193,8 +193,10 @@ export default {
 <style scoped>
 .content{
   z-index:201;
+  position:relative;
+  top:-140px;
   width:80%;
-  padding: 1em;
+  padding: 30px;
   background:#fff;
 }
 

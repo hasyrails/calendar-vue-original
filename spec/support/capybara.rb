@@ -2,7 +2,7 @@ require 'selenium-webdriver'
 require 'capybara/rspec'
 
 Capybara.configure do |config|
-
+  
   config.default_driver = :chrome
   config.javascript_driver = :chrome
   config.run_server = true
