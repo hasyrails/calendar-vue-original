@@ -110,7 +110,7 @@
                   {{ new Date(card.start).getMonth()+1 }}/
                   {{ new Date(card.start).getDate() }}
                 </div>
-                <div v-if="datePickerFlag">
+                <div v-if="datePickerFlag&&!card.schedulized">
                     <Datepicker
                     :language="ja"
                     class="test"
@@ -139,7 +139,7 @@
                   {{ new Date(card.deadline).getMonth()+1 }}/
                   {{ new Date(card.deadline).getDate() }}
                 </div>
-                <div v-if="datePickerFlag">
+                <div v-if="datePickerFlag&&!card.schedulized">
                   <Datepicker
                   :language="ja" 
                   class="test"
@@ -154,14 +154,14 @@
                 {{validationOfDeadline}}
               </div>
               <div
-               v-if="datePickerFlag"
+               v-if="datePickerFlag&&!card.schedulized"
                @click="showDatePicker"
                style="position:relative;left:120px;bottom:30px;"
                >
                 <CloseCircle :size="30"></CloseCircle>
               </div>
               <div 
-              v-if="datePickerFlag" 
+              v-if="datePickerFlag&&!card.schedulized" 
               @click="updateCard"
               style="position:relative;left:150px;bottom:60px;"
               >
@@ -350,12 +350,15 @@
           <div class="btn btn-sm btn-outline-warning" v-if="!card.schedulized" @click="createSchedulesFromCard">ガントチャートに追加する</div>
           <!-- <div class="btn btn-lg btn-danger" @click="deleteCard">このToDoカードを削除する</div> -->
       </div>
+      <div v-if="CannotSubmitMessage" style="color:red;position:relative;left:930px;">
+        {{CannotSubmitMessage}}
+      </div>
       <!-- <div><pre><code>{{card}}</code></pre></div>
       <div>{{start}}</div>
       <div>{{deadline}}</div>
       <div>{{ validDate }}</div> -->
-      <!-- <div>{{(deadline - start)/86400000}}</div> -->
-      <div><pre><code>{{form}}</code></pre></div>
+      <!-- <div>{{ new Date() }}</div>
+      <div><pre><code>{{form}}</code></pre></div> -->
       </div>
     </div>
   </div>
@@ -430,27 +433,51 @@ export default {
       }
     },
     validationOfPastSetting(){
-      if(this.form.start < new Date()&&this.form.start!==''){
+      if(moment(this.form.start).format('YYYY/MM/DD') < moment().format('YYYY/MM/DD')&&this.form.start!==''){
         return '過去の日付は設定できません'
       }
     },
+    CannotSubmitMessage(){
+      if(this.form.start > this.form.deadline&&this.form.deadline!==''){
+        return '追加できません'
+      }
+
+      if((this.form.deadline - this.form.start)/86400000 > 7&&this.form.start!==''){
+        return '追加できません'
+      }
+
+      if(moment(this.form.start).format('YYYY/MM/DD') < moment().format('YYYY/MM/DD')&&this.form.start!==''){
+        return '追加できません'
+      }
+    }
   },
   methods:{
     createSchedulesFromCard(){
-      this.card.schedulized = true
-      this.updateCard()
-      this.$emit('clickedCreateScheduleFromCardButton', this.form)
+      if(this.form.start > this.form.deadline&&this.form.deadline!==''){
+        return '追加できません'
+      }
+      else if((this.form.deadline - this.form.start)/86400000 > 7&&this.form.start!==''){
+        return '追加できません'
+      }
+      else if(this.form.start < moment()&&this.form.start!==''){
+        return '追加できません'
+      }
+      else {
+        this.card.schedulized = true
+        this.updateCard()
+        this.$emit('clickedCreateScheduleFromCardButton', this.form)
+      }
     },
     showDatePicker(){
       this.datePickerFlag = !this.datePickerFlag
     },
-    confirmSchedulize(){
-      if($('[name="optionsScheduled"] option[value="scheduled"]').prop('selected',true)){
-        this.datePickerFlag = true
-      }else if($('[name="optionsScheduled"] option[value="scheduled"]').prop('selected',false)){
-        this.datePickerFlag = false
-      }
-    },
+    // confirmSchedulize(){
+    //   if($('[name="optionsScheduled"] option[value="scheduled"]').prop('selected',true)){
+    //     this.datePickerFlag = true
+    //   }else if($('[name="optionsScheduled"] option[value="scheduled"]').prop('selected',false)){
+    //     this.datePickerFlag = false
+    //   }
+    // },
     openCardEditModal(){
       this.$emit('clickCardEditOpenButton', this.card)
     },
