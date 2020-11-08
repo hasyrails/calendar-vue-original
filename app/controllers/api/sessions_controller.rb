@@ -1,9 +1,11 @@
 class Api::SessionsController < ApplicationController
+ 
+
   def whoami
-    if current_api_user.nil?
+    if current_user.nil?
       response_unauthorized
     else
-      render json: current_api_user
+      render json: current_user
     end
   end
 end
