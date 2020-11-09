@@ -58,7 +58,7 @@ export default {
           await this.$store.dispatch('auth/userInfo')
           setTimeout(() => {
                 if(this.$store.getters['auth/user'].length!==0&&this.$store.getters['auth/headers'].length!==0){
-                  this.$store.commit(`messages/setUserLoginSuccessMessage`,{
+                  this.$store.commit('messages/setUserLoginSuccessMessage',{
                     userLoginSuccessMessage: 'ログインしました',
                     timeout: 3000
                   })
