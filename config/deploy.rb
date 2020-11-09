@@ -8,7 +8,7 @@ set :application, 'calendar-vue-original'
 set :repo_url, 'git@github.com:hasyrails/calendar-vue-original.git'
 
 # deployするブランチ。デフォルトはmasterなのでなくても可。
-set :branch, 'master'
+set :branch, 'aws_deploy_12_spocket'
 
 # deploy先のディレクトリ。 
 set :deploy_to, '/var/www/calendar-vue-original'
