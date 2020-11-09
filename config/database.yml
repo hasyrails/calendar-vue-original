@@ -13,7 +13,7 @@ development:
   <<: *default
   adapter: mysql2
   encoding: utf8
-  database: calendar-vue-original_development
+  database: calendar_vue_original_development
   pool: 5
   username: root
   password:
@@ -26,7 +26,7 @@ test:
   <<: *default
   adapter: mysql2
   encoding: utf8
-  database: calendar-vue-original_test
+  database: calendar_vue_original_test
   pool: 5
   username: root
   password:
@@ -37,7 +37,7 @@ production:
   adapter: mysql2
   encoding: utf8
   pool: 5
-  database: calendar-vue-original_production
+  database: calendar_vue_original_production
   username: root
   password:
   socket: /var/lib/mysql/mysql.sock
