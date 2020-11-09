@@ -86,3 +86,4 @@ gem 'activerecord-session_store', github: 'rails/activerecord-session_store'
 
 gem 'rails_admin'
 gem 'cancancan'
+gem 'mini_racer'
