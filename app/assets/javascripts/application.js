@@ -12,5 +12,4 @@
 //
 //= require activestorage
 //= require turbolinks
-//= require popper.js/dist/popper.js
 //= require_tree .
