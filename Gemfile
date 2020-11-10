@@ -49,6 +49,8 @@ group :development, :test do
   gem 'capistrano-bundler'
   gem 'capistrano-rails'
   gem 'capistrano-rbenv'
+  gem 'ed25519'
+  gem 'bcrypt_pbkdf'
 end
 
 group :development do
@@ -86,3 +88,4 @@ gem 'activerecord-session_store', github: 'rails/activerecord-session_store'
 
 gem 'rails_admin'
 gem 'cancancan'
+gem 'mini_racer'

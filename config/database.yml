@@ -13,10 +13,10 @@ development:
   <<: *default
   adapter: mysql2
   encoding: utf8
-  database: calendar-vue-original_development
+  database: calendar_vue_original_development
   pool: 5
   username: root
-  password:
+  password: password
   # database: db/development.sqlite3
 
 # Warning: The database defined as "test" will be erased and
@@ -26,18 +26,19 @@ test:
   <<: *default
   adapter: mysql2
   encoding: utf8
-  database: calendar-vue-original_test
+  database: calendar_vue_original_test
   pool: 5
   username: root
-  password:
+  password: password
 
   # database: db/test.sqlite3
 
 production:
+  <<: *default
   adapter: mysql2
   encoding: utf8
   pool: 5
-  database: calendar-vue-original_production
+  database: calendar_vue_original_production
   username: root
-  password:
+  password: password
   socket: /var/lib/mysql/mysql.sock

@@ -80,7 +80,7 @@ export default {
       await axios.post('api/v1/auth', this.form)
         .then(res => {
           this.$store.commit('user', res.data)
-          this.$store.commit(`messages/setUserRegisterSuccessMessage`,{
+          this.$store.commit('messages/setUserRegisterSuccessMessage',{
             userRegisterSuccessMessage: 'ユーザー登録に成功しました',
             timeout: 6000
           })
