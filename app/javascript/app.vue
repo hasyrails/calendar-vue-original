@@ -1,63 +1,46 @@
 <template>
-  <div class="app-area">
-    <transition name="component-fade">
-      <UserLoginMessage></UserLoginMessage>
-    </transition>
-    <div class="calendar-area">
-      <Calendar></Calendar>
-    </div>
-    <!-- <div class="footer-area">
-      <footer>(C)footer</footer>
-    </div> -->
+  <div id="app">
+    <Header v-if="!showDone"></Header>
+    <HeaderOfDone v-if="showDone"></HeaderOfDone>
+    <router-view >
+    </router-view>
   </div>
 </template>
 
 <script>
-import Calendar from '../javascript/components/Calendar'
-
-import UserLoginMessage from '../javascript/components/UserLoginMessage'
-
+import { mapGetters } from 'vuex'
+import Header from '../javascript/components/Header'
+import HeaderOfDone from '../javascript/components/HeaderOfDone'
 export default {
-  name: 'Top',
+  data: function () {
+    return {
+      // showDone: false
+    }
+  },
   components: {
-    Calendar,
-    UserLoginMessage,
-  }
+    Header,
+    HeaderOfDone,
+  },
+  methods:{
+    // showDoneSchedules(){
+    //   this.showDone = true
+    // }
+  },
+  computed:{
+    ...mapGetters([
+      'showDone'
+    ]),
+  },
+  beforeCreate(){
+    const existingSession = this.$cookies.get('session')
+    if (existingSession && existingSession.length) { // A string at this point
+      const session = JSON.parse(existingSession)
+      this.$store.commit('auth/signIn', session.user)
+      // this.$store.commit('auth', session.tokens)
+    }
+  },
 }
 </script>
 
 <style scoped>
-p {
-  font-size: 2em;
-  text-align: center;
-}
-
-.app-area{
-  width: 100%;
-  height: 100%;
-  /* background: #EEFFFF; */
-}
-
-.calendar-area{
-  width: 100%;
-  height: 100%;
-  /* overflow-x: scroll; */
-  /* margin-top: 30%; */
-  margin-left: 10%;
-  margin-right : 10%;
-}
-
-footer{
-  position: fixed;
-	bottom: 0px;             
-}
-
-.component-fade-enter-active,
-.component-fade-leave-active {
-  transition: opacity 3s ease;
-}
-.component-fade-enter,
-.component-fade-leave-to {
-    opacity: 0;
-}
 </style>
