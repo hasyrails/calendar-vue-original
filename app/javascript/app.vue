@@ -9,6 +9,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
+// import Vue from 'vue'
 import Header from '../javascript/components/Header'
 import HeaderOfDone from '../javascript/components/HeaderOfDone'
 export default {
@@ -32,7 +33,7 @@ export default {
     ]),
   },
   beforeCreate(){
-    const existingSession = this.$cookies.get('session')
+    const existingSession = $cookies.get('session')
     if (existingSession && existingSession.length) { // A string at this point
       const session = JSON.parse(existingSession)
       this.$store.commit('auth/signIn', session.user)
