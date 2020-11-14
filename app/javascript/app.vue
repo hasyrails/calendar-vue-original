@@ -13,7 +13,6 @@
 </template>
 
 <script>
-import Board from '../components/Board'
 import Calendar from '../components/Calendar'
 
 import UserLoginMessage from '../components/UserLoginMessage'
@@ -21,7 +20,6 @@ import UserLoginMessage from '../components/UserLoginMessage'
 export default {
   name: 'Top',
   components: {
-    Board,
     Calendar,
     UserLoginMessage,
   }
