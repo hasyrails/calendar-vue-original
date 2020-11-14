@@ -13,9 +13,9 @@
 </template>
 
 <script>
-import Calendar from '../javascript/components/Calendar'
+import Calendar from '../components/Calendar'
 
-import UserLoginMessage from '../javascript/components/UserLoginMessage'
+import UserLoginMessage from '../components/UserLoginMessage'
 
 export default {
   name: 'Top',
