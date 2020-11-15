@@ -1,3 +1,8 @@
+server "XX.XX.XX.XX", user: "deploy", roles: %w{app db web}, primary: true
+set :branch,    ENV["BRANCH"] || "master"
+set :stage,     :staging
+set :rails_env, :staging
+
 # server-based syntax
 # ======================
 # Defines a single server with a list of roles and multiple properties.
