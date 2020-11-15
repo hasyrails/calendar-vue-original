@@ -29,7 +29,7 @@
           class="day-other-month"
           >{{ day.date }}</div>
           <div v-if="day.date===new Date().getDate()&&day.month===new Date().getMonth()+1&&day.year===new Date().getFullYear()"
-          class="today" style="position:relative;top:-30px;left:1px;">
+          class="today" style="position:relative;top:-30px;right:1px;">
           {{day.date}}</div>
             <div v-if="day.date===new Date().getDate()&&day.month===new Date().getMonth()+1&&day.year===new Date().getFullYear()&&day.scheduleNum!==0">
               <CountDownTimer></CountDownTimer>
@@ -72,7 +72,7 @@
           <div style="margin-left:40px;width:50px;height:50px;border-radius:25px 25px 25px 25px;background-color:#2C7CFF;" v-if="day.scheduleNum!==0&&day.month===new Date().getMonth()+1&&day.year===new Date().getFullYear()" class="schedule-num-display">
             <div style="color:white; font-size:35px;margin-top:1px;margin-left:12px;">{{day.scheduleNum}}</div>
             <div style="margin-left:10px;margin-top:30px;"><CardBulletedOutline fillColor="grey" :size="100"></CardBulletedOutline></div>
-          </div>
+           </div>
         </div>
       </div>
       <div class="message">{{message}}</div>
