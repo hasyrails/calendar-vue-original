@@ -45,10 +45,11 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'factory_bot_rails'
   gem 'faker'
-  gem 'capistrano'
-  gem 'capistrano-bundler'
-  gem 'capistrano-rails'
-  gem 'capistrano-rbenv'
+  gem "capistrano",         require: false
+  gem "capistrano-rails",   require: false
+  gem "capistrano-bundler", require: false
+  gem "capistrano3-puma",   require: false
+  gem "capistrano-rbenv",   require: false
   gem 'ed25519'
   gem 'bcrypt_pbkdf'
 end
@@ -69,7 +70,6 @@ group :test do
 end
 
 group :production, :staging do
-  gem 'unicorn'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
