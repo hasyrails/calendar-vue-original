@@ -1,24 +1,9 @@
-# README
+## 初志しか勝たん
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+[http://calendar-vue-original.com/](http://calendar-vue-original.com/)
 
-Things you may want to cover:
+### サービス概要
+#### 今日のタスクはいくつ？？
+##### こんなことありがち
+[![Image from Gyazo](https://i.gyazo.com/624467be34ade3fb42c4a97f9e331a49.png)](https://gyazo.com/624467be34ade3fb42c4a97f9e331a49)
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...

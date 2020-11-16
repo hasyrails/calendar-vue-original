@@ -99,6 +99,7 @@
           >{{ day.date }}</div>
           <div v-if="day.date===new Date().getDate()&&day.month===new Date().getMonth()+1&&day.year===new Date().getFullYear()"
           class="today"
+          style="position:relative;top:-30px;right:1px;"
           >
           {{day.date}}</div>
         </div>
