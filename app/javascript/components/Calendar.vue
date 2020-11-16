@@ -29,7 +29,8 @@
           class="day-other-month"
           >{{ day.date }}</div>
           <div v-if="day.date===new Date().getDate()&&day.month===new Date().getMonth()+1&&day.year===new Date().getFullYear()"
-          class="today" style="position:relative;top:-30px;right:1px;">
+          class="today"
+          style="position:relative;top:-30px;right:1px;">
           {{day.date}}</div>
             <div v-if="day.date===new Date().getDate()&&day.month===new Date().getMonth()+1&&day.year===new Date().getFullYear()&&day.scheduleNum!==0">
               <CountDownTimer></CountDownTimer>
@@ -78,7 +79,8 @@
       <div class="message">{{message}}</div>
     </div>
     <div 
-    v-if="$store.state.auth.user.length!==0&&$store.state.auth.headers.length!==0">
+    v-if="$store.state.auth.user.length!==0&&$store.state.auth.headers.length!==0"
+    >
       <div
         v-for="(week, index) in calendars"
         :key="index"
@@ -90,7 +92,6 @@
         :key="index"
         style="width:150px;"
         > 
-        <div style="display:flex;">
           <div v-if="day.month===currentMonth"
           class="day-current-month"
           >{{day.date}}</div>
@@ -102,7 +103,6 @@
           style="position:relative;top:-30px;right:1px;"
           >
           {{day.date}}</div>
-        </div>
           <div v-if="day.scheduleNum!==0&&day.month===new Date().getMonth()+1&&day.year===new Date().getFullYear()" class="schedule-num-display">
             <div style="color:white; font-size:15px;margin-top:0px;margin-left:6px;">{{day.scheduleNum}}</div>
             <div style="margin-left:10px;margin-top:5px;"><CardBulletedOutline fillColor="grey" :size="60"></CardBulletedOutline></div>
