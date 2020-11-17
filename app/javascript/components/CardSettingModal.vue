@@ -359,7 +359,8 @@
       <div>{{ validDate }}</div> -->
       <!-- <div>{{ new Date() }}</div>
       <div><pre><code>{{form}}</code></pre></div> -->
-      <div>{{logic}}</div>
+      <!-- <div>{{logic}}</div> -->
+      <div>{{form}}</div>
       </div>
     </div>
   </div>
@@ -394,11 +395,13 @@ export default {
       cardStatusEditFlag: false,
       datePickerFlag: false,
       form:{
+        id: this.card.id,
         body: this.card.body,
-        description: '',
+        description: this.card.description,
         start: '',
         deadline: '',
-        color: '',
+        schedulized: this.card.schedulized,
+        color: this.card.color,
         card_id: this.card.id,
         user_id: this.$store.getters['auth/user'].id,
       },
@@ -423,9 +426,9 @@ export default {
     Datepicker,
   },
   computed:{
-    logic(){
-      return moment(this.form.start).format('YYYY/MM/DD') === moment().format('YYYY/MM/DD')&&moment(this.form.deadline).format('YYYY/MM/DD') === moment().format('YYYY/MM/DD')
-    },
+    // logic(){
+    //   return moment(this.form.start).format('YYYY/MM/DD') === moment().format('YYYY/MM/DD')&&moment(this.form.deadline).format('YYYY/MM/DD') === moment().format('YYYY/MM/DD')
+    // },
     validationOfStart(){
       if(this.form.start > this.form.deadline&&this.form.deadline!==''){
         return '設定できません'
@@ -458,7 +461,7 @@ export default {
   methods:{
     createSchedulesFromCard(){
       if(moment(this.form.start).format('YYYY/MM/DD') === moment().format('YYYY/MM/DD')&&moment(this.form.deadline).format('YYYY/MM/DD') === moment().format('YYYY/MM/DD')){
-        this.card.schedulized = true
+        this.form.schedulized = true
         this.updateCard()
         this.$emit('clickedCreateScheduleFromCardButton', this.form)
       }
@@ -472,7 +475,7 @@ export default {
         return '追加できません'
       }
       else {
-        this.card.schedulized = true
+        this.form.schedulized = true
         this.updateCard()
         this.$emit('clickedCreateScheduleFromCardButton', this.form)
       }
@@ -523,7 +526,7 @@ export default {
       this.cardStatusEditFlag = false
     },
     updateCard(){
-      this.$emit('updateCard', this.card)
+      this.$emit('updateCard', this.form)
       this.cardDescriptionEditFlag = false
       this.cardColorEditFlag = false
       this.datePickerFlag = false
