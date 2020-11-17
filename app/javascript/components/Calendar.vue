@@ -105,10 +105,10 @@
           {{day.date}}</div>
           <div v-if="day.scheduleNum!==0&&day.month===new Date().getMonth()+1&&day.year===new Date().getFullYear()" class="schedule-num-display">
             <div style="color:white; font-size:15px;margin-top:0px;margin-left:6px;">{{day.scheduleNum}}</div>
-            <div style="margin-left:10px;margin-top:5px;"><CardBulletedOutline fillColor="grey" :size="60"></CardBulletedOutline></div>
-          <div v-if="day.date===new Date().getDate()&&day.month===new Date().getMonth()+1&&day.year===new Date().getFullYear()&&day.scheduleNum!==0" style="position:relative;top:3px;">
-            <CountDownTimer></CountDownTimer>
+            <div style="margin-left:10px;position:relative;top:-10px;"><CardBulletedOutline fillColor="grey" :size="50"></CardBulletedOutline></div>
           </div>
+          <div v-if="day.date===new Date().getDate()&&day.month===new Date().getMonth()+1&&day.year===new Date().getFullYear()&&day.scheduleNum!==0" style="position:relative;top:-45px;">
+            <CountDownTimer></CountDownTimer>
           </div>
         </div>
       </div>
