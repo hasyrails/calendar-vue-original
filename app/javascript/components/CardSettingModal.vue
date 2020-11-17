@@ -359,6 +359,7 @@
       <div>{{ validDate }}</div> -->
       <!-- <div>{{ new Date() }}</div>
       <div><pre><code>{{form}}</code></pre></div> -->
+      <div>{{logic}}</div>
       </div>
     </div>
   </div>
@@ -400,7 +401,7 @@ export default {
         color: '',
         card_id: this.card.id,
         user_id: this.$store.getters['auth/user'].id,
-      }
+      },
     }
   },
   props: {
@@ -422,6 +423,9 @@ export default {
     Datepicker,
   },
   computed:{
+    logic(){
+      return moment(this.form.start).format('YYYY/MM/DD') === moment().format('YYYY/MM/DD')&&moment(this.form.deadline).format('YYYY/MM/DD') === moment().format('YYYY/MM/DD')
+    },
     validationOfStart(){
       if(this.form.start > this.form.deadline&&this.form.deadline!==''){
         return '設定できません'
@@ -453,7 +457,12 @@ export default {
   },
   methods:{
     createSchedulesFromCard(){
-      if(this.form.start > this.form.deadline&&this.form.deadline!==''){
+      if(moment(this.form.start).format('YYYY/MM/DD') === moment().format('YYYY/MM/DD')&&moment(this.form.deadline).format('YYYY/MM/DD') === moment().format('YYYY/MM/DD')){
+        this.card.schedulized = true
+        this.updateCard()
+        this.$emit('clickedCreateScheduleFromCardButton', this.form)
+      }
+      else if(this.form.start > this.form.deadline&&this.form.deadline!==''){
         return '追加できません'
       }
       else if((this.form.deadline - this.form.start)/86400000 > 7&&this.form.start!==''){
@@ -461,11 +470,6 @@ export default {
       }
       else if(this.form.start < moment()&&this.form.start!==''){
         return '追加できません'
-      }
-      else if(moment(this.form.start).format('YYYY/MM/DD') === moment().format('YYYY/MM/DD')&&moment(this.form.deadline).format('YYYY/MM/DD') === moment().format('YYYY/MM/DD')){
-        this.card.schedulized = true
-        this.updateCard()
-        this.$emit('clickedCreateScheduleFromCardButton', this.form)
       }
       else {
         this.card.schedulized = true
