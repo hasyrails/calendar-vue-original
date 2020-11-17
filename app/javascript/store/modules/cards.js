@@ -64,12 +64,18 @@ const cards = {
       state.cards = cards
     },
     updateCard(state, payload){
-      // const index = state.cards.findIndex(card => {
-      //   return card.id === updateCard.id
-      // })
       //   state.cards.splice(index, 1, updateCard)
       // Object.assign(card, updateCard);
-      state.cards = payload.card
+      const card = state.cards.find((o) => {
+        return o.id === payload.id;
+      });
+      
+      const index = state.cards.findIndex((o) => {
+        return o.id === payload.id
+      })
+      
+      state.cards.splice(index, 1, card)
+
     },
       createCard(state, payload) {
       state.cards.push({ body: payload.body, list_id: payload.list_id })

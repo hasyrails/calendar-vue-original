@@ -157,12 +157,12 @@ export default {
     draggable,
   },
   methods: {
-    createSchedulesFromCard(card){
+    createSchedulesFromCard(form){
       if(confirm('一度決めた「いつから」「いつまで」は変更できません！よろしいですか？')){
-        this.cardDetail = card
+        this.cardDetail = form
         this.closeCardSettingModal()
-        this.updateCardAction(card)
-        this.$store.dispatch('schedules/createScheduleAction', card)
+        this.updateCardAction(form)
+        this.$store.dispatch('schedules/createScheduleAction', form)
         // this.$router.go({path: this.$router.currentRoute.path, force: true})
       }
     },
