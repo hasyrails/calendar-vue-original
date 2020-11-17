@@ -462,6 +462,11 @@ export default {
       else if(this.form.start < moment()&&this.form.start!==''){
         return '追加できません'
       }
+      else if(this.form.start === moment()&&this.form.deadline === moment()){
+        this.card.schedulized = true
+        this.updateCard()
+        this.$emit('clickedCreateScheduleFromCardButton', this.form)
+      }
       else {
         this.card.schedulized = true
         this.updateCard()
