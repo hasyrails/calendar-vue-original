@@ -50,6 +50,17 @@ class Api::SchedulesController < ApplicationController
     end
   end
 
+  def deadlined
+    today = Date.today
+    @schedules = Schedule.all
+    @schedules.each do |schedule|
+      if schedule.deadline < today
+        schedule.update(deadlined: 'true')
+        schedule.save
+      end
+    end 
+  end
+
   private
 
   def set_schedule

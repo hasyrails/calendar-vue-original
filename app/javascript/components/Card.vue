@@ -11,7 +11,7 @@
     <div class="body card-body" v-if="!cardBodyEditFlag&&card.body.length===0" @click="cardBodyEdit">
       <Pencil :size="40"></Pencil>
     </div>
-    <div class="card-body-editng" v-if="cardBodyEditFlag&&nonDeadlined">
+    <div class="card-body-editng" v-if="cardBodyEditFlag&&card.deadlined===false">
       <form  class="body" @submit.prevent="updateCard" style="-moz-box-shadow: inset 0 0 4px rgba(0,0,0,0.2);
       -webkit-box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.2);
       box-shadow: inner 0 0 4px rgba(150, 180, 200, 0.2);">
@@ -25,11 +25,11 @@
         <CloseCircle :size="30"></CloseCircle>
       </div>
     </div>
-    <div class="card-handle-button" v-if="nonDeadlined">
-      <div class="show-detail-button" v-show="!cardBodyEditFlag">
+    <div class="card-handle-button" >
+      <div class="show-detail-button" v-show="!cardBodyEditFlag&&card.deadlined===false">
         <Cog fillColor="grey" :size="30" @click="openCardSettingModal"></Cog>
       </div>
-      <div class="delete-card-button" @click="deleteCard" v-show="!cardBodyEditFlag">
+      <div class="delete-card-button" @click="deleteCard" v-show="!cardBodyEditFlag&&card.deadlined===false">
         <TrashCanOutline fillColor="red" :size="30"></TrashCanOutline>
       </div>
     </div>
@@ -43,7 +43,6 @@ import CloseCircle from 'vue-material-design-icons/CloseCircle.vue';
 import Pencil from 'vue-material-design-icons/Pencil.vue';
 import CalendarImport from 'vue-material-design-icons/CalendarImport.vue';
 import Star from 'vue-material-design-icons/Star.vue';
-import moment from 'moment'
 
 export default {
   data(){
@@ -79,15 +78,11 @@ export default {
       if (this.card.done===true) {
         classCard.push('finishedToDo')
       }
-      if (moment(this.card.deadline).format('YYYY/MM/DD') < moment().format('YYYY/MM/DD')) {
-        // this.card.deadlined=true
+      if (this.card.deadlined===true) {
         classCard.push('deadlinedCard')
       }
       return classCard
     },
-    nonDeadlined(){
-      return moment(this.card.deadline).format('YYYY/MM/DD') >= moment().format('YYYY/MM/DD')
-    }
   },
   components:{
     Cog,
@@ -108,9 +103,7 @@ export default {
       this.$emit('clickCardSettingButton', this.body)
     },
     cardBodyEdit(){
-      if(this.nonDeadlined){
-        this.cardBodyEditFlag = true
-      }
+      this.cardBodyEditFlag = true
       console.log(this.list_id)
     },
     quitCardBodyEdit(){
@@ -140,9 +133,7 @@ export default {
 .deadlinedCard{
   /* visibility:hidden */
   /* background-color :#FFDBC9; */
-  outline: dashed thin;
-  background-color :white;
-  color:grey;
+  color:black;
   opacity:0.3;
 }
 
