@@ -14,11 +14,13 @@
       <div class="schedule-done-icon" v-if="schedule.done">
         <CheckBold fillColor="orange" :size="30"></CheckBold>
       </div>
-      <div class="schedule-title" style="margin-left:10px;margin-top:1px;">
+      <div
+      class="schedule-title" style="margin-left:10px;margin-top:1px;">
         {{schedule.body}}
       </div>
     </div>
     <div class="card-handle-button"
+    v-if="nonDeadlined"
     >
       <div @click="openScheduleSettingModal" v-if="!schedule.deadlined">
         <ScheduleSettingButton style="margin-left:1px;"></ScheduleSettingButton>
@@ -44,6 +46,7 @@ import CountDownTimer from '../components/CountDownTimer'
 import TrashCanOutline from 'vue-material-design-icons/TrashCanOutline.vue';
 import CheckBold from 'vue-material-design-icons/CheckBold.vue';
 
+import moment from 'moment';
 
 export default {
   name: 'Schedule',
@@ -102,13 +105,16 @@ export default {
       if (this.schedule.done===true&&this.schedule.commit===false&&this.schedule.deadlined===false) {
         classButton.push('nonDisplay')
       }
-      if (this.schedule.deadlined===true) {
+      if (moment(this.schedule.deadline).format('YYYY/MM/DD')<moment().format('YYYY/MM/DD')) {
         classButton.push('deadlinedSchedule')
       }
       return classButton
     },
     displayNum(){
       return this.displayNum
+    },
+    nonDeadlined(){
+      return moment(this.schedule.deadline).format('YYYY/MM/DD')>=moment().format('YYYY/MM/DD')
     }
   }
 }
@@ -131,7 +137,9 @@ export default {
 .deadlinedSchedule{
   /* visibility:hidden */
   /* background-color :#FFDBC9; */
-  color:black;
+  outline: dashed thin;
+  background-color :white;
+  color:grey;
   opacity:0.3;
 }
 
