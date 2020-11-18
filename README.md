@@ -11,31 +11,40 @@ ToDoアプリで期限を設定したけど期限先延ばしにしてしまう�
 
 #### コンセプト
 そこで、
- - はじめに設定した予定は変えれない
+ - はじめに設定した予定は変えれない（初志至上主義）
  - 今日やることを前の日に設定した予定も見ながら決めれる
-カレンダー+ToDoリスト初志貫徹アプリを作成しました
+カレンダー+ToDoリスト初志貫徹アプリ「初志しか勝たん」を作成しました
 
 ### ページ機能(ログインユーザー)
-#### トップページ
-[![Image from Gyazo](https://i.gyazo.com/19667613f3b1f044f27d6618f71fc163.png)](https://gyazo.com/19667613f3b1f044f27d6618f71fc163)
 
-#### ガントチャートページ
-[![Image from Gyazo](https://i.gyazo.com/33acddf89af680500f644fd346636c0b.png)](https://gyazo.com/33acddf89af680500f644fd346636c0b)
+| トップページ                                                         | マイページ                                                                                               |
+| :------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------- |
+| [![Image from Gyazo](https://i.gyazo.com/19667613f3b1f044f27d6618f71fc163.png)](https://gyazo.com/19667613f3b1f044f27d6618f71fc163) | [![Image from Gyazo](https://i.gyazo.com/7a2237a3227467b71c96db6c510c45af.png)](https://gyazo.com/7a2237a3227467b71c96db6c510c45af)                                   |
+| ガントチャートページで登録した予定の数を表示します | 初めに設定した期限のまま完了したタスクは「初志の勝率」として表示されます |
 
-##### する・しないを自在に
-ガントチャートに追加したToDoはワンクリックでする・しないを変更できる
-[![Image from Gyazo](https://i.gyazo.com/d2c8c603334b6452e75f46f8105730e9.gif)](https://gyazo.com/d2c8c603334b6452e75f46f8105730e9)
+<br>
 
-カレンダーでカウントされなくなります
-[![Image from Gyazo](https://i.gyazo.com/b0ccd6520017665d6e6aaf9c61b8b710.png)](https://gyazo.com/b0ccd6520017665d6e6aaf9c61b8b710)
+| ガントチャートページ : ToDoカードの作成                                                        | ガントチャートページ : ガントチャート（風カレンダー）へのToDoカードの登録                                                                                               |
+| :------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------- |
+| [![Image from Gyazo](https://i.gyazo.com/588dc9f9b2c9eb590e63f42cd85b282a.gif)](https://gyazo.com/588dc9f9b2c9eb590e63f42cd85b282a) | [![Image from Gyazo](https://i.gyazo.com/b81526e9d7e8d8eb1010bda2e23ca7b6.gif)](https://gyazo.com/b81526e9d7e8d8eb1010bda2e23ca7b6)                                   |
+| ToDoカードを作成できます | ガントチャート（風カレンダー）にToDoカードを追加できます |
 
-##### 完了したタスクを確認！
-[![Image from Gyazo](https://i.gyazo.com/193f89848e59ad295531b9ea6f55daee.gif)](https://gyazo.com/193f89848e59ad295531b9ea6f55daee)
+<br>
 
-#### マイページ
-##### どんどんタスクをこなしてこう
-マイページには初志貫徹率「初志の勝率」が表示されます
-[![Image from Gyazo](https://i.gyazo.com/def51773862f4e863cdd4ead74fb517d.png)](https://gyazo.com/def51773862f4e863cdd4ead74fb517d)
+| ガントチャートページ : ToDoタスクのする・しないの切り替え                                                        | ガントチャートページ : 完了したタスクを確認                                                                                               |
+| :------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------- |
+| [![Image from Gyazo](https://i.gyazo.com/d2c8c603334b6452e75f46f8105730e9.gif)](https://gyazo.com/d2c8c603334b6452e75f46f8105730e9) | [![Image from Gyazo](https://i.gyazo.com/193f89848e59ad295531b9ea6f55daee.gif)](https://gyazo.com/193f89848e59ad295531b9ea6f55daee)                                   |
+| ワンクリックでToDoタスクのする・しないを切り替えることができます<br>しない状態（透明）のToDoカードはトップページのカレンダーでカウントされません。 | 完了したタスクを確認することができます |
+
+<br>
+
+### 初志貫徹支援機能
+初志貫徹を支援する機能がこちら
+
+| カウントダウン機能                                                        | 初志貫徹できなかったToDoカードたち                                                                                               |
+| :------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------- |
+| [![Image from Gyazo](https://i.gyazo.com/0a208684b6bb930d197fa258f38f86db.png)](https://gyazo.com/0a208684b6bb930d197fa258f38f86db) | [![Image from Gyazo](https://i.gyazo.com/2073d8ee32aa6ce0ba271b6de8072f21.png)](https://gyazo.com/2073d8ee32aa6ce0ba271b6de8072f21)                                   |
+| その日期限のToDoタスクがある時、カウントダウンが表示されます。 | 初めに設定した期限を過ぎてしまったカードは残り続けます‥👻 |
 
 ### 使用技術
 #### バックエンド
@@ -47,8 +56,9 @@ ToDoアプリで期限を設定したけど期限先延ばしにしてしまう�
   - devise_token_auth (ログイン)
   - cancancan (認可)
   - rails_admin (管理画面)
+
 ##### ER図
-[![Image from Gyazo](https://i.gyazo.com/fa551aea343b2b0550cf7a965822b7ba.png)](https://gyazo.com/fa551aea343b2b0550cf7a965822b7ba)
+<img src="https://i.gyazo.com/fa551aea343b2b0550cf7a965822b7ba.png" width="600" height="600">
 
 #### フロントエンド
   - vue 2.6.12
@@ -64,5 +74,5 @@ ToDoアプリで期限を設定したけど期限先延ばしにしてしまう�
     - EC2 (Amazon Linux)
     - RDS (MySQL 8.0.20)
     - Route 53
-    
+
 [![Image from Gyazo](https://i.gyazo.com/aebe397ae8b22f55d5bd588401cca8d5.png)](https://gyazo.com/aebe397ae8b22f55d5bd588401cca8d5)
