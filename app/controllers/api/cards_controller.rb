@@ -43,18 +43,6 @@ class Api::CardsController < ApplicationController
     render json: @card
   end
   
-  def deadlined
-    today = Date.today.strftime("%Y-%m-%d")
-    @cards = Card.all
-    @cards.each do |card|
-      if card.deadline.to_s < today
-        card.update(deadlined: true)
-        card.save
-      end
-    end
-    render json: @cards
-  end
-
   private
 
   def set_card

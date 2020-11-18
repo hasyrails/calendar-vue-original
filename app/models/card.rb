@@ -1,6 +1,6 @@
 class Card < ApplicationRecord
-  belongs_to :list, optional: true
-  belongs_to :user, optional: true
+  belongs_to :list
+  belongs_to :user
   has_many :schedule, dependent: :destroy
 
   enum status: { todo: 0, doing: 1, done: 2 }
